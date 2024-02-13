@@ -13,7 +13,7 @@ local function mergetTables(table1, table2, output)
 	end
 end
 mergetTables(NvChadMappings, CustomMappings, Mappings)
-Utils.printf(Mappings)
+-- Utils.printf(Mappings)
 
 vwk.register(Mappings, { target = "global" })
 vwk.sortOrder("none", { target = "global" })

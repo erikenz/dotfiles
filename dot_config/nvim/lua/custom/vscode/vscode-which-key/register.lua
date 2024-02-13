@@ -32,22 +32,28 @@ function M.transformKeybinds(inputTable)
 		for mode, keymaps in pairs(modes) do
 			if mode ~= "plugin" then
 				for keymap, actions in pairs(keymaps) do
-					if not result[mode] then
-						result[mode] = {
-							key = mode,
-							name = "+" .. mode .. " mode",
-							type = "bindings",
-							bindings = {}
-						}
+					local shouldHide = string.find(actions[2], "(whichkey-hidden)", 1, true)
+					-- print("Should hide:", keymap, shouldHide ~= nil)
+					if shouldHide == nil then
+						-- 	print("VSCode excluded ->", "Mode", mode, "Keymap:", keymap, "Actions:", actions[2])
+						-- else
+						if not result[mode] then
+							result[mode] = {
+								key = mode,
+								name = "+" .. mode .. " mode",
+								type = "bindings",
+								bindings = {}
+							}
+						end
+						local keyArray = M.getKeymapArray(keymap)
+						M.insertBinding(keyArray, result[mode].bindings, {
+							key = M.getVscodeKey(keyArray[#keyArray]),
+							name = actions[2],
+							type = "command",
+							command = "vscode-neovim.send",
+							args = M.getArgs(keyArray)
+						})
 					end
-					local keyArray = M.getKeymapArray(keymap)
-					M.insertBinding(keyArray, result[mode].bindings, {
-						key = M.getVscodeKey(keyArray[#keyArray]),
-						name = actions[2],
-						type = "command",
-						command = "vscode-neovim.send",
-						args = M.getArgs(keyArray)
-					})
 				end
 			end
 		end
@@ -82,6 +88,9 @@ end
 
 function M.insertBinding(keyPath, bindings, newTable)
 	for k, value in pairs(keyPath) do
+		-- if string.find(value, "<leader>") then
+		-- 	print("KeyPath:", Utils.dump(keyPath), "Value:", value)
+		-- end
 		if k == #keyPath then
 			table.insert(bindings, newTable)
 		else
