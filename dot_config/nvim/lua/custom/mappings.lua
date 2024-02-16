@@ -80,6 +80,18 @@ if vim.g.vscode then
 				end,
 				"Navigate up"
 			},
+			["<Tab>"] = {
+				function()
+					vscode.action("workbench.action.nextEditor")
+				end,
+				"Next tab"
+			},
+			["<S-Tab>"] = {
+				function()
+					vscode.action("workbench.action.previousEditor")
+				end,
+				"Previous tab"
+			},
 		},
 		t = {
 			["<C-l>"] = {

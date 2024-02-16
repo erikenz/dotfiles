@@ -61,6 +61,22 @@ local plugins = {
 	{
 		"nvim-tree/nvim-web-devicons",
 		enabled = not vscode
+	},
+	{
+		"NvChad/base64",
+		enabled = not vscode
+	},
+	{
+		"nvim-treesitter/nvim-treesitter",
+		enabled = not vscode
+	},
+	-- {
+	-- 	"hrsh7th/nvim-cmp",
+	-- 	enabled = not vscode
+	-- },
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		enabled = not vscode
 	}
 
 	-- All NvChad plugins are lazy-loaded by default
