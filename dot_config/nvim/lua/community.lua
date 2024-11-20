@@ -10,7 +10,7 @@ return {
   { import = "astrocommunity.pack.lua" },
   -- import/override with your plugins folder
   { import = "astrocommunity.colorscheme.catppuccin" },
-  { import = "astrocommunity.completion.copilot-lua" },
+  { import = "astrocommunity.completion.copilot-lua-cmp" },
   { import = "astrocommunity.pack.astro" },
   { import = "astrocommunity.pack.chezmoi" },
   { import = "astrocommunity.pack.html-css" },

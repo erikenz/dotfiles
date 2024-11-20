@@ -70,9 +70,65 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(
+  aliases
+  alias-finder
+  chezmoi
+  command-not-found
+  dnf
+  docker
+  docker-compose
+  fzf-tab
+  gh
+  git
+  nvm
+  sudo
+  tmux
+  vi-mode
+  zoxide
+  zsh-history-substring-search
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+)
 
+fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+  
 source $ZSH/oh-my-zsh.sh
+
+# Load suggestions
+autoload -U compinit && compinit
+
+# Keybindings
+bindkey -e
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
+
+# History
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+# Completion styling
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:' fzf-preview 'ls --color $realpath'
+
+# Aliases
+alias ls='ls --color'
+
+# Shell integrations
+eval "$(fzf --zsh)"
+eval "$(zoxide init --cmd cd zsh)"
 
 # User configuration
 
@@ -110,3 +166,5 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/theme.toml)"
