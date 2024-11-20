@@ -1,0 +1,79 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "vim_mode": true,
+  "vim": {
+    "use_system_clipboard": "always",
+    "use_multiline_find": true
+  },
+  "ui_font_size": 16,
+  "buffer_font_size": 16,
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "Catppuccin Mocha"
+  },
+  "tabs": {
+    "file_icons": true,
+    "git_status": true
+  },
+  "indent_guides": {
+    "enabled": true,
+    "active_line_width": 2,
+    "coloring": "indent_aware"
+  },
+  "show_whitespaces": "boundary",
+  "terminal": {
+    "dock": "right"
+  },
+  "project_panel": {
+    "auto_fold_dirs": false,
+    "dock": "left"
+  },
+  "cursor_blink": false,
+  "relative_line_numbers": true,
+  "vertical_scroll_margin": 10,
+  "soft_wrap": "editor_width",
+  "languages": {
+    "TSX": {
+      "format_on_save": {
+        "external": {
+          "command": "prettier",
+          "arguments": ["--stdin-filepath", "{buffer_path}"]
+        }
+      },
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true
+      }
+    }
+  },
+  "lsp": {
+    "vtsls": {
+      "settings": {
+        "typescript": {
+          "preferences": {
+            "importModuleSpecifier": "non-relative"
+          }
+        }
+      }
+    },
+    "tailwindcss-language-server": {
+      "settings": {
+        "classAttributes": ["class", "className", "ngClass", "styles"],
+        "experimental": {
+          "classRegex": [
+            "[a-zA-Z]*ClassName='([^']+)'",
+            "[a-zA-Z]*ClassName=\"([^\"]+)\"",
+            "[a-zA-Z]*ClassName={`([^`]+)`}"
+          ]
+        }
+      }
+    }
+  }
+}
