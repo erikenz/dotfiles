@@ -45,12 +45,37 @@
   "soft_wrap": "editor_width",
   "languages": {
     "TSX": {
-      "format_on_save": {
+      "formatter": {
         "external": {
           "command": "prettier",
           "arguments": ["--stdin-filepath", "{buffer_path}"]
         }
       },
+      "format_on_save": "on",
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true
+      }
+    },
+    "TypeScript": {
+      "formatter": {
+        "external": {
+          "command": "prettier",
+          "arguments": ["--stdin-filepath", "{buffer_path}"]
+        }
+      },
+      "format_on_save": "on",
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true
+      }
+    },
+    "JavaScript": {
+      "formatter": {
+        "external": {
+          "command": "prettier",
+          "arguments": ["--stdin-filepath", "{buffer_path}"]
+        }
+      },
+      "format_on_save": "on",
       "code_actions_on_format": {
         "source.fixAll.eslint": true
       }
