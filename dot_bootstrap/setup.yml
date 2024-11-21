@@ -78,10 +78,10 @@
         name: "{{ remote_regular_user }}"
         shell: /usr/bin/zsh
 
-    # - name: Install DNF plugins core
-    #   ansible.builtin.dnf:
-    #     name: dnf-plugins-core
-    #     state: present
+    - name: Install DNF plugins core
+      ansible.builtin.dnf:
+        name: dnf-plugins-core
+        state: present
 
     # - name: Add Brave Browser Repo
     #   ansible.builtin.yum_repository:
