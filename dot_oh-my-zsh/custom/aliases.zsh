@@ -1,4 +1,4 @@
-alias omzconfig="nvim ~/.oh-my-zsh/custom"
-alias zshconfig="nvim ~/.zshrc"
-alias nvimconfig="nvim ~/.config/nvim"
+alias omzconfig="cd ~/.oh-my-zsh/custom && nvim"
+alias zshconfig="cd ~/.zshrc && nvim"
+alias nvimconfig="cd ~/.config/nvim && nvim"
 alias p="pnpm"
