@@ -1,3 +1,66 @@
 theme = catppuccin-frappe
-font-family = ""
 font-family = GeistMono Nerd Font
+mouse-hide-while-typing = true
+window-decoration = true
+background-opacity = 0.7
+background-blur-radius = 20
+cursor-invert-fg-bg = true
+
+# -= Commands =-
+
+# General
+keybind = ctrl+b>r=reload_config
+keybind = ctrl+b>a=select_all
+keybind = ctrl+b>c=copy_to_clipboard
+keybind = ctrl+b>v=paste_from_clipboard
+keybind = ctrl+b>k>i>l>l=close_surface
+# Currently not working
+# keybind = ctrl+b>t>i=inspector
+
+
+# Window stuff
+keybind = ctrl+b>w>n=new_window
+keybind = ctrl+b>w>d=toggle_window_decorations
+keybind = ctrl+b>w>f=toggle_fullscreen
+# Note This requires you to have the right editor set via xdg. 
+# This can be done with `xdg-mime default nvim.desktop text/plain`
+keybind = ctrl+b>w>s=write_screen_file:open
+
+# Tab and splits (panes)
+keybind = ctrl+b>t>n=new_tab
+keybind = ctrl+b>t>q=close_tab
+keybind = ctrl+b>p>n=new_split:auto
+keybind = ctrl+b>p>r=new_split:right
+keybind = ctrl+b>p>l=new_split:left
+keybind = ctrl+b>p>u=new_split:up
+keybind = ctrl+b>p>d=new_split:down
+keybind = ctrl+b>p>f=toggle_split_zoom
+keybind = ctrl+b>p>q=close_surface
+
+keybind = alt>equal=equalize_splits
+keybind = alt>,=resize_split:left,10
+keybind = alt>.=resize_split:right,10
+keybind = alt>6=resize_split:up,10
+keybind = alt>7=resize_split:down,10
+
+
+
+
+# -= Navigation =-
+
+# Split navigation
+# NOTE: Currently (januari 10th) the split movement is 
+# somewhat broken on linux, the issue is known and 
+# is actively worked on I believe.
+keybind = alt+h=goto_split:left
+keybind = alt+j=goto_split:bottom
+keybind = alt+k=goto_split:top
+keybind = alt+l=goto_split:right
+
+# Tab navigation
+keybind = alt+[=previous_tab
+keybind = alt+]=next_tab
+
+# Prompt navigation
+keybind = alt+b=jump_to_prompt:-1
+keybind = alt+f=jump_to_prompt:1
