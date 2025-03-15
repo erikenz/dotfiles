@@ -7,18 +7,16 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "assistant": {
-    "default_model": {
-      "provider": "copilot_chat",
-      "model": "gpt-4o"
-    },
-    "version": "2"
+  "icon_theme": "Catppuccin Mocha",
+  "terminal": {
+    "dock": "right",
+    "copy_on_select": true
   },
+  "features": {
+    "edit_prediction_provider": "zed"
+  },
+  "relative_line_numbers": true,
   "vim_mode": true,
-  "vim": {
-    "use_system_clipboard": "always",
-    "use_multiline_find": true
-  },
   "ui_font_size": 14,
   "buffer_font_size": 14,
   "theme": {
@@ -27,72 +25,25 @@
     "dark": "Catppuccin Mocha"
   },
   "chat_panel": {
-    "button": "never"
+    "button": "when_in_call"
   },
   "collaboration_panel": {
     "button": false
-  },
-  "ui_font_family": "JetBrainsMono Nerd Font",
-  // "ui_font_family": "CaskaydiaCove Nerd Font",
-  "tabs": {
-    "file_icons": true,
-    "git_status": true
   },
   "indent_guides": {
     "enabled": true,
     "active_line_width": 2,
     "coloring": "indent_aware"
   },
-  "show_whitespaces": "boundary",
-  "terminal": {
-    "dock": "right",
-    "font_size": 12
-  },
-  "project_panel": {
-    "auto_fold_dirs": false,
-    "dock": "left"
-  },
-  "cursor_blink": false,
-  "relative_line_numbers": true,
-  "vertical_scroll_margin": 10,
-  "soft_wrap": "editor_width",
-  "languages": {
-    "TSX": {
-      "formatter": {
-        "external": {
-          "command": "prettier",
-          "arguments": ["--stdin-filepath", "{buffer_path}"]
-        }
-      },
-      "format_on_save": "on",
-      "code_actions_on_format": {
-        "source.fixAll.eslint": true
-      }
-    },
-    "TypeScript": {
-      "formatter": {
-        "external": {
-          "command": "prettier",
-          "arguments": ["--stdin-filepath", "{buffer_path}"]
-        }
-      },
-      "format_on_save": "on",
-      "code_actions_on_format": {
-        "source.fixAll.eslint": true
-      }
-    },
-    "JavaScript": {
-      "formatter": {
-        "external": {
-          "command": "prettier",
-          "arguments": ["--stdin-filepath", "{buffer_path}"]
-        }
-      },
-      "format_on_save": "on",
-      "code_actions_on_format": {
-        "source.fixAll.eslint": true
-      }
+  "ui_font_family": "JetBrainsMono Nerd Font",
+  "formatter": {
+    "language_server": {
+      "name": "biome"
     }
+  },
+  "code_actions_on_format": {
+    "source.fixAll.biome": true,
+    "source.organizeImports.biome": true
   },
   "lsp": {
     "vtsls": {
@@ -115,6 +66,11 @@
             "[a-zA-Z]*ClassName={.+|\n*}"
           ]
         }
+      }
+    },
+    "biome": {
+      "settings": {
+        "require_config_file": true
       }
     }
   }
