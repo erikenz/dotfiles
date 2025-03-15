@@ -12,6 +12,11 @@
     "dock": "right",
     "copy_on_select": true
   },
+  "tabs": {
+    "file_icons": true,
+    "git_status": true,
+    "show_diagnostics": "errors"
+  },
   "features": {
     "edit_prediction_provider": "zed"
   },
@@ -57,7 +62,12 @@
     },
     "tailwindcss-language-server": {
       "settings": {
-        "classAttributes": ["class", "className", "ngClass", "styles"],
+        "classAttributes": [
+          "class",
+          "className",
+          "ngClass",
+          "styles"
+        ],
         "experimental": {
           "classRegex": [
             "[a-zA-Z]*ClassName='([^']+)'",

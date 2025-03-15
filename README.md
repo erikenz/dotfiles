@@ -10,6 +10,14 @@ export GITHUB_USERNAME=erikenz
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply $GITHUB_USERNAME
 ```
 
+## usage
+
+### re-add
+update dotfiles
+```bash
+chezmoi re-add
+```
+
 ## zsh plugins
 
 zsh plugins that need to be cloned
