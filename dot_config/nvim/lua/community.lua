@@ -7,17 +7,17 @@
 ---@type LazySpec
 return {
   "AstroNvim/astrocommunity",
-  { import = "astrocommunity.colorscheme.catppuccin" },
+  { import = "astrocommunity.pack.lua" },
+  -- import/override with your plugins folder
   { import = "astrocommunity.completion.copilot-lua-cmp" },
   { import = "astrocommunity.comment.ts-comments-nvim" },
   { import = "astrocommunity.diagnostics.trouble-nvim" },
-  -- { import = "astrocommunity.diagnostics.error-lens-nvim" },
   { import = "astrocommunity.editing-support.dial-nvim" },
   { import = "astrocommunity.editing-support.todo-comments-nvim" },
   { import = "astrocommunity.editing-support.mini-operators" },
   { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
   { import = "astrocommunity.pack.lua" },
-  { import = "astrocommunity.pack.tailwindcss" },
+  -- { import = "astrocommunity.pack.tailwindcss" },
   { import = "astrocommunity.pack.typescript" },
   { import = "astrocommunity.pack.astro" },
   { import = "astrocommunity.pack.markdown" },
@@ -37,5 +37,4 @@ return {
   { import = "astrocommunity.note-taking.obsidian-nvim" },
   { import = "astrocommunity.scrolling.mini-animate" },
   { import = "astrocommunity.workflow.hardtime-nvim" },
-  -- import/override with your plugins folder
 }
