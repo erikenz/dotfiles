@@ -13,12 +13,6 @@
     }
   },
   {
-    "context": "Editor",
-    "bindings": {
-      // "j k": ["workspace::SendKeystrokes", "escape"]
-    }
-  },
-  {
     "context": "Dock",
     "bindings": {
       "ctrl-w h": "workspace::ActivatePaneLeft",
@@ -40,7 +34,11 @@
   {
     "context": "vim_mode == visual",
     "bindings": {
-      "shift-s": ["vim::PushAddSurrounds", {}]
+      "shift-s": [
+        "vim::PushAddSurrounds",
+        {}
+      ],
+      "shift-x": "vim::Exchange"
     }
   },
   {
@@ -51,15 +49,9 @@
     }
   },
   {
-    "context": "vim_mode == visual",
+    "context": "Editor && vim_mode == insert",
     "bindings": {
-      "shift-x": "vim::Exchange"
-    }
-  },
-  {
-    "context": "Editor",
-    "bindings": {
-      "j k": ["workspace::SendKeystrokes", "escape"]
+      "j k": "vim::NormalBefore"
     }
   },
   {
@@ -76,5 +68,5 @@
       "d": "project_panel::Trash",
       "shift-d": "project_panel::Delete"
     }
-  }
+  },
 ]
