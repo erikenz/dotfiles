@@ -6,6 +6,11 @@ background-opacity = 0.7
 background-blur-radius = 20
 cursor-invert-fg-bg = true
 
+keybind = global:super+shift+t=toggle_quick_terminal
+quick-terminal-position = center
+quick-terminal-screen = main
+quick-terminal-autohide = false
+
 # -= Commands =-
 
 # General

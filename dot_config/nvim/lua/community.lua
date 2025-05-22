@@ -36,5 +36,5 @@ return {
   { import = "astrocommunity.git.octo-nvim" },
   { import = "astrocommunity.note-taking.obsidian-nvim" },
   { import = "astrocommunity.scrolling.mini-animate" },
-  { import = "astrocommunity.workflow.hardtime-nvim" },
+  -- { import = "astrocommunity.workflow.hardtime-nvim" },
 }
