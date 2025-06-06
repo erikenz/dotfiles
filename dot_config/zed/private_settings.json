@@ -7,14 +7,20 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-	"terminal": {
-		"shell": "system",
-		"line_height": { "custom": 1.25 },
-		"copy_on_select": true,
-		"dock": "right"
-	},
 	"project_panel": {
-		"dock": "left"
+		"dock": "left",
+		"indent_size": 13
+	},
+	"diagnostics": {
+		"button": true,
+		"include_warnings": true,
+		"inline": {
+			"enabled": true,
+			"update_debounce_ms": 150,
+			"padding": 4,
+			"min_column": 0,
+			"max_severity": null
+		}
 	},
 	"agent": {
 		"inline_assistant_model": {
@@ -42,6 +48,13 @@
 	"agent_font_size": 16,
 	"ui_font_size": 16,
 	"buffer_font_size": 16,
+	"terminal": {
+		"shell": "system",
+		"line_height": { "custom": 1.25 },
+		"copy_on_select": true,
+		"dock": "right",
+		"font_size": 14
+	},
 	"ui_font_family": "GeistMono Nerd Font",
 	"buffer_font_family": "GeistMono Nerd Font",
 	"theme": {
@@ -52,16 +65,20 @@
 	"features": {
 		"edit_prediction_provider": "copilot"
 	},
+	"show_edit_predictions": true,
 	"collaboration_panel": {
 		"button": false
 	},
 	"icon_theme": "Catppuccin Macchiato",
-	"preferred_line_length": 100,
-	"soft_wrap": "preferred_line_length",
+	"preferred_line_length": 80,
+	"soft_wrap": "editor_width",
 	"formatter": {
 		"language_server": {
 			"name": "biome"
 		}
+	},
+	"edit_predictions": {
+		"mode": "eager"
 	},
 	"code_actions_on_format": {
 		"source.fixAll.biome": true,

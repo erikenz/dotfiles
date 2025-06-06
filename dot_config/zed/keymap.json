@@ -7,10 +7,22 @@
 // from the command palette.
 [
 	{
+		"context": "Workspace",
+		"bindings": {
+			// "shift shift": "file_finder::Toggle"
+			"ctrl-h": "workspace::ActivatePaneLeft",
+			"ctrl-j": "workspace::ActivatePaneDown",
+			"ctrl-k": "workspace::ActivatePaneUp",
+			"ctrl-l": "workspace::ActivatePaneRight",
+			"ctrl-alt-a": "workspace::AddFolderToProject"
+		}
+	},
+	{
 		"context": "Editor",
 		"bindings": {
-			// "j k": ["workspace::SendKeystrokes", "escape"]
-			"ctrl-s": "workspace::Save",
+			"ctrl-[": "pane::ActivateNextItem",
+			"ctrl-]": "pane::ActivatePreviousItem",
+			// "j k": ["workspace::SendKeystrokes", "escape"],
 			"ctrl-h": "workspace::ActivatePaneLeft",
 			"ctrl-j": "workspace::ActivatePaneDown",
 			"ctrl-k": "workspace::ActivatePaneUp",
@@ -26,18 +38,8 @@
 			"ctrl-g l": "git::Pull",
 			"ctrl-g d d": "git::Diff",
 			"ctrl-g d a": "git::Amend",
-			"ctrl-g d b": "git::Blame"
-		}
-	},
-	{
-		"context": "Workspace",
-		"bindings": {
-			// "shift shift": "file_finder::Toggle"
-			"ctrl-h": "workspace::ActivatePaneLeft",
-			"ctrl-j": "workspace::ActivatePaneDown",
-			"ctrl-k": "workspace::ActivatePaneUp",
-			"ctrl-l": "workspace::ActivatePaneRight",
-			"ctrl-alt-a": "workspace::AddFolderToProject"
+			"ctrl-g d b": "git::Blame",
+			"ctrl-s": "workspace::Save"
 		}
 	},
 	{
@@ -46,12 +48,14 @@
 			"space e": "project_panel::ToggleFocus",
 			"space g": "git_panel::ToggleFocus",
 			"space o": "outline_panel::ToggleFocus",
+			"space d": "diagnostics::Deploy",
 			"space space": "file_finder::Toggle",
 			"space a i": "assistant::InlineAssist",
 			"space a d": "agent::OpenAgentDiff",
 			"space a t": "agent::ToggleFocus",
 			"space t": "terminal_panel::ToggleFocus",
 			"space u n": "workspace::ClearAllNotifications",
+			"space u b": "git::Blame",
 			"space b q": "pane::CloseInactiveItems",
 			"space g g": [
 				"task::Spawn",
@@ -62,10 +66,19 @@
 				"task::Spawn",
 				{ "task_name": "File Finder", "reveal_target": "center" }
 			],
+			"space f d": [
+				"task::Spawn",
+				{ "task_name": "Find Directories", "reveal_target": "center" }
+			],
 			"space s g": [
 				"task::Spawn",
 				{ "task_name": "Find in Files", "reveal_target": "center" }
-			]
+			],
+			"space o s": [
+				"task::Spawn",
+				{ "task_name": "Obsidian", "reveal_target": "center" }
+			],
+			"space tab a": "tab_switcher::ToggleAll"
 		}
 	},
 	{
@@ -89,10 +102,32 @@
 		}
 	},
 	{
+		"context": "ProjectPanel",
+		"bindings": {
+			"ctrl-r": "project_panel::RemoveFromProject"
+		}
+	},
+	{
 		"context": "(EmptyPane || SharedScreen)",
 		"bindings": {
 			"space e": "project_panel::ToggleFocus",
 			"space space": "file_finder::Toggle"
+		}
+	},
+	{
+		"context": "ProjectPanel && not_editing",
+		"bindings": {
+			"r": "project_panel::Rename",
+			"l": "project_panel::Open",
+			"a": "project_panel::NewFile",
+			"shift-a": "project_panel::NewDirectory",
+			"m": "project_panel::Cut",
+			"y": "project_panel::Copy",
+			"shift-y": "project_panel::Duplicate",
+			"p": "project_panel::Paste",
+			"h": "project_panel::CollapseSelectedEntry",
+			"d": "project_panel::Trash",
+			"shift-d": "project_panel::Delete"
 		}
 	}
 ]

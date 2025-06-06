@@ -7,34 +7,37 @@
 ---@type LazySpec
 return {
   "AstroNvim/astrocommunity",
-  { import = "astrocommunity.pack.lua" },
-  -- import/override with your plugins folder
-  { import = "astrocommunity.completion.copilot-lua-cmp" },
-  { import = "astrocommunity.comment.ts-comments-nvim" },
-  { import = "astrocommunity.diagnostics.trouble-nvim" },
-  { import = "astrocommunity.editing-support.dial-nvim" },
-  { import = "astrocommunity.editing-support.todo-comments-nvim" },
-  { import = "astrocommunity.editing-support.mini-operators" },
-  { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
-  { import = "astrocommunity.pack.lua" },
-  -- { import = "astrocommunity.pack.tailwindcss" },
-  { import = "astrocommunity.pack.typescript" },
-  { import = "astrocommunity.pack.astro" },
-  { import = "astrocommunity.pack.markdown" },
-  { import = "astrocommunity.pack.html-css" },
-  { import = "astrocommunity.pack.chezmoi" },
-  { import = "astrocommunity.pack.yaml" },
-  { import = "astrocommunity.markdown-and-latex.markview-nvim" },
-  { import = "astrocommunity.utility.hover-nvim" },
-  { import = "astrocommunity.utility.noice-nvim" },
-  { import = "astrocommunity.motion.flash-nvim" },
-  { import = "astrocommunity.motion.mini-move" },
+  { import = "astrocommunity.colorscheme.catppuccin" },
   { import = "astrocommunity.motion.mini-ai" },
+  { import = "astrocommunity.motion.mini-move" },
   { import = "astrocommunity.motion.mini-surround" },
-  { import = "astrocommunity.motion.mini-bracketed" },
-  { import = "astrocommunity.git.gitgraph-nvim" },
-  { import = "astrocommunity.git.octo-nvim" },
+
+  -- Packs
+  { import = "astrocommunity.pack.biome" },
+  { import = "astrocommunity.pack.chezmoi" },
+  { import = "astrocommunity.pack.html-css" },
+  { import = "astrocommunity.pack.lua" },
+  { import = "astrocommunity.pack.markdown" },
+  { import = "astrocommunity.pack.tailwindcss" },
+  { import = "astrocommunity.pack.typescript" },
+
+  -- { import = "astrocommunity.completion.copilot-lua-cmp" },
+  { import = "astrocommunity.completion.copilot-vim-cmp" },
+
+  -- Note taking
   { import = "astrocommunity.note-taking.obsidian-nvim" },
+  { import = "astrocommunity.markdown-and-latex.render-markdown-nvim" },
+
+  -- Scrolling and animations
   { import = "astrocommunity.scrolling.mini-animate" },
-  -- { import = "astrocommunity.workflow.hardtime-nvim" },
+  { import = "astrocommunity.scrolling.neoscroll-nvim" },
+
+  -- Debugging
+  { import = "astrocommunity.diagnostics.trouble-nvim" },
+
+  { import = "astrocommunity.workflow.precognition-nvim" },
+  { import = "astrocommunity.indent.mini-indentscope" },
+  { import = "astrocommunity.icon.mini-icons" },
+  { import = "astrocommunity.keybinding.nvcheatsheet-nvim" },
+  -- { import = "astrocommunity.game.leetcode-nvim"}
 }
