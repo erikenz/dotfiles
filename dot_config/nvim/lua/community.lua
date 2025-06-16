@@ -10,6 +10,9 @@ return {
   -- available plugins can be found at https://github.com/AstroNvim/astrocommunity
   -- Theme
   { import = "astrocommunity.colorscheme.catppuccin" },
+  -- Color
+  { import = "astrocommunity.color.twilight-nvim" },
+  { import = "astrocommunity.color.ccc-nvim" },
   -- Comment
   { import = "astrocommunity.comment.ts-comments-nvim" },
   -- Completion
@@ -21,6 +24,7 @@ return {
   { import = "astrocommunity.editing-support.copilotchat-nvim" },
   { import = "astrocommunity.editing-support.dial-nvim" },
   { import = "astrocommunity.editing-support.todo-comments-nvim" },
+  { import = "astrocommunity.editing-support.vim-visual-multi" },
   { import = "astrocommunity.editing-support.zen-mode-nvim" },
   -- File explorer
   -- { import = "astrocommunity.file-explorer.oil-nvim" },
@@ -51,6 +55,11 @@ return {
   { import = "astrocommunity.pack.typescript" },
   { import = "astrocommunity.pack.toml" },
   { import = "astrocommunity.pack.yaml" },
+  -- Terminal integration
+  { import = "astrocommunity.terminal-integration.vim-tmux-navigator" },
+  -- Utility
+  { import = "astrocommunity.utility.nvim-toggler" },
+  -- { import = "astrocommunity.utility.hover-nvim" },
   -- Workflow
   { import = "astrocommunity.workflow.precognition-nvim" },
 }
