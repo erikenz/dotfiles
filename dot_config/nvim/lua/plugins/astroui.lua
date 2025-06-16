@@ -18,7 +18,10 @@ local function get_spell_status()
   end
   return table.concat(result, ",")
 end
-local function should_show_spell_status() return vim.bo.filetype == "markdown" and vim.wo.spell end
+local function should_show_spell_status()
+  -- return vim.bo.filetype == "markdown" and vim.wo.spell
+  return vim.wo.spell
+end
 
 ---@type LazySpec
 return {

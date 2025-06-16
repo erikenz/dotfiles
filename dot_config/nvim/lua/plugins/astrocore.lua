@@ -29,10 +29,6 @@ return {
   "AstroNvim/astrocore",
   ---@param opts AstroCoreOpts
   opts = function(_, opts)
-    local sessionoptions = { "localoptions" } -- https://github.com/thaerkh/vim-workspace/issues/11
-    for _, value in ipairs(vim.tbl_get(opts, "options", "opt", "sessionoptions") or vim.opt.sessionoptions:get()) do
-      if value ~= "blank" then table.insert(sessionoptions, value) end
-    end
     return require("astrocore").extend_tbl(opts, {
       -- Configure core features of AstroNvim
       features = {
@@ -105,7 +101,6 @@ return {
           signcolumn = "yes", -- sets vim.opt.signcolumn to yes
           wrap = false, -- sets vim.opt.wrap
           conceallevel = 2, -- sets vim.opt.conceallevel
-          sessionoptions = sessionoptions, -- sets vim.opt.sessionoptions
         },
         g = { -- vim.g.<key>
           -- configure global vim variables (vim.g)
