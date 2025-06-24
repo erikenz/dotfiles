@@ -7,7 +7,10 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-	"project_panel": {
+	"auto_update_extensions": {
+  "biome": false
+ },
+ "project_panel": {
 		"dock": "left",
 		"indent_size": 13
 	},

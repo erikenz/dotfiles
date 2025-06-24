@@ -18,6 +18,8 @@ return {
   -- Completion
   { import = "astrocommunity.completion.avante-nvim" },
   { import = "astrocommunity.completion.copilot-vim-cmp" },
+  -- Debugging
+  -- { import = "astrocommunity.debugging.nvim-chainsaw" },
   -- Diagnostics
   { import = "astrocommunity.diagnostics.trouble-nvim" },
   -- Editing support

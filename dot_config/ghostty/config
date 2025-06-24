@@ -21,18 +21,16 @@ foreground = f3f6f9
 cursor-color = e0c15a
 selection-background = 263356
 selection-foreground = f3f6f9
+theme = catppuccin-frappe
+cursor-invert-fg-bg = true
 
-# font-family = IosevkaTerm NF
+font-family = GeistMono Nerd Font
 font-size = 12
-#font-size = 24
 window-padding-color = extend
 window-step-resize = true
 window-padding-balance = true
 window-decoration = true
-theme = catppuccin-frappe
-font-family = GeistMono Nerd Font
 mouse-hide-while-typing = true
-cursor-invert-fg-bg = true
 
 quick-terminal-position = center
 quick-terminal-screen = main
@@ -61,21 +59,21 @@ keybind = ctrl+b>w>f=toggle_fullscreen
 keybind = ctrl+b>w>s=write_screen_file:open
 
 # Tab and splits (panes)
-keybind = ctrl+b>t>n=new_tab
-keybind = ctrl+b>t>q=close_tab
-keybind = ctrl+b>p>n=new_split:auto
-keybind = ctrl+b>p>r=new_split:right
-keybind = ctrl+b>p>l=new_split:left
-keybind = ctrl+b>p>u=new_split:up
-keybind = ctrl+b>p>d=new_split:down
-keybind = ctrl+b>p>f=toggle_split_zoom
-keybind = ctrl+b>p>q=close_surface
+#keybind = ctrl+b>t>n=new_tab
+#keybind = ctrl+b>t>q=close_tab
+#keybind = ctrl+b>p>n=new_split:auto
+#keybind = ctrl+b>p>r=new_split:right
+#keybind = ctrl+b>p>l=new_split:left
+#keybind = ctrl+b>p>u=new_split:up
+#keybind = ctrl+b>p>d=new_split:down
+#keybind = ctrl+b>p>f=toggle_split_zoom
+#keybind = ctrl+b>p>q=close_surface
 
-keybind = alt>equal=equalize_splits
-keybind = alt>,=resize_split:left,10
-keybind = alt>.=resize_split:right,10
-keybind = alt>6=resize_split:up,10
-keybind = alt>7=resize_split:down,10
+#keybind = alt>equal=equalize_splits
+#keybind = alt>,=resize_split:left,10
+#keybind = alt>.=resize_split:right,10
+#keybind = alt>6=resize_split:up,10
+#keybind = alt>7=resize_split:down,10
 
 # -= Navigation =-
 
@@ -83,21 +81,21 @@ keybind = alt>7=resize_split:down,10
 # NOTE: Currently (januari 10th) the split movement is 
 # somewhat broken on linux, the issue is known and 
 # is actively worked on I believe.
-keybind = alt+h=goto_split:left
-keybind = alt+j=goto_split:bottom
-keybind = alt+k=goto_split:top
-keybind = alt+l=goto_split:right
+#keybind = ctrl+alt+h=goto_split:left
+#keybind = ctrl+alt+j=goto_split:bottom
+#keybind = ctrl+alt+k=goto_split:top
+#keybind = ctrl+alt+l=goto_split:right
 
 # Tab navigation
-keybind = alt+[=previous_tab
-keybind = alt+]=next_tab
+#keybind = ctrl+alt+[=previous_tab
+#keybind = ctrl+alt+]=next_tab
 
 # Prompt navigation
-keybind = alt+b=jump_to_prompt:-1
-keybind = alt+f=jump_to_prompt:1
+#keybind = ctrl+alt+b=jump_to_prompt:-1
+#keybind = ctrl+alt+f=jump_to_prompt:1
 
 # Miscellaneous
-keybind = cmd+k=clear_screen
+#keybind = cmd+k=clear_screen
 
 # Use it by writing 'nvim' first and then the keybinding to open the file with nvim
-keybind = alt+s=write_screen_file:paste
+# keybind = alt+s=write_screen_file:paste

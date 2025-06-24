@@ -16,6 +16,7 @@ return {
       right_pad = 1,
       highlight = "render-markdownBullet",
     },
+    render_modes = { "n", "c", "t" },
   },
   -- config = function()
   --   require("obsidian").get_client().opts.ui.enable = false
