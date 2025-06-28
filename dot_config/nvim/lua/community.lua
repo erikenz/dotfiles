@@ -16,7 +16,7 @@ return {
   -- Comment
   { import = "astrocommunity.comment.ts-comments-nvim" },
   -- Completion
-  { import = "astrocommunity.completion.avante-nvim" },
+  -- { import = "astrocommunity.completion.avante-nvim" },
   { import = "astrocommunity.completion.copilot-vim-cmp" },
   -- Debugging
   -- { import = "astrocommunity.debugging.nvim-chainsaw" },
@@ -28,6 +28,7 @@ return {
   { import = "astrocommunity.editing-support.todo-comments-nvim" },
   { import = "astrocommunity.editing-support.vim-visual-multi" },
   { import = "astrocommunity.editing-support.zen-mode-nvim" },
+  { import = "astrocommunity.editing-support.comment-box-nvim" },
   -- File explorer
   -- { import = "astrocommunity.file-explorer.oil-nvim" },
   -- Git
