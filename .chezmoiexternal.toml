@@ -11,6 +11,11 @@
     exact = true
     stripComponents = 1
     refreshPeriod = "168h"
+[".zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"]
+    type = "file"
+    url = "https://github.com/zsh-users/zsh-autosuggestions/blob/master/zsh-autosuggestions.zsh?raw=true"
+    exact = true
+    refreshPeriod = "168h"
 [".oh-my-zsh/custom/themes/powerlevel10k"]
     type = "archive"
     url = "https://github.com/romkatv/powerlevel10k/archive/v1.15.0.tar.gz"
