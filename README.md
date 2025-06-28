@@ -9,6 +9,11 @@ This automated setup is currently only configured for Fedora machines.
 export GITHUB_USERNAME=erikenz
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply $GITHUB_USERNAME
 ```
+or to use a transitory environment:
+```bash
+export GITHUB_USERNAME=erikenz
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init --one-shot $GITHUB_USERNAME
+```
 
 ## usage
 
@@ -18,7 +23,13 @@ update dotfiles
 chezmoi re-add
 ```
 
-## zsh plugins
+## dependencies
+
+### hyprland
+
+### nvim
+
+### zsh plugins
 
 zsh plugins that need to be cloned
 
