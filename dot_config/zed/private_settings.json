@@ -1,7 +1,4 @@
 {
-	"auto_update_extensions": {
-		"biome": false
-	},
 	"project_panel": {
 		"dock": "left",
 		"indent_size": 13
@@ -50,8 +47,8 @@
 		"dock": "right",
 		"font_size": 14
 	},
-	"ui_font_family": "JetBrainsMono Nerd Font",
-	"buffer_font_family": "GeistMono Nerd Font",
+	"ui_font_family": "Hack Nerd Font Mono",
+	"buffer_font_family": "Hack Nerd Font Mono",
 	"theme": {
 		"mode": "dark",
 		"light": "One Light",
