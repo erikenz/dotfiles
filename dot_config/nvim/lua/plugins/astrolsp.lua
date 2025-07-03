@@ -40,11 +40,21 @@ return {
     -- enable servers that you already have installed without mason
     servers = {
       -- "pyright"
+      "qmlls",
     },
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
     config = {
       -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
+      qmlls = {
+        -- cmd = { "qmlls", "-E" },
+        filetypes = { "qml", "qmljs" },
+        -- root_dir = require("lspconfig.util").root_pattern(".git", "*.qml"),
+        -- root_dir = require("lspconfig.util").root_pattern(".git"),
+        -- root_dir = function(fname)
+        --       return vim.fs.dirname(vim.fs.find('.git', { path = fname, upward = true })[1])
+        --     end,
+      },
     },
     -- customize how language servers are attached
     handlers = {
