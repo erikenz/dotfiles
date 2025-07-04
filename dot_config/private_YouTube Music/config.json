@@ -1,0 +1,83 @@
+{
+	"window-size": {
+		"width": 1876,
+		"height": 974
+	},
+	"window-maximized": false,
+	"window-position": {
+		"x": 1942,
+		"y": 84
+	},
+	"url": "https://music.youtube.com/watch?v=w01sUXqUrvI&list=RDAMVMEdX8Nn9hK8k&index=0",
+	"options": {
+		"tray": false,
+		"appVisible": true,
+		"autoUpdates": true,
+		"alwaysOnTop": false,
+		"hideMenu": false,
+		"hideMenuWarned": false,
+		"startAtLogin": false,
+		"disableHardwareAcceleration": false,
+		"removeUpgradeButton": false,
+		"restartOnConfigChanges": false,
+		"trayClickPlayPause": false,
+		"autoResetAppCache": false,
+		"resumeOnStart": false,
+		"likeButtons": "",
+		"proxy": "",
+		"startingPage": "",
+		"overrideUserAgent": false,
+		"usePodcastParticipantAsArtist": false,
+		"themes": []
+	},
+	"plugins": {
+		"notifications": {},
+		"video-toggle": {
+			"mode": "custom"
+		},
+		"precise-volume": {
+			"enabled": true,
+			"steps": 1,
+			"arrowsShortcut": true,
+			"globalShortcuts": {
+				"volumeUp": "Shift+Super+Ctrl+'",
+				"volumeDown": "Ctrl+Shift+Super+;"
+			},
+			"savedVolume": 36
+		},
+		"discord": {
+			"listenAlong": true
+		},
+		"album-color-theme": {
+			"enabled": true
+		},
+		"in-app-menu": {
+			"enabled": true
+		},
+		"exponential-volume": {
+			"enabled": true
+		},
+		"bypass-age-restrictions": {
+			"enabled": true
+		},
+		"shortcuts": {
+			"enabled": true,
+			"overrideMediaKeys": false,
+			"global": {
+				"previous": "",
+				"playPause": "",
+				"next": ""
+			},
+			"local": {
+				"previous": "Ctrl+Shift+[",
+				"playPause": "Ctrl+Shift+\\",
+				"next": "Ctrl+Shift+]"
+			}
+		}
+	},
+	"__internal__": {
+		"migrations": {
+			"version": "3.9.0"
+		}
+	}
+}

@@ -4,6 +4,14 @@ This repo contains the configuration to setup my machines. This is using Chezmoi
 
 This automated setup is currently only configured for Fedora machines.
 
+## Overview
+
+- WM: Hyprland
+- Panels and widgets: Quickshell
+- Editor: Neovim & Zed
+- Shell: zsh & p10k
+- Terminal: ghostty
+
 ## setup
 ```bash
 export GITHUB_USERNAME=erikenz
