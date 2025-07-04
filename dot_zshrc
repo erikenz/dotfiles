@@ -141,6 +141,8 @@ alias zshrc="nvim ~/.zshrc"
 alias ohmyzsh="cd ~/.oh-my-zsh && nvim"
 alias ghosttyconf="nvim ~/.config/ghostty/config"
 alias hyprconf="cd ~/.config/hypr && nvim"
+alias shellconf="cd ~/.config/quickshell && nvim"
+alias dotfiles="cd ~/.local/share/chezmoi && nvim"
 alias pn="pnpm"
 
 #alias open="xdg-open"
