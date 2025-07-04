@@ -8,7 +8,7 @@
 		"x": 1928,
 		"y": 70
 	},
-	"url": "https://music.youtube.com/watch?v=uJ2mCerJFQ8&list=RDAMVMZ-EAVUGEqQw&index=0",
+	"url": "https://music.youtube.com/watch?v=gxTRx4uurxs&list=RDAMPLLM&index=0",
 	"options": {
 		"tray": false,
 		"appVisible": true,
@@ -40,10 +40,10 @@
 			"steps": 1,
 			"arrowsShortcut": true,
 			"globalShortcuts": {
-				"volumeUp": "Shift+Super+Ctrl+'",
-				"volumeDown": "Ctrl+Shift+Super+;"
+				"volumeUp": "Ctrl+Shift+]",
+				"volumeDown": "Ctrl+Shift+["
 			},
-			"savedVolume": 36
+			"savedVolume": 45
 		},
 		"discord": {
 			"listenAlong": true
@@ -69,9 +69,9 @@
 				"next": ""
 			},
 			"local": {
-				"previous": "Ctrl+Shift+[",
-				"playPause": "Ctrl+Shift+\\",
-				"next": "Ctrl+Shift+]"
+				"previous": "Ctrl+Shift+,",
+				"playPause": "Ctrl+Shift+/",
+				"next": "Ctrl+Shift+."
 			}
 		}
 	},
