@@ -8,7 +8,7 @@
 		"x": 1928,
 		"y": 70
 	},
-	"url": "https://music.youtube.com/watch?v=gxTRx4uurxs&list=RDAMPLLM&index=0",
+	"url": "https://music.youtube.com/watch?v=7u5UBSlBMQc&list=RDTMAK5uy_n_5IN6hzAOwdCnM8D8rzrs3vDl12UcZpA&index=0",
 	"options": {
 		"tray": false,
 		"appVisible": true,
@@ -43,7 +43,7 @@
 				"volumeUp": "Ctrl+Shift+]",
 				"volumeDown": "Ctrl+Shift+["
 			},
-			"savedVolume": 45
+			"savedVolume": 36
 		},
 		"discord": {
 			"listenAlong": true
@@ -64,14 +64,14 @@
 			"enabled": true,
 			"overrideMediaKeys": false,
 			"global": {
-				"previous": "",
-				"playPause": "",
-				"next": ""
-			},
-			"local": {
 				"previous": "Ctrl+Shift+,",
 				"playPause": "Ctrl+Shift+/",
 				"next": "Ctrl+Shift+."
+			},
+			"local": {
+				"previous": "",
+				"playPause": "",
+				"next": ""
 			}
 		}
 	},

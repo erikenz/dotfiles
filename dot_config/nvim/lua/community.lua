@@ -29,6 +29,7 @@ return {
   { import = "astrocommunity.editing-support.vim-visual-multi" },
   { import = "astrocommunity.editing-support.zen-mode-nvim" },
   { import = "astrocommunity.editing-support.comment-box-nvim" },
+  { import = "astrocommunity.editing-support.multicursors-nvim" },
   -- File explorer
   -- { import = "astrocommunity.file-explorer.oil-nvim" },
   -- Git

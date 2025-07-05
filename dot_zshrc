@@ -145,6 +145,7 @@ alias shellconf="cd ~/.config/quickshell && nvim"
 alias dotfiles="cd ~/.local/share/chezmoi && nvim"
 alias nvimconf="cd ~/.config/nvim && nvim"
 alias vault="cd ~/obsidian-vault && nvim"
+alias dunstconf="cd ~/.config/dunst && nvim"
 alias pn="pnpm"
 
 #alias open="xdg-open"
