@@ -1,14 +1,14 @@
 {
 	"window-size": {
-		"width": 1904,
-		"height": 1002
+		"width": 1920,
+		"height": 1080
 	},
-	"window-maximized": false,
+	"window-maximized": true,
 	"window-position": {
-		"x": 1928,
-		"y": 70
+		"x": 0,
+		"y": 0
 	},
-	"url": "https://music.youtube.com/watch?v=7u5UBSlBMQc&list=RDTMAK5uy_n_5IN6hzAOwdCnM8D8rzrs3vDl12UcZpA&index=0",
+	"url": "https://music.youtube.com/watch?v=WazCHk3341s&list=LM&index=0",
 	"options": {
 		"tray": false,
 		"appVisible": true,
