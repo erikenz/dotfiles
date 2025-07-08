@@ -47,9 +47,9 @@ return {
     config = {
       -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
       qmlls = {
-        -- cmd = { "qmlls", "-E" },
+        cmd = { "qmlls", "-E" },
         filetypes = { "qml", "qmljs" },
-        -- root_dir = require("lspconfig.util").root_pattern(".git", "*.qml"),
+        root_dir = require("lspconfig.util").root_pattern(".git", "*.qml"),
         -- root_dir = require("lspconfig.util").root_pattern(".git"),
         -- root_dir = function(fname)
         --       return vim.fs.dirname(vim.fs.find('.git', { path = fname, upward = true })[1])

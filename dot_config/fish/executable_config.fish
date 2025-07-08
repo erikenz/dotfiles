@@ -110,8 +110,10 @@ alias ghosttyconf="cd ~/.config/ghostty && nvim ."
 alias shellconf="cd ~/.config/quickshell && nvim ."
 alias hyprconf="cd ~/.config/hypr && nvim ."
 alias fishconf="cd ~/.config/fish && nvim ."
+alias starshipconf="nvim ~/.config/starship.toml"
 alias vault="cd ~/obsidian-vault/ && nvim ."
 alias pn="pnpm"
+alias zed="zeditor"
 
 # Replace ls with eza
 alias ls='eza -al --color=always --group-directories-first --icons' # preferred listing

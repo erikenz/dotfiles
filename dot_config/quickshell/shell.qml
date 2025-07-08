@@ -19,6 +19,7 @@ import "./modules/screenCorners/"
 import "./modules/session/"
 import "./modules/sidebarLeft/"
 import "./modules/sidebarRight/"
+import "modules/drawers"
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -31,7 +32,7 @@ ShellRoot {
     // no unnecessary stuff will take up memory if you decide to only use, say, the overview.
     property bool enableBar: true
     property bool enableBackgroundWidgets: true
-    property bool enableCheatsheet: true
+    property bool enableCheatsheet: false
     property bool enableDock: true
     property bool enableMediaControls: true
     property bool enableNotificationPopup: true
@@ -47,25 +48,74 @@ ShellRoot {
 
     // Force initialization of some singletons
     Component.onCompleted: {
-        MaterialThemeLoader.reapplyTheme()
-        Cliphist.refresh()
-        FirstRunExperience.load()
+        MaterialThemeLoader.reapplyTheme();
+        Cliphist.refresh();
+        FirstRunExperience.load();
     }
 
-    LazyLoader { active: enableBar; component: Bar {} }
-    LazyLoader { active: enableBackgroundWidgets; component: BackgroundWidgets {} }
-    LazyLoader { active: enableCheatsheet; component: Cheatsheet {} }
-    LazyLoader { active: enableDock && Config.options.dock.enable; component: Dock {} }
-    LazyLoader { active: enableMediaControls; component: MediaControls {} }
-    LazyLoader { active: enableNotificationPopup; component: NotificationPopup {} }
-    LazyLoader { active: enableOnScreenDisplayBrightness; component: OnScreenDisplayBrightness {} }
-    LazyLoader { active: enableOnScreenDisplayVolume; component: OnScreenDisplayVolume {} }
-    LazyLoader { active: enableOnScreenKeyboard; component: OnScreenKeyboard {} }
-    LazyLoader { active: enableOverview; component: Overview {} }
-    LazyLoader { active: enableReloadPopup; component: ReloadPopup {} }
-    LazyLoader { active: enableScreenCorners; component: ScreenCorners {} }
-    LazyLoader { active: enableSession; component: Session {} }
-    LazyLoader { active: enableSidebarLeft; component: SidebarLeft {} }
-    LazyLoader { active: enableSidebarRight; component: SidebarRight {} }
-}
+    // LazyLoader {
+    //     active: true
+    //     component: Drawers {}
+    // }
 
+    LazyLoader {
+        active: enableBar
+        component: Bar {}
+    }
+    LazyLoader {
+        active: enableBackgroundWidgets
+        component: BackgroundWidgets {}
+    }
+    LazyLoader {
+        active: enableCheatsheet
+        component: Cheatsheet {}
+    }
+    LazyLoader {
+        active: enableDock && Config.options.dock.enable
+        component: Dock {}
+    }
+    LazyLoader {
+        active: enableMediaControls
+        component: MediaControls {}
+    }
+    LazyLoader {
+        active: enableNotificationPopup
+        component: NotificationPopup {}
+    }
+    LazyLoader {
+        active: enableOnScreenDisplayBrightness
+        component: OnScreenDisplayBrightness {}
+    }
+    LazyLoader {
+        active: enableOnScreenDisplayVolume
+        component: OnScreenDisplayVolume {}
+    }
+    LazyLoader {
+        active: enableOnScreenKeyboard
+        component: OnScreenKeyboard {}
+    }
+    LazyLoader {
+        active: enableOverview
+        component: Overview {}
+    }
+    LazyLoader {
+        active: enableReloadPopup
+        component: ReloadPopup {}
+    }
+    LazyLoader {
+        active: enableScreenCorners
+        component: ScreenCorners {}
+    }
+    LazyLoader {
+        active: enableSession
+        component: Session {}
+    }
+    LazyLoader {
+        active: enableSidebarLeft
+        component: SidebarLeft {}
+    }
+    LazyLoader {
+        active: enableSidebarRight
+        component: SidebarRight {}
+    }
+}
