@@ -3,7 +3,6 @@
 format = """
 [](red)\
 $os\
-$username\
 [](bg:peach fg:red)\
 $directory\
 [](bg:yellow fg:peach)\
@@ -13,7 +12,6 @@ $git_status\
 $c\
 $rust\
 $golang\
-$nodejs\
 $php\
 $java\
 $kotlin\
