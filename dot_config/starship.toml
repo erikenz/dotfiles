@@ -122,7 +122,7 @@ format = '[[($all_status$ahead_behind )](fg:crust bg:yellow)]($style)[](fg:ye
 symbol = ""
 style = "bg:green"
 format = '[](fg:green)[[ $symbol( $version) ](fg:crust bg:green)]($style)[](fg:green)'
-disabled = false
+disabled = true
 
 [c]
 symbol = " "
