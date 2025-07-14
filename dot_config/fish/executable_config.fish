@@ -1,5 +1,5 @@
 ## Source from conf.d before our fish config
-source ~/.config/fish/conf.d/done.fish
+# source ~/.config/fish/conf.d/done.fish
 
 function fish_prompt -d "Write out the prompt"
     # This shows up as USER@HOST /home/user/ >, with the directory colored
@@ -15,10 +15,11 @@ if status is-interactive
 
 end
 
-starship init fish | source
 zoxide init fish | source
 source ~/.config/fish/aliases.fish
 source ~/.config/fish/env.fish
+fnm env --use-on-cd --shell fish | source
+starship init fish | source
 
 if test -f ~/.local/state/quickshell/user/generated/terminal/sequences.txt
     cat ~/.local/state/quickshell/user/generated/terminal/sequences.txt
