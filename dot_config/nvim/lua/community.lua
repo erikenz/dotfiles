@@ -60,6 +60,7 @@ return {
   { import = "astrocommunity.pack.toml" },
   { import = "astrocommunity.pack.yaml" },
   { import = "astrocommunity.pack.hyprlang" },
+  { import = "astrocommunity.pack.fish" },
   -- Terminal integration
   { import = "astrocommunity.terminal-integration.vim-tmux-navigator" },
   -- Utility
