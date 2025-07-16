@@ -3,6 +3,7 @@
 
 import "modules"
 import "modules/drawers"
+import "modules/container"
 import "modules/background"
 import "modules/areapicker"
 import "modules/lock"

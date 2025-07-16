@@ -60,35 +60,57 @@ Item {
         }
     }
 
-    anchors.top: parent.top
-    anchors.bottom: parent.bottom
-    anchors.left: parent.left
+    // anchors.top: parent.top
+    // anchors.bottom: parent.bottom
+    // anchors.left: parent.left
+    anchors {
+        top: parent.top
+        left: parent.left
+        right: parent.right
+    }
 
-    implicitWidth: child.implicitWidth + Config.border.thickness * 2
+    // implicitWidth: child.implicitWidth + Config.border.thickness * 2
+    implicitHeight: child.implicitHeight + Config.border.thickness * 2
 
     Item {
         id: child
 
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
-        anchors.horizontalCenter: parent.horizontalCenter
+        // anchors.top: parent.top
+        // anchors.bottom: parent.bottom
+        // anchors.horizontalCenter: parent.horizontalCenter
+        anchors {
+            left: parent.left
+            right: parent.right
+            verticalCenter: parent.verticalCenter
+        }
 
-        implicitWidth: Math.max(osIcon.implicitWidth, workspaces.implicitWidth, activeWindow.implicitWidth, tray.implicitWidth, clock.implicitWidth, statusIcons.implicitWidth, power.implicitWidth)
+        // implicitWidth: Math.max(osIcon.implicitWidth, workspaces.implicitWidth, activeWindow.implicitWidth, tray.implicitWidth, clock.implicitWidth, statusIcons.implicitWidth, power.implicitWidth)
+        implicitHeight: Math.max(osIcon.implicitHeight, workspaces.implicitHeight, activeWindow.implicitHeight, tray.implicitHeight, clock.implicitHeight, statusIcons.implicitHeight, power.implicitHeight)
 
         OsIcon {
             id: osIcon
 
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.top: parent.top
-            anchors.topMargin: Appearance.padding.large
+            // anchors.horizontalCenter: parent.horizontalCenter
+            // anchors.top: parent.top
+            // anchors.topMargin: Appearance.padding.large
+            anchors {
+                verticalCenter: parent.verticalCenter
+                left: parent.left
+                leftMargin: Appearance.padding.large
+            }
         }
 
         StyledRect {
             id: workspaces
 
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.top: osIcon.bottom
-            anchors.topMargin: Appearance.spacing.normal
+            // anchors.horizontalCenter: parent.horizontalCenter
+            // anchors.top: osIcon.bottom
+            // anchors.topMargin: Appearance.spacing.normal
+            anchors {
+                verticalCenter: parent.verticalCenter
+                left: osIcon.right
+                leftMargin: Appearance.spacing.normal
+            }
 
             radius: Appearance.rounding.full
             color: Colours.palette.m3surfaceContainer
@@ -120,10 +142,16 @@ Item {
         ActiveWindow {
             id: activeWindow
 
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.top: workspaces.bottom
-            anchors.bottom: tray.top
-            anchors.margins: Appearance.spacing.large
+            // anchors.horizontalCenter: parent.horizontalCenter
+            // anchors.top: workspaces.bottom
+            // anchors.bottom: tray.top
+            // anchors.margins: Appearance.spacing.large
+            anchors {
+                left: workspaces.right
+                verticalCenter: parent.verticalCenter
+                right: tray.left
+                margins: Appearance.spacing.large
+            }
 
             monitor: Brightness.getMonitorForScreen(root.screen)
         }
@@ -131,31 +159,48 @@ Item {
         Tray {
             id: tray
 
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottom: clock.top
-            anchors.bottomMargin: Appearance.spacing.larger
+            // anchors.horizontalCenter: parent.horizontalCenter
+            // anchors.bottom: clock.top
+            // anchors.bottomMargin: Appearance.spacing.larger
+            anchors {
+                verticalCenter: parent.verticalCenter
+                right: clock.left
+                rightMargin: Appearance.spacing.large
+            }
         }
 
         Clock {
             id: clock
 
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottom: statusIcons.top
-            anchors.bottomMargin: Appearance.spacing.normal
+            // anchors.horizontalCenter: parent.horizontalCenter
+            // anchors.bottom: statusIcons.top
+            // anchors.bottomMargin: Appearance.spacing.normal
+            anchors {
+                verticalCenter: parent.verticalCenter
+                right: statusIcons.left
+                rightMargin: Appearance.spacing.normal
+            }
         }
 
         StyledRect {
             id: statusIcons
 
-            anchors.left: parent.left
-            anchors.right: parent.right
-            anchors.bottom: power.top
-            anchors.bottomMargin: Appearance.spacing.normal
+            anchors {
+                right: power.left
+                rightMargin: Appearance.spacing.normal
+                top: parent.top
+                bottom: parent.bottom
+            }
+            // anchors.left: parent.left
+            // anchors.right: parent.right
+            // anchors.bottom: power.top
+            // anchors.bottomMargin: Appearance.spacing.normal
 
             radius: Appearance.rounding.full
             color: Colours.palette.m3surfaceContainer
 
-            implicitHeight: statusIconsInner.implicitHeight + Appearance.padding.normal * 2
+            // implicitHeight: statusIconsInner.implicitHeight + Appearance.padding.normal * 2
+            implicitWidth: statusIconsInner.implicitWidth + Appearance.padding.normal * 2
 
             StatusIcons {
                 id: statusIconsInner
@@ -167,9 +212,14 @@ Item {
         Power {
             id: power
 
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: Appearance.padding.large
+            anchors {
+                verticalCenter: parent.verticalCenter
+                right: parent.right
+                rightMargin: Appearance.padding.large
+            }
+            // anchors.horizontalCenter: parent.horizontalCenter
+            // anchors.bottom: parent.bottom
+            // anchors.bottomMargin: Appearance.padding.large
 
             visibilities: root.visibilities
         }
