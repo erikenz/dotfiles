@@ -24,7 +24,8 @@
 		"default_model": {
 			"provider": "copilot_chat",
 			"model": "gpt-4.1"
-		}
+		},
+		"version": "2"
 	},
 	"tabs": {
 		"file_icons": true,
@@ -88,25 +89,18 @@
 		"source.organizeImports.biome": true,
 		"source.action.useSortedKeys.biome": true
 	},
+	"SCSS": {
+		"formatter": "auto"
+	},
 	"languages": {
-		"SCSS": { "formatter": "auto" },
 		"JavaScript": { "formatter": { "language_server": { "name": "biome" } } },
 		"TypeScript": { "formatter": { "language_server": { "name": "biome" } } },
+		"JSX": { "formatter": { "language_server": { "name": "biome" } } },
 		"TSX": { "formatter": { "language_server": { "name": "biome" } } },
 		"JSON": { "formatter": { "language_server": { "name": "biome" } } },
 		"JSONC": { "formatter": { "language_server": { "name": "biome" } } },
 		"CSS": { "formatter": { "language_server": { "name": "biome" } } },
-		"QML": {
-			"formatter": {
-				"external": {
-					"command": "sh",
-					"arguments": [
-						"-c",
-						"tmp=$(mktemp --suffix .qml); cat > $tmp; qmlformat $tmp"
-					]
-				}
-			}
-		}
+		"GraphQL": { "formatter": { "language_server": { "name": "biome" } } }
 	},
 	"lsp": {
 		"vtsls": {
@@ -129,11 +123,6 @@
 						"[a-zA-Z]*ClassName={.+|\n*}"
 					]
 				}
-			}
-		},
-		"qml": {
-			"binary": {
-				"arguments": ["-E"]
 			}
 		}
 	}
