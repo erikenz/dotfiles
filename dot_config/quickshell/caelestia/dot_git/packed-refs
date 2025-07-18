@@ -1,0 +1,5 @@
+# pack-refs with: peeled fully-peeled sorted 
+124742d74d94b8ba531275bc5084301b41332f98 refs/remotes/origin/archive-astal
+607f20343e3aabadc49e8baf04715eabedada171 refs/remotes/origin/archive-nogaps
+4320904a39bbfd72d36f220137c873e034981701 refs/remotes/origin/main
+58f81ca691dd006d0791893a06c9fafafe0e3a04 refs/remotes/origin/multi-players
