@@ -16,10 +16,10 @@ alias clear "printf '\033[2J\033[3J\033[1;1H'"
 
 # Replace ls with eza
 alias ls='eza -al --color=always --group-directories-first --icons' # preferred listing
-alias la='eza -a --color=always --group-directories-first --icons'  # all files and dirs
-alias ll='eza -l --color=always --group-directories-first --icons'  # long format
+alias la='eza -a --color=always --group-directories-first --icons' # all files and dirs
+alias ll='eza -l --color=always --group-directories-first --icons' # long format
 alias lt='eza -aT --color=always --group-directories-first --icons' # tree listing
-alias l.="eza -a | grep -e '^\.'"                                     # show only dotfiles
+alias l.="eza -a | grep -e '^\.'" # show only dotfiles
 
 # Common use
 alias grubup="sudo grub-mkconfig -o /boot/grub/grub.cfg"
@@ -39,10 +39,12 @@ alias vdir='vdir --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-alias hw='hwinfo --short'                                   # Hardware Info
-alias big="expac -H M '%m\t%n' | sort -h | nl"              # Sort installed packages according to size in MB
-alias gitpkg='pacman -Q | grep -i "\-git" | wc -l'          # List amount of -git packages
-alias update='sudo cachyos-rate-mirrors && sudo pacman -Syu'
+alias hw='hwinfo --short' # Hardware Info
+alias big="expac -H M '%m\t%n' | sort -h | nl" # Sort installed packages according to size in MB
+alias gitpkg='pacman -Q | grep -i "\-git" | wc -l' # List amount of -git packages
+# alias update='sudo cachyos-rate-mirrors && sudo pacman -Syu'
+alias update='sudo pacman -Syu'
+alias mirrorupdate='sudo cachyos-rate-mirrors && sudo pacman -Syu'
 
 # Get fastest mirrors
 alias mirror="sudo cachyos-rate-mirrors"
