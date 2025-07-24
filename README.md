@@ -33,20 +33,31 @@ chezmoi re-add
 
 ## dependencies
 
+### utilities
+- [yay](https://github.com/Jguer/yay)
+- [chezmoi]()
+- [fnm]()
+
 ### hyprland
+- [hyprsunset](https://wiki.hypr.land/Hypr-Ecosystem/hyprsunset/)
+- [hyprcursor](https://wiki.hypr.land/Hypr-Ecosystem/hyprcursor/)
+- [hypridle](https://wiki.hypr.land/Hypr-Ecosystem/hypridle/)
+- [hyprpicker](https://wiki.hypr.land/Hypr-Ecosystem/hyprpicker/)
+- [hyprpaper](https://wiki.hypr.land/Hypr-Ecosystem/hyprpaper/)
+
+```fish
+sudo pacman -S hyprland hyprsunset hyprcursor hypridle hyprpicker hyprpaper
+```
+
+### cursor
+- [catppuccin-cursors-macchiato](https://github.com/catppuccin/cursors)
+```fish
+yay -S catppuccin-cursors-macchiato
+```
 
 ### nvim
 
-### zsh plugins
-
-zsh plugins that need to be cloned
-
-- [history-string-search](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/history-substring-search)
-- [fzf-tab](https://github.com/Aloxaf/fzf-tab)
-- [zsh-completions](https://github.com/zsh-users/zsh-completions)
-- [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md)
-- [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md)
-
-## TODO
-
-- [ ] add package install and setup scripts
+### shell
+- [fish]()
+- [fisher](https://github.com/jorgebucaran/fisher)
+- [starship]()
