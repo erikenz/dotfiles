@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if ! grep -qi '^ID=arch' /etc/os-release 2>/dev/null; then
+  exit 0
+fi
+
+pkg_file="{{ .chezmoi.sourceDir }}/.chezmoidata/packages/arch.yml"
+
+install_category() {
+  local category=$1
+  local pkgs
+  pkgs=$(yq e ".${category}[]" "$pkg_file" 2>/dev/null | xargs || true)
+  if [[ -n "${pkgs:-}" ]]; then
+    echo "[INFO] Installing ${category} packages: $pkgs"
+    paru -S --needed --noconfirm $pkgs
+  fi
+}
+
+install_category base
+
+is_laptop=false
+if [[ -d "/sys/class/power_supply/BAT0" ]] || upower -i "$(upower -e | grep -m1 BAT)" &>/dev/null; then
+  is_laptop=true
+fi
+
+if $is_laptop; then
+  read -rp "This appears to be a laptop. Install laptop-specific packages? [y/N]: " ans
+  [[ "$ans" =~ ^[Yy]$ ]] && install_category laptop
+else
+  read -rp "Install laptop-specific packages anyway? [y/N]: " ans
+  [[ "$ans" =~ ^[Yy]$ ]] && install_category laptop
+fi
