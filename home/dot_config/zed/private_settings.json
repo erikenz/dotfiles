@@ -78,7 +78,8 @@
 		"docker-compose": true,
 		"scss": true,
 		"lua": true,
-		"astro": true
+		"astro": true,
+		"hyprlang": true
 	},
 	"edit_predictions": {
 		"mode": "eager"
@@ -87,6 +88,14 @@
 		"source.fixAll.biome": true,
 		"source.organizeImports.biome": true,
 		"source.action.useSortedKeys.biome": true
+	},
+	"file_types": {
+		"Hyprland Config": [
+			"hyprland.conf",
+			"hyprlandd.conf",
+			"hyprland.hl",
+			"hyprlandd.hl"
+		]
 	},
 	"languages": {
 		"SCSS": { "formatter": "auto" },
