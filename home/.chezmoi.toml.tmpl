@@ -1,3 +1,37 @@
+{{- $gitname := "erikenz" -}}
+{{- $gitmail := "46247842+erikenz@users.noreply.github.com" -}}
+
+{{- $osid := .chezmoi.os -}}
+{{- if .chezmoi.osRelease -}}
+{{-   if hasKey .chezmoi.osRelease "id" -}}
+{{-     $osid = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
+{{-   end -}}
+{{- end -}}
+
+{{ $isLaptop := false }}
+
+{{ if lookPath "hostnamectl" }}
+  {{ if eq (output "hostnamectl" "chassis") "laptop" }}
+    {{ $isLaptop = true }}
+  {{ end }}
+{{ else if lookPath "wmic" }}
+  {{ if eq (output "wmic" "computersystem" "get" "PCSystemType" "/VALUE" | trim) "PCSystemType=2" }}
+    {{ $isLaptop = true }}
+  {{ end }}
+{{ else if stdinIsATTY }}
+  {{ $isLaptop = promptBoolOnce . "isLaptop" "Is this a laptop" false }}
+{{ end }}
+
+[data]
+    gitname = {{ $gitname | quote }}
+    gitmail = {{ $gitmail | quote }}
+    osid = {{ $osid | quote }}
+    isLaptop = {{ $isLaptop }}
+
 [git]
     autoCommit = true
     autoPush = true
+    autoAdd = true # Add changes to the source state after any change
+
+[edit]
+    command = "nvim"

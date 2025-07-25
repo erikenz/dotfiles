@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+set -eufo pipefail
+
+DISTRO=$(lsb_release -i | awk '{print $NF}')
+
+case "$DISTRO" in
+"Arch") ;;
+*)
+  exit 0
+  ;;
+esac
+
+##########################################
+
+echo 'UPDATING SOURCES...'
+sudo pacman -Sy
+
+if ! pacman -Qs paru >/dev/null 2>&1; then
+    sudo pacman -S --needed base-devel --noconfirm
+    git clone https://aur.archlinux.org/paru.git /tmp/paru
+    cd /tmp/paru
+    makepkg -si --noconfirm
+    rm -rf /tmp/paru
+fi
+
+##########################################
+
+{{ $pkgs := .pkgs.archBased.universal }}
+{{ if .isLaptop }}
+{{ $pkgs := concat $pkgs .pkgs.archBased.laptop }}
+{{ end }}
+
+{{ if $pkgs }}
+echo 'INSTALLING PACKAGES...'
+paru -S {{ $pkgs | quoteList | join " " }} --needed --noconfirm
+{{ end }}
+
+##########################################
+
+echo 'SETTING UP SERVICES...'
+systemctl list-unit-files "cronie.service" &>/dev/null && sudo systemctl enable --now cronie.service

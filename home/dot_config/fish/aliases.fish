@@ -43,11 +43,13 @@ alias hw='hwinfo --short' # Hardware Info
 alias big="expac -H M '%m\t%n' | sort -h | nl" # Sort installed packages according to size in MB
 alias gitpkg='pacman -Q | grep -i "\-git" | wc -l' # List amount of -git packages
 # alias update='sudo cachyos-rate-mirrors && sudo pacman -Syu'
-alias update='sudo pacman -Syu'
-alias mirrorupdate='sudo cachyos-rate-mirrors && sudo pacman -Syu'
+# alias update='sudo pacman -Syu'
+alias update='paru'
+alias mirror="sudo cachyos-rate-mirrors"
+# alias mirrorupdate='sudo cachyos-rate-mirrors && sudo pacman -Syu'
+alias mirrorupdate='mirror && paru'
 
 # Get fastest mirrors
-alias mirror="sudo cachyos-rate-mirrors"
 
 # Help people new to Arch
 alias apt='man pacman'
