@@ -1,15 +1,38 @@
+{{/* Boolean feature tags */}}
+{{- $ephemeral := false -}}{{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
+{{- $work := false -}}{{/* true if this machine is a work machine */}}
+{{- $headless := false -}}{{/* true if this machine does not have a screen and keyboard */}}
+{{- $personal := false -}}{{/* true if this machine should have personal secrets */}}
+{{- $isLaptop := false -}}{{/* true if this machine is a laptop */}}
+{{- "" -}}
+
+{{/* Default dynamic values */}}
 {{- $gitname := "erikenz" -}}
 {{- $gitmail := "46247842+erikenz@users.noreply.github.com" -}}
 
-{{- $osid := .chezmoi.os -}}
-{{- if .chezmoi.osRelease -}}
-{{-   if hasKey .chezmoi.osRelease "id" -}}
-{{-     $osid = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
-{{-   end -}}
+{{/* OS check */}}
+{{- $osID := .chezmoi.os -}}
+{{- if (and (eq .chezmoi.os "linux") (hasKey .chezmoi.osRelease "id")) -}}
+{{-   $osID = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
 {{- end -}}
 
-{{ $isLaptop := false }}
+{{/* detect GitHub codespaces, VSCode remote containers, Docker containers, Multipass VMs, and Vagrant boxes */}}
+{{- if or (env "CODESPACES") (env "REMOTE_CONTAINERS_IPC") (eq .chezmoi.username "root" "ubuntu" "vagrant" "vscode") -}}
+{{-   $ephemeral = true -}}
+{{-   $headless = true -}}
+{{- end -}}
 
+{{/* work around unreliable hostname on darwin */}}
+{{- $hostname := .chezmoi.hostname -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{-   $hostname := output "scutil" "--get" "LocalHostName" | trim -}}
+{{- end -}}
+
+{{- if eq .chezmoi.os "windows" -}}
+{{-   $ephemeral = true -}}
+{{- end -}}
+
+{{/* Check if it's a laptop */}}
 {{ if lookPath "hostnamectl" }}
   {{ if eq (output "hostnamectl" "chassis") "laptop" }}
     {{ $isLaptop = true }}
@@ -22,11 +45,23 @@
   {{ $isLaptop = promptBoolOnce . "isLaptop" "Is this a laptop" false }}
 {{ end }}
 
+{{/* Git config */}}
+{{- $overrideGit := promptBoolOnce . "overrideGit" "Do you want to override your Git name and email?" false -}}
+{{- if $overrideGit -}}
+  {{- $gitname := promptStringOnce . "gitname" "Enter your Git name" -}}
+  {{- $gitmail := promptStringOnce . "gitmail" "Enter your Git email" -}}
+{{- end -}}
+
 [data]
     gitname = {{ $gitname | quote }}
     gitmail = {{ $gitmail | quote }}
-    osid = {{ $osid | quote }}
     isLaptop = {{ $isLaptop }}
+    ephemeral = {{ $ephemeral }}
+    work = {{ $work }}
+    headless = {{ $headless }}
+    hostname = {{ $hostname | quote }}
+    personal = {{ $personal }}
+    osid = {{ $osID | quote }}
 
 [git]
     autoCommit = true

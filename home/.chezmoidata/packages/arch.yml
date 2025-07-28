@@ -1,0 +1,107 @@
+base:
+  # Apps
+  - "zen-browser-bin"
+  - "libreoffice-fresh"
+  - "obs-studio"
+  - "vlc"
+  - "youtube-music-bin" # AUR
+  - "obsidian"
+  - "atlauncher-bin"
+  - "gimp"
+  - "zathura"
+  - "zathura-pdf-mupdf" # For zathura
+  - "tesseract-data-eng" # For zathura
+  - "tesseract-data-vie" # For zathura
+  # - "ferdium" # AUR
+  # - "easyeffects"
+  # - "songrec"
+  # - "piper"
+
+  # Text / Code Editor, IDE
+  - "zed"
+  - "neovim"
+
+  # Terminal
+  - "tmux"
+  - "tmuxinator"
+  - "ghostty"
+  - "fish"
+  - "starship"
+
+  # Hyprland
+  - "quickshell-git"
+  - "hyprcursor"
+  - "hyprsunset"
+  - "hyprpaper"
+  - "hyprpicker"
+  - "hyprland"
+  - "hyprlock"
+  - "hypridle"
+  - "hyprgraphics"
+  - "hyprland-qt-support"
+  - "hyprland-qtutils"
+  - "hyprpolkitagent"
+  - "hyprutils"
+  - "hyprwayland-scanner"
+  - "hyprlang"
+  - "hyprland-protocols"
+  - "xdg-desktop-portal-hyprland"
+
+  # System
+  - "polkit-gnome"
+  - "polkit-kde-agent"
+
+  # CLI Tools
+  - "wget"
+  - "chezmoi"
+  - "lazygit"
+  - "git"
+  - "curl"
+  - "fzf"
+  - "gh"
+  - "exa"
+  - "lazydocker"
+  - "ripgrep"
+  - "unzip"
+  - "wget"
+  - "yazi"
+  - "zoxide"
+  - "bat"
+  - "git-delta"
+  - "git-lfs"
+  - "github-cli"
+  # - "aria2"
+  # - "thefuck"
+  # - "tokei"
+  # - "trash-cli"
+  # - "xsel"
+  # - "atac"
+  # - "ctags"
+  # - "doggo"
+  # - "fd"
+  # - "glow"
+  # - "jq"
+  # - "just"
+  # - "rclone"
+  # - "rsync"
+  # - "sd"
+  # - "tree"
+  # - "xh"
+  # - "yq" # mise requirements
+  # - "zip"
+
+  # CLI Fun
+  - "fastfetch"
+  # - "cowsay"
+  # - "figlet" # A program for making large letters out of ordinary text
+  # - "lolcat"
+  # - "astroterm"
+
+laptop:
+  # - powertop
+  # - brightnessctl
+  - "gestures"
+  - "libinput-gestures"
+  - "tlp"
+  - "tlp-rdw"
+  - "tlpui"

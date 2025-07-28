@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Only run if apt is available
+if ! command -v apt &>/dev/null; then
+  exit 0
+fi
+
+# Chezmoi Debian-based Package Installer
+# Installs packages from .chezmoidata/packages/debian.yml
+
+PKG_FILE="{{ .chezmoi.sourceDir }}/.chezmoidata/packages/debian.yml"
+
+get_packages() {
+  local category=$1
+  yq e ".${category}[]" "$PKG_FILE" 2>/dev/null | xargs || true
+}
+
+install_packages() {
+  local pkgs=("$@")
+  if [[ ${#pkgs[@]} -eq 0 ]]; then
+    return
+  fi
+  echo "[INFO] Installing with apt: ${pkgs[*]}"
+  sudo apt-get update
+  sudo apt-get install -y "${pkgs[@]}"
+}
+
+BASE_PKGS=($(get_packages base))
+install_packages "${BASE_PKGS[@]}"
+
+# Laptop detection and install
+is_laptop=false
+if [[ -d "/sys/class/power_supply/BAT0" ]] || upower -i "$(upower -e | grep -m1 BAT)" &>/dev/null; then
+  is_laptop=true
+fi
+
+if $is_laptop; then
+  read -rp "This appears to be a laptop. Install laptop-specific packages? [y/N]: " ans
+  if [[ "$ans" =~ ^[Yy]$ ]]; then
+    LAPTOP_PKGS=($(get_packages laptop))
+    install_packages "${LAPTOP_PKGS[@]}"
+  fi
+else
+  read -rp "Install laptop-specific packages anyway? [y/N]: " ans
+  if [[ "$ans" =~ ^[Yy]$ ]]; then
+    LAPTOP_PKGS=($(get_packages laptop))
+    install_packages "${LAPTOP_PKGS[@]}"
+  fi
+fi
+
+echo "[INFO] Package installation complete."

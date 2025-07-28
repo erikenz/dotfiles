@@ -1,0 +1,6 @@
+termux:
+  - gh
+  - curl
+  - wget
+  - git
+  - chezmoi

@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Only run if pacman or paru is available
+if ! command -v paru &>/dev/null && ! command -v pacman &>/dev/null; then
+  exit 0
+fi
+
+PKG_FILE="{{ .chezmoi.sourceDir }}/.chezmoidata/packages/arch-based.yml"
+
+# Helper: Extract packages from YAML
+get_packages() {
+  local category=$1
+  yq e ".${category}[]" "$PKG_FILE" 2>/dev/null | xargs || true
+}
+
+# Ensure paru is installed
+if ! command -v paru &>/dev/null; then
+  echo "[INFO] Installing paru (AUR helper)..."
+  sudo pacman -S --needed --noconfirm base-devel git
+  tmpdir=$(mktemp -d)
+  git clone https://aur.archlinux.org/paru.git "$tmpdir/paru"
+  pushd "$tmpdir/paru" >/dev/null
+  makepkg -si --noconfirm
+  popd >/dev/null
+  rm -rf "$tmpdir"
+else
+  echo "[INFO] paru is already installed."
+fi
+
+# Install base packages
+BASE_PKGS=($(get_packages base))
+if [[ ${#BASE_PKGS[@]} -gt 0 ]]; then
+  echo "[INFO] Installing base packages: ${BASE_PKGS[*]}"
+  paru -S --needed --noconfirm "${BASE_PKGS[@]}"
+fi
+
+# Laptop detection
+is_laptop=false
+if [[ -d "/sys/class/power_supply/BAT0" ]] || upower -i "$(upower -e | grep -m1 BAT)" &>/dev/null; then
+  is_laptop=true
+fi
+
+if $is_laptop; then
+  read -rp "This appears to be a laptop. Install laptop-specific packages? [y/N]: " ans
+  if [[ "$ans" =~ ^[Yy]$ ]]; then
+    LAPTOP_PKGS=($(get_packages laptop))
+    if [[ ${#LAPTOP_PKGS[@]} -gt 0 ]]; then
+      echo "[INFO] Installing laptop packages: ${LAPTOP_PKGS[*]}"
+      paru -S --needed --noconfirm "${LAPTOP_PKGS[@]}"
+    fi
+  fi
+else
+  read -rp "This does not appear to be a laptop. Install laptop-specific packages anyway? [y/N]: " ans
+  if [[ "$ans" =~ ^[Yy]$ ]]; then
+    LAPTOP_PKGS=($(get_packages laptop))
+    if [[ ${#LAPTOP_PKGS[@]} -gt 0 ]]; then
+      echo "[INFO] Installing laptop packages: ${LAPTOP_PKGS[*]}"
+      paru -S --needed --noconfirm "${LAPTOP_PKGS[@]}"
+    fi
+  fi
+fi
+
+echo "[INFO] Package installation complete."
