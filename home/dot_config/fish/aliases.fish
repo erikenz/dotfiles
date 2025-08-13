@@ -9,7 +9,9 @@ alias starshipconf="nvim ~/.config/starship.toml"
 alias vault="cd ~/obsidian-vault/ && nvim ."
 alias p="pnpm"
 alias zed="zeditor"
+alias lazyvim="NVIM_APPNAME=nvim-lazyvim nvim"
 
+# alias paru="paru --bottomup"
 alias pamcan pacman
 alias ls 'eza --icons'
 alias clear "printf '\033[2J\033[3J\033[1;1H'"

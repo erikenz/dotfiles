@@ -1,10 +1,11 @@
 pragma ComponentBehavior: Bound
 
-import qs.widgets
+import qs.components
 import qs.services
 import qs.config
 import Quickshell
 import Quickshell.Widgets
+import Quickshell.Hyprland
 import QtQuick
 import QtQuick.Controls
 
@@ -25,6 +26,12 @@ StackView {
     pushExit: Anim {}
     popEnter: Anim {}
     popExit: Anim {}
+
+    HyprlandFocusGrab {
+        active: true
+        windows: [QsWindow.window]
+        onCleared: root.popouts.hasCurrent = false
+    }
 
     component Anim: Transition {
         NumberAnimation {

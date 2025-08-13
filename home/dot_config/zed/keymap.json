@@ -5,16 +5,16 @@
 //
 // To see the default key bindings run `zed: open default keymap`
 // from the command palette.
+//
+// This copies mappings from Astronvim's keymap
 [
 	{
 		"context": "Workspace",
 		"bindings": {
-			// "shift shift": "file_finder::Toggle"
 			"ctrl-h": "workspace::ActivatePaneLeft",
 			"ctrl-j": "workspace::ActivatePaneDown",
 			"ctrl-k": "workspace::ActivatePaneUp",
-			"ctrl-l": "workspace::ActivatePaneRight",
-			"ctrl-alt-a": "workspace::AddFolderToProject"
+			"ctrl-l": "workspace::ActivatePaneRight"
 		}
 	},
 	{
@@ -22,11 +22,6 @@
 		"bindings": {
 			"ctrl-[": "pane::ActivateNextItem",
 			"ctrl-]": "pane::ActivatePreviousItem",
-			// "j k": ["workspace::SendKeystrokes", "escape"],
-			"ctrl-h": "workspace::ActivatePaneLeft",
-			"ctrl-j": "workspace::ActivatePaneDown",
-			"ctrl-k": "workspace::ActivatePaneUp",
-			"ctrl-l": "workspace::ActivatePaneRight",
 			"ctrl-g s": "git::StageAndNext",
 			"ctrl-g r": "git::Restore",
 			"ctrl-g u": "git::UnstageAndNext",
@@ -39,12 +34,40 @@
 			"ctrl-g d d": "git::Diff",
 			"ctrl-g d a": "git::Amend",
 			"ctrl-g d b": "git::Blame",
-			"ctrl-s": "workspace::Save"
+			// Resize
+			"ctrl-left": "vim::ResizePaneLeft",
+			"ctrl-right": "vim::ResizePaneRight",
+			"ctrl-up": "vim::ResizePaneUp",
+			"ctrl-down": "vim::ResizePaneDown",
+			// Navigation
+			"ctrl-h": "workspace::ActivatePaneLeft",
+			"ctrl-j": "workspace::ActivatePaneDown",
+			"ctrl-k": "workspace::ActivatePaneUp",
+			"ctrl-l": "workspace::ActivatePaneRight",
+			// Buffers
+			"ctrl-s": "workspace::Save",
+			"ctrl-q": "pane::CloseActiveItem"
 		}
 	},
 	{
 		"context": "Editor && vim_mode == normal && vim_operator == none && !VimWaiting",
 		"bindings": {
+			"space n": "project_panel::NewFile",
+			"space R": "project_panel::Rename",
+			"space c": "pane::CloseActiveItem",
+			"\\": "pane::SplitHorizontal",
+			"|": "pane::SplitVertical",
+			"space b b": "file_finder::Toggle",
+			"space b c": "pane::CloseOtherItems",
+			"space b C": "pane::CloseAllItems",
+			"space b l": "pane::CloseItemsToTheLeft",
+			"space b p": "pane::GoBack",
+			"space b r": "pane::CloseItemsToTheRight",
+			"space b \\": "workspace::NewFileSplitHorizontal",
+			"space b |": "workspace::NewFileSplitVertical",
+			"space /": "editor::ToggleComments",
+			"space x q": "editor::ToggleCodeActions",
+
 			"space e": "project_panel::ToggleFocus",
 			"space g": "git_panel::ToggleFocus",
 			"space o": "outline_panel::ToggleFocus",
@@ -56,7 +79,6 @@
 			"space t": "terminal_panel::ToggleFocus",
 			"space u n": "workspace::ClearAllNotifications",
 			"space u b": "git::Blame",
-			"space b q": "pane::CloseInactiveItems",
 			"space g g": [
 				"task::Spawn",
 				{ "task_name": "Lazygit", "reveal_target": "center" }
@@ -82,15 +104,16 @@
 		}
 	},
 	{
-		"context": "vim_mode == visual",
+		"context": "vim_mode == insert",
 		"bindings": {
-			"g s a": ["vim::PushAddSurrounds", {}]
+			"j k": "vim::NormalBefore" // In insert mode, make jk escape to normal mode.
 		}
 	},
 	{
 		"context": "Editor && vim_mode == visual && !VimWaiting",
 		"bindings": {
-			"space a i": "assistant::InlineAssist"
+			"space a i": "assistant::InlineAssist",
+			"space /": "editor::ToggleComments"
 		}
 	},
 	{
@@ -99,12 +122,6 @@
 			"ctrl-k": "workspace::ToggleBottomDock",
 			"ctrl-shift-f": "workspace::ToggleZoom",
 			"ctrl-shift-n": "workspace::NewTerminal"
-		}
-	},
-	{
-		"context": "ProjectPanel",
-		"bindings": {
-			"ctrl-r": "project_panel::RemoveFromProject"
 		}
 	},
 	{

@@ -66,6 +66,11 @@ g++ -std=c++17 -Wall -Wextra -I/usr/include/pipewire-0.3 -I/usr/include/spa-0.2 
 sudo mv beat_detector /usr/lib/caelestia/beat_detector
 ```
 
+> [!TIP]
+> The beat detector can actually be installed anywhere. However, if it is not installed to the default
+> location of `/usr/lib/caelestia/beat_detector`, you must set the environment variable `CAELESTIA_BD_PATH`
+> to wherever you have installed the beat detector.
+
 ## Usage
 
 The shell can be started via the `caelestia shell -d` command or `qs -c caelestia`.
@@ -146,10 +151,26 @@ All configuration options are in `~/.config/caelestia/shell.json`.
 
 ```json
 {
+    "general": {
+        "apps": {
+            "terminal": ["foot"],
+            "audio": ["pavucontrol"]
+        }
+    },
+    "background": {
+        "enabled": true
+    },
     "bar": {
         "dragThreshold": 20,
         "persistent": true,
         "showOnHover": true,
+        "status": {
+            "showAudio": false,
+            "showBattery": true,
+            "showBluetooth": true,
+            "showKbLayout": false,
+            "showNetwork": true
+        },
         "workspaces": {
             "activeIndicator": true,
             "activeLabel": "󰮯 ",
@@ -167,15 +188,26 @@ All configuration options are in `~/.config/caelestia/shell.json`.
         "thickness": 10
     },
     "dashboard": {
+        "enabled": true,
+        "dragThreshold": 50,
         "mediaUpdateInterval": 500,
+        "showOnHover": true,
         "visualiserBars": 45
     },
     "launcher": {
         "actionPrefix": ">",
         "dragThreshold": 50,
+        "vimKeybinds": false,
         "enableDangerousActions": false,
         "maxShown": 8,
-        "maxWallpapers": 9
+        "maxWallpapers": 9,
+        "useFuzzy": {
+            "apps": false,
+            "actions": false,
+            "schemes": false,
+            "variants": false,
+            "wallpapers": false
+        }
     },
     "lock": {
         "maxNotifs": 5
@@ -196,16 +228,67 @@ All configuration options are in `~/.config/caelestia/shell.json`.
         "wallpaperDir": "~/Pictures/Wallpapers"
     },
     "services": {
-      "weatherLocation": "10,10",
-      "useFahrenheit": false
+        "audioIncrement": 0.1,
+        "weatherLocation": "10,10",
+        "useFahrenheit": false,
+        "useTwelveHourClock": false
     },
     "session": {
-        "dragThreshold": 30
+        "dragThreshold": 30,
+        "vimKeybinds": false,
+        "commands": {
+            "logout": ["loginctl", "terminate-user", ""],
+            "shutdown": ["systemctl", "poweroff"],
+            "hibernate": ["systemctl", "hibernate"],
+            "reboot": ["systemctl", "reboot"]
+        }
     }
 }
 ```
 
 </details>
+
+## FAQ
+
+### My screen is flickering, help pls!
+
+Try disabling VRR in the hyprland config. You can do this by adding the following to `~/.config/caelestia/hypr-user.conf`:
+
+```conf
+misc {
+    vrr = 0
+}
+```
+
+### I want to make my own changes to the hyprland config!
+
+You can add your custom hyprland configs to `~/.config/caelestia/hypr-user.conf`.
+
+### I want to make my own changes to other stuff!
+
+See the [manual installation](https://github.com/caelestia-dots/shell?tab=readme-ov-file#manual-installation) section
+for the corresponding repo.
+
+### I want to disable XXX feature!
+
+Please read the [configuring](https://github.com/caelestia-dots/shell?tab=readme-ov-file#configuring) section in the readme.
+If there is no corresponding option, make feature request.
+
+### How do I make my colour scheme change with my wallpaper?
+
+Set a wallpaper via the launcher or `caelestia wallpaper` and set the scheme to the dynamic scheme via the launcher
+or `caelestia scheme set`. e.g.
+
+```sh
+caelestia wallpaper -f <path/to/file>
+caelestia scheme set -n dynamic
+```
+
+### My wallpapers aren't showing up in the launcher!
+
+The launcher pulls wallpapers from `~/Pictures/Wallpapers` by default. You can change this in the config. Additionally,
+the launcher only shows an odd number of wallpapers at one time. If you only have 2 wallpapers, consider getting more
+(or just putting one).
 
 ## Credits
 

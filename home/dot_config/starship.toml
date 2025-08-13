@@ -100,7 +100,7 @@ show_milliseconds = true
 format = "[](fg:teal)[[  in $duration ](fg:crust bg:teal)]($style)[](fg:teal)"
 style = "bg:teal"
 disabled = false
-show_notifications = true
+show_notifications = false
 min_time_to_notify = 45000
 
 # ╭──────────────────────────────────────────────────────────╮

@@ -102,6 +102,6 @@ laptop:
   # - brightnessctl
   - "gestures"
   - "libinput-gestures"
-  - "tlp"
-  - "tlp-rdw"
-  - "tlpui"
+  # - "tlp"
+  # - "tlp-rdw"
+  # - "tlpui"

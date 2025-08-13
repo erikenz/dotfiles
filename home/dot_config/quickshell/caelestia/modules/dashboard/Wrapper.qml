@@ -1,11 +1,11 @@
 pragma ComponentBehavior: Bound
 
-import qs.services
+import qs.components.filedialog
 import qs.config
 import qs.utils
 import Quickshell
+import Quickshell.Hyprland
 import QtQuick
-import QtQuick.Dialogs
 
 Item {
     id: root
@@ -16,11 +16,11 @@ Item {
 
         readonly property FileDialog facePicker: FileDialog {
             title: qsTr("Select a profile picture")
-            acceptLabel: qsTr("Select")
-            nameFilters: [`Image files (${Wallpapers.extensions.map(e => `*.${e}`).join(" ")})`]
-            onAccepted: {
-                Paths.copy(selectedFile, `${Paths.home}/.face`);
-                Quickshell.execDetached(["notify-send", "-a", "caelestia-shell", "-u", "low", "-h", `STRING:image-path:${Paths.strip(selectedFile)}`, "Profile picture changed", `Profile picture changed to ${Paths.shortenHome(Paths.strip(selectedFile))}`]);
+            filterLabel: qsTr("Image files")
+            filters: Images.validImageExtensions
+            onAccepted: path => {
+                Paths.copy(path, `${Paths.home}/.face`);
+                Quickshell.execDetached(["notify-send", "-a", "caelestia-shell", "-u", "low", "-h", `STRING:image-path:${path}`, "Profile picture changed", `Profile picture changed to ${Paths.shortenHome(path)}`]);
             }
         }
     }
@@ -31,7 +31,7 @@ Item {
 
     states: State {
         name: "visible"
-        when: root.visibilities.dashboard
+        when: root.visibilities.dashboard && Config.dashboard.enabled
 
         PropertyChanges {
             root.implicitHeight: content.implicitHeight
@@ -65,10 +65,16 @@ Item {
         }
     ]
 
+    HyprlandFocusGrab {
+        active: !Config.dashboard.showOnHover && root.visibilities.dashboard && Config.dashboard.enabled
+        windows: [QsWindow.window]
+        onCleared: root.visibilities.dashboard = false
+    }
+
     Loader {
         id: content
 
-        Component.onCompleted: active = Qt.binding(() => root.visibilities.dashboard || root.visible)
+        Component.onCompleted: active = Qt.binding(() => (root.visibilities.dashboard && Config.dashboard.enabled) || root.visible)
 
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom

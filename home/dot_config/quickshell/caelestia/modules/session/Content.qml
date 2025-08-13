@@ -1,6 +1,6 @@
 pragma ComponentBehavior: Bound
 
-import qs.widgets
+import qs.components
 import qs.services
 import qs.config
 import qs.utils
@@ -23,7 +23,7 @@ Column {
         id: logout
 
         icon: "logout"
-        command: ["loginctl", "terminate-user", ""]
+        command: Config.session.commands.logout
 
         KeyNavigation.down: shutdown
 
@@ -46,7 +46,7 @@ Column {
         id: shutdown
 
         icon: "power_settings_new"
-        command: ["systemctl", "poweroff"]
+        command: Config.session.commands.shutdown
 
         KeyNavigation.up: logout
         KeyNavigation.down: hibernate
@@ -68,7 +68,7 @@ Column {
         id: hibernate
 
         icon: "downloading"
-        command: ["systemctl", "hibernate"]
+        command: Config.session.commands.hibernate
 
         KeyNavigation.up: shutdown
         KeyNavigation.down: reboot
@@ -78,7 +78,7 @@ Column {
         id: reboot
 
         icon: "cached"
-        command: ["systemctl", "reboot"]
+        command: Config.session.commands.reboot
 
         KeyNavigation.up: hibernate
     }
@@ -93,11 +93,33 @@ Column {
         implicitHeight: Config.session.sizes.button
 
         radius: Appearance.rounding.large
-        color: button.activeFocus ? Colours.palette.m3secondaryContainer : Colours.palette.m3surfaceContainer
+        color: button.activeFocus ? Colours.palette.m3secondaryContainer : Colours.tPalette.m3surfaceContainer
 
         Keys.onEnterPressed: Quickshell.execDetached(button.command)
         Keys.onReturnPressed: Quickshell.execDetached(button.command)
         Keys.onEscapePressed: root.visibilities.session = false
+        Keys.onPressed: event => {
+            if (!Config.session.vimKeybinds)
+                return;
+
+            if (event.modifiers & Qt.ControlModifier) {
+                if (event.key === Qt.Key_J && KeyNavigation.down) {
+                    KeyNavigation.down.focus = true;
+                    event.accepted = true;
+                } else if (event.key === Qt.Key_K && KeyNavigation.up) {
+                    KeyNavigation.up.focus = true;
+                    event.accepted = true;
+                }
+            } else if (event.key === Qt.Key_Tab && KeyNavigation.down) {
+                KeyNavigation.down.focus = true;
+                event.accepted = true;
+            } else if (event.key === Qt.Key_Backtab || (event.key === Qt.Key_Tab && (event.modifiers & Qt.ShiftModifier))) {
+                if (KeyNavigation.up) {
+                    KeyNavigation.up.focus = true;
+                    event.accepted = true;
+                }
+            }
+        }
 
         StateLayer {
             radius: parent.radius

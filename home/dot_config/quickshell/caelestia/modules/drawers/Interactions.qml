@@ -53,13 +53,15 @@ MouseArea {
                 visibilities.osd = false;
                 osdHovered = false;
             }
-            if (!dashboardShortcutActive) {
+
+            if (!dashboardShortcutActive)
                 visibilities.dashboard = false;
-            }
-            if (!utilitiesShortcutActive) {
+
+            if (!utilitiesShortcutActive)
                 visibilities.utilities = false;
-            }
-            popouts.hasCurrent = false;
+
+            if (!popouts.currentName.startsWith("traymenu"))
+                popouts.hasCurrent = false;
 
             if (Config.bar.showOnHover)
                 bar.isHovered = false;
@@ -67,22 +69,23 @@ MouseArea {
     }
 
     onPositionChanged: event => {
+        if (popouts.isDetached)
+            return;
+
         const x = event.x;
         const y = event.y;
 
         // Show bar in non-exclusive mode on hover
-        if (!visibilities.bar && Config.bar.showOnHover && x < bar.implicitWidth) {
+        if (!visibilities.bar && Config.bar.showOnHover && x < bar.implicitWidth)
             bar.isHovered = true;
-        }
 
         // Show/hide bar on drag
         if (pressed && dragStart.x < bar.implicitWidth) {
             const dragX = x - dragStart.x;
-            if (dragX > Config.bar.dragThreshold) {
+            if (dragX > Config.bar.dragThreshold)
                 visibilities.bar = true;
-            } else if (dragX < -Config.bar.dragThreshold) {
+            else if (dragX < -Config.bar.dragThreshold)
                 visibilities.bar = false;
-            }
         }
 
         // Show osd on hover
@@ -117,7 +120,7 @@ MouseArea {
         }
 
         // Show dashboard on hover
-        const showDashboard = inTopPanel(panels.dashboard, x, y);
+        const showDashboard = Config.dashboard.showOnHover && inTopPanel(panels.dashboard, x, y);
 
         // Always update visibility based on hover if not in shortcut mode
         if (!dashboardShortcutActive) {
@@ -125,6 +128,15 @@ MouseArea {
         } else if (showDashboard) {
             // If hovering over dashboard area while in shortcut mode, transition to hover control
             dashboardShortcutActive = false;
+        }
+
+        // Show/hide dashboard on drag (for touchscreen devices)
+        if (pressed && inTopPanel(panels.dashboard, dragStart.x, dragStart.y) && withinPanelWidth(panels.dashboard, x, y)) {
+            const dragY = y - dragStart.y;
+            if (dragY > Config.dashboard.dragThreshold)
+                visibilities.dashboard = true;
+            else if (dragY < -Config.dashboard.dragThreshold)
+                visibilities.dashboard = false;
         }
 
         // Show utilities on hover
@@ -139,16 +151,8 @@ MouseArea {
         }
 
         // Show popouts on hover
-        const popout = panels.popouts;
-        if (x < bar.implicitWidth + popout.width) {
-            if (x < bar.implicitWidth)
-                // Handle like part of bar
-                bar.checkPopout(y);
-            else
-                // Keep on hover
-                popouts.hasCurrent = withinPanelHeight(popout, x, y);
-        } else
-            popouts.hasCurrent = false;
+        if (x < bar.implicitWidth)
+            bar.checkPopout(y);
     }
 
     // Monitor individual visibility changes

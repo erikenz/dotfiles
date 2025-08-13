@@ -1,6 +1,8 @@
 pragma ComponentBehavior: Bound
 
-import qs.widgets
+import "services"
+import qs.components
+import qs.components.controls
 import qs.services
 import qs.config
 import Quickshell
@@ -42,7 +44,7 @@ Item {
     StyledRect {
         id: searchWrapper
 
-        color: Colours.alpha(Colours.palette.m3surfaceContainer, true)
+        color: Colours.tPalette.m3surfaceContainer
         radius: Appearance.rounding.full
 
         anchors.left: parent.left
@@ -75,7 +77,6 @@ Item {
             bottomPadding: Appearance.padding.larger
 
             placeholderText: qsTr("Type \"%1\" for commands").arg(Config.launcher.actionPrefix)
-            background: null
 
             onAccepted: {
                 const currentItem = list.currentList?.currentItem;
@@ -101,6 +102,27 @@ Item {
             Keys.onDownPressed: list.currentList?.incrementCurrentIndex()
 
             Keys.onEscapePressed: root.visibilities.launcher = false
+
+            Keys.onPressed: event => {
+                if (!Config.launcher.vimKeybinds)
+                    return;
+
+                if (event.modifiers & Qt.ControlModifier) {
+                    if (event.key === Qt.Key_J) {
+                        list.currentList?.incrementCurrentIndex();
+                        event.accepted = true;
+                    } else if (event.key === Qt.Key_K) {
+                        list.currentList?.decrementCurrentIndex();
+                        event.accepted = true;
+                    }
+                } else if (event.key === Qt.Key_Tab) {
+                    list.currentList?.incrementCurrentIndex();
+                    event.accepted = true;
+                } else if (event.key === Qt.Key_Backtab || (event.key === Qt.Key_Tab && (event.modifiers & Qt.ShiftModifier))) {
+                    list.currentList?.decrementCurrentIndex();
+                    event.accepted = true;
+                }
+            }
 
             Connections {
                 target: root.visibilities

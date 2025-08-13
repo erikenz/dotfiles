@@ -1,11 +1,11 @@
-import qs.widgets
+import qs.components
+import qs.components.images
 import qs.services
 import qs.config
 import qs.utils
 import Quickshell
 import Quickshell.Io
 import QtQuick
-import QtQuick.Dialogs
 
 Row {
     id: root
@@ -21,7 +21,7 @@ Row {
         implicitHeight: info.implicitHeight
 
         radius: Appearance.rounding.large
-        color: Colours.palette.m3surfaceContainerHigh
+        color: Colours.tPalette.m3surfaceContainerHigh
 
         MaterialIcon {
             anchors.centerIn: parent
@@ -150,14 +150,14 @@ Row {
                     const hours = Math.floor((up % 86400) / 3600);
                     const minutes = Math.floor((up % 3600) / 60);
 
-                    let str = qsTr("up ");
+                    let str = "";
                     if (days > 0)
                         str += `${days} day${days === 1 ? "" : "s"}`;
                     if (hours > 0)
                         str += `${str ? ", " : ""}${hours} hour${hours === 1 ? "" : "s"}`;
                     if (minutes > 0 || !str)
                         str += `${str ? ", " : ""}${minutes} minute${minutes === 1 ? "" : "s"}`;
-                    uptime.text = str;
+                    uptime.text = qsTr("up %1").arg(str);
                 }
             }
         }

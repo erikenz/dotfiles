@@ -1,4 +1,5 @@
-import qs.widgets
+import qs.components
+import qs.components.controls
 import qs.services
 import qs.config
 import "popouts" as BarPopouts
@@ -23,14 +24,24 @@ Item {
         const th = tray.implicitHeight;
         const trayItems = tray.items;
 
-        const n = statusIconsInner.network;
-        const ny = statusIcons.y + statusIconsInner.y + n.y - spacing / 2;
+        // Check status icons hover areas
+        let statusIconFound = false;
+        for (const area of statusIconsInner.hoverAreas) {
+            if (!area.enabled)
+                continue;
 
-        const bls = statusIcons.y + statusIconsInner.y + statusIconsInner.bs - spacing / 2;
-        const ble = statusIcons.y + statusIconsInner.y + statusIconsInner.be + spacing / 2;
+            const item = area.item;
+            const itemY = statusIcons.y + statusIconsInner.y + item.y - spacing / 2;
+            const itemHeight = item.implicitHeight + spacing;
 
-        const b = statusIconsInner.battery;
-        const by = statusIcons.y + statusIconsInner.y + b.y - spacing / 2;
+            if (y >= itemY && y <= itemY + itemHeight) {
+                popouts.currentName = area.name;
+                popouts.currentCenter = Qt.binding(() => statusIcons.y + statusIconsInner.y + item.y + item.implicitHeight / 2);
+                popouts.hasCurrent = true;
+                statusIconFound = true;
+                break;
+            }
+        }
 
         if (y >= awy && y <= awy + aw.implicitHeight) {
             popouts.currentName = "activewindow";
@@ -43,19 +54,7 @@ Item {
             popouts.currentName = `traymenu${index}`;
             popouts.currentCenter = Qt.binding(() => tray.y + item.y + item.implicitHeight / 2);
             popouts.hasCurrent = true;
-        } else if (y >= ny && y <= ny + n.implicitHeight + spacing) {
-            popouts.currentName = "network";
-            popouts.currentCenter = Qt.binding(() => statusIcons.y + statusIconsInner.y + n.y + n.implicitHeight / 2);
-            popouts.hasCurrent = true;
-        } else if (y >= bls && y <= ble) {
-            popouts.currentName = "bluetooth";
-            popouts.currentCenter = Qt.binding(() => statusIcons.y + statusIconsInner.y + statusIconsInner.bs + (statusIconsInner.be - statusIconsInner.bs) / 2);
-            popouts.hasCurrent = true;
-        } else if (y >= by && y <= by + b.implicitHeight + spacing) {
-            popouts.currentName = "battery";
-            popouts.currentCenter = Qt.binding(() => statusIcons.y + statusIconsInner.y + b.y + b.implicitHeight / 2);
-            popouts.hasCurrent = true;
-        } else {
+        } else if (!statusIconFound) {
             popouts.hasCurrent = false;
         }
     }
@@ -91,7 +90,7 @@ Item {
             anchors.topMargin: Appearance.spacing.normal
 
             radius: Appearance.rounding.full
-            color: Colours.palette.m3surfaceContainer
+            color: Colours.tPalette.m3surfaceContainer
 
             implicitWidth: workspacesInner.implicitWidth + Appearance.padding.small * 2
             implicitHeight: workspacesInner.implicitHeight + Appearance.padding.small * 2
@@ -153,7 +152,7 @@ Item {
             anchors.bottomMargin: Appearance.spacing.normal
 
             radius: Appearance.rounding.full
-            color: Colours.palette.m3surfaceContainer
+            color: Colours.tPalette.m3surfaceContainer
 
             implicitHeight: statusIconsInner.implicitHeight + Appearance.padding.normal * 2
 

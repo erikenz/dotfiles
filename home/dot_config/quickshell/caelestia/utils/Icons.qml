@@ -103,10 +103,6 @@ Singleton {
             "395": "snowing"
         })
 
-    readonly property var desktopEntrySubs: ({
-            "gimp-3.0": "gimp"
-        })
-
     readonly property var categoryIcons: ({
             WebBrowser: "web",
             Printing: "print",
@@ -150,21 +146,15 @@ Singleton {
     property string osIcon: ""
     property string osName
 
-    function getDesktopEntry(name: string): DesktopEntry {
-        name = name.toLowerCase().replace(/ /g, "-");
-
-        if (desktopEntrySubs.hasOwnProperty(name))
-            name = desktopEntrySubs[name];
-
-        return DesktopEntries.applications.values.find(a => a.id.toLowerCase() === name) ?? null;
-    }
-
     function getAppIcon(name: string, fallback: string): string {
-        return Quickshell.iconPath(getDesktopEntry(name)?.icon, fallback);
+        const icon = DesktopEntries.heuristicLookup(name)?.icon;
+        if (fallback !== "undefined")
+            return Quickshell.iconPath(icon, fallback);
+        return Quickshell.iconPath(icon);
     }
 
     function getAppCategoryIcon(name: string, fallback: string): string {
-        const categories = getDesktopEntry(name)?.categories;
+        const categories = DesktopEntries.heuristicLookup(name)?.categories;
 
         if (categories)
             for (const [key, value] of Object.entries(categoryIcons))
@@ -233,15 +223,25 @@ Singleton {
         return "chat";
     }
 
+    function getVolumeIcon(volume: real, isMuted: bool): string {
+        if (isMuted)
+            return "no_sound";
+        if (volume >= 0.5)
+            return "volume_up";
+        if (volume > 0)
+            return "volume_down";
+        return "volume_mute";
+    }
+
     FileView {
         path: "/etc/os-release"
         onLoaded: {
             const lines = text().split("\n");
-            let osId = lines.find(l => l.startsWith("ID="))?.split("=")[1];
+            let osId = lines.find(l => l.startsWith("ID="))?.split("=")[1].replace(/"/g, "");
             if (root.osIcons.hasOwnProperty(osId))
                 root.osIcon = root.osIcons[osId];
             else {
-                const osIdLike = lines.find(l => l.startsWith("ID_LIKE="))?.split("=")[1];
+                const osIdLike = lines.find(l => l.startsWith("ID_LIKE="))?.split("=")[1].replace(/"/g, "");
                 if (osIdLike)
                     for (const id of osIdLike.split(" "))
                         if (root.osIcons.hasOwnProperty(id))
@@ -251,7 +251,7 @@ Singleton {
             let nameLine = lines.find(l => l.startsWith("PRETTY_NAME="));
             if (!nameLine)
                 nameLine = lines.find(l => l.startsWith("NAME="));
-            root.osName = nameLine.split("=")[1].slice(1, -1);
+            root.osName = nameLine.split("=")[1].replace(/"/g, "");
         }
     }
 }

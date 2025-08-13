@@ -1,6 +1,9 @@
 pragma ComponentBehavior: Bound
 
-import qs.widgets
+import qs.components
+import qs.components.effects
+import qs.components.misc
+import qs.components.controls
 import qs.services
 import qs.utils
 import qs.config
@@ -9,7 +12,6 @@ import Quickshell.Widgets
 import Quickshell.Services.Mpris
 import QtQuick
 import QtQuick.Controls
-import QtQuick.Effects
 import QtQuick.Layouts
 import QtQuick.Shapes
 
@@ -26,17 +28,22 @@ Item {
     function lengthStr(length: int): string {
         if (length < 0)
             return "-1:-1";
-        return `${Math.floor(length / 60)}:${Math.floor(length % 60).toString().padStart(2, "0")}`;
+
+        const hours = Math.floor(length / 3600);
+        const mins = Math.floor((length % 3600) / 60);
+        const secs = Math.floor(length % 60).toString().padStart(2, "0");
+
+        if (hours > 0)
+            return `${hours}:${mins.toString().padStart(2, "0")}:${secs}`;
+        return `${mins}:${secs}`;
     }
 
     implicitWidth: cover.implicitWidth + Config.dashboard.sizes.mediaVisualiserSize * 2 + details.implicitWidth + details.anchors.leftMargin + bongocat.implicitWidth + bongocat.anchors.leftMargin * 2 + Appearance.padding.large * 2
     implicitHeight: Math.max(cover.implicitHeight + Config.dashboard.sizes.mediaVisualiserSize * 2, details.implicitHeight, bongocat.implicitHeight) + Appearance.padding.large * 2
 
     Behavior on playerProgress {
-        NumberAnimation {
+        Anim {
             duration: Appearance.anim.durations.large
-            easing.type: Easing.BezierSpline
-            easing.bezierCurve: Appearance.anim.curves.standard
         }
     }
 
@@ -118,7 +125,7 @@ Item {
         implicitWidth: Config.dashboard.sizes.mediaCoverArtSize
         implicitHeight: Config.dashboard.sizes.mediaCoverArtSize
 
-        color: Colours.palette.m3surfaceContainerHigh
+        color: Colours.tPalette.m3surfaceContainerHigh
         radius: Appearance.rounding.full
 
         MaterialIcon {
@@ -152,27 +159,45 @@ Item {
 
         spacing: Appearance.spacing.small
 
-        ElideText {
+        StyledText {
             id: title
 
-            label: (Players.active?.trackTitle ?? qsTr("No media")) || qsTr("Unknown title")
-            color: Colours.palette.m3primary
+            Layout.fillWidth: true
+            Layout.maximumWidth: parent.implicitWidth
+
+            animate: true
+            horizontalAlignment: Text.AlignHCenter
+            text: (Players.active?.trackTitle ?? qsTr("No media")) || qsTr("Unknown title")
+            color: Players.active ? Colours.palette.m3primary : Colours.palette.m3onSurface
             font.pointSize: Appearance.font.size.normal
         }
 
-        ElideText {
+        StyledText {
             id: album
 
-            label: (Players.active?.trackAlbum ?? qsTr("No media")) || qsTr("Unknown album")
+            Layout.fillWidth: true
+            Layout.maximumWidth: parent.implicitWidth
+
+            animate: true
+            horizontalAlignment: Text.AlignHCenter
+            visible: !!Players.active
+            text: Players.active?.trackAlbum || qsTr("Unknown album")
             color: Colours.palette.m3outline
             font.pointSize: Appearance.font.size.small
         }
 
-        ElideText {
+        StyledText {
             id: artist
 
-            label: (Players.active?.trackArtist ?? qsTr("No media")) || qsTr("Unknown artist")
-            color: Colours.palette.m3secondary
+            Layout.fillWidth: true
+            Layout.maximumWidth: parent.implicitWidth
+
+            animate: true
+            horizontalAlignment: Text.AlignHCenter
+            text: (Players.active?.trackArtist ?? qsTr("Play some music for stuff to show up here!")) || qsTr("Unknown artist")
+            color: Players.active ? Colours.palette.m3secondary : Colours.palette.m3outline
+            elide: Text.ElideRight
+            wrapMode: Players.active ? Text.NoWrap : Text.WordWrap
         }
 
         RowLayout {
@@ -184,7 +209,7 @@ Item {
 
             spacing: Appearance.spacing.small
 
-            Control {
+            PlayerControl {
                 icon: "skip_previous"
                 canUse: Players.active?.canGoPrevious ?? false
 
@@ -193,17 +218,59 @@ Item {
                 }
             }
 
-            Control {
-                icon: Players.active?.isPlaying ? "pause" : "play_arrow"
-                canUse: Players.active?.canTogglePlaying ?? false
-                primary: true
+            StyledRect {
+                id: playBtn
 
+                property int fontSize: Appearance.font.size.extraLarge
+                property int padding
+                property bool fill: true
+                property bool primary
                 function onClicked(): void {
-                    Players.active?.togglePlaying();
+                }
+
+                implicitWidth: Math.max(playIcon.implicitWidth, playIcon.implicitHeight) + padding * 2
+                implicitHeight: implicitWidth
+
+                radius: Players.active?.isPlaying ? Appearance.rounding.small : implicitHeight / 2
+                color: {
+                    if (!Players.active?.canTogglePlaying)
+                        return Qt.alpha(Colours.palette.m3onSurface, 0.1);
+                    return Players.active?.isPlaying ? Colours.palette.m3primary : Colours.palette.m3primaryContainer;
+                }
+
+                StateLayer {
+                    disabled: !Players.active?.canTogglePlaying
+                    color: Players.active?.isPlaying ? Colours.palette.m3onPrimary : Colours.palette.m3onPrimaryContainer
+
+                    function onClicked(): void {
+                        Players.active?.togglePlaying();
+                    }
+                }
+
+                MaterialIcon {
+                    id: playIcon
+
+                    anchors.centerIn: parent
+                    anchors.horizontalCenterOffset: -font.pointSize * 0.02
+                    anchors.verticalCenterOffset: font.pointSize * 0.02
+
+                    animate: true
+                    fill: 1
+                    text: Players.active?.isPlaying ? "pause" : "play_arrow"
+                    color: {
+                        if (!Players.active?.canTogglePlaying)
+                            return Qt.alpha(Colours.palette.m3onSurface, 0.38);
+                        return Players.active?.isPlaying ? Colours.palette.m3onPrimary : Colours.palette.m3onPrimaryContainer;
+                    }
+                    font.pointSize: Appearance.font.size.extraLarge
+                }
+
+                Behavior on radius {
+                    Anim {}
                 }
             }
 
-            Control {
+            PlayerControl {
                 icon: "skip_next"
                 canUse: Players.active?.canGoNext ?? false
 
@@ -213,9 +280,10 @@ Item {
             }
         }
 
-        Slider {
+        StyledSlider {
             id: slider
 
+            enabled: !!Players.active
             implicitWidth: controls.implicitWidth * 1.5
             implicitHeight: Appearance.padding.normal * 3
 
@@ -224,56 +292,6 @@ Item {
                 const active = Players.active;
                 if (active?.canSeek && active?.positionSupported)
                     active.position = value * active.length;
-            }
-
-            background: Item {
-                StyledRect {
-                    anchors.top: parent.top
-                    anchors.bottom: parent.bottom
-                    anchors.left: parent.left
-                    anchors.topMargin: slider.implicitHeight / 3
-                    anchors.bottomMargin: slider.implicitHeight / 3
-
-                    implicitWidth: slider.handle.x - slider.implicitHeight / 6
-
-                    color: Colours.palette.m3primary
-                    radius: Appearance.rounding.full
-                    topRightRadius: slider.implicitHeight / 15
-                    bottomRightRadius: slider.implicitHeight / 15
-                }
-
-                StyledRect {
-                    anchors.top: parent.top
-                    anchors.bottom: parent.bottom
-                    anchors.right: parent.right
-                    anchors.topMargin: slider.implicitHeight / 3
-                    anchors.bottomMargin: slider.implicitHeight / 3
-
-                    implicitWidth: parent.width - slider.handle.x - slider.handle.implicitWidth - slider.implicitHeight / 6
-
-                    color: Colours.palette.m3surfaceContainer
-                    radius: Appearance.rounding.full
-                    topLeftRadius: slider.implicitHeight / 15
-                    bottomLeftRadius: slider.implicitHeight / 15
-                }
-            }
-
-            handle: StyledRect {
-                id: rect
-
-                x: slider.visualPosition * slider.availableWidth
-
-                implicitWidth: slider.implicitHeight / 4.5
-                implicitHeight: slider.implicitHeight
-
-                color: Colours.palette.m3primary
-                radius: Appearance.rounding.full
-
-                MouseArea {
-                    anchors.fill: parent
-                    cursorShape: Qt.PointingHandCursor
-                    onPressed: event => event.accepted = false
-                }
             }
         }
 
@@ -306,13 +324,13 @@ Item {
             Layout.alignment: Qt.AlignHCenter
             spacing: Appearance.spacing.small
 
-            Control {
+            PlayerControl {
                 icon: "flip_to_front"
                 canUse: Players.active?.canRaise ?? false
                 fontSize: Appearance.font.size.larger
                 padding: Appearance.padding.small
                 fill: false
-                color: Colours.palette.m3surfaceContainer
+                color: Colours.tPalette.m3surfaceContainer
 
                 function onClicked(): void {
                     Players.active?.raise();
@@ -320,181 +338,149 @@ Item {
                 }
             }
 
-            MouseArea {
+            StyledRect {
                 id: playerSelector
 
                 property bool expanded
 
                 Layout.alignment: Qt.AlignVCenter
 
-                implicitWidth: slider.implicitWidth / 2
-                implicitHeight: currentPlayer.implicitHeight + Appearance.padding.small * 2
+                implicitWidth: slider.implicitWidth * 0.6
+                implicitHeight: currentPlayer.implicitHeight + Appearance.padding.smaller * 2
+                radius: Appearance.rounding.normal
+                color: Colours.tPalette.m3surfaceContainer
+                z: 1
 
-                cursorShape: Qt.PointingHandCursor
-                onClicked: expanded = !expanded
+                StateLayer {
+                    disabled: Players.list.length <= 1
 
-                RectangularShadow {
+                    function onClicked(): void {
+                        playerSelector.expanded = !playerSelector.expanded;
+                    }
+                }
+
+                RowLayout {
+                    id: currentPlayer
+
+                    anchors.centerIn: parent
+                    spacing: Appearance.spacing.small
+
+                    PlayerIcon {
+                        player: Players.active
+                    }
+
+                    StyledText {
+                        Layout.fillWidth: true
+                        Layout.maximumWidth: playerSelector.implicitWidth - implicitHeight - parent.spacing - Appearance.padding.normal * 2
+                        text: Players.active?.identity ?? "No players"
+                        color: Players.active ? Colours.palette.m3onSurface : Colours.palette.m3onSurfaceVariant
+                        elide: Text.ElideRight
+                    }
+                }
+
+                Elevation {
                     anchors.fill: playerSelectorBg
-
-                    opacity: playerSelector.expanded ? 1 : 0
                     radius: playerSelectorBg.radius
-                    color: Colours.palette.m3shadow
-                    blur: 5
-                    spread: 0
+                    opacity: playerSelector.expanded ? 1 : 0
+                    level: 2
 
                     Behavior on opacity {
-                        NumberAnimation {
-                            duration: Appearance.anim.durations.normal
-                            easing.type: Easing.BezierSpline
-                            easing.bezierCurve: Appearance.anim.curves.standard
+                        Anim {
+                            duration: Appearance.anim.durations.expressiveDefaultSpatial
                         }
                     }
                 }
 
-                StyledRect {
+                StyledClippingRect {
                     id: playerSelectorBg
 
-                    anchors.left: parent.left
-                    anchors.right: parent.right
+                    anchors.horizontalCenter: parent.horizontalCenter
                     anchors.bottom: parent.bottom
-
-                    implicitHeight: playersWrapper.implicitHeight + Appearance.padding.small * 2
+                    implicitWidth: playerSelector.expanded ? playerList.implicitWidth : playerSelector.implicitWidth
+                    implicitHeight: playerSelector.expanded ? playerList.implicitHeight : playerSelector.implicitHeight
 
                     color: Colours.palette.m3secondaryContainer
                     radius: Appearance.rounding.normal
+                    opacity: playerSelector.expanded ? 1 : 0
 
-                    Item {
-                        id: playersWrapper
+                    ColumnLayout {
+                        id: playerList
 
-                        anchors.left: parent.left
-                        anchors.right: parent.right
+                        anchors.horizontalCenter: parent.horizontalCenter
                         anchors.bottom: parent.bottom
-                        anchors.margins: Appearance.padding.small
 
-                        clip: true
-                        implicitHeight: playerSelector.expanded && Players.list.length > 1 ? players.implicitHeight : currentPlayer.implicitHeight
+                        spacing: 0
 
-                        Column {
-                            id: players
+                        Repeater {
+                            model: [...Players.list].sort((a, b) => (a === Players.active) - (b === Players.active))
 
-                            anchors.horizontalCenter: parent.horizontalCenter
-                            anchors.bottom: parent.bottom
+                            Item {
+                                id: player
 
-                            spacing: Appearance.spacing.small
+                                required property MprisPlayer modelData
 
-                            Repeater {
-                                model: Players.list.filter(p => p !== Players.active)
+                                Layout.fillWidth: true
+                                Layout.minimumWidth: playerSelector.implicitWidth
+                                implicitWidth: playerInner.implicitWidth + Appearance.padding.normal * 2
+                                implicitHeight: playerInner.implicitHeight + Appearance.padding.smaller * 2
 
-                                Row {
-                                    id: player
+                                StateLayer {
+                                    disabled: !playerSelector.expanded
 
-                                    required property MprisPlayer modelData
+                                    function onClicked(): void {
+                                        playerSelector.expanded = false;
+                                        Players.manualActive = player.modelData;
+                                    }
+                                }
 
-                                    anchors.horizontalCenter: parent.horizontalCenter
+                                RowLayout {
+                                    id: playerInner
+
+                                    anchors.centerIn: parent
                                     spacing: Appearance.spacing.small
 
-                                    IconImage {
-                                        id: playerIcon
-
-                                        source: Icons.getAppIcon(player.modelData.identity, "image-missing")
-                                        implicitSize: Math.round(identity.implicitHeight * 0.9)
+                                    PlayerIcon {
+                                        player: player.modelData
                                     }
 
                                     StyledText {
-                                        id: identity
-
-                                        text: identityMetrics.elidedText
+                                        text: player.modelData.identity
                                         color: Colours.palette.m3onSecondaryContainer
-
-                                        TextMetrics {
-                                            id: identityMetrics
-
-                                            text: player.modelData.identity
-                                            font.family: identity.font.family
-                                            font.pointSize: identity.font.pointSize
-                                            elide: Text.ElideRight
-                                            elideWidth: playerSelector.implicitWidth - playerIcon.implicitWidth - player.spacing - Appearance.padding.smaller * 2
-                                        }
-
-                                        MouseArea {
-
-                                            anchors.fill: parent
-
-                                            cursorShape: Qt.PointingHandCursor
-                                            onClicked: {
-                                                Players.manualActive = player.modelData;
-                                                playerSelector.expanded = false;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-
-                            Item {
-                                anchors.left: parent.left
-                                anchors.right: parent.right
-                                implicitHeight: 1
-
-                                StyledRect {
-                                    anchors.left: parent.left
-                                    anchors.right: parent.right
-                                    anchors.margins: -Appearance.padding.normal
-                                    color: Colours.palette.m3secondary
-                                    implicitHeight: 1
-                                }
-                            }
-
-                            Row {
-                                id: currentPlayer
-
-                                anchors.horizontalCenter: parent.horizontalCenter
-                                spacing: Appearance.spacing.small
-
-                                IconImage {
-                                    id: currentIcon
-
-                                    source: Icons.getAppIcon(Players.active?.identity ?? "", "multimedia-player")
-                                    implicitSize: Math.round(currentIdentity.implicitHeight * 0.9)
-                                }
-
-                                StyledText {
-                                    id: currentIdentity
-
-                                    animate: true
-                                    text: currentIdentityMetrics.elidedText
-                                    color: Colours.palette.m3onSecondaryContainer
-
-                                    TextMetrics {
-                                        id: currentIdentityMetrics
-
-                                        text: Players.active?.identity ?? "No players"
-                                        font.family: currentIdentity.font.family
-                                        font.pointSize: currentIdentity.font.pointSize
-                                        elide: Text.ElideRight
-                                        elideWidth: playerSelector.implicitWidth - currentIcon.implicitWidth - currentPlayer.spacing - Appearance.padding.smaller * 2
                                     }
                                 }
                             }
                         }
+                    }
 
-                        Behavior on implicitHeight {
-                            NumberAnimation {
-                                duration: Appearance.anim.durations.normal
-                                easing.type: Easing.BezierSpline
-                                easing.bezierCurve: Appearance.anim.curves.emphasized
-                            }
+                    Behavior on opacity {
+                        Anim {
+                            duration: Appearance.anim.durations.expressiveDefaultSpatial
+                        }
+                    }
+
+                    Behavior on implicitWidth {
+                        Anim {
+                            duration: Appearance.anim.durations.expressiveDefaultSpatial
+                            easing.bezierCurve: Appearance.anim.curves.expressiveDefaultSpatial
+                        }
+                    }
+
+                    Behavior on implicitHeight {
+                        Anim {
+                            duration: Appearance.anim.durations.expressiveDefaultSpatial
+                            easing.bezierCurve: Appearance.anim.curves.expressiveDefaultSpatial
                         }
                     }
                 }
             }
 
-            Control {
+            PlayerControl {
                 icon: "delete"
                 canUse: Players.active?.canQuit ?? false
                 fontSize: Appearance.font.size.larger
                 padding: Appearance.padding.small
                 fill: false
-                color: Colours.palette.m3surfaceContainer
+                color: Colours.tPalette.m3surfaceContainer
 
                 function onClicked(): void {
                     Players.active?.quit();
@@ -527,28 +513,35 @@ Item {
         }
     }
 
-    component ElideText: StyledText {
-        id: elideText
+    component PlayerIcon: Loader {
+        id: loader
 
-        property alias label: metrics.text
+        required property MprisPlayer player
+        readonly property string icon: Icons.getAppIcon(player?.identity)
 
-        Layout.fillWidth: true
+        Layout.fillHeight: true
+        asynchronous: true
+        sourceComponent: !player || icon === "image://icon/" ? fallbackIcon : playerImage
 
-        animate: true
-        horizontalAlignment: Text.AlignHCenter
-        text: metrics.elidedText
+        Component {
+            id: playerImage
 
-        TextMetrics {
-            id: metrics
+            IconImage {
+                implicitWidth: height
+                source: loader.icon
+            }
+        }
 
-            font.family: elideText.font.family
-            font.pointSize: elideText.font.pointSize
-            elide: Text.ElideRight
-            elideWidth: elideText.width
+        Component {
+            id: fallbackIcon
+
+            MaterialIcon {
+                text: loader.player ? "animated_images" : "music_off"
+            }
         }
     }
 
-    component Control: StyledRect {
+    component PlayerControl: StyledRect {
         id: control
 
         required property string icon
@@ -556,20 +549,16 @@ Item {
         property int fontSize: Appearance.font.size.extraLarge
         property int padding
         property bool fill: true
-        property bool primary
         function onClicked(): void {
         }
 
         implicitWidth: Math.max(icon.implicitWidth, icon.implicitHeight) + padding * 2
         implicitHeight: implicitWidth
-
         radius: Appearance.rounding.full
-        color: primary && canUse ? Colours.palette.m3primary : "transparent"
 
         StateLayer {
             disabled: !control.canUse
-            radius: parent.radius
-            color: control.primary ? Colours.palette.m3onPrimary : Colours.palette.m3onSurface
+            color: Colours.palette.m3onSurface
 
             function onClicked(): void {
                 control.onClicked();
@@ -586,8 +575,14 @@ Item {
             animate: true
             fill: control.fill ? 1 : 0
             text: control.icon
-            color: control.canUse ? control.primary ? Colours.palette.m3onPrimary : Colours.palette.m3onSurface : Colours.palette.m3outline
+            color: control.canUse ? Colours.palette.m3onSurface : Colours.palette.m3outline
             font.pointSize: control.fontSize
         }
+    }
+
+    component Anim: NumberAnimation {
+        duration: Appearance.anim.durations.normal
+        easing.type: Easing.BezierSpline
+        easing.bezierCurve: Appearance.anim.curves.standard
     }
 }

@@ -1,10 +1,14 @@
 import Quickshell.Io
 
 JsonObject {
+    property bool enabled: true
+    property bool showOnHover: true
     property int mediaUpdateInterval: 500
     property int visualiserBars: 45
+    property int dragThreshold: 50
+    property Sizes sizes: Sizes {}
 
-    property JsonObject sizes: JsonObject {
+    component Sizes: JsonObject {
         readonly property int tabIndicatorHeight: 3
         readonly property int tabIndicatorSpacing: 5
         readonly property int infoWidth: 200

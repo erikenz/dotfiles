@@ -1,8 +1,8 @@
-import qs.widgets
+import qs.components
+import qs.components.effects
 import qs.services
 import qs.config
 import QtQuick
-import QtQuick.Effects
 
 StyledRect {
     id: root
@@ -48,20 +48,9 @@ StyledRect {
     radius: Config.bar.workspaces.rounded ? Appearance.rounding.full : 0
     color: Colours.palette.m3primary
 
-    StyledRect {
-        id: base
-
-        visible: false
-        anchors.fill: parent
-        color: Colours.palette.m3onPrimary
-    }
-
-    MultiEffect {
-        source: base
-        maskSource: root.mask
-        maskEnabled: true
-        maskSpreadAtMin: 1
-        maskThresholdMin: 0.5
+    Colouriser {
+        source: root.mask
+        colorizationColor: Colours.palette.m3onPrimary
 
         x: 0
         y: -parent.offset

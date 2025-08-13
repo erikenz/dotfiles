@@ -1,7 +1,7 @@
 pragma Singleton
 pragma ComponentBehavior: Bound
 
-import qs.widgets
+import qs.components.misc
 import Quickshell
 import Quickshell.Io
 import QtQuick
@@ -11,6 +11,7 @@ Singleton {
 
     property list<var> ddcMonitors: []
     readonly property list<Monitor> monitors: variants.instances
+    property bool appleDisplayPresent: false
 
     function getMonitorForScreen(screen: ShellScreen): var {
         return monitors.find(m => m.modelData === screen);
@@ -46,6 +47,14 @@ Singleton {
     }
 
     Process {
+        running: true
+        command: ["sh", "-c", "asdbctl get"] // To avoid warnings if asdbctl is not installed
+        stdout: StdioCollector {
+            onStreamFinished: root.appleDisplayPresent = text.trim().length > 0
+        }
+    }
+
+    Process {
         id: ddcProc
 
         command: ["ddcutil", "detect", "--brief"]
@@ -75,13 +84,30 @@ Singleton {
         required property ShellScreen modelData
         readonly property bool isDdc: root.ddcMonitors.some(m => m.model === modelData.model)
         readonly property string busNum: root.ddcMonitors.find(m => m.model === modelData.model)?.busNum ?? ""
+        readonly property bool isAppleDisplay: root.appleDisplayPresent && modelData.model.startsWith("StudioDisplay")
         property real brightness
+        property real queuedBrightness: NaN
 
         readonly property Process initProc: Process {
             stdout: StdioCollector {
                 onStreamFinished: {
-                    const [, , , current, max] = text.split(" ");
-                    monitor.brightness = parseInt(current) / parseInt(max);
+                    if (monitor.isAppleDisplay) {
+                        const val = parseInt(text.trim());
+                        monitor.brightness = val / 101;
+                    } else {
+                        const [, , , cur, max] = text.split(" ");
+                        monitor.brightness = parseInt(cur) / parseInt(max);
+                    }
+                }
+            }
+        }
+
+        readonly property Timer timer: Timer {
+            interval: 500
+            onTriggered: {
+                if (!isNaN(monitor.queuedBrightness)) {
+                    monitor.setBrightness(monitor.queuedBrightness);
+                    monitor.queuedBrightness = NaN;
                 }
             }
         }
@@ -91,18 +117,37 @@ Singleton {
             const rounded = Math.round(value * 100);
             if (Math.round(brightness * 100) === rounded)
                 return;
+
+            if (isDdc && timer.running) {
+                queuedBrightness = value;
+                return;
+            }
+
             brightness = value;
-            Quickshell.execDetached(isDdc ? ["ddcutil", "-b", busNum, "setvcp", "10", rounded] : ["brightnessctl", "s", `${rounded}%`]);
+
+            if (isAppleDisplay)
+                Quickshell.execDetached(["asdbctl", "set", rounded]);
+            else if (isDdc)
+                Quickshell.execDetached(["ddcutil", "-b", busNum, "setvcp", "10", rounded]);
+            else
+                Quickshell.execDetached(["brightnessctl", "s", `${rounded}%`]);
+
+            if (isDdc)
+                timer.restart();
         }
 
-        onBusNumChanged: {
-            initProc.command = isDdc ? ["ddcutil", "-b", busNum, "getvcp", "10", "--brief"] : ["sh", "-c", `echo "a b c $(brightnessctl g) $(brightnessctl m)"`];
+        function initBrightness(): void {
+            if (isAppleDisplay)
+                initProc.command = ["asdbctl", "get"];
+            else if (isDdc)
+                initProc.command = ["ddcutil", "-b", busNum, "getvcp", "10", "--brief"];
+            else
+                initProc.command = ["sh", "-c", "echo a b c $(brightnessctl g) $(brightnessctl m)"];
+
             initProc.running = true;
         }
 
-        Component.onCompleted: {
-            initProc.command = isDdc ? ["ddcutil", "-b", busNum, "getvcp", "10", "--brief"] : ["sh", "-c", `echo "a b c $(brightnessctl g) $(brightnessctl m)"`];
-            initProc.running = true;
-        }
+        onBusNumChanged: initBrightness()
+        Component.onCompleted: initBrightness()
     }
 }

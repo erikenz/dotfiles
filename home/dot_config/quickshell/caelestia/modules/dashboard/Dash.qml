@@ -1,4 +1,4 @@
-import qs.widgets
+import qs.components
 import qs.services
 import qs.config
 import "dash"
@@ -84,6 +84,6 @@ GridLayout {
 
     component Rect: StyledRect {
         radius: Appearance.rounding.small
-        color: Colours.palette.m3surfaceContainer
+        color: Colours.tPalette.m3surfaceContainer
     }
 }
