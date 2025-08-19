@@ -9,15 +9,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    app2unit = {
-      url = "github:soramanew/app2unit";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     caelestia-cli = {
       url = "github:caelestia-dots/cli";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.app2unit.follows = "app2unit";
       inputs.caelestia-shell.follows = "";
     };
   };
@@ -35,15 +29,16 @@
     formatter = forAllSystems (pkgs: pkgs.alejandra);
 
     packages = forAllSystems (pkgs: rec {
-      caelestia-shell = pkgs.callPackage ./default.nix {
+      caelestia-shell = pkgs.callPackage ./nix {
         rev = self.rev or self.dirtyRev;
         quickshell = inputs.quickshell.packages.${pkgs.system}.default.override {
           withX11 = false;
           withI3 = false;
         };
-        app2unit = inputs.app2unit.packages.${pkgs.system}.default;
+        app2unit = pkgs.callPackage ./nix/app2unit.nix {inherit pkgs;};
         caelestia-cli = inputs.caelestia-cli.packages.${pkgs.system}.default;
       };
+      with-cli = caelestia-shell.override {withCli = true;};
       default = caelestia-shell;
     });
 
@@ -53,9 +48,11 @@
       in
         pkgs.mkShellNoCC {
           inputsFrom = [shell];
-          packages = with pkgs; [material-symbols nerd-fonts.jetbrains-mono];
+          packages = with pkgs; [material-symbols rubik nerd-fonts.caskaydia-cove];
           CAELESTIA_BD_PATH = "${shell}/bin/beat_detector";
         };
     });
+
+    homeManagerModules.default = import ./nix/hm-module.nix self;
   };
 }
