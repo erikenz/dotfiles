@@ -47,9 +47,7 @@ alias gitpkg='pacman -Q | grep -i "\-git" | wc -l' # List amount of -git package
 # alias update='sudo cachyos-rate-mirrors && sudo pacman -Syu'
 # alias update='sudo pacman -Syu'
 alias update='paru'
-alias mirror="sudo cachyos-rate-mirrors"
-# alias mirrorupdate='sudo cachyos-rate-mirrors && sudo pacman -Syu'
-alias mirrorupdate='mirror && paru'
+alias update-mirrors="sudo cachyos-rate-mirrors"
 
 # Get fastest mirrors
 

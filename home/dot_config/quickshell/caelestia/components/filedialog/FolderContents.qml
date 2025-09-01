@@ -148,7 +148,6 @@ Item {
                 anchors.top: parent.top
                 anchors.topMargin: Appearance.padding.normal
 
-                asynchronous: true
                 implicitSize: Sizes.itemWidth - Appearance.padding.normal * 2
                 source: {
                     if (!item.fileIsDir)
@@ -214,11 +213,5 @@ Item {
         anchors.margins: Appearance.padding.small
 
         currentItem: view.currentItem
-    }
-
-    component Anim: NumberAnimation {
-        duration: Appearance.anim.durations.normal
-        easing.type: Easing.BezierSpline
-        easing.bezierCurve: Appearance.anim.curves.standard
     }
 }

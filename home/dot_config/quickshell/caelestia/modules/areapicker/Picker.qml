@@ -3,6 +3,7 @@ pragma ComponentBehavior: Bound
 import qs.components
 import qs.services
 import qs.config
+import Caelestia
 import Quickshell
 import Quickshell.Io
 import Quickshell.Wayland
@@ -37,8 +38,14 @@ MouseArea {
     property real sh: Math.abs(sy - ey)
 
     property list<var> clients: {
-        const ws = Hyprland.activeToplevel?.workspace?.id ?? Hyprland.activeWsId;
-        return Hyprland.toplevels.values.filter(c => c.workspace?.id === ws).sort((a, b) => {
+        const mon = Hypr.monitorFor(screen);
+        if (!mon)
+            return [];
+
+        const special = mon.lastIpcObject.specialWorkspace;
+        const wsId = special.name ? special.id : mon.activeWorkspace.id;
+
+        return Hypr.toplevels.values.filter(c => c.workspace?.id === wsId).sort((a, b) => {
             // Pinned first, then fullscreen, then floating, then any other
             const ac = a.lastIpcObject;
             const bc = b.lastIpcObject;
@@ -48,6 +55,9 @@ MouseArea {
 
     function checkClientRects(x: real, y: real): void {
         for (const client of clients) {
+            if (!client)
+                continue;
+
             let {
                 at: [cx, cy],
                 size: [cw, ch]
@@ -64,6 +74,14 @@ MouseArea {
             }
         }
     }
+
+    function save(): void {
+        const tmpfile = `file:///tmp/caelestia-picker-${Quickshell.processId}-${Date.now()}.png`;
+        CUtils.saveItem(screencopy, tmpfile, Qt.rect(Math.ceil(rsx), Math.ceil(rsy), Math.floor(sw), Math.floor(sh)), path => Quickshell.execDetached(["swappy", "-f", path]));
+        closeAnim.start();
+    }
+
+    onClientsChanged: checkClientRects(mouseX, mouseY)
 
     anchors.fill: parent
     opacity: 0
@@ -103,8 +121,13 @@ MouseArea {
         if (closeAnim.running)
             return;
 
-        Quickshell.execDetached(["sh", "-c", `grim -l 0 -g '${screen.x + Math.ceil(rsx)},${screen.y + Math.ceil(rsy)} ${Math.floor(sw)}x${Math.floor(sh)}' - | swappy -f -`]);
-        closeAnim.start();
+        if (root.loader.freeze) {
+            save();
+        } else {
+            overlay.visible = border.visible = false;
+            screencopy.visible = false;
+            screencopy.active = true;
+        }
     }
 
     onPositionChanged: event => {
@@ -140,17 +163,17 @@ MouseArea {
                 to: 0
                 duration: Appearance.anim.durations.large
             }
-            Anim {
+            ExAnim {
                 target: root
                 properties: "rsx,rsy"
                 to: 0
             }
-            Anim {
+            ExAnim {
                 target: root
                 property: "sw"
                 to: root.screen.width
             }
-            Anim {
+            ExAnim {
                 target: root
                 property: "sh"
                 to: root.screen.height
@@ -160,14 +183,6 @@ MouseArea {
             target: root.loader
             property: "activeAsync"
             value: false
-        }
-    }
-
-    Connections {
-        target: Hyprland
-
-        function onActiveWsIdChanged(): void {
-            root.checkClientRects(root.mouseX, root.mouseY);
         }
     }
 
@@ -188,6 +203,8 @@ MouseArea {
     }
 
     Loader {
+        id: screencopy
+
         anchors.fill: parent
 
         active: root.loader.freeze
@@ -195,10 +212,19 @@ MouseArea {
 
         sourceComponent: ScreencopyView {
             captureSource: root.screen
+
+            onHasContentChanged: {
+                if (hasContent && !root.loader.freeze) {
+                    overlay.visible = border.visible = true;
+                    root.save();
+                }
+            }
         }
     }
 
     StyledRect {
+        id: overlay
+
         anchors.fill: parent
         color: Colours.palette.m3secondaryContainer
         opacity: 0.3
@@ -232,6 +258,8 @@ MouseArea {
     }
 
     Rectangle {
+        id: border
+
         color: "transparent"
         radius: root.realRounding > 0 ? root.realRounding + root.realBorderWidth : 0
         border.width: root.realBorderWidth
@@ -243,11 +271,7 @@ MouseArea {
         implicitHeight: selectionRect.implicitHeight + root.realBorderWidth * 2
 
         Behavior on border.color {
-            ColorAnimation {
-                duration: Appearance.anim.durations.normal
-                easing.type: Easing.BezierSpline
-                easing.bezierCurve: Appearance.anim.curves.standard
-            }
+            CAnim {}
         }
     }
 
@@ -260,30 +284,29 @@ MouseArea {
     Behavior on rsx {
         enabled: !root.pressed
 
-        Anim {}
+        ExAnim {}
     }
 
     Behavior on rsy {
         enabled: !root.pressed
 
-        Anim {}
+        ExAnim {}
     }
 
     Behavior on sw {
         enabled: !root.pressed
 
-        Anim {}
+        ExAnim {}
     }
 
     Behavior on sh {
         enabled: !root.pressed
 
-        Anim {}
+        ExAnim {}
     }
 
-    component Anim: NumberAnimation {
+    component ExAnim: Anim {
         duration: Appearance.anim.durations.expressiveDefaultSpatial
-        easing.type: Easing.BezierSpline
         easing.bezierCurve: Appearance.anim.curves.expressiveDefaultSpatial
     }
 }

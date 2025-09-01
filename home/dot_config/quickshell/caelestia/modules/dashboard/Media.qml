@@ -11,7 +11,6 @@ import Quickshell
 import Quickshell.Widgets
 import Quickshell.Services.Mpris
 import QtQuick
-import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Shapes
 
@@ -71,6 +70,7 @@ Item {
         anchors.fill: cover
         anchors.margins: -Config.dashboard.sizes.mediaVisualiserSize
 
+        asynchronous: true
         preferredRendererType: Shape.CurveRenderer
         data: visualiserBars.instances
     }
@@ -79,7 +79,7 @@ Item {
         id: visualiserBars
 
         model: Array.from({
-            length: Config.dashboard.visualiserBars
+            length: Config.services.visualiserBars
         }, (_, i) => i)
 
         ShapePath {
@@ -88,13 +88,13 @@ Item {
             required property int modelData
             readonly property int value: Math.max(1, Math.min(100, Cava.values[modelData]))
 
-            readonly property real angle: modelData * 2 * Math.PI / Config.dashboard.visualiserBars
+            readonly property real angle: modelData * 2 * Math.PI / Config.services.visualiserBars
             readonly property real magnitude: value / 100 * Config.dashboard.sizes.mediaVisualiserSize
             readonly property real cos: Math.cos(angle)
             readonly property real sin: Math.sin(angle)
 
             capStyle: Appearance.rounding.scale === 0 ? ShapePath.SquareCap : ShapePath.RoundCap
-            strokeWidth: 360 / Config.dashboard.visualiserBars - Appearance.spacing.small / 4
+            strokeWidth: 360 / Config.services.visualiserBars - Appearance.spacing.small / 4
             strokeColor: Colours.palette.m3primary
 
             startX: visualiser.centerX + (visualiser.innerX + strokeWidth / 2) * cos
@@ -106,11 +106,7 @@ Item {
             }
 
             Behavior on strokeColor {
-                ColorAnimation {
-                    duration: Appearance.anim.durations.normal
-                    easing.type: Easing.BezierSpline
-                    easing.bezierCurve: Appearance.anim.curves.standard
-                }
+                CAnim {}
             }
         }
     }
@@ -293,6 +289,23 @@ Item {
                 if (active?.canSeek && active?.positionSupported)
                     active.position = value * active.length;
             }
+
+            CustomMouseArea {
+                anchors.fill: parent
+                acceptedButtons: Qt.NoButton
+
+                function onWheel(event: WheelEvent) {
+                    const active = Players.active;
+                    if (!active?.canSeek || !active?.positionSupported)
+                        return;
+
+                    event.accepted = true;
+                    const delta = event.angleDelta.y > 0 ? 10 : -10;    // Time 10 seconds
+                    Qt.callLater(() => {
+                        active.position = Math.max(0, Math.min(active.length, active.position + delta));
+                    });
+                }
+            }
         }
 
         Item {
@@ -372,7 +385,7 @@ Item {
                     StyledText {
                         Layout.fillWidth: true
                         Layout.maximumWidth: playerSelector.implicitWidth - implicitHeight - parent.spacing - Appearance.padding.normal * 2
-                        text: Players.active?.identity ?? "No players"
+                        text: Players.active ? Players.getIdentity(Players.active) : qsTr("No players")
                         color: Players.active ? Colours.palette.m3onSurface : Colours.palette.m3onSurfaceVariant
                         elide: Text.ElideRight
                     }
@@ -444,7 +457,7 @@ Item {
                                     }
 
                                     StyledText {
-                                        text: player.modelData.identity
+                                        text: Players.getIdentity(player.modelData)
                                         color: Colours.palette.m3onSecondaryContainer
                                     }
                                 }
@@ -578,11 +591,5 @@ Item {
             color: control.canUse ? Colours.palette.m3onSurface : Colours.palette.m3outline
             font.pointSize: control.fontSize
         }
-    }
-
-    component Anim: NumberAnimation {
-        duration: Appearance.anim.durations.normal
-        easing.type: Easing.BezierSpline
-        easing.bezierCurve: Appearance.anim.curves.standard
     }
 }

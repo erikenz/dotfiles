@@ -29,9 +29,7 @@ StyledRect {
     Component.onCompleted: x = 0
 
     Behavior on x {
-        NumberAnimation {
-            duration: Appearance.anim.durations.normal
-            easing.type: Easing.BezierSpline
+        Anim {
             easing.bezierCurve: Appearance.anim.curves.emphasizedDecel
         }
     }
@@ -178,7 +176,7 @@ StyledRect {
                         anchors.verticalCenterOffset: Appearance.font.size.large * 0.02
 
                         sourceComponent: MaterialIcon {
-                            text: Icons.getNotifIcon(root.modelData.summary.toLowerCase(), root.modelData.urgency)
+                            text: Icons.getNotifIcon(root.modelData.summary, root.modelData.urgency)
 
                             color: root.modelData.urgency === NotificationUrgency.Critical ? Colours.palette.m3onError : root.modelData.urgency === NotificationUrgency.Low ? Colours.palette.m3onSurface : Colours.palette.m3onSecondaryContainer
                             font.pointSize: Appearance.font.size.large
@@ -483,11 +481,5 @@ StyledRect {
                 return (inner.width - actions.spacing * (numActions - 1)) / numActions - Appearance.padding.normal * 2;
             }
         }
-    }
-
-    component Anim: NumberAnimation {
-        duration: Appearance.anim.durations.normal
-        easing.type: Easing.BezierSpline
-        easing.bezierCurve: Appearance.anim.curves.standard
     }
 }

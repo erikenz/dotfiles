@@ -78,6 +78,10 @@
 				"enabled": true
 			},
 			{
+				"id": "idleInhibitor",
+				"enabled": true
+			},
+			{
 				"id": "power",
 				"enabled": true
 			}
@@ -153,7 +157,13 @@
 	},
 	"services": {
 		"audioIncrement": 0.1,
-		"weatherLocation": "10,10",
+		"defaultPlayer": "YT Music",
+		"playerAliases": [
+			{
+				"com.github.th_ch.youtube_music": "YT Music"
+			}
+		],
+		"weatherLocation": "",
 		"useFahrenheit": false,
 		"useTwelveHourClock": false,
 		"smartScheme": true

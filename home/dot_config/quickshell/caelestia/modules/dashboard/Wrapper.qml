@@ -1,8 +1,10 @@
 pragma ComponentBehavior: Bound
 
+import qs.components
 import qs.components.filedialog
 import qs.config
 import qs.utils
+import Caelestia
 import Quickshell
 import Quickshell.Hyprland
 import QtQuick
@@ -19,8 +21,10 @@ Item {
             filterLabel: qsTr("Image files")
             filters: Images.validImageExtensions
             onAccepted: path => {
-                Paths.copy(path, `${Paths.home}/.face`);
-                Quickshell.execDetached(["notify-send", "-a", "caelestia-shell", "-u", "low", "-h", `STRING:image-path:${path}`, "Profile picture changed", `Profile picture changed to ${Paths.shortenHome(path)}`]);
+                if (CUtils.copyFile(`file://${path}`, `${Paths.home}/.face`))
+                    Quickshell.execDetached(["notify-send", "-a", "caelestia-shell", "-u", "low", "-h", `STRING:image-path:${path}`, "Profile picture changed", `Profile picture changed to ${Paths.shortenHome(path)}`]);
+                else
+                    Quickshell.execDetached(["notify-send", "-a", "caelestia-shell", "-u", "critical", "Unable to change profile picture", `Failed to change profile picture to ${Paths.shortenHome(path)}`]);
             }
         }
     }
@@ -43,11 +47,10 @@ Item {
             from: ""
             to: "visible"
 
-            NumberAnimation {
+            Anim {
                 target: root
                 property: "implicitHeight"
                 duration: Appearance.anim.durations.expressiveDefaultSpatial
-                easing.type: Easing.BezierSpline
                 easing.bezierCurve: Appearance.anim.curves.expressiveDefaultSpatial
             }
         },
@@ -55,11 +58,9 @@ Item {
             from: "visible"
             to: ""
 
-            NumberAnimation {
+            Anim {
                 target: root
                 property: "implicitHeight"
-                duration: Appearance.anim.durations.normal
-                easing.type: Easing.BezierSpline
                 easing.bezierCurve: Appearance.anim.curves.emphasized
             }
         }
