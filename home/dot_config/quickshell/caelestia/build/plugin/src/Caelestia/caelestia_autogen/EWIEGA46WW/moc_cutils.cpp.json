@@ -1,0 +1,242 @@
+{
+    "classes": [
+        {
+            "classInfos": [
+                {
+                    "name": "QML.Element",
+                    "value": "auto"
+                },
+                {
+                    "name": "QML.Singleton",
+                    "value": "true"
+                }
+            ],
+            "className": "CUtils",
+            "lineNumber": 7,
+            "methods": [
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "target",
+                            "type": "QQuickItem*"
+                        },
+                        {
+                            "name": "path",
+                            "type": "QUrl"
+                        }
+                    ],
+                    "index": 0,
+                    "name": "saveItem",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "target",
+                            "type": "QQuickItem*"
+                        },
+                        {
+                            "name": "path",
+                            "type": "QUrl"
+                        },
+                        {
+                            "name": "rect",
+                            "type": "QRect"
+                        }
+                    ],
+                    "index": 1,
+                    "name": "saveItem",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "target",
+                            "type": "QQuickItem*"
+                        },
+                        {
+                            "name": "path",
+                            "type": "QUrl"
+                        },
+                        {
+                            "name": "onSaved",
+                            "type": "QJSValue"
+                        }
+                    ],
+                    "index": 2,
+                    "name": "saveItem",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "target",
+                            "type": "QQuickItem*"
+                        },
+                        {
+                            "name": "path",
+                            "type": "QUrl"
+                        },
+                        {
+                            "name": "onSaved",
+                            "type": "QJSValue"
+                        },
+                        {
+                            "name": "onFailed",
+                            "type": "QJSValue"
+                        }
+                    ],
+                    "index": 3,
+                    "name": "saveItem",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "target",
+                            "type": "QQuickItem*"
+                        },
+                        {
+                            "name": "path",
+                            "type": "QUrl"
+                        },
+                        {
+                            "name": "rect",
+                            "type": "QRect"
+                        },
+                        {
+                            "name": "onSaved",
+                            "type": "QJSValue"
+                        }
+                    ],
+                    "index": 4,
+                    "name": "saveItem",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "target",
+                            "type": "QQuickItem*"
+                        },
+                        {
+                            "name": "path",
+                            "type": "QUrl"
+                        },
+                        {
+                            "name": "rect",
+                            "type": "QRect"
+                        },
+                        {
+                            "name": "onSaved",
+                            "type": "QJSValue"
+                        },
+                        {
+                            "name": "onFailed",
+                            "type": "QJSValue"
+                        }
+                    ],
+                    "index": 5,
+                    "name": "saveItem",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "source",
+                            "type": "QUrl"
+                        },
+                        {
+                            "name": "target",
+                            "type": "QUrl"
+                        }
+                    ],
+                    "index": 6,
+                    "isConst": true,
+                    "name": "copyFile",
+                    "returnType": "bool"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "source",
+                            "type": "QUrl"
+                        },
+                        {
+                            "name": "target",
+                            "type": "QUrl"
+                        },
+                        {
+                            "name": "overwrite",
+                            "type": "bool"
+                        }
+                    ],
+                    "index": 7,
+                    "isConst": true,
+                    "name": "copyFile",
+                    "returnType": "bool"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "item",
+                            "type": "QQuickItem*"
+                        },
+                        {
+                            "name": "callback",
+                            "type": "QJSValue"
+                        }
+                    ],
+                    "index": 8,
+                    "isConst": true,
+                    "name": "getDominantColour",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "item",
+                            "type": "QQuickItem*"
+                        },
+                        {
+                            "name": "width",
+                            "type": "int"
+                        },
+                        {
+                            "name": "height",
+                            "type": "int"
+                        },
+                        {
+                            "name": "callback",
+                            "type": "QJSValue"
+                        }
+                    ],
+                    "index": 9,
+                    "isConst": true,
+                    "name": "getDominantColour",
+                    "returnType": "void"
+                }
+            ],
+            "object": true,
+            "qualifiedClassName": "CUtils",
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QObject"
+                }
+            ]
+        }
+    ],
+    "inputFile": "cutils.hpp",
+    "outputRevision": 69
+}

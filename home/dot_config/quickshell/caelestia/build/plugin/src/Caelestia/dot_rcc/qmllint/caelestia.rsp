@@ -1,0 +1,9 @@
+--bare
+-I
+/home/erik/.config/quickshell/caelestia/build/qml
+-I
+/home/erik/.config/quickshell/caelestia/build/qml
+-I
+/usr/lib/qt6/qml
+--resource
+/home/erik/.config/quickshell/caelestia/build/plugin/src/Caelestia/.qt/rcc/qmake_Caelestia.qrc
