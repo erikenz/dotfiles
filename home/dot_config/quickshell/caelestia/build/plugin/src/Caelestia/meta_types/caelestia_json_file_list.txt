@@ -1,0 +1,2 @@
+/home/erik/.config/quickshell/caelestia/build/plugin/src/Caelestia/caelestia_autogen/include/../EWIEGA46WW/moc_cachingimagemanager.cpp.json
+/home/erik/.config/quickshell/caelestia/build/plugin/src/Caelestia/caelestia_autogen/include/../EWIEGA46WW/moc_cutils.cpp.json
