@@ -1,7 +1,0 @@
-module Caelestia
-linktarget caelestiaplugin
-optional plugin caelestiaplugin
-classname CaelestiaPlugin
-typeinfo caelestia.qmltypes
-prefer :/qt/qml/Caelestia/
-
