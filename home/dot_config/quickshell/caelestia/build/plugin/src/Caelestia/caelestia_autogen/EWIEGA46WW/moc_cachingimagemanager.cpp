@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'cachingimagemanager.hpp'
 **
-** Created by: The Qt Meta Object Compiler version 69 (Qt 6.9.1)
+** Created by: The Qt Meta Object Compiler version 69 (Qt 6.9.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -18,7 +18,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'cachingimagemanager.hpp' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 69
-#error "This file was generated using the moc from 6.9.1. It"
+#error "This file was generated using the moc from 6.9.2. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -47,12 +47,12 @@ template <> constexpr inline auto CachingImageManager::qt_create_metaobjectdata<
         "pathChanged",
         "cachePathChanged",
         "usingCacheChanged",
+        "updateSource",
+        "path",
         "item",
         "QQuickItem*",
         "cacheDir",
-        "path",
-        "cachePath",
-        "usingCache"
+        "cachePath"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -66,18 +66,22 @@ template <> constexpr inline auto CachingImageManager::qt_create_metaobjectdata<
         QtMocHelpers::SignalData<void()>(7, 4, QMC::AccessPublic, QMetaType::Void),
         // Signal 'usingCacheChanged'
         QtMocHelpers::SignalData<void()>(8, 4, QMC::AccessPublic, QMetaType::Void),
+        // Method 'updateSource'
+        QtMocHelpers::MethodData<void()>(9, 4, QMC::AccessPublic, QMetaType::Void),
+        // Method 'updateSource'
+        QtMocHelpers::MethodData<void(const QString &)>(9, 4, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 10 },
+        }}),
     };
     QtMocHelpers::UintData qt_properties {
         // property 'item'
-        QtMocHelpers::PropertyData<QQuickItem*>(9, 0x80000000 | 10, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet | QMC::Required, 0),
+        QtMocHelpers::PropertyData<QQuickItem*>(11, 0x80000000 | 12, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet | QMC::Required, 0),
         // property 'cacheDir'
-        QtMocHelpers::PropertyData<QUrl>(11, QMetaType::QUrl, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet | QMC::Required, 1),
+        QtMocHelpers::PropertyData<QUrl>(13, QMetaType::QUrl, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet | QMC::Required, 1),
         // property 'path'
-        QtMocHelpers::PropertyData<QString>(12, QMetaType::QString, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet, 2),
+        QtMocHelpers::PropertyData<QString>(10, QMetaType::QString, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet, 2),
         // property 'cachePath'
-        QtMocHelpers::PropertyData<QUrl>(13, QMetaType::QUrl, QMC::DefaultPropertyFlags, 3),
-        // property 'usingCache'
-        QtMocHelpers::PropertyData<bool>(14, QMetaType::Bool, QMC::DefaultPropertyFlags, 4),
+        QtMocHelpers::PropertyData<QUrl>(14, QMetaType::QUrl, QMC::DefaultPropertyFlags, 3),
     };
     QtMocHelpers::UintData qt_enums {
     };
@@ -108,6 +112,8 @@ void CachingImageManager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, 
         case 2: _t->pathChanged(); break;
         case 3: _t->cachePathChanged(); break;
         case 4: _t->usingCacheChanged(); break;
+        case 5: _t->updateSource(); break;
+        case 6: _t->updateSource((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         default: ;
         }
     }
@@ -137,7 +143,6 @@ void CachingImageManager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, 
         case 1: *reinterpret_cast<QUrl*>(_v) = _t->cacheDir(); break;
         case 2: *reinterpret_cast<QString*>(_v) = _t->path(); break;
         case 3: *reinterpret_cast<QUrl*>(_v) = _t->cachePath(); break;
-        case 4: *reinterpret_cast<bool*>(_v) = _t->usingCache(); break;
         default: break;
         }
     }
@@ -171,20 +176,20 @@ int CachingImageManager::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 5)
+        if (_id < 7)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 7;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 5)
+        if (_id < 7)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 5;
+        _id -= 7;
     }
     if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
             || _c == QMetaObject::ResetProperty || _c == QMetaObject::BindableProperty
             || _c == QMetaObject::RegisterPropertyMetaType) {
         qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 4;
     }
     return _id;
 }

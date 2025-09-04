@@ -6,6 +6,9 @@ caelestia_autogen/timestamp: \
 	/home/erik/.config/quickshell/caelestia/plugin/src/Caelestia/cachingimagemanager.hpp \
 	/home/erik/.config/quickshell/caelestia/plugin/src/Caelestia/cutils.cpp \
 	/home/erik/.config/quickshell/caelestia/plugin/src/Caelestia/cutils.hpp \
+	/home/erik/.config/quickshell/caelestia/plugin/src/Caelestia/filesystemmodel.cpp \
+	/home/erik/.config/quickshell/caelestia/plugin/src/Caelestia/filesystemmodel.hpp \
+	/usr/include/alloca.h \
 	/usr/include/asm-generic/bitsperlong.h \
 	/usr/include/asm-generic/errno-base.h \
 	/usr/include/asm-generic/errno.h \
@@ -21,6 +24,7 @@ caelestia_autogen/timestamp: \
 	/usr/include/asm/unistd_64.h \
 	/usr/include/assert.h \
 	/usr/include/bits/atomic_wide_counter.h \
+	/usr/include/bits/byteswap.h \
 	/usr/include/bits/confname.h \
 	/usr/include/bits/cpu-set.h \
 	/usr/include/bits/endian.h \
@@ -32,15 +36,24 @@ caelestia_autogen/timestamp: \
 	/usr/include/bits/getopt_core.h \
 	/usr/include/bits/getopt_posix.h \
 	/usr/include/bits/libc-header-start.h \
+	/usr/include/bits/local_lim.h \
 	/usr/include/bits/locale.h \
 	/usr/include/bits/long-double.h \
+	/usr/include/bits/posix1_lim.h \
+	/usr/include/bits/posix2_lim.h \
 	/usr/include/bits/posix_opt.h \
 	/usr/include/bits/pthread_stack_min-dynamic.h \
 	/usr/include/bits/pthreadtypes-arch.h \
 	/usr/include/bits/pthreadtypes.h \
 	/usr/include/bits/sched.h \
+	/usr/include/bits/select.h \
+	/usr/include/bits/semaphore.h \
 	/usr/include/bits/setjmp.h \
+	/usr/include/bits/stdint-intn.h \
+	/usr/include/bits/stdint-least.h \
+	/usr/include/bits/stdint-uintn.h \
 	/usr/include/bits/stdio_lim.h \
+	/usr/include/bits/stdlib-float.h \
 	/usr/include/bits/struct_mutex.h \
 	/usr/include/bits/struct_rwlock.h \
 	/usr/include/bits/syscall.h \
@@ -63,6 +76,7 @@ caelestia_autogen/timestamp: \
 	/usr/include/bits/types/error_t.h \
 	/usr/include/bits/types/locale_t.h \
 	/usr/include/bits/types/mbstate_t.h \
+	/usr/include/bits/types/sigset_t.h \
 	/usr/include/bits/types/struct_FILE.h \
 	/usr/include/bits/types/struct___jmp_buf_tag.h \
 	/usr/include/bits/types/struct_itimerspec.h \
@@ -74,10 +88,15 @@ caelestia_autogen/timestamp: \
 	/usr/include/bits/types/timer_t.h \
 	/usr/include/bits/types/wint_t.h \
 	/usr/include/bits/typesizes.h \
+	/usr/include/bits/uintn-identity.h \
+	/usr/include/bits/uio_lim.h \
 	/usr/include/bits/unistd_ext.h \
+	/usr/include/bits/waitflags.h \
+	/usr/include/bits/waitstatus.h \
 	/usr/include/bits/wchar.h \
 	/usr/include/bits/wctype-wchar.h \
 	/usr/include/bits/wordsize.h \
+	/usr/include/bits/xopen_lim.h \
 	/usr/include/c++/15.2.1/algorithm \
 	/usr/include/c++/15.2.1/array \
 	/usr/include/c++/15.2.1/atomic \
@@ -90,7 +109,9 @@ caelestia_autogen/timestamp: \
 	/usr/include/c++/15.2.1/bits/allocated_ptr.h \
 	/usr/include/c++/15.2.1/bits/allocator.h \
 	/usr/include/c++/15.2.1/bits/atomic_base.h \
+	/usr/include/c++/15.2.1/bits/atomic_futex.h \
 	/usr/include/c++/15.2.1/bits/atomic_lockfree_defines.h \
+	/usr/include/c++/15.2.1/bits/atomic_timed_wait.h \
 	/usr/include/c++/15.2.1/bits/atomic_wait.h \
 	/usr/include/c++/15.2.1/bits/basic_ios.h \
 	/usr/include/c++/15.2.1/bits/basic_ios.tcc \
@@ -152,6 +173,7 @@ caelestia_autogen/timestamp: \
 	/usr/include/c++/15.2.1/bits/ranges_util.h \
 	/usr/include/c++/15.2.1/bits/refwrap.h \
 	/usr/include/c++/15.2.1/bits/requires_hosted.h \
+	/usr/include/c++/15.2.1/bits/semaphore_base.h \
 	/usr/include/c++/15.2.1/bits/shared_ptr.h \
 	/usr/include/c++/15.2.1/bits/shared_ptr_atomic.h \
 	/usr/include/c++/15.2.1/bits/shared_ptr_base.h \
@@ -160,6 +182,7 @@ caelestia_autogen/timestamp: \
 	/usr/include/c++/15.2.1/bits/std_abs.h \
 	/usr/include/c++/15.2.1/bits/std_function.h \
 	/usr/include/c++/15.2.1/bits/std_mutex.h \
+	/usr/include/c++/15.2.1/bits/std_thread.h \
 	/usr/include/c++/15.2.1/bits/stl_algo.h \
 	/usr/include/c++/15.2.1/bits/stl_algobase.h \
 	/usr/include/c++/15.2.1/bits/stl_bvector.h \
@@ -187,7 +210,9 @@ caelestia_autogen/timestamp: \
 	/usr/include/c++/15.2.1/bits/streambuf_iterator.h \
 	/usr/include/c++/15.2.1/bits/string_view.tcc \
 	/usr/include/c++/15.2.1/bits/stringfwd.h \
+	/usr/include/c++/15.2.1/bits/this_thread_sleep.h \
 	/usr/include/c++/15.2.1/bits/uniform_int_dist.h \
+	/usr/include/c++/15.2.1/bits/unique_lock.h \
 	/usr/include/c++/15.2.1/bits/unique_ptr.h \
 	/usr/include/c++/15.2.1/bits/unordered_map.h \
 	/usr/include/c++/15.2.1/bits/unordered_set.h \
@@ -206,6 +231,7 @@ caelestia_autogen/timestamp: \
 	/usr/include/c++/15.2.1/cmath \
 	/usr/include/c++/15.2.1/compare \
 	/usr/include/c++/15.2.1/concepts \
+	/usr/include/c++/15.2.1/condition_variable \
 	/usr/include/c++/15.2.1/cstddef \
 	/usr/include/c++/15.2.1/cstdint \
 	/usr/include/c++/15.2.1/cstdio \
@@ -217,6 +243,7 @@ caelestia_autogen/timestamp: \
 	/usr/include/c++/15.2.1/debug/assertions.h \
 	/usr/include/c++/15.2.1/debug/debug.h \
 	/usr/include/c++/15.2.1/exception \
+	/usr/include/c++/15.2.1/experimental/source_location \
 	/usr/include/c++/15.2.1/ext/aligned_buffer.h \
 	/usr/include/c++/15.2.1/ext/alloc_traits.h \
 	/usr/include/c++/15.2.1/ext/atomicity.h \
@@ -224,8 +251,10 @@ caelestia_autogen/timestamp: \
 	/usr/include/c++/15.2.1/ext/numeric_traits.h \
 	/usr/include/c++/15.2.1/ext/string_conversions.h \
 	/usr/include/c++/15.2.1/ext/type_traits.h \
+	/usr/include/c++/15.2.1/filesystem \
 	/usr/include/c++/15.2.1/format \
 	/usr/include/c++/15.2.1/functional \
+	/usr/include/c++/15.2.1/future \
 	/usr/include/c++/15.2.1/initializer_list \
 	/usr/include/c++/15.2.1/iomanip \
 	/usr/include/c++/15.2.1/ios \
@@ -237,17 +266,21 @@ caelestia_autogen/timestamp: \
 	/usr/include/c++/15.2.1/locale \
 	/usr/include/c++/15.2.1/map \
 	/usr/include/c++/15.2.1/memory \
+	/usr/include/c++/15.2.1/mutex \
 	/usr/include/c++/15.2.1/new \
 	/usr/include/c++/15.2.1/numeric \
 	/usr/include/c++/15.2.1/optional \
 	/usr/include/c++/15.2.1/ostream \
 	/usr/include/c++/15.2.1/pstl/execution_defs.h \
 	/usr/include/c++/15.2.1/pstl/glue_numeric_defs.h \
+	/usr/include/c++/15.2.1/pstl/pstl_config.h \
 	/usr/include/c++/15.2.1/ratio \
+	/usr/include/c++/15.2.1/semaphore \
 	/usr/include/c++/15.2.1/set \
+	/usr/include/c++/15.2.1/source_location \
 	/usr/include/c++/15.2.1/sstream \
 	/usr/include/c++/15.2.1/stdexcept \
-	/usr/include/c++/15.2.1/stdlib.h \
+	/usr/include/c++/15.2.1/stop_token \
 	/usr/include/c++/15.2.1/streambuf \
 	/usr/include/c++/15.2.1/string \
 	/usr/include/c++/15.2.1/string_view \
@@ -272,6 +305,7 @@ caelestia_autogen/timestamp: \
 	/usr/include/c++/15.2.1/utility \
 	/usr/include/c++/15.2.1/variant \
 	/usr/include/c++/15.2.1/vector \
+	/usr/include/c++/15.2.1/version \
 	/usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/atomic_word.h \
 	/usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/c++allocator.h \
 	/usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/c++config.h \
@@ -286,24 +320,36 @@ caelestia_autogen/timestamp: \
 	/usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/os_defines.h \
 	/usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/time_members.h \
 	/usr/include/ctype.h \
+	/usr/include/endian.h \
 	/usr/include/errno.h \
 	/usr/include/features-time64.h \
 	/usr/include/features.h \
 	/usr/include/gnu/stubs-64.h \
 	/usr/include/gnu/stubs.h \
 	/usr/include/libintl.h \
+	/usr/include/limits.h \
+	/usr/include/linux/close_range.h \
 	/usr/include/linux/errno.h \
+	/usr/include/linux/limits.h \
 	/usr/include/linux/posix_types.h \
+	/usr/include/linux/sched/types.h \
 	/usr/include/linux/stddef.h \
 	/usr/include/linux/types.h \
 	/usr/include/locale.h \
 	/usr/include/pthread.h \
+	/usr/include/qt6/QtCore/QAbstractListModel \
+	/usr/include/qt6/QtCore/QDir \
+	/usr/include/qt6/QtCore/QFileInfo \
+	/usr/include/qt6/QtCore/QFileSystemWatcher \
+	/usr/include/qt6/QtCore/QFuture \
 	/usr/include/qt6/QtCore/QList \
+	/usr/include/qt6/QtCore/QMimeDatabase \
 	/usr/include/qt6/QtCore/QObject \
 	/usr/include/qt6/QtCore/QRect \
 	/usr/include/qt6/QtCore/QSize \
 	/usr/include/qt6/QtCore/QSizeF \
 	/usr/include/qt6/QtCore/q17memory.h \
+	/usr/include/qt6/QtCore/q20algorithm.h \
 	/usr/include/qt6/QtCore/q20functional.h \
 	/usr/include/qt6/QtCore/q20iterator.h \
 	/usr/include/qt6/QtCore/q20memory.h \
@@ -311,6 +357,7 @@ caelestia_autogen/timestamp: \
 	/usr/include/qt6/QtCore/q20utility.h \
 	/usr/include/qt6/QtCore/q23utility.h \
 	/usr/include/qt6/QtCore/qabstracteventdispatcher.h \
+	/usr/include/qt6/QtCore/qabstractitemmodel.h \
 	/usr/include/qt6/QtCore/qalgorithms.h \
 	/usr/include/qt6/QtCore/qanystringview.h \
 	/usr/include/qt6/QtCore/qarraydata.h \
@@ -327,6 +374,8 @@ caelestia_autogen/timestamp: \
 	/usr/include/qt6/QtCore/qbytearraylist.h \
 	/usr/include/qt6/QtCore/qbytearrayview.h \
 	/usr/include/qt6/QtCore/qcalendar.h \
+	/usr/include/qt6/QtCore/qcborcommon.h \
+	/usr/include/qt6/QtCore/qcborvalue.h \
 	/usr/include/qt6/QtCore/qchar.h \
 	/usr/include/qt6/QtCore/qcompare.h \
 	/usr/include/qt6/QtCore/qcompare_impl.h \
@@ -346,15 +395,26 @@ caelestia_autogen/timestamp: \
 	/usr/include/qt6/QtCore/qdatetime.h \
 	/usr/include/qt6/QtCore/qdeadlinetimer.h \
 	/usr/include/qt6/QtCore/qdebug.h \
+	/usr/include/qt6/QtCore/qdir.h \
+	/usr/include/qt6/QtCore/qdirlisting.h \
 	/usr/include/qt6/QtCore/qelapsedtimer.h \
 	/usr/include/qt6/QtCore/qendian.h \
 	/usr/include/qt6/QtCore/qeventloop.h \
+	/usr/include/qt6/QtCore/qexception.h \
 	/usr/include/qt6/QtCore/qexceptionhandling.h \
+	/usr/include/qt6/QtCore/qfactoryinterface.h \
+	/usr/include/qt6/QtCore/qfile.h \
+	/usr/include/qt6/QtCore/qfiledevice.h \
+	/usr/include/qt6/QtCore/qfileinfo.h \
+	/usr/include/qt6/QtCore/qfilesystemwatcher.h \
 	/usr/include/qt6/QtCore/qflags.h \
 	/usr/include/qt6/QtCore/qfloat16.h \
 	/usr/include/qt6/QtCore/qforeach.h \
 	/usr/include/qt6/QtCore/qfunctionaltools_impl.h \
 	/usr/include/qt6/QtCore/qfunctionpointer.h \
+	/usr/include/qt6/QtCore/qfuture.h \
+	/usr/include/qt6/QtCore/qfuture_impl.h \
+	/usr/include/qt6/QtCore/qfutureinterface.h \
 	/usr/include/qt6/QtCore/qgenericatomic.h \
 	/usr/include/qt6/QtCore/qglobal.h \
 	/usr/include/qt6/QtCore/qglobalstatic.h \
@@ -364,6 +424,10 @@ caelestia_autogen/timestamp: \
 	/usr/include/qt6/QtCore/qiodevicebase.h \
 	/usr/include/qt6/QtCore/qiterable.h \
 	/usr/include/qt6/QtCore/qiterator.h \
+	/usr/include/qt6/QtCore/qjsondocument.h \
+	/usr/include/qt6/QtCore/qjsonobject.h \
+	/usr/include/qt6/QtCore/qjsonparseerror.h \
+	/usr/include/qt6/QtCore/qjsonvalue.h \
 	/usr/include/qt6/QtCore/qlatin1stringview.h \
 	/usr/include/qt6/QtCore/qline.h \
 	/usr/include/qt6/QtCore/qlist.h \
@@ -376,7 +440,10 @@ caelestia_autogen/timestamp: \
 	/usr/include/qt6/QtCore/qmetacontainer.h \
 	/usr/include/qt6/QtCore/qmetaobject.h \
 	/usr/include/qt6/QtCore/qmetatype.h \
+	/usr/include/qt6/QtCore/qmimedatabase.h \
+	/usr/include/qt6/QtCore/qmimetype.h \
 	/usr/include/qt6/QtCore/qminmax.h \
+	/usr/include/qt6/QtCore/qmutex.h \
 	/usr/include/qt6/QtCore/qnamespace.h \
 	/usr/include/qt6/QtCore/qnativeinterface.h \
 	/usr/include/qt6/QtCore/qnumeric.h \
@@ -386,13 +453,18 @@ caelestia_autogen/timestamp: \
 	/usr/include/qt6/QtCore/qobjectdefs_impl.h \
 	/usr/include/qt6/QtCore/qoverload.h \
 	/usr/include/qt6/QtCore/qpair.h \
+	/usr/include/qt6/QtCore/qplugin.h \
 	/usr/include/qt6/QtCore/qpoint.h \
 	/usr/include/qt6/QtCore/qpointer.h \
 	/usr/include/qt6/QtCore/qprocessordetection.h \
+	/usr/include/qt6/QtCore/qpromise.h \
 	/usr/include/qt6/QtCore/qproperty.h \
 	/usr/include/qt6/QtCore/qpropertyprivate.h \
 	/usr/include/qt6/QtCore/qrect.h \
 	/usr/include/qt6/QtCore/qrefcount.h \
+	/usr/include/qt6/QtCore/qregularexpression.h \
+	/usr/include/qt6/QtCore/qresultstore.h \
+	/usr/include/qt6/QtCore/qrunnable.h \
 	/usr/include/qt6/QtCore/qscopedpointer.h \
 	/usr/include/qt6/QtCore/qscopeguard.h \
 	/usr/include/qt6/QtCore/qset.h \
@@ -429,10 +501,14 @@ caelestia_autogen/timestamp: \
 	/usr/include/qt6/QtCore/qtenvironmentvariables.h \
 	/usr/include/qt6/QtCore/qtextstream.h \
 	/usr/include/qt6/QtCore/qtformat_impl.h \
+	/usr/include/qt6/QtCore/qthread.h \
+	/usr/include/qt6/QtCore/qthreadpool.h \
+	/usr/include/qt6/QtCore/qtimezone.h \
 	/usr/include/qt6/QtCore/qtmetamacros.h \
 	/usr/include/qt6/QtCore/qtnoop.h \
 	/usr/include/qt6/QtCore/qtpreprocessorsupport.h \
 	/usr/include/qt6/QtCore/qtresource.h \
+	/usr/include/qt6/QtCore/qtsan_impl.h \
 	/usr/include/qt6/QtCore/qttranslation.h \
 	/usr/include/qt6/QtCore/qttypetraits.h \
 	/usr/include/qt6/QtCore/qtversion.h \
@@ -442,12 +518,14 @@ caelestia_autogen/timestamp: \
 	/usr/include/qt6/QtCore/qtypes.h \
 	/usr/include/qt6/QtCore/qurl.h \
 	/usr/include/qt6/QtCore/qutf8stringview.h \
+	/usr/include/qt6/QtCore/quuid.h \
 	/usr/include/qt6/QtCore/qvariant.h \
 	/usr/include/qt6/QtCore/qvarlengtharray.h \
 	/usr/include/qt6/QtCore/qversionnumber.h \
 	/usr/include/qt6/QtCore/qversiontagging.h \
 	/usr/include/qt6/QtCore/qxptype_traits.h \
 	/usr/include/qt6/QtCore/qyieldcpu.h \
+	/usr/include/qt6/QtGui/QImageReader \
 	/usr/include/qt6/QtGui/QTransform \
 	/usr/include/qt6/QtGui/qaccessible.h \
 	/usr/include/qt6/QtGui/qaccessible_base.h \
@@ -457,9 +535,14 @@ caelestia_autogen/timestamp: \
 	/usr/include/qt6/QtGui/qfont.h \
 	/usr/include/qt6/QtGui/qguiapplication.h \
 	/usr/include/qt6/QtGui/qguiapplication_platform.h \
+	/usr/include/qt6/QtGui/qimage.h \
+	/usr/include/qt6/QtGui/qimageiohandler.h \
+	/usr/include/qt6/QtGui/qimagereader.h \
 	/usr/include/qt6/QtGui/qinputdevice.h \
 	/usr/include/qt6/QtGui/qinputmethod.h \
 	/usr/include/qt6/QtGui/qkeysequence.h \
+	/usr/include/qt6/QtGui/qpaintdevice.h \
+	/usr/include/qt6/QtGui/qpixelformat.h \
 	/usr/include/qt6/QtGui/qpointingdevice.h \
 	/usr/include/qt6/QtGui/qpolygon.h \
 	/usr/include/qt6/QtGui/qregion.h \
@@ -498,12 +581,19 @@ caelestia_autogen/timestamp: \
 	/usr/include/qt6/QtQuick/qtquickexports.h \
 	/usr/include/qt6/QtQuick/qtquickglobal.h \
 	/usr/include/sched.h \
+	/usr/include/semaphore.h \
 	/usr/include/stdc-predef.h \
+	/usr/include/stdint.h \
 	/usr/include/stdio.h \
+	/usr/include/stdlib.h \
 	/usr/include/string.h \
 	/usr/include/strings.h \
 	/usr/include/sys/cdefs.h \
+	/usr/include/sys/select.h \
+	/usr/include/sys/single_threaded.h \
 	/usr/include/sys/syscall.h \
+	/usr/include/sys/time.h \
+	/usr/include/sys/types.h \
 	/usr/include/syscall.h \
 	/usr/include/time.h \
 	/usr/include/unistd.h \
@@ -513,9 +603,7 @@ caelestia_autogen/timestamp: \
 	/usr/lib/cmake/Qt6Qml/Qt6QmlModuleDirMappingTemplate.qrc.in \
 	/usr/lib/cmake/Qt6Qml/Qt6QmlPluginTemplate.cpp.in \
 	/usr/lib/cmake/Qt6Qml/Qt6qmldirTemplate.cmake.in \
-	/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/limits.h \
 	/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stdarg.h \
 	/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stdbool.h \
 	/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stddef.h \
-	/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/syslimits.h \
 	/usr/bin/cmake

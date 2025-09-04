@@ -8,7 +8,7 @@
 		"x": 0,
 		"y": 0
 	},
-	"url": "https://music.youtube.com/watch?v=QK8SRi5K1uo&list=RDTMAK5uy_n_5IN6hzAOwdCnM8D8rzrs3vDl12UcZpA&index=0",
+	"url": "https://music.youtube.com/watch?v=pZBQHCm-vdA&list=RDTMAK5uy_n_5IN6hzAOwdCnM8D8rzrs3vDl12UcZpA&index=0",
 	"options": {
 		"tray": false,
 		"appVisible": true,
@@ -43,7 +43,7 @@
 				"volumeUp": "Ctrl+Shift+]",
 				"volumeDown": "Ctrl+Shift+["
 			},
-			"savedVolume": 47
+			"savedVolume": 40
 		},
 		"discord": {
 			"listenAlong": true

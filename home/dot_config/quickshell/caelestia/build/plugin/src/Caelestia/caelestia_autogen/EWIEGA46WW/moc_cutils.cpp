@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'cutils.hpp'
 **
-** Created by: The Qt Meta Object Compiler version 69 (Qt 6.9.1)
+** Created by: The Qt Meta Object Compiler version 69 (Qt 6.9.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -18,7 +18,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'cutils.hpp' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 69
-#error "This file was generated using the moc from 6.9.1. It"
+#error "This file was generated using the moc from 6.9.2. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -58,8 +58,8 @@ template <> constexpr inline auto CUtils::qt_create_metaobjectdata<qt_meta_tag_Z
         "getDominantColour",
         "item",
         "callback",
-        "width",
-        "height"
+        "rescaleSize",
+        "getAverageLuminance"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -97,12 +97,36 @@ template <> constexpr inline auto CUtils::qt_create_metaobjectdata<qt_meta_tag_Z
             { QMetaType::QUrl, 15 }, { QMetaType::QUrl, 8 }, { QMetaType::Bool, 16 },
         }}),
         // Method 'getDominantColour'
-        QtMocHelpers::MethodData<void(QQuickItem *, QJSValue) const>(17, 6, QMC::AccessPublic, QMetaType::Void, {{
+        QtMocHelpers::MethodData<void(QQuickItem *, QJSValue)>(17, 6, QMC::AccessPublic, QMetaType::Void, {{
             { 0x80000000 | 7, 18 }, { 0x80000000 | 11, 19 },
         }}),
         // Method 'getDominantColour'
-        QtMocHelpers::MethodData<void(QQuickItem *, int, int, QJSValue) const>(17, 6, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 7, 18 }, { QMetaType::Int, 20 }, { QMetaType::Int, 21 }, { 0x80000000 | 11, 19 },
+        QtMocHelpers::MethodData<void(QQuickItem *, int, QJSValue)>(17, 6, QMC::AccessPublic, QMetaType::Void, {{
+            { 0x80000000 | 7, 18 }, { QMetaType::Int, 20 }, { 0x80000000 | 11, 19 },
+        }}),
+        // Method 'getDominantColour'
+        QtMocHelpers::MethodData<void(const QString &, QJSValue)>(17, 6, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 9 }, { 0x80000000 | 11, 19 },
+        }}),
+        // Method 'getDominantColour'
+        QtMocHelpers::MethodData<void(const QString &, int, QJSValue)>(17, 6, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 9 }, { QMetaType::Int, 20 }, { 0x80000000 | 11, 19 },
+        }}),
+        // Method 'getAverageLuminance'
+        QtMocHelpers::MethodData<void(QQuickItem *, QJSValue)>(21, 6, QMC::AccessPublic, QMetaType::Void, {{
+            { 0x80000000 | 7, 18 }, { 0x80000000 | 11, 19 },
+        }}),
+        // Method 'getAverageLuminance'
+        QtMocHelpers::MethodData<void(QQuickItem *, int, QJSValue)>(21, 6, QMC::AccessPublic, QMetaType::Void, {{
+            { 0x80000000 | 7, 18 }, { QMetaType::Int, 20 }, { 0x80000000 | 11, 19 },
+        }}),
+        // Method 'getAverageLuminance'
+        QtMocHelpers::MethodData<void(const QString &, QJSValue)>(21, 6, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 9 }, { 0x80000000 | 11, 19 },
+        }}),
+        // Method 'getAverageLuminance'
+        QtMocHelpers::MethodData<void(const QString &, int, QJSValue)>(21, 6, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 9 }, { QMetaType::Int, 20 }, { 0x80000000 | 11, 19 },
         }}),
     };
     QtMocHelpers::UintData qt_properties {
@@ -143,7 +167,13 @@ void CUtils::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 7: { bool _r = _t->copyFile((*reinterpret_cast< std::add_pointer_t<QUrl>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QUrl>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<bool>>(_a[3])));
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
         case 8: _t->getDominantColour((*reinterpret_cast< std::add_pointer_t<QQuickItem*>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QJSValue>>(_a[2]))); break;
-        case 9: _t->getDominantColour((*reinterpret_cast< std::add_pointer_t<QQuickItem*>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<QJSValue>>(_a[4]))); break;
+        case 9: _t->getDominantColour((*reinterpret_cast< std::add_pointer_t<QQuickItem*>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QJSValue>>(_a[3]))); break;
+        case 10: _t->getDominantColour((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QJSValue>>(_a[2]))); break;
+        case 11: _t->getDominantColour((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QJSValue>>(_a[3]))); break;
+        case 12: _t->getAverageLuminance((*reinterpret_cast< std::add_pointer_t<QQuickItem*>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QJSValue>>(_a[2]))); break;
+        case 13: _t->getAverageLuminance((*reinterpret_cast< std::add_pointer_t<QQuickItem*>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QJSValue>>(_a[3]))); break;
+        case 14: _t->getAverageLuminance((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QJSValue>>(_a[2]))); break;
+        case 15: _t->getAverageLuminance((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QJSValue>>(_a[3]))); break;
         default: ;
         }
     }
@@ -214,10 +244,56 @@ void CUtils::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 9:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
-            case 3:
+            case 2:
                 *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< QJSValue >(); break;
             case 0:
                 *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< QQuickItem* >(); break;
+            }
+            break;
+        case 10:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+            case 1:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< QJSValue >(); break;
+            }
+            break;
+        case 11:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+            case 2:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< QJSValue >(); break;
+            }
+            break;
+        case 12:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+            case 1:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< QJSValue >(); break;
+            case 0:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< QQuickItem* >(); break;
+            }
+            break;
+        case 13:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+            case 2:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< QJSValue >(); break;
+            case 0:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< QQuickItem* >(); break;
+            }
+            break;
+        case 14:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+            case 1:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< QJSValue >(); break;
+            }
+            break;
+        case 15:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+            case 2:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< QJSValue >(); break;
             }
             break;
         }
@@ -243,14 +319,14 @@ int CUtils::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 10)
+        if (_id < 16)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 10;
+        _id -= 16;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 10)
+        if (_id < 16)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 10;
+        _id -= 16;
     }
     return _id;
 }

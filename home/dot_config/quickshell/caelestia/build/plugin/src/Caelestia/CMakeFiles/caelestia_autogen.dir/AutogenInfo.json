@@ -30,6 +30,12 @@
 			"MU",
 			"EWIEGA46WW/moc_cutils.cpp",
 			null
+		],
+		[
+			"/home/erik/.config/quickshell/caelestia/plugin/src/Caelestia/filesystemmodel.hpp",
+			"MU",
+			"EWIEGA46WW/moc_filesystemmodel.cpp",
+			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
@@ -37,7 +43,9 @@
 	"MOC_COMPILATION_FILE" : "/home/erik/.config/quickshell/caelestia/build/plugin/src/Caelestia/caelestia_autogen/mocs_compilation.cpp",
 	"MOC_DEFINITIONS" : 
 	[
+		"QT_CONCURRENT_LIB",
 		"QT_CORE_LIB",
+		"QT_GUI_LIB",
 		"QT_NETWORK_LIB",
 		"QT_NO_DEBUG",
 		"QT_QMLINTEGRATION_LIB",
@@ -54,23 +62,25 @@
 	"MOC_INCLUDES" : 
 	[
 		"/home/erik/.config/quickshell/caelestia/plugin/src/Caelestia",
-		"/usr/include/qt6/QtQml/6.9.1",
-		"/usr/include/qt6/QtQml/6.9.1/QtQml",
-		"/usr/include/qt6/QtCore/6.9.1",
-		"/usr/include/qt6/QtCore/6.9.1/QtCore",
+		"/usr/include/qt6/QtQml/6.9.2",
+		"/usr/include/qt6/QtQml/6.9.2/QtQml",
+		"/usr/include/qt6/QtCore/6.9.2",
+		"/usr/include/qt6/QtCore/6.9.2/QtCore",
 		"/usr/include/qt6/QtCore",
 		"/usr/include/qt6",
 		"/usr/lib/qt6/mkspecs/linux-g++",
 		"/usr/include/qt6/QtQml",
 		"/usr/include/qt6/QtQmlIntegration",
 		"/usr/include/qt6/QtNetwork",
+		"/usr/include/qt6/QtGui",
+		"/usr/include/qt6/QtConcurrent",
+		"/usr/include",
 		"/usr/include/c++/15.2.1",
 		"/usr/include/c++/15.2.1/x86_64-pc-linux-gnu",
 		"/usr/include/c++/15.2.1/backward",
 		"/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include",
 		"/usr/local/include",
-		"/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed",
-		"/usr/include"
+		"/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed"
 	],
 	"MOC_MACRO_NAMES" : 
 	[
@@ -86,7 +96,7 @@
 	"MOC_PREDEFS_CMD" : 
 	[
 		"/usr/bin/c++",
-		"-std=gnu++20",
+		"-std=c++20",
 		"-w",
 		"-dM",
 		"-E",
@@ -116,6 +126,11 @@
 		],
 		[
 			"/home/erik/.config/quickshell/caelestia/plugin/src/Caelestia/cutils.cpp",
+			"MU",
+			null
+		],
+		[
+			"/home/erik/.config/quickshell/caelestia/plugin/src/Caelestia/filesystemmodel.cpp",
 			"MU",
 			null
 		]

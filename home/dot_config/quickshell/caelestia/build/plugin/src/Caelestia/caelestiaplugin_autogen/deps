@@ -107,6 +107,7 @@ caelestiaplugin_autogen/timestamp: \
 	/usr/include/c++/15.2.1/bits/exception.h \
 	/usr/include/c++/15.2.1/bits/exception_defines.h \
 	/usr/include/c++/15.2.1/bits/exception_ptr.h \
+	/usr/include/c++/15.2.1/bits/formatfwd.h \
 	/usr/include/c++/15.2.1/bits/functexcept.h \
 	/usr/include/c++/15.2.1/bits/functional_hash.h \
 	/usr/include/c++/15.2.1/bits/hash_bytes.h \
@@ -128,6 +129,7 @@ caelestiaplugin_autogen/timestamp: \
 	/usr/include/c++/15.2.1/bits/max_size_type.h \
 	/usr/include/c++/15.2.1/bits/memory_resource.h \
 	/usr/include/c++/15.2.1/bits/memoryfwd.h \
+	/usr/include/c++/15.2.1/bits/monostate.h \
 	/usr/include/c++/15.2.1/bits/move.h \
 	/usr/include/c++/15.2.1/bits/nested_exception.h \
 	/usr/include/c++/15.2.1/bits/new_allocator.h \
@@ -184,6 +186,8 @@ caelestiaplugin_autogen/timestamp: \
 	/usr/include/c++/15.2.1/bits/streambuf_iterator.h \
 	/usr/include/c++/15.2.1/bits/string_view.tcc \
 	/usr/include/c++/15.2.1/bits/stringfwd.h \
+	/usr/include/c++/15.2.1/bits/unicode-data.h \
+	/usr/include/c++/15.2.1/bits/unicode.h \
 	/usr/include/c++/15.2.1/bits/uniform_int_dist.h \
 	/usr/include/c++/15.2.1/bits/unique_ptr.h \
 	/usr/include/c++/15.2.1/bits/unordered_map.h \
@@ -234,13 +238,18 @@ caelestiaplugin_autogen/timestamp: \
 	/usr/include/c++/15.2.1/map \
 	/usr/include/c++/15.2.1/memory \
 	/usr/include/c++/15.2.1/new \
+	/usr/include/c++/15.2.1/numbers \
 	/usr/include/c++/15.2.1/numeric \
 	/usr/include/c++/15.2.1/optional \
 	/usr/include/c++/15.2.1/ostream \
 	/usr/include/c++/15.2.1/pstl/execution_defs.h \
+	/usr/include/c++/15.2.1/pstl/glue_algorithm_defs.h \
+	/usr/include/c++/15.2.1/pstl/glue_memory_defs.h \
 	/usr/include/c++/15.2.1/pstl/glue_numeric_defs.h \
+	/usr/include/c++/15.2.1/pstl/pstl_config.h \
 	/usr/include/c++/15.2.1/ratio \
 	/usr/include/c++/15.2.1/set \
+	/usr/include/c++/15.2.1/span \
 	/usr/include/c++/15.2.1/sstream \
 	/usr/include/c++/15.2.1/stdexcept \
 	/usr/include/c++/15.2.1/stdlib.h \
@@ -268,6 +277,7 @@ caelestiaplugin_autogen/timestamp: \
 	/usr/include/c++/15.2.1/utility \
 	/usr/include/c++/15.2.1/variant \
 	/usr/include/c++/15.2.1/vector \
+	/usr/include/c++/15.2.1/version \
 	/usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/atomic_word.h \
 	/usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/c++allocator.h \
 	/usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/c++config.h \
@@ -288,8 +298,10 @@ caelestiaplugin_autogen/timestamp: \
 	/usr/include/gnu/stubs-64.h \
 	/usr/include/gnu/stubs.h \
 	/usr/include/libintl.h \
+	/usr/include/linux/close_range.h \
 	/usr/include/linux/errno.h \
 	/usr/include/linux/posix_types.h \
+	/usr/include/linux/sched/types.h \
 	/usr/include/linux/stddef.h \
 	/usr/include/linux/types.h \
 	/usr/include/locale.h \
@@ -443,6 +455,7 @@ caelestiaplugin_autogen/timestamp: \
 	/usr/include/string.h \
 	/usr/include/strings.h \
 	/usr/include/sys/cdefs.h \
+	/usr/include/sys/single_threaded.h \
 	/usr/include/sys/syscall.h \
 	/usr/include/syscall.h \
 	/usr/include/time.h \
@@ -457,5 +470,6 @@ caelestiaplugin_autogen/timestamp: \
 	/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stdarg.h \
 	/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stdbool.h \
 	/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stddef.h \
+	/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stdint.h \
 	/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/syslimits.h \
 	/usr/bin/cmake

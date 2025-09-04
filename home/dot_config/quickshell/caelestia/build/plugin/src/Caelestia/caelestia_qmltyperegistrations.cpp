@@ -13,6 +13,9 @@
 #if __has_include(<cutils.hpp>)
 #  include <cutils.hpp>
 #endif
+#if __has_include(<filesystemmodel.hpp>)
+#  include <filesystemmodel.hpp>
+#endif
 
 
 #if !defined(QT_STATIC)
@@ -26,6 +29,13 @@ Q_QMLTYPE_EXPORT void qml_register_types_Caelestia()
     QT_WARNING_PUSH QT_WARNING_DISABLE_DEPRECATED
     qmlRegisterTypesAndRevisions<CUtils>("Caelestia", 0);
     qmlRegisterTypesAndRevisions<CachingImageManager>("Caelestia", 0);
+    qmlRegisterTypesAndRevisions<FileSystemEntry>("Caelestia", 0);
+    qmlRegisterTypesAndRevisions<FileSystemModel>("Caelestia", 0);
+    qmlRegisterEnum<FileSystemModel::Filter>("FileSystemModel::Filter");
+    QMetaType::fromType<QAbstractItemModel *>().id();
+    qmlRegisterEnum<QAbstractItemModel::LayoutChangeHint>("QAbstractItemModel::LayoutChangeHint");
+    qmlRegisterEnum<QAbstractItemModel::CheckIndexOption>("QAbstractItemModel::CheckIndexOption");
+    QMetaType::fromType<QAbstractListModel *>().id();
     QT_WARNING_POP
     qmlRegisterModule("Caelestia", 0, 1);
 }

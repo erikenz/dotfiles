@@ -9,6 +9,26 @@
             ],
             "className": "CachingImageManager",
             "lineNumber": 7,
+            "methods": [
+                {
+                    "access": "public",
+                    "index": 5,
+                    "name": "updateSource",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "path",
+                            "type": "QString"
+                        }
+                    ],
+                    "index": 6,
+                    "name": "updateSource",
+                    "returnType": "void"
+                }
+            ],
             "object": true,
             "properties": [
                 {
@@ -68,20 +88,6 @@
                     "scriptable": true,
                     "stored": true,
                     "type": "QUrl",
-                    "user": false
-                },
-                {
-                    "constant": false,
-                    "designable": true,
-                    "final": false,
-                    "index": 4,
-                    "name": "usingCache",
-                    "notify": "usingCacheChanged",
-                    "read": "usingCache",
-                    "required": false,
-                    "scriptable": true,
-                    "stored": true,
-                    "type": "bool",
                     "user": false
                 }
             ],

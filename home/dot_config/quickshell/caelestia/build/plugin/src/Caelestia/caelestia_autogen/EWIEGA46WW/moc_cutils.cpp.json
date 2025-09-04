@@ -197,7 +197,6 @@
                         }
                     ],
                     "index": 8,
-                    "isConst": true,
                     "name": "getDominantColour",
                     "returnType": "void"
                 },
@@ -209,11 +208,7 @@
                             "type": "QQuickItem*"
                         },
                         {
-                            "name": "width",
-                            "type": "int"
-                        },
-                        {
-                            "name": "height",
+                            "name": "rescaleSize",
                             "type": "int"
                         },
                         {
@@ -222,8 +217,115 @@
                         }
                     ],
                     "index": 9,
-                    "isConst": true,
                     "name": "getDominantColour",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "path",
+                            "type": "QString"
+                        },
+                        {
+                            "name": "callback",
+                            "type": "QJSValue"
+                        }
+                    ],
+                    "index": 10,
+                    "name": "getDominantColour",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "path",
+                            "type": "QString"
+                        },
+                        {
+                            "name": "rescaleSize",
+                            "type": "int"
+                        },
+                        {
+                            "name": "callback",
+                            "type": "QJSValue"
+                        }
+                    ],
+                    "index": 11,
+                    "name": "getDominantColour",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "item",
+                            "type": "QQuickItem*"
+                        },
+                        {
+                            "name": "callback",
+                            "type": "QJSValue"
+                        }
+                    ],
+                    "index": 12,
+                    "name": "getAverageLuminance",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "item",
+                            "type": "QQuickItem*"
+                        },
+                        {
+                            "name": "rescaleSize",
+                            "type": "int"
+                        },
+                        {
+                            "name": "callback",
+                            "type": "QJSValue"
+                        }
+                    ],
+                    "index": 13,
+                    "name": "getAverageLuminance",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "path",
+                            "type": "QString"
+                        },
+                        {
+                            "name": "callback",
+                            "type": "QJSValue"
+                        }
+                    ],
+                    "index": 14,
+                    "name": "getAverageLuminance",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "path",
+                            "type": "QString"
+                        },
+                        {
+                            "name": "rescaleSize",
+                            "type": "int"
+                        },
+                        {
+                            "name": "callback",
+                            "type": "QJSValue"
+                        }
+                    ],
+                    "index": 15,
+                    "name": "getAverageLuminance",
                     "returnType": "void"
                 }
             ],
