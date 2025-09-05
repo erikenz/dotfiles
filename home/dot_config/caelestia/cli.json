@@ -1,0 +1,74 @@
+{
+	"theme": {
+		"enableTerm": true,
+		"enableHypr": true,
+		"enableDiscord": true,
+		"enableSpicetify": true,
+		"enableFuzzel": true,
+		"enableBtop": true,
+		"enableGtk": true,
+		"enableQt": true
+	},
+	"toggles": {
+		"communication": {
+			"discord": {
+				"enable": true,
+				"match": [
+					{
+						"class": "discord"
+					}
+				],
+				"command": ["discord"],
+				"move": true
+			},
+			"whatsapp": {
+				"enable": true,
+				"match": [
+					{
+						"class": "whatsapp"
+					}
+				],
+				"move": true
+			}
+		},
+		"music": {
+			"youtube-music": {
+				"enable": true,
+				"match": [
+					{
+						"class": "com.github.th_ch.youtube_music"
+					}
+				],
+				"command": ["youtube-music"],
+				"move": true
+			}
+		},
+		"sysmon": {
+			"btop": {
+				"enable": true,
+				"match": [
+					{
+						"class": "btop",
+						"title": "btop",
+						"workspace": {
+							"name": "special:sysmon"
+						}
+					}
+				],
+				"command": ["ghostty", "-e", "btop"]
+			}
+		},
+		"todo": {
+			"todoist": {
+				"enable": true,
+				"match": [
+					{
+						"class": "Todoist"
+					}
+				],
+				"command": ["todoist"],
+				"move": true
+			}
+		}
+	}
+}
