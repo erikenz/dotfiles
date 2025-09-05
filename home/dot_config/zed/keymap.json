@@ -67,6 +67,7 @@
 			"space b |": "workspace::NewFileSplitVertical",
 			"space /": "editor::ToggleComments",
 			"space x q": "editor::ToggleCodeActions",
+			"space i": "vim::Increment",
 
 			"space e": "project_panel::ToggleFocus",
 			"space g": "git_panel::ToggleFocus",
