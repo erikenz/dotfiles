@@ -8,7 +8,7 @@
                 }
             ],
             "className": "CachingImageManager",
-            "lineNumber": 7,
+            "lineNumber": 8,
             "methods": [
                 {
                     "access": "public",

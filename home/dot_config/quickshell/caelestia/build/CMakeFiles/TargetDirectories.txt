@@ -5,14 +5,6 @@
 /home/erik/.config/quickshell/caelestia/build/CMakeFiles/install.dir
 /home/erik/.config/quickshell/caelestia/build/CMakeFiles/install/local.dir
 /home/erik/.config/quickshell/caelestia/build/CMakeFiles/install/strip.dir
-/home/erik/.config/quickshell/caelestia/build/assets/cpp/CMakeFiles/version.dir
-/home/erik/.config/quickshell/caelestia/build/assets/cpp/CMakeFiles/beat_detector.dir
-/home/erik/.config/quickshell/caelestia/build/assets/cpp/CMakeFiles/edit_cache.dir
-/home/erik/.config/quickshell/caelestia/build/assets/cpp/CMakeFiles/rebuild_cache.dir
-/home/erik/.config/quickshell/caelestia/build/assets/cpp/CMakeFiles/list_install_components.dir
-/home/erik/.config/quickshell/caelestia/build/assets/cpp/CMakeFiles/install.dir
-/home/erik/.config/quickshell/caelestia/build/assets/cpp/CMakeFiles/install/local.dir
-/home/erik/.config/quickshell/caelestia/build/assets/cpp/CMakeFiles/install/strip.dir
 /home/erik/.config/quickshell/caelestia/build/plugin/CMakeFiles/edit_cache.dir
 /home/erik/.config/quickshell/caelestia/build/plugin/CMakeFiles/rebuild_cache.dir
 /home/erik/.config/quickshell/caelestia/build/plugin/CMakeFiles/list_install_components.dir

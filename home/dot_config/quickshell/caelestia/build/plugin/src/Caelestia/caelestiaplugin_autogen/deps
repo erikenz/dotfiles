@@ -472,4 +472,7 @@ caelestiaplugin_autogen/timestamp: \
 	/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stddef.h \
 	/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stdint.h \
 	/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/syslimits.h \
+	/usr/share/cmake/Modules/FindPackageHandleStandardArgs.cmake \
+	/usr/share/cmake/Modules/FindPackageMessage.cmake \
+	/usr/share/cmake/Modules/FindPkgConfig.cmake \
 	/usr/bin/cmake

@@ -59,7 +59,9 @@ template <> constexpr inline auto CUtils::qt_create_metaobjectdata<qt_meta_tag_Z
         "item",
         "callback",
         "rescaleSize",
-        "getAverageLuminance"
+        "getAverageLuminance",
+        "toLocalFile",
+        "url"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -128,6 +130,10 @@ template <> constexpr inline auto CUtils::qt_create_metaobjectdata<qt_meta_tag_Z
         QtMocHelpers::MethodData<void(const QString &, int, QJSValue)>(21, 6, QMC::AccessPublic, QMetaType::Void, {{
             { QMetaType::QString, 9 }, { QMetaType::Int, 20 }, { 0x80000000 | 11, 19 },
         }}),
+        // Method 'toLocalFile'
+        QtMocHelpers::MethodData<QString(const QUrl &) const>(22, 6, QMC::AccessPublic, QMetaType::QString, {{
+            { QMetaType::QUrl, 23 },
+        }}),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -174,6 +180,8 @@ void CUtils::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 13: _t->getAverageLuminance((*reinterpret_cast< std::add_pointer_t<QQuickItem*>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QJSValue>>(_a[3]))); break;
         case 14: _t->getAverageLuminance((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QJSValue>>(_a[2]))); break;
         case 15: _t->getAverageLuminance((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QJSValue>>(_a[3]))); break;
+        case 16: { QString _r = _t->toLocalFile((*reinterpret_cast< std::add_pointer_t<QUrl>>(_a[1])));
+            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
         default: ;
         }
     }
@@ -319,14 +327,14 @@ int CUtils::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 16)
+        if (_id < 17)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 16;
+        _id -= 17;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 16)
+        if (_id < 17)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 16;
+        _id -= 17;
     }
     return _id;
 }

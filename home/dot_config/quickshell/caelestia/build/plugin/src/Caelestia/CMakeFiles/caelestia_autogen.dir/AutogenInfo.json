@@ -7,6 +7,9 @@
 	"CMAKE_LIST_FILES" : 
 	[
 		"/home/erik/.config/quickshell/caelestia/plugin/src/Caelestia/CMakeLists.txt",
+		"/usr/share/cmake/Modules/FindPkgConfig.cmake",
+		"/usr/share/cmake/Modules/FindPackageHandleStandardArgs.cmake",
+		"/usr/share/cmake/Modules/FindPackageMessage.cmake",
 		"/usr/lib/cmake/Qt6Core/Qt6CoreConfigureFileTemplate.in",
 		"/usr/lib/cmake/Qt6Qml/Qt6QmlPluginTemplate.cpp.in",
 		"/usr/lib/cmake/Qt6Qml/Qt6QmlModuleDirMappingTemplate.qrc.in",
@@ -19,6 +22,12 @@
 	"DEP_FILE_RULE_NAME" : "caelestia_autogen/timestamp",
 	"HEADERS" : 
 	[
+		[
+			"/home/erik/.config/quickshell/caelestia/plugin/src/Caelestia/beattracker.hpp",
+			"MU",
+			"EWIEGA46WW/moc_beattracker.cpp",
+			null
+		],
 		[
 			"/home/erik/.config/quickshell/caelestia/plugin/src/Caelestia/cachingimagemanager.hpp",
 			"MU",
@@ -36,6 +45,12 @@
 			"MU",
 			"EWIEGA46WW/moc_filesystemmodel.cpp",
 			null
+		],
+		[
+			"/home/erik/.config/quickshell/caelestia/plugin/src/Caelestia/qalculator.hpp",
+			"MU",
+			"EWIEGA46WW/moc_qalculator.cpp",
+			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
@@ -46,6 +61,7 @@
 		"QT_CONCURRENT_LIB",
 		"QT_CORE_LIB",
 		"QT_GUI_LIB",
+		"QT_MULTIMEDIA_LIB",
 		"QT_NETWORK_LIB",
 		"QT_NO_DEBUG",
 		"QT_QMLINTEGRATION_LIB",
@@ -72,8 +88,10 @@
 		"/usr/include/qt6/QtQml",
 		"/usr/include/qt6/QtQmlIntegration",
 		"/usr/include/qt6/QtNetwork",
+		"/usr/include/libxml2",
 		"/usr/include/qt6/QtGui",
 		"/usr/include/qt6/QtConcurrent",
+		"/usr/include/qt6/QtMultimedia",
 		"/usr/include",
 		"/usr/include/c++/15.2.1",
 		"/usr/include/c++/15.2.1/x86_64-pc-linux-gnu",
@@ -120,6 +138,11 @@
 	"SOURCES" : 
 	[
 		[
+			"/home/erik/.config/quickshell/caelestia/plugin/src/Caelestia/beattracker.cpp",
+			"MU",
+			null
+		],
+		[
 			"/home/erik/.config/quickshell/caelestia/plugin/src/Caelestia/cachingimagemanager.cpp",
 			"MU",
 			null
@@ -131,6 +154,11 @@
 		],
 		[
 			"/home/erik/.config/quickshell/caelestia/plugin/src/Caelestia/filesystemmodel.cpp",
+			"MU",
+			null
+		],
+		[
+			"/home/erik/.config/quickshell/caelestia/plugin/src/Caelestia/qalculator.cpp",
 			"MU",
 			null
 		]

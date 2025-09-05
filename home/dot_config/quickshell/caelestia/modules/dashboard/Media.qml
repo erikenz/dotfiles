@@ -7,6 +7,7 @@ import qs.components.controls
 import qs.services
 import qs.utils
 import qs.config
+import Caelestia
 import Quickshell
 import Quickshell.Widgets
 import Quickshell.Services.Mpris
@@ -56,6 +57,10 @@ Item {
 
     Ref {
         service: Cava
+    }
+
+    Ref {
+        service: BeatTracker
     }
 
     Shape {
@@ -525,8 +530,8 @@ Item {
             height: visualiser.height * 0.75
 
             playing: Players.active?.isPlaying ?? false
-            speed: BeatDetector.bpm / 300
-            source: Paths.expandTilde(Config.paths.mediaGif)
+            speed: BeatTracker.bpm / 300
+            source: Paths.absolutePath(Config.paths.mediaGif)
             asynchronous: true
             fillMode: AnimatedImage.PreserveAspectFit
         }

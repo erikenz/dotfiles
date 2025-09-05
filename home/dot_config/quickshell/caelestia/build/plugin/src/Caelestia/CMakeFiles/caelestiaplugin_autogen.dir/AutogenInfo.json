@@ -7,6 +7,9 @@
 	"CMAKE_LIST_FILES" : 
 	[
 		"/home/erik/.config/quickshell/caelestia/plugin/src/Caelestia/CMakeLists.txt",
+		"/usr/share/cmake/Modules/FindPkgConfig.cmake",
+		"/usr/share/cmake/Modules/FindPackageHandleStandardArgs.cmake",
+		"/usr/share/cmake/Modules/FindPackageMessage.cmake",
 		"/usr/lib/cmake/Qt6Core/Qt6CoreConfigureFileTemplate.in",
 		"/usr/lib/cmake/Qt6Qml/Qt6QmlPluginTemplate.cpp.in",
 		"/usr/lib/cmake/Qt6Qml/Qt6QmlModuleDirMappingTemplate.qrc.in",

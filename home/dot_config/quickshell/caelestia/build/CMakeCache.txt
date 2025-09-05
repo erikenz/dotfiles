@@ -176,7 +176,7 @@ CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 CMAKE_PROJECT_NAME:STATIC=caelestia-shell
 
 //Value Computed by CMake
-CMAKE_PROJECT_VERSION:STATIC=1.1.0
+CMAKE_PROJECT_VERSION:STATIC=1.1.1
 
 //Value Computed by CMake
 CMAKE_PROJECT_VERSION_MAJOR:STATIC=1
@@ -185,7 +185,7 @@ CMAKE_PROJECT_VERSION_MAJOR:STATIC=1
 CMAKE_PROJECT_VERSION_MINOR:STATIC=1
 
 //Value Computed by CMake
-CMAKE_PROJECT_VERSION_PATCH:STATIC=0
+CMAKE_PROJECT_VERSION_PATCH:STATIC=1
 
 //Value Computed by CMake
 CMAKE_PROJECT_VERSION_TWEAK:STATIC=
@@ -358,6 +358,12 @@ Qt6GuiTools_DIR:PATH=/usr/lib/cmake/Qt6GuiTools
 //The directory containing a CMake configuration file for Qt6Gui.
 Qt6Gui_DIR:PATH=/usr/lib/cmake/Qt6Gui
 
+//The directory containing a CMake configuration file for Qt6MultimediaPrivate.
+Qt6MultimediaPrivate_DIR:PATH=/usr/lib/cmake/Qt6MultimediaPrivate
+
+//The directory containing a CMake configuration file for Qt6Multimedia.
+Qt6Multimedia_DIR:PATH=/usr/lib/cmake/Qt6Multimedia
+
 //The directory containing a CMake configuration file for Qt6NetworkPrivate.
 Qt6NetworkPrivate_DIR:PATH=/usr/lib/cmake/Qt6NetworkPrivate
 
@@ -426,6 +432,9 @@ pkgcfg_lib_PIPEWIRE_pipewire-0.3:FILEPATH=/usr/lib/libpipewire-0.3.so
 
 //Path to a library.
 pkgcfg_lib_PKG_XKB_xkbcommon:FILEPATH=/usr/lib/libxkbcommon.so
+
+//Path to a library.
+pkgcfg_lib_QALCULATE_qalculate:FILEPATH=/usr/lib/libqalculate.so
 
 
 ########################
@@ -589,7 +598,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=4
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=3
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -746,6 +755,41 @@ PKG_XKB_xkbcommon_INCLUDEDIR:INTERNAL=
 PKG_XKB_xkbcommon_LIBDIR:INTERNAL=
 PKG_XKB_xkbcommon_PREFIX:INTERNAL=
 PKG_XKB_xkbcommon_VERSION:INTERNAL=
+QALCULATE_CFLAGS:INTERNAL=-I/usr/include;-I/usr/include/libxml2;-DWITH_GZFILEOP
+QALCULATE_CFLAGS_I:INTERNAL=
+QALCULATE_CFLAGS_OTHER:INTERNAL=-DWITH_GZFILEOP
+QALCULATE_FOUND:INTERNAL=1
+QALCULATE_INCLUDEDIR:INTERNAL=/usr/include
+QALCULATE_INCLUDE_DIRS:INTERNAL=/usr/include;/usr/include/libxml2
+QALCULATE_LDFLAGS:INTERNAL=-L/usr/lib;-lqalculate
+QALCULATE_LDFLAGS_OTHER:INTERNAL=
+QALCULATE_LIBDIR:INTERNAL=/usr/lib
+QALCULATE_LIBRARIES:INTERNAL=qalculate
+QALCULATE_LIBRARY_DIRS:INTERNAL=/usr/lib
+QALCULATE_LIBS:INTERNAL=
+QALCULATE_LIBS_L:INTERNAL=
+QALCULATE_LIBS_OTHER:INTERNAL=
+QALCULATE_LIBS_PATHS:INTERNAL=
+QALCULATE_MODULE_NAME:INTERNAL=libqalculate
+QALCULATE_PREFIX:INTERNAL=/usr
+QALCULATE_STATIC_CFLAGS:INTERNAL=-I/usr/include;-I/usr/include/libxml2;-DWITH_GZFILEOP;-DLZMA_API_STATIC
+QALCULATE_STATIC_CFLAGS_I:INTERNAL=
+QALCULATE_STATIC_CFLAGS_OTHER:INTERNAL=-DWITH_GZFILEOP;-DLZMA_API_STATIC
+QALCULATE_STATIC_INCLUDE_DIRS:INTERNAL=/usr/include;/usr/include/libxml2
+QALCULATE_STATIC_LDFLAGS:INTERNAL=-L/usr/lib;-lqalculate;-lcurl;-lgmp;-lmpfr;-lpthread;-lxml2;-lm;-pthread;-lz;-llzma;-pthread;-lpthread;-licuuc;-licudata;-lpthread;-lm
+QALCULATE_STATIC_LDFLAGS_OTHER:INTERNAL=-pthread;-pthread
+QALCULATE_STATIC_LIBDIR:INTERNAL=
+QALCULATE_STATIC_LIBRARIES:INTERNAL=qalculate;curl;gmp;mpfr;pthread;xml2;m;z;lzma;pthread;icuuc;icudata;pthread;m
+QALCULATE_STATIC_LIBRARY_DIRS:INTERNAL=/usr/lib
+QALCULATE_STATIC_LIBS:INTERNAL=
+QALCULATE_STATIC_LIBS_L:INTERNAL=
+QALCULATE_STATIC_LIBS_OTHER:INTERNAL=
+QALCULATE_STATIC_LIBS_PATHS:INTERNAL=
+QALCULATE_VERSION:INTERNAL=5.7.0
+QALCULATE_libqalculate_INCLUDEDIR:INTERNAL=
+QALCULATE_libqalculate_LIBDIR:INTERNAL=
+QALCULATE_libqalculate_PREFIX:INTERNAL=
+QALCULATE_libqalculate_VERSION:INTERNAL=
 //Qt feature: accept4 (from target Qt6::Core)
 QT_FEATURE_accept4:INTERNAL=ON
 //Qt feature: accessibility (from target Qt6::Gui)
@@ -756,6 +800,8 @@ QT_FEATURE_accessibility_atspi_bridge:INTERNAL=ON
 QT_FEATURE_action:INTERNAL=ON
 //Qt feature: aesni (from target Qt6::Core)
 QT_FEATURE_aesni:INTERNAL=ON
+//Qt feature: alsa (from target Qt6::Multimedia)
+QT_FEATURE_alsa:INTERNAL=OFF
 //Qt feature: android_style_assets (from target Qt6::Core)
 QT_FEATURE_android_style_assets:INTERNAL=OFF
 //Qt feature: animation (from target Qt6::Core)
@@ -768,6 +814,8 @@ QT_FEATURE_arm_crc32:INTERNAL=OFF
 QT_FEATURE_arm_crypto:INTERNAL=OFF
 //Qt feature: arm_sve (from target Qt6::Core)
 QT_FEATURE_arm_sve:INTERNAL=OFF
+//Qt feature: avfoundation (from target Qt6::Multimedia)
+QT_FEATURE_avfoundation:INTERNAL=OFF
 //Qt feature: avx (from target Qt6::Core)
 QT_FEATURE_avx:INTERNAL=ON
 //Qt feature: avx2 (from target Qt6::Core)
@@ -816,6 +864,8 @@ QT_FEATURE_commandlineparser:INTERNAL=ON
 QT_FEATURE_concatenatetablesproxymodel:INTERNAL=ON
 //Qt feature: concurrent (from target Qt6::Core)
 QT_FEATURE_concurrent:INTERNAL=ON
+//Qt feature: coreaudio (from target Qt6::Multimedia)
+QT_FEATURE_coreaudio:INTERNAL=OFF
 //Qt feature: cpp_winrt (from target Qt6::Core)
 QT_FEATURE_cpp_winrt:INTERNAL=OFF
 //Qt feature: cross_compile (from target Qt6::Core)
@@ -930,6 +980,10 @@ QT_FEATURE_etw:INTERNAL=OFF
 QT_FEATURE_evdev:INTERNAL=ON
 //Qt feature: f16c (from target Qt6::Core)
 QT_FEATURE_f16c:INTERNAL=ON
+//Qt feature: ffmpeg (from target Qt6::Multimedia)
+QT_FEATURE_ffmpeg:INTERNAL=ON
+//Qt feature: ffmpeg_stubs (from target Qt6::Multimedia)
+QT_FEATURE_ffmpeg_stubs:INTERNAL=OFF
 //Qt feature: filesystemiterator (from target Qt6::Core)
 QT_FEATURE_filesystemiterator:INTERNAL=ON
 //Qt feature: filesystemmodel (from target Qt6::Gui)
@@ -974,10 +1028,24 @@ QT_FEATURE_gif:INTERNAL=ON
 QT_FEATURE_glib:INTERNAL=ON
 //Qt feature: glibc_fortify_source (from target Qt6::Core)
 QT_FEATURE_glibc_fortify_source:INTERNAL=ON
+//Qt feature: gpu_vivante (from target Qt6::Multimedia)
+QT_FEATURE_gpu_vivante:INTERNAL=OFF
 //Qt feature: graphicsframecapture (from target Qt6::Gui)
 QT_FEATURE_graphicsframecapture:INTERNAL=OFF
 //Qt feature: gssapi (from target Qt6::Network)
 QT_FEATURE_gssapi:INTERNAL=ON
+//Qt feature: gstreamer (from target Qt6::Multimedia)
+QT_FEATURE_gstreamer:INTERNAL=ON
+//Qt feature: gstreamer_gl (from target Qt6::Multimedia)
+QT_FEATURE_gstreamer_gl:INTERNAL=ON
+//Qt feature: gstreamer_gl_egl (from target Qt6::Multimedia)
+QT_FEATURE_gstreamer_gl_egl:INTERNAL=ON
+//Qt feature: gstreamer_gl_wayland (from target Qt6::Multimedia)
+QT_FEATURE_gstreamer_gl_wayland:INTERNAL=ON
+//Qt feature: gstreamer_gl_x11 (from target Qt6::Multimedia)
+QT_FEATURE_gstreamer_gl_x11:INTERNAL=ON
+//Qt feature: gstreamer_photography (from target Qt6::Multimedia)
+QT_FEATURE_gstreamer_photography:INTERNAL=ON
 //Qt feature: gui (from target Qt6::Core)
 QT_FEATURE_gui:INTERNAL=ON
 //Qt feature: harfbuzz (from target Qt6::Gui)
@@ -1062,8 +1130,12 @@ QT_FEATURE_libstdcpp_assertions:INTERNAL=ON
 QT_FEATURE_libudev:INTERNAL=ON
 //Qt feature: linkat (from target Qt6::Core)
 QT_FEATURE_linkat:INTERNAL=ON
+//Qt feature: linux_dmabuf (from target Qt6::Multimedia)
+QT_FEATURE_linux_dmabuf:INTERNAL=ON
 //Qt feature: linux_netlink (from target Qt6::Network)
 QT_FEATURE_linux_netlink:INTERNAL=ON
+//Qt feature: linux_v4l (from target Qt6::Multimedia)
+QT_FEATURE_linux_v4l:INTERNAL=ON
 //Qt feature: linuxfb (from target Qt6::Gui)
 QT_FEATURE_linuxfb:INTERNAL=ON
 //Qt feature: localserver (from target Qt6::Network)
@@ -1092,12 +1164,16 @@ QT_FEATURE_mimetype_database:INTERNAL=ON
 QT_FEATURE_mips_dsp:INTERNAL=OFF
 //Qt feature: mips_dspr2 (from target Qt6::Core)
 QT_FEATURE_mips_dspr2:INTERNAL=OFF
+//Qt feature: mmrenderer (from target Qt6::Multimedia)
+QT_FEATURE_mmrenderer:INTERNAL=OFF
 //Qt feature: movie (from target Qt6::Gui)
 QT_FEATURE_movie:INTERNAL=ON
 //Qt feature: mtdev (from target Qt6::Gui)
 QT_FEATURE_mtdev:INTERNAL=ON
 //Qt feature: multiprocess (from target Qt6::Gui)
 QT_FEATURE_multiprocess:INTERNAL=ON
+//Qt feature: native_android_backend (from target Qt6::Multimedia)
+QT_FEATURE_native_android_backend:INTERNAL=OFF
 //Qt feature: neon (from target Qt6::Core)
 QT_FEATURE_neon:INTERNAL=OFF
 //Qt feature: network (from target Qt6::Core)
@@ -1124,6 +1200,8 @@ QT_FEATURE_opengles3:INTERNAL=OFF
 QT_FEATURE_opengles31:INTERNAL=OFF
 //Qt feature: opengles32 (from target Qt6::Gui)
 QT_FEATURE_opengles32:INTERNAL=OFF
+//Qt feature: opensles (from target Qt6::Multimedia)
+QT_FEATURE_opensles:INTERNAL=OFF
 //Qt feature: openssl (from target Qt6::Core)
 QT_FEATURE_openssl:INTERNAL=ON
 //Qt feature: openssl_hash (from target Qt6::Core)
@@ -1144,6 +1222,10 @@ QT_FEATURE_pdf:INTERNAL=ON
 QT_FEATURE_permissions:INTERNAL=ON
 //Qt feature: picture (from target Qt6::Gui)
 QT_FEATURE_picture:INTERNAL=ON
+//Qt feature: pipewire (from target Qt6::Multimedia)
+QT_FEATURE_pipewire:INTERNAL=ON
+//Qt feature: pipewire_screencapture (from target Qt6::Multimedia)
+QT_FEATURE_pipewire_screencapture:INTERNAL=ON
 //Qt feature: pkg_config (from target Qt6::Core)
 QT_FEATURE_pkg_config:INTERNAL=ON
 //Qt feature: plugin_manifest (from target Qt6::Core)
@@ -1188,6 +1270,8 @@ QT_FEATURE_pthread_timedjoin:INTERNAL=ON
 QT_FEATURE_publicsuffix_qt:INTERNAL=ON
 //Qt feature: publicsuffix_system (from target Qt6::Network)
 QT_FEATURE_publicsuffix_system:INTERNAL=ON
+//Qt feature: pulseaudio (from target Qt6::Multimedia)
+QT_FEATURE_pulseaudio:INTERNAL=ON
 //Qt feature: qml_animation (from target Qt6::Qml)
 QT_FEATURE_qml_animation:INTERNAL=ON
 //Qt feature: qml_debug (from target Qt6::Qml)
@@ -1280,6 +1364,10 @@ QT_FEATURE_slog2:INTERNAL=OFF
 QT_FEATURE_socks5:INTERNAL=ON
 //Qt feature: sortfilterproxymodel (from target Qt6::Core)
 QT_FEATURE_sortfilterproxymodel:INTERNAL=ON
+//Qt feature: spatialaudio (from target Qt6::Multimedia)
+QT_FEATURE_spatialaudio:INTERNAL=ON
+//Qt feature: spatialaudio_quick3d (from target Qt6::Multimedia)
+QT_FEATURE_spatialaudio_quick3d:INTERNAL=ON
 //Qt feature: sql (from target Qt6::Core)
 QT_FEATURE_sql:INTERNAL=ON
 //Qt feature: sse2 (from target Qt6::Core)
@@ -1398,12 +1486,16 @@ QT_FEATURE_use_gold_linker:INTERNAL=OFF
 QT_FEATURE_use_lld_linker:INTERNAL=OFF
 //Qt feature: use_mold_linker (from target Qt6::Core)
 QT_FEATURE_use_mold_linker:INTERNAL=OFF
+//Qt feature: vaapi (from target Qt6::Multimedia)
+QT_FEATURE_vaapi:INTERNAL=ON
 //Qt feature: vaes (from target Qt6::Core)
 QT_FEATURE_vaes:INTERNAL=ON
 //Qt feature: validator (from target Qt6::Gui)
 QT_FEATURE_validator:INTERNAL=ON
 //Qt feature: version_tagging (from target Qt6::Core)
 QT_FEATURE_version_tagging:INTERNAL=ON
+//Qt feature: videotoolbox (from target Qt6::Multimedia)
+QT_FEATURE_videotoolbox:INTERNAL=OFF
 //Qt feature: vkgen (from target Qt6::Gui)
 QT_FEATURE_vkgen:INTERNAL=ON
 //Qt feature: vkkhrdisplay (from target Qt6::Gui)
@@ -1418,6 +1510,8 @@ QT_FEATURE_vulkan:INTERNAL=ON
 QT_FEATURE_vxpipedrv:INTERNAL=OFF
 //Qt feature: vxworksevdev (from target Qt6::Gui)
 QT_FEATURE_vxworksevdev:INTERNAL=OFF
+//Qt feature: wasm (from target Qt6::Multimedia)
+QT_FEATURE_wasm:INTERNAL=OFF
 //Qt feature: wasm_exceptions (from target Qt6::Core)
 QT_FEATURE_wasm_exceptions:INTERNAL=OFF
 //Qt feature: wasm_jspi (from target Qt6::Core)
@@ -1432,6 +1526,8 @@ QT_FEATURE_whatsthis:INTERNAL=ON
 QT_FEATURE_wheelevent:INTERNAL=ON
 //Qt feature: widgets (from target Qt6::Core)
 QT_FEATURE_widgets:INTERNAL=ON
+//Qt feature: wmf (from target Qt6::Multimedia)
+QT_FEATURE_wmf:INTERNAL=OFF
 //Qt feature: x86intrin (from target Qt6::Core)
 QT_FEATURE_x86intrin:INTERNAL=ON
 //Qt feature: xcb (from target Qt6::Gui)
@@ -1479,9 +1575,11 @@ _GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=/
 __pkg_config_arguments_AUBIO:INTERNAL=REQUIRED;aubio
 __pkg_config_arguments_PIPEWIRE:INTERNAL=REQUIRED;libpipewire-0.3
 __pkg_config_arguments_PKG_XKB:INTERNAL=QUIET;xkbcommon
+__pkg_config_arguments_QALCULATE:INTERNAL=REQUIRED;libqalculate
 __pkg_config_checked_AUBIO:INTERNAL=1
 __pkg_config_checked_PIPEWIRE:INTERNAL=1
 __pkg_config_checked_PKG_XKB:INTERNAL=1
+__pkg_config_checked_QALCULATE:INTERNAL=1
 __qt_qml_macros_module_base_dir:INTERNAL=/usr/lib/cmake/Qt6Qml
 //ADVANCED property for variable: pkgcfg_lib_AUBIO_aubio
 pkgcfg_lib_AUBIO_aubio-ADVANCED:INTERNAL=1
@@ -1489,5 +1587,7 @@ pkgcfg_lib_AUBIO_aubio-ADVANCED:INTERNAL=1
 pkgcfg_lib_PIPEWIRE_pipewire-0.3-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: pkgcfg_lib_PKG_XKB_xkbcommon
 pkgcfg_lib_PKG_XKB_xkbcommon-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_QALCULATE_qalculate
+pkgcfg_lib_QALCULATE_qalculate-ADVANCED:INTERNAL=1
 prefix_result:INTERNAL=/usr/lib
 

@@ -7,6 +7,38 @@ import QtQuick.tooling 1.2
 
 Module {
     Component {
+        file: "beattracker.hpp"
+        name: "BeatTracker"
+        accessSemantics: "reference"
+        prototype: "QObject"
+        exports: ["Caelestia/BeatTracker 0.0"]
+        isCreatable: false
+        isSingleton: true
+        exportMetaObjectRevisions: [0]
+        Property {
+            name: "bpm"
+            type: "smpl_t"
+            read: "bpm"
+            notify: "bpmChanged"
+            index: 0
+            isReadonly: true
+        }
+        Property {
+            name: "refCount"
+            type: "int"
+            read: "refCount"
+            write: "setRefCount"
+            notify: "refCountChanged"
+            index: 1
+        }
+        Signal { name: "bpmChanged" }
+        Signal { name: "refCountChanged" }
+        Signal {
+            name: "beat"
+            Parameter { name: "bpm"; type: "smpl_t" }
+        }
+    }
+    Component {
         file: "cutils.hpp"
         name: "CUtils"
         accessSemantics: "reference"
@@ -112,6 +144,12 @@ Module {
             Parameter { name: "path"; type: "QString" }
             Parameter { name: "rescaleSize"; type: "int" }
             Parameter { name: "callback"; type: "QJSValue" }
+        }
+        Method {
+            name: "toLocalFile"
+            type: "QString"
+            isMethodConstant: true
+            Parameter { name: "url"; type: "QUrl" }
         }
     }
     Component {
@@ -802,5 +840,29 @@ Module {
         name: "QAbstractListModel"
         accessSemantics: "reference"
         prototype: "QAbstractItemModel"
+    }
+    Component {
+        file: "qalculator.hpp"
+        name: "Qalculator"
+        accessSemantics: "reference"
+        prototype: "QObject"
+        exports: ["Caelestia/Qalculator 0.0"]
+        isCreatable: false
+        isSingleton: true
+        exportMetaObjectRevisions: [0]
+        Method {
+            name: "eval"
+            type: "QString"
+            isMethodConstant: true
+            Parameter { name: "expr"; type: "QString" }
+            Parameter { name: "printExpr"; type: "bool" }
+        }
+        Method {
+            name: "eval"
+            type: "QString"
+            isCloned: true
+            isMethodConstant: true
+            Parameter { name: "expr"; type: "QString" }
+        }
     }
 }

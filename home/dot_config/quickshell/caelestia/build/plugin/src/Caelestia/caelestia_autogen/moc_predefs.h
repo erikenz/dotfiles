@@ -281,6 +281,7 @@
 #define __UINTMAX_C(c) c ## UL
 #define __FLT16_DIG__ 3
 #define __k8 1
+#define QT_MULTIMEDIA_LIB 1
 #define __FLT32X_MIN__ 2.22507385850720138309023271733240406e-308F32x
 #define __SIG_ATOMIC_MAX__ 0x7fffffff
 #define __cpp_constexpr 202002L

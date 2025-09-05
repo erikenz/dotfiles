@@ -5797,3 +5797,228 @@ events:
         - "/usr/pkg"
         - "/opt"
 ...
+
+---
+events:
+  -
+    kind: "find_package-v1"
+    backtrace:
+      - "/usr/lib/cmake/Qt6Multimedia/Qt6MultimediaConfig.cmake:95 (find_package)"
+      - "/usr/lib/cmake/Qt6/Qt6Config.cmake:243 (find_package)"
+      - "plugin/CMakeLists.txt:1 (find_package)"
+    name: "Qt6MultimediaPrivate"
+    configs:
+      -
+        filename: "Qt6MultimediaPrivateConfig.cmake"
+        kind: "cmake"
+      -
+        filename: "qt6multimediaprivate-config.cmake"
+        kind: "cmake"
+    version_request:
+      version: "6.9.2"
+      version_complete: "6.9.2"
+      exact: true
+    settings:
+      required: "optional"
+      quiet: true
+      global: false
+      policy_scope: true
+      bypass_provider: false
+      names:
+        - "Qt6MultimediaPrivate"
+      search_paths:
+        - "/usr/lib/cmake/Qt6Multimedia/.."
+        - "/usr/lib/cmake"
+      path_suffixes:
+        - ""
+      paths:
+        CMAKE_FIND_USE_CMAKE_PATH: false
+        CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+        CMAKE_FIND_USE_INSTALL_PREFIX: true
+        CMAKE_FIND_USE_PACKAGE_ROOT_PATH: true
+        CMAKE_FIND_USE_CMAKE_PACKAGE_REGISTRY: true
+        CMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY: true
+        CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
+    candidates:
+      -
+        path: "/home/erik/.config/quickshell/caelestia/build/CMakeFiles/pkgRedirects/Qt6MultimediaPrivateConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/home/erik/.config/quickshell/caelestia/build/CMakeFiles/pkgRedirects/qt6multimediaprivate-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib/cmake/Qt6MultimediaPrivateConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib/cmake/qt6multimediaprivate-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+    found:
+      path: "/usr/lib/cmake/Qt6MultimediaPrivate/Qt6MultimediaPrivateConfig.cmake"
+      mode: "config"
+      version: "6.9.2"
+    search_context:
+      ENV{PATH}:
+        - "/run/user/1000/fnm_multishells/113835_1756990194250/bin"
+        - "/home/erik/.local/bin"
+        - "/run/user/1000/fnm_multishells/108473_1756989050252/bin"
+        - "/home/erik/.local/share/pnpm"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/usr/lib/jvm/default/bin"
+        - "/usr/bin/site_perl"
+        - "/usr/bin/vendor_perl"
+        - "/usr/bin/core_perl"
+        - "/home/erik/go/bin"
+        - "/home/erik/go/bin"
+      CMAKE_INSTALL_PREFIX: "/"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/usr"
+        - "/"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+  -
+    kind: "find_package-v1"
+    backtrace:
+      - "/usr/lib/cmake/Qt6/Qt6Config.cmake:243 (find_package)"
+      - "plugin/CMakeLists.txt:1 (find_package)"
+    name: "Qt6Multimedia"
+    configs:
+      -
+        filename: "Qt6MultimediaConfig.cmake"
+        kind: "cmake"
+      -
+        filename: "qt6multimedia-config.cmake"
+        kind: "cmake"
+    version_request:
+      exact: false
+    settings:
+      required: "optional"
+      quiet: false
+      global: false
+      policy_scope: true
+      bypass_provider: false
+      names:
+        - "Qt6Multimedia"
+      search_paths:
+        - "/usr/lib/cmake"
+      path_suffixes:
+        - ""
+      paths:
+        CMAKE_FIND_USE_CMAKE_PATH: false
+        CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+        CMAKE_FIND_USE_INSTALL_PREFIX: true
+        CMAKE_FIND_USE_PACKAGE_ROOT_PATH: true
+        CMAKE_FIND_USE_CMAKE_PACKAGE_REGISTRY: true
+        CMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY: true
+        CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
+    candidates:
+      -
+        path: "/home/erik/.config/quickshell/caelestia/build/CMakeFiles/pkgRedirects/Qt6MultimediaConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/home/erik/.config/quickshell/caelestia/build/CMakeFiles/pkgRedirects/qt6multimedia-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib/cmake/Qt6MultimediaConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib/cmake/qt6multimedia-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+    found:
+      path: "/usr/lib/cmake/Qt6Multimedia/Qt6MultimediaConfig.cmake"
+      mode: "config"
+      version: "6.9.2"
+    search_context:
+      ENV{PATH}:
+        - "/run/user/1000/fnm_multishells/113835_1756990194250/bin"
+        - "/home/erik/.local/bin"
+        - "/run/user/1000/fnm_multishells/108473_1756989050252/bin"
+        - "/home/erik/.local/share/pnpm"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/usr/lib/jvm/default/bin"
+        - "/usr/bin/site_perl"
+        - "/usr/bin/vendor_perl"
+        - "/usr/bin/core_perl"
+        - "/home/erik/go/bin"
+        - "/home/erik/go/bin"
+      CMAKE_INSTALL_PREFIX: "/"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/usr"
+        - "/"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/FindPkgConfig.cmake:307 (find_library)"
+      - "/usr/share/cmake/Modules/FindPkgConfig.cmake:357 (_pkg_find_libs)"
+      - "/usr/share/cmake/Modules/FindPkgConfig.cmake:695 (_pkg_recalculate)"
+      - "/usr/share/cmake/Modules/FindPkgConfig.cmake:867 (_pkg_check_modules_internal)"
+      - "plugin/src/Caelestia/CMakeLists.txt:2 (pkg_check_modules)"
+    mode: "library"
+    variable: "pkgcfg_lib_QALCULATE_qalculate"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "qalculate"
+    candidate_directories:
+      - "/usr/lib/"
+    found: "/usr/lib/libqalculate.so"
+    search_context:
+      ENV{PATH}:
+        - "/run/user/1000/fnm_multishells/113835_1756990194250/bin"
+        - "/home/erik/.local/bin"
+        - "/run/user/1000/fnm_multishells/108473_1756989050252/bin"
+        - "/home/erik/.local/share/pnpm"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/usr/lib/jvm/default/bin"
+        - "/usr/bin/site_perl"
+        - "/usr/bin/vendor_perl"
+        - "/usr/bin/core_perl"
+        - "/home/erik/go/bin"
+        - "/home/erik/go/bin"
+      CMAKE_INSTALL_PREFIX: "/"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/usr"
+        - "/"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+...

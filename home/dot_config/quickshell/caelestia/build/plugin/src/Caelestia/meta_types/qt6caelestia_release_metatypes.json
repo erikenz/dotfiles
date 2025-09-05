@@ -6,10 +6,95 @@
                     {
                         "name": "QML.Element",
                         "value": "auto"
+                    },
+                    {
+                        "name": "QML.Singleton",
+                        "value": "true"
+                    }
+                ],
+                "className": "BeatTracker",
+                "lineNumber": 9,
+                "object": true,
+                "properties": [
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 0,
+                        "name": "bpm",
+                        "notify": "bpmChanged",
+                        "read": "bpm",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "smpl_t",
+                        "user": false
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 1,
+                        "name": "refCount",
+                        "notify": "refCountChanged",
+                        "read": "refCount",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "int",
+                        "user": false,
+                        "write": "setRefCount"
+                    }
+                ],
+                "qualifiedClassName": "BeatTracker",
+                "signals": [
+                    {
+                        "access": "public",
+                        "index": 0,
+                        "name": "bpmChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "index": 1,
+                        "name": "refCountChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "bpm",
+                                "type": "smpl_t"
+                            }
+                        ],
+                        "index": 2,
+                        "name": "beat",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "beattracker.hpp",
+        "outputRevision": 69
+    },
+    {
+        "classes": [
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "auto"
                     }
                 ],
                 "className": "CachingImageManager",
-                "lineNumber": 7,
+                "lineNumber": 8,
                 "methods": [
                     {
                         "access": "public",
@@ -465,6 +550,19 @@
                         "index": 15,
                         "name": "getAverageLuminance",
                         "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "url",
+                                "type": "QUrl"
+                            }
+                        ],
+                        "index": 16,
+                        "isConst": true,
+                        "name": "toLocalFile",
+                        "returnType": "QString"
                     }
                 ],
                 "object": true,
@@ -813,6 +911,67 @@
             }
         ],
         "inputFile": "filesystemmodel.hpp",
+        "outputRevision": 69
+    },
+    {
+        "classes": [
+            {
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "auto"
+                    },
+                    {
+                        "name": "QML.Singleton",
+                        "value": "true"
+                    }
+                ],
+                "className": "Qalculator",
+                "lineNumber": 6,
+                "methods": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "expr",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "printExpr",
+                                "type": "bool"
+                            }
+                        ],
+                        "index": 0,
+                        "isConst": true,
+                        "name": "eval",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "expr",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 1,
+                        "isCloned": true,
+                        "isConst": true,
+                        "name": "eval",
+                        "returnType": "QString"
+                    }
+                ],
+                "object": true,
+                "qualifiedClassName": "Qalculator",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "qalculator.hpp",
         "outputRevision": 69
     }
 ]

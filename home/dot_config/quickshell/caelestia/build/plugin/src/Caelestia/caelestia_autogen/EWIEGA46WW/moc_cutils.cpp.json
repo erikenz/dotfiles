@@ -327,6 +327,19 @@
                     "index": 15,
                     "name": "getAverageLuminance",
                     "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "url",
+                            "type": "QUrl"
+                        }
+                    ],
+                    "index": 16,
+                    "isConst": true,
+                    "name": "toLocalFile",
+                    "returnType": "QString"
                 }
             ],
             "object": true,

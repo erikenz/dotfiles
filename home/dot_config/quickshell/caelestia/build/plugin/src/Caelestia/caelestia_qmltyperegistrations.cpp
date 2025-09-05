@@ -7,6 +7,9 @@
 #include <QtQml/qqml.h>
 #include <QtQml/qqmlmoduleregistration.h>
 
+#if __has_include(<beattracker.hpp>)
+#  include <beattracker.hpp>
+#endif
 #if __has_include(<cachingimagemanager.hpp>)
 #  include <cachingimagemanager.hpp>
 #endif
@@ -15,6 +18,9 @@
 #endif
 #if __has_include(<filesystemmodel.hpp>)
 #  include <filesystemmodel.hpp>
+#endif
+#if __has_include(<qalculator.hpp>)
+#  include <qalculator.hpp>
 #endif
 
 
@@ -27,6 +33,7 @@ Q_QMLTYPE_EXPORT void qml_register_types_Caelestia()
 {
     qmlRegisterModule("Caelestia", 0, 0);
     QT_WARNING_PUSH QT_WARNING_DISABLE_DEPRECATED
+    qmlRegisterTypesAndRevisions<BeatTracker>("Caelestia", 0);
     qmlRegisterTypesAndRevisions<CUtils>("Caelestia", 0);
     qmlRegisterTypesAndRevisions<CachingImageManager>("Caelestia", 0);
     qmlRegisterTypesAndRevisions<FileSystemEntry>("Caelestia", 0);
@@ -36,6 +43,7 @@ Q_QMLTYPE_EXPORT void qml_register_types_Caelestia()
     qmlRegisterEnum<QAbstractItemModel::LayoutChangeHint>("QAbstractItemModel::LayoutChangeHint");
     qmlRegisterEnum<QAbstractItemModel::CheckIndexOption>("QAbstractItemModel::CheckIndexOption");
     QMetaType::fromType<QAbstractListModel *>().id();
+    qmlRegisterTypesAndRevisions<Qalculator>("Caelestia", 0);
     QT_WARNING_POP
     qmlRegisterModule("Caelestia", 0, 1);
 }

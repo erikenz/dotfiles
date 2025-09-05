@@ -1,7 +1,3 @@
-set(__QT_DEPLOY_TARGET_version_FILE /home/erik/.config/quickshell/caelestia/build/lib/version)
-set(__QT_DEPLOY_TARGET_version_TYPE EXECUTABLE)
-set(__QT_DEPLOY_TARGET_beat_detector_FILE /home/erik/.config/quickshell/caelestia/build/lib/beat_detector)
-set(__QT_DEPLOY_TARGET_beat_detector_TYPE EXECUTABLE)
 set(__QT_DEPLOY_TARGET_caelestia_FILE /home/erik/.config/quickshell/caelestia/build/plugin/src/Caelestia/libcaelestia.so)
 set(__QT_DEPLOY_TARGET_caelestia_TYPE SHARED_LIBRARY)
 set(__QT_DEPLOY_TARGET_caelestiaplugin_FILE /home/erik/.config/quickshell/caelestia/build/qml/Caelestia/libcaelestiaplugin.so)

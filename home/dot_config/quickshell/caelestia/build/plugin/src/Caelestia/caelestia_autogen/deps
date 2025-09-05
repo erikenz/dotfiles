@@ -2,12 +2,16 @@ caelestia_autogen/timestamp: \
 	/home/erik/.config/quickshell/caelestia/build/plugin/src/Caelestia/caelestia_autogen/moc_predefs.h \
 	/home/erik/.config/quickshell/caelestia/build/plugin/src/Caelestia/caelestiaplugin_CaelestiaPlugin_in.cpp \
 	/home/erik/.config/quickshell/caelestia/plugin/src/Caelestia/CMakeLists.txt \
+	/home/erik/.config/quickshell/caelestia/plugin/src/Caelestia/beattracker.cpp \
+	/home/erik/.config/quickshell/caelestia/plugin/src/Caelestia/beattracker.hpp \
 	/home/erik/.config/quickshell/caelestia/plugin/src/Caelestia/cachingimagemanager.cpp \
 	/home/erik/.config/quickshell/caelestia/plugin/src/Caelestia/cachingimagemanager.hpp \
 	/home/erik/.config/quickshell/caelestia/plugin/src/Caelestia/cutils.cpp \
 	/home/erik/.config/quickshell/caelestia/plugin/src/Caelestia/cutils.hpp \
 	/home/erik/.config/quickshell/caelestia/plugin/src/Caelestia/filesystemmodel.cpp \
 	/home/erik/.config/quickshell/caelestia/plugin/src/Caelestia/filesystemmodel.hpp \
+	/home/erik/.config/quickshell/caelestia/plugin/src/Caelestia/qalculator.cpp \
+	/home/erik/.config/quickshell/caelestia/plugin/src/Caelestia/qalculator.hpp \
 	/usr/include/alloca.h \
 	/usr/include/asm-generic/bitsperlong.h \
 	/usr/include/asm-generic/errno-base.h \
@@ -23,6 +27,38 @@ caelestia_autogen/timestamp: \
 	/usr/include/asm/unistd.h \
 	/usr/include/asm/unistd_64.h \
 	/usr/include/assert.h \
+	/usr/include/aubio/aubio.h \
+	/usr/include/aubio/cvec.h \
+	/usr/include/aubio/fmat.h \
+	/usr/include/aubio/fvec.h \
+	/usr/include/aubio/io/sink.h \
+	/usr/include/aubio/io/source.h \
+	/usr/include/aubio/lvec.h \
+	/usr/include/aubio/musicutils.h \
+	/usr/include/aubio/notes/notes.h \
+	/usr/include/aubio/onset/onset.h \
+	/usr/include/aubio/pitch/pitch.h \
+	/usr/include/aubio/spectral/awhitening.h \
+	/usr/include/aubio/spectral/dct.h \
+	/usr/include/aubio/spectral/fft.h \
+	/usr/include/aubio/spectral/filterbank.h \
+	/usr/include/aubio/spectral/filterbank_mel.h \
+	/usr/include/aubio/spectral/mfcc.h \
+	/usr/include/aubio/spectral/phasevoc.h \
+	/usr/include/aubio/spectral/specdesc.h \
+	/usr/include/aubio/spectral/tss.h \
+	/usr/include/aubio/synth/sampler.h \
+	/usr/include/aubio/synth/wavetable.h \
+	/usr/include/aubio/tempo/tempo.h \
+	/usr/include/aubio/temporal/a_weighting.h \
+	/usr/include/aubio/temporal/biquad.h \
+	/usr/include/aubio/temporal/c_weighting.h \
+	/usr/include/aubio/temporal/filter.h \
+	/usr/include/aubio/temporal/resampler.h \
+	/usr/include/aubio/types.h \
+	/usr/include/aubio/utils/log.h \
+	/usr/include/aubio/utils/parameter.h \
+	/usr/include/aubio/vecutils.h \
 	/usr/include/bits/atomic_wide_counter.h \
 	/usr/include/bits/byteswap.h \
 	/usr/include/bits/confname.h \
@@ -342,6 +378,7 @@ caelestia_autogen/timestamp: \
 	/usr/include/qt6/QtCore/QFileInfo \
 	/usr/include/qt6/QtCore/QFileSystemWatcher \
 	/usr/include/qt6/QtCore/QFuture \
+	/usr/include/qt6/QtCore/QIODevice \
 	/usr/include/qt6/QtCore/QList \
 	/usr/include/qt6/QtCore/QMimeDatabase \
 	/usr/include/qt6/QtCore/QObject \
@@ -557,6 +594,15 @@ caelestia_autogen/timestamp: \
 	/usr/include/qt6/QtGui/qvector2d.h \
 	/usr/include/qt6/QtGui/qvectornd.h \
 	/usr/include/qt6/QtGui/qwindowdefs.h \
+	/usr/include/qt6/QtMultimedia/QAudioSource \
+	/usr/include/qt6/QtMultimedia/qaudio.h \
+	/usr/include/qt6/QtMultimedia/qaudiodevice.h \
+	/usr/include/qt6/QtMultimedia/qaudioformat.h \
+	/usr/include/qt6/QtMultimedia/qaudiosource.h \
+	/usr/include/qt6/QtMultimedia/qtaudio.h \
+	/usr/include/qt6/QtMultimedia/qtmultimedia-config.h \
+	/usr/include/qt6/QtMultimedia/qtmultimediaexports.h \
+	/usr/include/qt6/QtMultimedia/qtmultimediaglobal.h \
 	/usr/include/qt6/QtNetwork/qtnetwork-config.h \
 	/usr/include/qt6/QtNetwork/qtnetworkexports.h \
 	/usr/include/qt6/QtNetwork/qtnetworkglobal.h \
@@ -606,4 +652,7 @@ caelestia_autogen/timestamp: \
 	/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stdarg.h \
 	/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stdbool.h \
 	/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stddef.h \
+	/usr/share/cmake/Modules/FindPackageHandleStandardArgs.cmake \
+	/usr/share/cmake/Modules/FindPackageMessage.cmake \
+	/usr/share/cmake/Modules/FindPkgConfig.cmake \
 	/usr/bin/cmake
