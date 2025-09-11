@@ -8,7 +8,7 @@
 		"x": 0,
 		"y": 0
 	},
-	"url": "https://music.youtube.com/watch?v=qFdoMMR-7fc&list=RDAMVMYCahYzsmVCA&index=0",
+	"url": "https://music.youtube.com/watch?v=0WET0X3W8mI",
 	"options": {
 		"tray": false,
 		"appVisible": true,
@@ -43,7 +43,7 @@
 				"volumeUp": "Ctrl+Shift+]",
 				"volumeDown": "Ctrl+Shift+["
 			},
-			"savedVolume": 33
+			"savedVolume": 48
 		},
 		"discord": {
 			"listenAlong": true

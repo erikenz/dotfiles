@@ -3,7 +3,7 @@
 		"enableTerm": true,
 		"enableHypr": true,
 		"enableDiscord": true,
-		"enableSpicetify": true,
+		"enableSpicetify": false,
 		"enableFuzzel": true,
 		"enableBtop": true,
 		"enableGtk": true,
