@@ -1,4 +1,7 @@
 {
+	"record": {
+		"extraArgs": []
+	},
 	"theme": {
 		"enableTerm": true,
 		"enableHypr": true,
@@ -50,12 +53,19 @@
 					{
 						"class": "btop",
 						"title": "btop",
-						"workspace": {
-							"name": "special:sysmon"
-						}
+						"workspace": { "name": "special:sysmon" }
 					}
 				],
-				"command": ["ghostty", "-e", "btop"]
+				"command": [
+					"foot",
+					"-a",
+					"btop",
+					"-T",
+					"btop",
+					"fish",
+					"-C",
+					"exec btop"
+				]
 			}
 		},
 		"todo": {

@@ -1,8 +1,8 @@
 {
 	"auto_update_extensions": {
-  "biome": false
- },
- "project_panel": {
+		"biome": false
+	},
+	"project_panel": {
 		"dock": "left",
 		"indent_size": 13,
 		"auto_fold_dirs": false
@@ -20,7 +20,7 @@
 	},
 	"agent": {
 		"always_allow_tool_actions": true,
-  "inline_assistant_model": {
+		"inline_assistant_model": {
 			"provider": "copilot_chat",
 			"model": "gpt-4.1"
 		},
@@ -42,14 +42,14 @@
 		"use_smartcase_find": true
 	},
 	"agent_font_size": 16,
-	"ui_font_size": 16,
-	"buffer_font_size": 16,
+	"ui_font_size": 14,
+	"buffer_font_size": 14,
 	"terminal": {
 		"shell": "system",
 		"line_height": { "custom": 1.25 },
 		"copy_on_select": true,
 		"dock": "right",
-		"font_size": 14
+		"font_size": 12
 	},
 	"ui_font_family": "Hack Nerd Font Mono",
 	"buffer_font_family": "Hack Nerd Font Mono",

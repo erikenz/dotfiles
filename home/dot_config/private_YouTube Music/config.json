@@ -1,14 +1,14 @@
 {
 	"window-size": {
-		"width": 925,
-		"height": 1060
+		"width": 1804,
+		"height": 1014
 	},
-	"window-maximized": true,
+	"window-maximized": false,
 	"window-position": {
-		"x": 0,
-		"y": 0
+		"x": 2003,
+		"y": 33
 	},
-	"url": "https://music.youtube.com/watch?v=0WET0X3W8mI",
+	"url": "https://music.youtube.com/watch?v=ksoCKbCWO50&list=LM&index=0",
 	"options": {
 		"tray": false,
 		"appVisible": true,
@@ -43,7 +43,7 @@
 				"volumeUp": "Ctrl+Shift+]",
 				"volumeDown": "Ctrl+Shift+["
 			},
-			"savedVolume": 48
+			"savedVolume": 30
 		},
 		"discord": {
 			"listenAlong": true
@@ -55,7 +55,7 @@
 			"enabled": true
 		},
 		"exponential-volume": {
-			"enabled": true
+			"enabled": false
 		},
 		"bypass-age-restrictions": {
 			"enabled": true
@@ -83,7 +83,7 @@
 	},
 	"__internal__": {
 		"migrations": {
-			"version": "3.10.0"
+			"version": "3.11.0"
 		}
 	}
 }

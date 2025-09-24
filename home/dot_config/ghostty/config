@@ -45,7 +45,7 @@
 
 shell-integration = fish
 
-theme = catppuccin-frappe
+# theme = catppuccin-frappe
 background = 000000
 background-opacity = 0.85
 background-blur = false
