@@ -8,7 +8,7 @@
 		"x": 2003,
 		"y": 33
 	},
-	"url": "https://music.youtube.com/watch?v=ksoCKbCWO50&list=LM&index=0",
+	"url": "https://music.youtube.com/watch?v=r0MqadBYOso&list=LM&index=0",
 	"options": {
 		"tray": false,
 		"appVisible": true,
@@ -43,7 +43,7 @@
 				"volumeUp": "Ctrl+Shift+]",
 				"volumeDown": "Ctrl+Shift+["
 			},
-			"savedVolume": 30
+			"savedVolume": 21
 		},
 		"discord": {
 			"listenAlong": true
