@@ -33,7 +33,9 @@
 	"general": {
 		"apps": {
 			"terminal": ["ghostty"],
-			"audio": ["pavucontrol"]
+			"audio": ["pavucontrol"],
+			"playback": ["mpv"],
+			"explorer": ["dolphin"]
 		},
 		"battery": {
 			"warnLevels": [
