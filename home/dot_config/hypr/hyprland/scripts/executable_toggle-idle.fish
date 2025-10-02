@@ -4,12 +4,12 @@
 set IDLE_INHIBITOR_ENABLED (qs -c caelestia ipc call idleInhibitor isEnabled | tr -d '[:space:]')
 
 switch (string lower -- $IDLE_INHIBITOR_ENABLED)
-    case "true"
+    case true
         qs -c caelestia ipc call idleInhibitor disable
-        notify-send "󰛊  Stop locking computer when idle"
-    case "false"
+        caelestia shell toaster info "Idle inhibitor disabled" "System will lock when idle." "󰛊"
+    case false
         qs -c caelestia ipc call idleInhibitor enable
-        notify-send "󰛊  Now locking computer when idle"
+        caelestia shell toaster info "Idle inhibitor enabled" "System will not lock when idle." "󰛊"
     case '*'
-        notify-send "󰛊  Idle inhibitor state unknown: $IDLE_INHIBITOR_ENABLED"
+        caelestia shell toaster error "Idle inhibitor state unknown: $IDLE_INHIBITOR_ENABLED" "Please check the logs." "󰛊"
 end
