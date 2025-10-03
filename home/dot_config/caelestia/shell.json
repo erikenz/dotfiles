@@ -158,11 +158,11 @@
 		},
 		"workspaces": {
 			"activeIndicator": true,
-			"activeLabel": "󰮯",
+			"activeLabel": "",
 			"activeTrail": false,
-			"label": "  ",
+			"label": "",
 			"occupiedBg": false,
-			"occupiedLabel": "󰮯",
+			"occupiedLabel": "",
 			"perMonitorWorkspaces": true,
 			"showWindows": true,
 			"shown": 10

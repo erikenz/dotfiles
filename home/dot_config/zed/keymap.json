@@ -20,8 +20,8 @@
 	{
 		"context": "Editor",
 		"bindings": {
-			"ctrl-[": "pane::ActivateNextItem",
-			"ctrl-]": "pane::ActivatePreviousItem",
+			"ctrl-[": "pane::ActivatePreviousItem",
+			"ctrl-]": "pane::ActivateNextItem",
 			"ctrl-g s": "git::StageAndNext",
 			"ctrl-g r": "git::Restore",
 			"ctrl-g u": "git::UnstageAndNext",
