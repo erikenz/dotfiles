@@ -65,17 +65,22 @@
 			"inhibitWhenAudio": true,
 			"timeouts": [
 				{
-					"timeout": 180,
+					"timeout": 480,
+					"idleAction": "brightnessctl -s && brightnessctl s 1%",
+					"returnAction": "brightnessctl -r"
+				},
+				{
+					"timeout": 600,
 					"idleAction": "lock"
 				},
 				{
-					"timeout": 300,
+					"timeout": 660,
 					"idleAction": "dpms off",
 					"returnAction": "dpms on"
 				},
 				{
-					"timeout": 600,
-					"idleAction": ["systemctl", "suspend-then-hibernate"]
+					"timeout": 900,
+					"idleAction": ["systemctl", "suspend"]
 				}
 			]
 		}
