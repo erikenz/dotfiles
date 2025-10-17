@@ -27,6 +27,7 @@ base:
   - "ghostty"
   - "fish"
   - "starship"
+  - "television"
 
   # Hyprland
   - "quickshell-git"
