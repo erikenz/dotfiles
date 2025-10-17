@@ -1,5 +1,8 @@
 {
-	"project_panel": {
+	"tab_bar": {
+  "show": true
+ },
+ "project_panel": {
 		"dock": "left",
 		"indent_size": 13,
 		"auto_fold_dirs": false,

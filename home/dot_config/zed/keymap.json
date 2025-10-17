@@ -8,6 +8,13 @@
 //
 // This copies mappings from Astronvim's keymap
 [
+	// Terminal
+	{
+		"context": "Workspace",
+		"bindings": {
+			"ctrl-/": "terminal_panel::Toggle"
+		}
+	},
 	// Window's navigation
 	{
 		"context": "Dock || Terminal || Editor",
@@ -22,10 +29,6 @@
 		"context": "VimControl && !menu",
 		"bindings": {
 			// Put key bindings here if you want them to work in normal & visual mode.
-			"shift-l": "pane::ActivateNextItem",
-			"shift-h": "pane::ActivatePreviousItem",
-			"alt-j": "editor::MoveLineDown",
-			"alt-k": "editor::MoveLineUp"
 		}
 	},
 	{
@@ -49,51 +52,104 @@
 		}
 	},
 	{
+		"context": "EmptyPane || SharedScreen",
+		"bindings": {
+			// Put key bindings here (in addition to the context above) if you want them to
+			// work when no editor exists.
+			"space space": "file_finder::Toggle"
+		}
+	},
+	{
 		"context": "Editor && VimControl && !VimWaiting && !menu",
 		"bindings": {
-			"space n": "workspace::NewFile",
-			"space R": "pane::RevealInProjectPanel", // change to SendKeystrokes
-			"space c": "pane::CloseActiveItem",
-			"space \\": "pane::SplitHorizontal",
-			"space |": "pane::SplitVertical",
-			"> b": "pane::SwapItemRight",
-			"< b": "pane::SwapItemLeft",
-			"space b b": "file_finder::Toggle",
-			"space b c": "pane::CloseOtherItems",
-			"space b C": "pane::CloseAllItems",
-			"space b l": "pane::CloseItemsToTheLeft",
-			"space b p": "pane::AlternateFile",
-			"space `": "pane::AlternateFile",
-			"space b r": "pane::CloseItemsToTheRight",
-			// Open a buffer tab in a new horizontal split with interactive picker
-			// "space b \\": "file_finder::ToggleSplitMenu", // figure out if this is possible
-			"space /": "vim::ToggleComments",
+			"space q q": "zed::Quit",
 			"g c o": ["workspace::SendKeystrokes", "o ctrl-/"],
 			"g c O": ["workspace::SendKeystrokes", "O ctrl-/"],
-			"space x q": "editor::ToggleCodeActions",
-			// toggle / focus file tree - has to match the position of the file tree
-			"space e": "workspace::ToggleLeftDock",
-			"space o": "project_panel::ToggleFocus",
-			"space l i": "lsp_tool::ToggleMenu",
-			"space l I": "dev::OpenLanguageServerLogs",
-			"space t f": "editor::Format",
-			"space l S": "outline_panel::ToggleFocus",
-			"space l D": "diagnostics::Deploy",
-			"g r a": "editor::ToggleCodeActions",
-			"space l a": "editor::ToggleCodeActions",
-			"g r n": "editor::Rename",
-			"space l r ": "editor::Rename",
-			"space l s": "outline::Toggle",
-			// Jump to diagnostic
+			"ctrl-/": "terminal_panel::Toggle",
 			"] d": "editor::GoToDiagnostic",
 			"[ d": "editor::GoToPreviousDiagnostic",
 			"] e": ["editor::GoToDiagnostic", { "severity": "error" }],
 			"[ e": ["editor::GoToPreviousDiagnostic", { "severity": "error" }],
 			"] w": ["editor::GoToDiagnostic", { "severity": "warning" }],
 			"[ w": ["editor::GoToPreviousDiagnostic", { "severity": "warning" }],
-			"] y": ["workspace::SendKeystrokes", "space l s ctrl-n enter"],
-			"[ y": ["workspace::SendKeystrokes", "space l s ctrl-p enter"],
-			"space l R": "editor::FindAllReferences",
+			"] ]": "vim::MoveToNext",
+			"[ [": "vim::MoveToPrevious",
+			"alt-n": "vim::MoveToNext",
+			"alt-p": "vim::MoveToPrevious",
+			"shift-l": "pane::ActivateNextItem",
+			"shift-h": "pane::ActivatePreviousItem",
+			"alt-j": "editor::MoveLineDown",
+			"alt-k": "editor::MoveLineUp",
+			"space space": "file_finder::Toggle",
+			"space e": "workspace::ToggleLeftDock",
+			"space o": "project_panel::ToggleFocus",
+			// "space tab a": "tab_switcher::ToggleAll",
+			// Buffers
+			"space b b": "pane::AlternateFile",
+			"space `": "pane::AlternateFile",
+			"space b d": "pane::CloseActiveItem",
+			"space b o": "pane::CloseOtherItems",
+			"space b l": "pane::CloseItemsToTheLeft",
+			"space b r": "pane::CloseItemsToTheRight",
+			"space b p": "pane::TogglePinTab",
+			"space b P": "pane::CloseAllItems",
+			"[ B": "pane::SwapItemLeft",
+			"] B": "pane::SwapItemRight",
+			"space ,": "tab_switcher::Toggle",
+			// Zed
+			"space l l": "zed::Extensions",
+			"space l r": "zed::ReloadExtensions",
+			"space l d": "zed::InstallDevExtension",
+			// Code
+			"space c f": "editor::Format",
+			"space c l": "lsp_tool::ToggleMenu",
+			"space c a": "editor::ToggleCodeActions",
+			"space c C": "editor::RestartLanguageServer",
+			"space c R": ["workspace::SendKeystrokes", "space e r"], // ???
+			"space c r ": "editor::Rename",
+			"space c s": "outline::Toggle",
+			"space c S": "outline_panel::ToggleFocus",
+			// UI
+			"space u w": "editor::ToggleSoftWrap",
+			"space u L": "editor::ToggleRelativeLineNumbers",
+			"space u d": "editor::ToggleDiagnostics",
+			"space u l": "editor::ToggleLineNumbers",
+			"space u A": "editor::ToggleTabBar",
+			"space u b": "theme_selector::Toggle",
+			"space u C": "theme_selector::Toggle",
+			"space u g": "editor::ToggleIndentGuides",
+			"space u h": "editor::ToggleInlayHints",
+			"space u Z": "workspace::ToggleZoom",
+			"space u n": "workspace::ClearAllNotifications",
+			// Git
+			"space g b": "editor::ToggleGitBlameInline",
+			"space g B": "editor::OpenPermalinkToLine",
+			"space g Y": "editor::CopyPermalinkToLine",
+			"space g g": [
+				"task::Spawn",
+				{
+					"task_name": "lazygit",
+					"reveal_target": "center"
+				}
+			],
+			"space g d": "editor::ExpandAllDiffHunks",
+			"space g D": "git::Diff",
+			"space g S": "git::StashAll",
+			"space g h r": "git::Restore",
+			"space g h R": "git::RestoreFile",
+			// File / find
+			"space f n": "workspace::NewFile",
+			"space f T": "workspace::NewTerminal",
+			"space f t": "workspace::OpenInTerminal",
+			"space f f": [
+				"task::Spawn",
+				{ "task_name": "File Finder", "reveal_target": "center" }
+			],
+			"space f d": [
+				"task::Spawn",
+				{ "task_name": "Find Directories", "reveal_target": "center" }
+			],
+			// Debugger
 			"space d C": "debugger::Start",
 			"space d c": "debugger::Continue",
 			"space d p": "debugger::Pause",
@@ -107,18 +163,37 @@
 			"space d O": "debugger::StepOut",
 			"space d E": "debugger::EvaluateSelectedText",
 			"space d u": "debug_panel::ToggleFocus",
-			// Git
-			"space g g": [
+			// Split
+			"space -": "pane::SplitHorizontal",
+			"space |": "pane::SplitVertical",
+			// Search
+			"space s n a": "notification_panel::ToggleFocus",
+			"space s n d": "workspace::ClearAllNotifications",
+			"space s g": [
 				"task::Spawn",
-				{
-					"task_name": "lazygit",
-					"reveal_target": "center"
-				}
+				{ "task_name": "Find in Files", "reveal_target": "center" }
 			],
-			"space g h d": "editor::ExpandAllDiffHunks",
-			"space g h D": "git::Diff",
-			"space g h r": "git::Restore",
-			"space g h R": "git::RestoreFile",
+			"space s r": "buffer_search::DeployReplace",
+			"space s k": "zed::OpenKeymap",
+			// Markdown
+			"space m o": [
+				"task::Spawn",
+				{ "task_name": "Obsidian", "reveal_target": "center" }
+			],
+			// Diagnostics
+			"space x x": "diagnostics::Deploy",
+			"[ q": "editor::GoToPreviousDiagnostic",
+			"] q": "editor::GoToDiagnostic",
+			// "] y": ["workspace::SendKeystrokes", "space l s ctrl-n enter"],
+			// "[ y": ["workspace::SendKeystrokes", "space l s ctrl-p enter"],
+			// AI
+			"space a a": "agent::ToggleFocus",
+
+			"space /": "vim::ToggleComments",
+			// toggle / focus file tree - has to match the position of the file tree
+			"space l I": "dev::OpenLanguageServerLogs",
+			"g r n": "editor::Rename",
+			"space l R": "editor::FindAllReferences",
 			// Tab things. Almost as good as harpoon.
 			"space 1": ["pane::ActivateItem", 0],
 			"space 2": ["pane::ActivateItem", 1],
@@ -189,18 +264,6 @@
 			"ctrl-6": "pane::AlternateFile"
 		}
 	},
-	// Center the cursor on the screen when scrolling and find all references
-	{
-		"context": "VimControl && !menu",
-		"bindings": {
-			"ctrl-d": ["workspace::SendKeystrokes", "ctrl-d z z"],
-			"ctrl-u": ["workspace::SendKeystrokes", "ctrl-u z z"],
-			"n": ["workspace::SendKeystrokes", "n z z z v"],
-			"shift-n": ["workspace::SendKeystrokes", "shift-n z z z v"],
-			"shift-g": ["workspace::SendKeystrokes", "shift-g z z"],
-			"g r": "editor::FindAllReferences"
-		}
-	},
 	{
 		"context": "vim_operator == d",
 		"bindings": {
@@ -248,6 +311,18 @@
 			"b": "vim::PreviousSubwordStart",
 			"e": "vim::NextSubwordEnd",
 			"g e": "vim::PreviousSubwordEnd"
+		}
+	},
+	// Center the cursor on the screen when scrolling and find all references
+	{
+		"context": "VimControl && !menu",
+		"bindings": {
+			"ctrl-d": ["workspace::SendKeystrokes", "ctrl-d z z"],
+			"ctrl-u": ["workspace::SendKeystrokes", "ctrl-u z z"],
+			"n": ["workspace::SendKeystrokes", "n z z z v"],
+			"shift-n": ["workspace::SendKeystrokes", "shift-n z z z v"],
+			"shift-g": ["workspace::SendKeystrokes", "shift-g z z"],
+			"g r": "editor::FindAllReferences"
 		}
 	}
 ]
