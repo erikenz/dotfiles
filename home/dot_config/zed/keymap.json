@@ -56,7 +56,10 @@
 		"bindings": {
 			// Put key bindings here (in addition to the context above) if you want them to
 			// work when no editor exists.
-			"space space": "file_finder::Toggle"
+			"space space": "file_finder::Toggle",
+			"space f n": "workspace::NewFile",
+			"space f t": "workspace::NewTerminal",
+			"space f T": "workspace::OpenInTerminal"
 		}
 	},
 	{

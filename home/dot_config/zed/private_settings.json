@@ -1,5 +1,9 @@
 {
-	"tab_bar": {
+	"title_bar": {
+  "show_menus": false,
+  "show_branch_icon": true
+ },
+ "tab_bar": {
   "show": true
  },
  "project_panel": {
@@ -88,7 +92,7 @@
 		"use_system_clipboard": "always",
 		"use_smartcase_find": true
 	},
-	"agent_font_size": 16,
+	"agent_ui_font_size": 16,
 	"ui_font_size": 14,
 	"buffer_font_size": 14,
 	"terminal": {
@@ -106,7 +110,7 @@
 	},
 	"preview_tabs": {
 		"enabled": true,
-		"enable_preview_from_file_finder": false,
+		"enable_preview_from_file_finder": true,
 		"enable_preview_from_code_navigation": false
 	},
 	"centered_layout": {
@@ -139,11 +143,22 @@
 	"icon_theme": "Catppuccin Macchiato",
 	"preferred_line_length": 80,
 	"soft_wrap": "editor_width",
-	"formatter": {
-		"language_server": {
-			"name": "biome"
-		}
-	},
+	"formatter": [
+    {
+      "code_action": "source.fixAll.biome"
+    },
+    {
+      "code_action": "source.organizeImports.biome"
+    },
+    {
+      "code_action": "source.action.useSortedKeys.biome"
+    },
+    {
+      "language_server": {
+        "name": "biome"
+      }
+    }
+  ],
 	"auto_install_extensions": {
 		"catppuccin": true,
 		"catppuccin-icons": true,
@@ -158,11 +173,6 @@
 	},
 	"edit_predictions": {
 		"mode": "eager"
-	},
-	"code_actions_on_format": {
-		"source.fixAll.biome": true,
-		"source.organizeImports.biome": true,
-		"source.action.useSortedKeys.biome": true
 	},
 	"file_types": {
 		"Hyprland Config": [
