@@ -1,12 +1,12 @@
 {
 	"title_bar": {
-  "show_menus": false,
-  "show_branch_icon": true
- },
- "tab_bar": {
-  "show": true
- },
- "project_panel": {
+		"show_menus": false,
+		"show_branch_icon": true
+	},
+	"tab_bar": {
+		"show": true
+	},
+	"project_panel": {
 		"dock": "left",
 		"indent_size": 13,
 		"auto_fold_dirs": false,
@@ -143,22 +143,13 @@
 	"icon_theme": "Catppuccin Macchiato",
 	"preferred_line_length": 80,
 	"soft_wrap": "editor_width",
+	"format_on_save": "on",
 	"formatter": [
-    {
-      "code_action": "source.fixAll.biome"
-    },
-    {
-      "code_action": "source.organizeImports.biome"
-    },
-    {
-      "code_action": "source.action.useSortedKeys.biome"
-    },
-    {
-      "language_server": {
-        "name": "biome"
-      }
-    }
-  ],
+		{ "code_action": "source.fixAll.biome" },
+		{ "code_action": "source.organizeImports.biome" },
+		{ "code_action": "source.action.useSortedKeys.biome" },
+		{ "language_server": { "name": "biome" } }
+	],
 	"auto_install_extensions": {
 		"catppuccin": true,
 		"catppuccin-icons": true,
@@ -184,9 +175,27 @@
 	},
 	"languages": {
 		"SCSS": { "formatter": "auto" },
-		"JavaScript": { "formatter": { "language_server": { "name": "biome" } } },
-		"TypeScript": { "formatter": { "language_server": { "name": "biome" } } },
-		"TSX": { "formatter": { "language_server": { "name": "biome" } } },
+		"JavaScript": {
+			"formatter": { "language_server": { "name": "biome" } },
+			"code_actions_on_format": {
+				"source.fixAll.biome": true,
+				"source.organizeImports.biome": true
+			}
+		},
+		"TypeScript": {
+			"formatter": { "language_server": { "name": "biome" } },
+			"code_actions_on_format": {
+				"source.fixAll.biome": true,
+				"source.organizeImports.biome": true
+			}
+		},
+		"TSX": {
+			"formatter": { "language_server": { "name": "biome" } },
+			"code_actions_on_format": {
+				"source.fixAll.biome": true,
+				"source.organizeImports.biome": true
+			}
+		},
 		"JSON": { "formatter": { "language_server": { "name": "biome" } } },
 		"JSONC": { "formatter": { "language_server": { "name": "biome" } } },
 		"CSS": { "formatter": { "language_server": { "name": "biome" } } },
