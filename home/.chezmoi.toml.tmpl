@@ -1,0 +1,15 @@
+{{/* Default dynamic values */}}
+{{- $gitname := "erikenz" -}}
+{{- $gitmail := "46247842+erikenz@users.noreply.github.com" -}}
+
+[data]
+    gitname = {{ $gitname | quote }}
+    gitmail = {{ $gitmail | quote }}
+
+[git]
+    autoCommit = true
+    autoPush = true
+    autoAdd = true # Add changes to the source state after any change
+
+[edit]
+    command = "nvim"
