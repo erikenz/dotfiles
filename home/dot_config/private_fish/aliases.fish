@@ -50,3 +50,11 @@ alias gcad='git commit -a --amend'
 
 alias zed=zeditor
 alias p=pnpm
+alias px=pnpm dlx
+
+alias fishconf='cd ~/.config/fish && n'
+alias nvimconf='cd ~/.config/nvim && n'
+alias ghosttyconf='cd ~/.config/ghostty && n'
+alias hyprconf='cd ~/.config/hypr && n'
+
+alias portainer='docker run -p 8000:8000 -p 9443:9443 --name portainer -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:lts'
