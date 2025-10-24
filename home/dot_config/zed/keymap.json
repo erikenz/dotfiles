@@ -217,6 +217,7 @@
   {
     "context": "ProjectPanel && not_editing",
     "bindings": {
+      "%": "project_panel::NewFile",
       "a": "project_panel::NewFile",
       "A": "project_panel::NewDirectory",
       "r": "project_panel::Rename",
@@ -228,7 +229,6 @@
       "q": "workspace::ToggleLeftDock",
       "space e": "workspace::ToggleLeftDock",
       ":": "command_palette::Toggle",
-      "%": "project_panel::NewFile",
       "/": "project_panel::NewSearchInDirectory",
       "enter": "project_panel::OpenPermanent",
       "escape": "project_panel::ToggleFocus",
