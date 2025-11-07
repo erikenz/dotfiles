@@ -27,5 +27,13 @@ return {
       "<leader>o",
       group = "Obsidian",
     },
+    {
+      "<leader>oS",
+      group = "Spell",
+    },
+    {
+      "<leader>oSl",
+      group = "Language",
+    },
   },
 }

@@ -52,17 +52,71 @@ return {
         end, { buffer = note.bufnr, expr = true, desc = "Obsidian smart action" })
       end,
     },
+    new_notes_location = "notes_subdir",
     -- Where obsidian templates & daily notes live relative to vault root
     templates = {
-      subdir = "Templates", -- folder inside vault with templates
+      subdir = "templates", -- folder inside vault with templates
       date_format = "%Y-%m-%d", -- for dailies if templates use dates
       gtime_format = "%H:%M", -- Time format for templates
       tags = "", -- Default tags for templates
+      customizations = {
+        ["zettel.md"] = {
+          -- create the new note under <VAULT_ROOT>/Resources/Zettelkasten
+          notes_subdir = "resources/zettelkasten",
+
+          -- produce filenames like: 202510301200-brief-title.md
+          note_id_func = function(title, _path)
+            local function slugify(s)
+              if not s then
+                return ""
+              end
+              s = s:lower()
+              -- replace non-alnum with '-', strip leading/trailing '-'
+              s = s:gsub("[^a-z0-9]+", "-"):gsub("^-+", ""):gsub("-+$", "")
+              return s
+            end
+
+            local ts = os.date("%Y%m%d%H%M")
+            if title and title ~= "" then
+              return ts .. "-" .. slugify(title)
+            end
+            return ts
+          end,
+        },
+        -- Project README: put under Projects/<project-slug> by default (notes_subdir creates Projects/; the template should include its own folder)
+        ["project-readme.md"] = {
+          notes_subdir = "projects",
+          note_id_func = function(title, _path)
+            local function slugify(s)
+              if not s then
+                return "project"
+              end
+              s = s:lower()
+              s = s:gsub("[^a-z0-9]+", "-"):gsub("^-+", ""):gsub("-+$", "")
+              return s
+            end
+            local ts = os.date("%Y%m%d")
+            if title and title ~= "" then
+              return slug .. "-" .. slugify(title)
+            end
+            return "project-" .. ts
+          end,
+        },
+
+        -- German vocab: place in Areas/German/vocab and basic timestamp filename
+        ["german-vocab.md"] = {
+          notes_subdir = "areas/german/vocab",
+          note_id_func = function(title, _path)
+            local ts = os.date("%Y%m%d%H%M")
+            return ts
+          end,
+        },
+      },
     },
 
     -- Daily notes config (this maps to obsidian daily note behavior)
     daily_notes = {
-      folder = "Daily",
+      folder = "daily",
       date_format = "%Y-%m-%d",
       template = "daily.md", -- template filename inside Templates/
       workdays_only = false,

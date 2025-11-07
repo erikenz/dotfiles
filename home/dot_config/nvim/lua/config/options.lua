@@ -5,5 +5,5 @@
 vim.opt.relativenumber = true
 
 -- Spell-checking
-vim.opt.spell = true -- activa spell checker
-vim.opt.spelllang = { "de" }
+vim.opt.spell = false
+vim.opt.spelllang = {}
