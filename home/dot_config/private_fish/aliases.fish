@@ -50,7 +50,9 @@ alias gcad='git commit -a --amend'
 
 alias zed=zeditor
 alias p=pnpm
-alias px=pnpm dlx
+alias px='pnpm dlx'
+alias b='bun'
+alias bx='bunx'
 
 alias fishconf='cd ~/.config/fish && n'
 alias aliases='cd ~/.config/fish && n ./aliases.fish'
@@ -63,3 +65,4 @@ alias portainer='docker run -p 8000:8000 -p 9443:9443 --name portainer -v /var/r
 
 alias oo='cd ~/Documents/"Obsidian Vault" && n'
 alias vault='oo'
+alias update-themes='theme-hook-update'
