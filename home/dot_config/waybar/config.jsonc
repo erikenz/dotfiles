@@ -236,12 +236,16 @@
       "mpv": "🎵",
       "pear-desktop": "🎵"
     },
-    "player": "pear-desktop",
+    // "player": "pear-desktop",
+    // "player": "com.github.th_ch.youtube_music",
     "status-icons": {
       "playing": "⏸",
       "paused": "▶"
     },
-    "max-length": 60
+    "max-length": 60,
+    "ignore-players": [
+      "vivaldi"
+    ]
   },
   "memory": {
     "interval": 30,
