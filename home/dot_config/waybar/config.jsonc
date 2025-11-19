@@ -6,7 +6,8 @@
   "height": 26,
   "modules-left": [
     "custom/omarchy",
-    "hyprland/workspaces"
+    "hyprland/workspaces",
+    "mpris"
   ],
   "modules-center": [
     "clock",
@@ -18,6 +19,7 @@
     "bluetooth",
     "network",
     "pulseaudio",
+    "pulseaudio#microphone",
     "cpu",
     "battery"
   ],
@@ -37,7 +39,6 @@
       "8": "8",
       "9": "9",
       "10": "10",
-      // "10": "10  ",
       "active": "󱓻"
     },
     "persistent-workspaces": {
@@ -160,6 +161,18 @@
       ]
     }
   },
+  "pulseaudio#microphone": {
+    "format": "{format_source}",
+    "format-source": "",
+    "format-source-muted": "",
+    "tooltip": true,
+    "tooltip-format": "Input volume at {volume}%",
+    "on-click": "pamixer --default-source -t",
+    "on-click-right": "$TERMINAL --class=Wiremix -e wiremix",
+    "on-scroll-up": "pamixer --default-source -i 5",
+    "on-scroll-down": "pamixer --default-source -d 5",
+    "scroll-step": 5
+  },
   "group/tray-expander": {
     "orientation": "inherit",
     "drawer": {
@@ -168,7 +181,8 @@
     },
     "modules": [
       "custom/expand-icon",
-      "tray"
+      "tray",
+      "idle_inhibitor"
     ]
   },
   "custom/expand-icon": {
@@ -184,5 +198,31 @@
   "tray": {
     "icon-size": 12,
     "spacing": 17
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "󰒳",
+      "deactivated": "󰒲"
+    },
+    "timeout": 30.5,
+    "tooltip": false
+  },
+  "mpris": {
+    "format": "{status_icon}  {title} - {artist}",
+    "format-paused": "{status_icon}  {title} - {artist}",
+    "tooltip-format": "Playing: {title} - {artist}",
+    "tooltip-format-paused": "Paused: {title} - {artist}",
+    "player-icons": {
+      "default": "",
+      "mpv": "🎵",
+      "com.github.th_ch.youtube_music": "🎵"
+    },
+    "status-icons": {
+      "playing": "⏸",
+      "paused": "▶"
+    },
+    "max-length": 60
+    // "ignored-players": ["firefox"]
   }
 }

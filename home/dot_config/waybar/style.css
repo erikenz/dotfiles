@@ -33,11 +33,27 @@
 #cpu,
 #battery,
 #pulseaudio,
+#pulseaudio.micropgone,
 #custom-omarchy,
 #custom-screenrecording-indicator,
+#idle_inhibitor,
 #custom-update {
   min-width: 12px;
   margin: 0 7.5px;
+}
+
+#mpris {
+  margin-left: 1rem;
+}
+
+#pulseaudio.microphone {
+    margin-left: 1rem;
+}
+
+#idle_inhibitor {
+    font-size: 12px;
+    margin-left: 0px;
+    margin-right: 8px;
 }
 
 #tray {
