@@ -16,7 +16,7 @@
   },
   "ui_font_size": 14,
   "buffer_font_size": 12,
-  "theme": "Omarchy",
+  "theme": "Catppuccin",
   "relative_line_numbers": "enabled",
   "terminal": {
     "font_size": 12,
