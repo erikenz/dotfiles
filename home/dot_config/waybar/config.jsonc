@@ -21,6 +21,8 @@
     "pulseaudio",
     "pulseaudio#microphone",
     "cpu",
+    "memory",
+    "temperature",
     "battery"
   ],
   "hyprland/workspaces": {
@@ -69,15 +71,31 @@
     "interval": 3600
   },
   "cpu": {
-    "interval": 5,
-    "format": "󰍛",
-    "on-click": "xdg-terminal-exec btop"
+    // "format": "󰍛 {load}%",
+    "on-click": "xdg-terminal-exec btop",
+    "interval": 10,
+    "format": "{usage}% ",
+    "max-length": 10
   },
   "clock": {
     "format": "{:L%A %H:%M}",
     "format-alt": "{:L%d %B W%V %Y}",
-    "tooltip": false,
-    "on-click-right": "omarchy-launch-floating-terminal-with-presentation omarchy-tz-select"
+    // "tooltip": false,
+    "on-click-right": "omarchy-launch-floating-terminal-with-presentation omarchy-tz-select",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        "days": "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+      }
+    }
   },
   "network": {
     "format-icons": [
@@ -216,13 +234,25 @@
     "player-icons": {
       "default": "",
       "mpv": "🎵",
-      "com.github.th_ch.youtube_music": "🎵"
+      "pear-desktop": "🎵"
     },
+    "player": "pear-desktop",
     "status-icons": {
       "playing": "⏸",
       "paused": "▶"
     },
     "max-length": 60
-    // "ignored-players": ["firefox"]
+  },
+  "memory": {
+    "interval": 30,
+    "format": "{}% ",
+    "max-length": 10
+  },
+  "temperature": {
+    // "thermal-zone": 2,
+    // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+    // "critical-threshold": 80,
+    // "format-critical": "{temperatureC}°C ",
+    "format": "{temperatureC}°C "
   }
 }

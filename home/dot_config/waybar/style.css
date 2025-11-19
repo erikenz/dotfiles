@@ -31,6 +31,8 @@
 }
 
 #cpu,
+#memory,
+#temperature,
 #battery,
 #pulseaudio,
 #pulseaudio.micropgone,
