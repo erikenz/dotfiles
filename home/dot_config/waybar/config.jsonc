@@ -4,15 +4,11 @@
   "position": "top",
   "spacing": 0,
   "height": 26,
-  "modules-left": [
-    "custom/omarchy",
-    "hyprland/workspaces",
-    "mpris"
-  ],
+  "modules-left": ["custom/omarchy", "hyprland/workspaces", "mpris"],
   "modules-center": [
     "clock",
     "custom/update",
-    "custom/screenrecording-indicator"
+    "custom/screenrecording-indicator",
   ],
   "modules-right": [
     "group/tray-expander",
@@ -23,7 +19,7 @@
     "cpu",
     "memory",
     "temperature",
-    "battery"
+    "battery",
   ],
   "hyprland/workspaces": {
     "on-click": "activate",
@@ -40,8 +36,8 @@
       "7": "7",
       "8": "8",
       "9": "9",
-      "10": "10",
-      "active": "󱓻"
+      "10": "0",
+      "active": "󱓻",
     },
     "persistent-workspaces": {
       "1": [],
@@ -53,14 +49,14 @@
       "7": [],
       "8": [],
       "9": [],
-      "10": []
-    }
+      "10": [],
+    },
   },
   "custom/omarchy": {
     "format": "<span font='omarchy'>\ue900</span>",
     "on-click": "omarchy-menu",
     "on-click-right": "xdg-terminal-exec",
-    "tooltip-format": "Omarchy Menu\n\nSuper + Alt + Space"
+    "tooltip-format": "Omarchy Menu\n\nSuper + Alt + Space",
   },
   "custom/update": {
     "format": "",
@@ -68,14 +64,14 @@
     "on-click": "omarchy-launch-floating-terminal-with-presentation omarchy-update",
     "tooltip-format": "Omarchy update available",
     "signal": 7,
-    "interval": 3600
+    "interval": 3600,
   },
   "cpu": {
     // "format": "󰍛 {load}%",
-    "on-click": "xdg-terminal-exec btop",
+    "on-click": "omarchy-launch-or-focus-tui btop",
     "interval": 10,
     "format": "{usage}% ",
-    "max-length": 10
+    "max-length": 10,
   },
   "clock": {
     "format": "{:L%A %H:%M}",
@@ -93,18 +89,12 @@
         "days": "<span color='#ecc6d9'><b>{}</b></span>",
         "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
         "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
-        "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
-      }
-    }
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>",
+      },
+    },
   },
   "network": {
-    "format-icons": [
-      "󰤯",
-      "󰤟",
-      "󰤢",
-      "󰤥",
-      "󰤨"
-    ],
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
     "format": "{icon}",
     "format-wifi": "{icon}",
     "format-ethernet": "󰀂",
@@ -114,7 +104,7 @@
     "tooltip-format-disconnected": "Disconnected",
     "interval": 3,
     "spacing": 1,
-    "on-click": "omarchy-launch-wifi"
+    "on-click": "omarchy-launch-wifi",
   },
   "battery": {
     "format": "{capacity}% {icon}",
@@ -122,30 +112,8 @@
     "format-charging": "{icon}",
     "format-plugged": "",
     "format-icons": {
-      "charging": [
-        "󰢜",
-        "󰂆",
-        "󰂇",
-        "󰂈",
-        "󰢝",
-        "󰂉",
-        "󰢞",
-        "󰂊",
-        "󰂋",
-        "󰂅"
-      ],
-      "default": [
-        "󰁺",
-        "󰁻",
-        "󰁼",
-        "󰁽",
-        "󰁾",
-        "󰁿",
-        "󰂀",
-        "󰂁",
-        "󰂂",
-        "󰁹"
-      ]
+      "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
+      "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
     },
     "format-full": "󰂅",
     "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
@@ -154,30 +122,27 @@
     "on-click": "omarchy-menu power",
     "states": {
       "warning": 20,
-      "critical": 10
-    }
+      "critical": 10,
+    },
   },
   "bluetooth": {
     "format": "",
     "format-disabled": "󰂲",
-    "format-connected": "",
+    "format-connected": "󰂱",
+    "format-no-controller": "",
     "tooltip-format": "Devices connected: {num_connections}",
-    "on-click": "blueberry"
+    "on-click": "omarchy-launch-bluetooth",
   },
   "pulseaudio": {
     "format": "{icon}",
-    "on-click": "xdg-terminal-exec --app-id=com.omarchy.Wiremix -e wiremix",
+    "on-click": "omarchy-launch-or-focus-tui wiremix",
     "on-click-right": "pamixer -t",
     "tooltip-format": "Playing at {volume}%",
     "scroll-step": 5,
     "format-muted": "",
     "format-icons": {
-      "default": [
-        "",
-        "",
-        ""
-      ]
-    }
+      "default": ["", "", ""],
+    },
   },
   "pulseaudio#microphone": {
     "format": "{format_source}",
@@ -189,42 +154,38 @@
     "on-click-right": "$TERMINAL --class=Wiremix -e wiremix",
     "on-scroll-up": "pamixer --default-source -i 5",
     "on-scroll-down": "pamixer --default-source -d 5",
-    "scroll-step": 5
+    "scroll-step": 5,
   },
   "group/tray-expander": {
     "orientation": "inherit",
     "drawer": {
       "transition-duration": 600,
-      "children-class": "tray-group-item"
+      "children-class": "tray-group-item",
     },
-    "modules": [
-      "custom/expand-icon",
-      "tray",
-      "idle_inhibitor"
-    ]
+    "modules": ["custom/expand-icon", "tray", "idle_inhibitor"],
   },
   "custom/expand-icon": {
-    "format": "",
-    "tooltip": false
+    "format": "",
+    "tooltip": false,
   },
   "custom/screenrecording-indicator": {
     "on-click": "omarchy-cmd-screenrecord",
     "exec": "$OMARCHY_PATH/default/waybar/indicators/screen-recording.sh",
     "signal": 8,
-    "return-type": "json"
+    "return-type": "json",
   },
   "tray": {
     "icon-size": 12,
-    "spacing": 17
+    "spacing": 17,
   },
   "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
       "activated": "󰒳",
-      "deactivated": "󰒲"
+      "deactivated": "󰒲",
     },
     "timeout": 30.5,
-    "tooltip": false
+    "tooltip": false,
   },
   "mpris": {
     "format": "{status_icon}  {title} - {artist}",
@@ -234,29 +195,27 @@
     "player-icons": {
       "default": "",
       "mpv": "🎵",
-      "pear-desktop": "🎵"
+      "pear-desktop": "🎵",
     },
     // "player": "pear-desktop",
     // "player": "com.github.th_ch.youtube_music",
     "status-icons": {
       "playing": "⏸",
-      "paused": "▶"
+      "paused": "▶",
     },
     "max-length": 60,
-    "ignore-players": [
-      "vivaldi"
-    ]
+    "ignore-players": ["vivaldi"],
   },
   "memory": {
     "interval": 30,
     "format": "{}% ",
-    "max-length": 10
+    "max-length": 10,
   },
   "temperature": {
     // "thermal-zone": 2,
     // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
     // "critical-threshold": 80,
     // "format-critical": "{temperatureC}°C ",
-    "format": "{temperatureC}°C "
-  }
+    "format": "{temperatureC}°C ",
+  },
 }
