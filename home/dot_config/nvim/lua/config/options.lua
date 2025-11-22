@@ -7,3 +7,5 @@ vim.opt.relativenumber = true
 -- Spell-checking
 vim.opt.spell = false
 vim.opt.spelllang = {}
+
+vim.opt.textwidth = 80
