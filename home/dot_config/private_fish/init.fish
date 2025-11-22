@@ -13,6 +13,10 @@ if type -q zoxide
     zoxide init fish | source
 end
 
+if type -q try
+    eval (try init ~/Work/tries)
+end
+
 # fzf
 if type -q fzf
     # These are optional: completions and key bindings
