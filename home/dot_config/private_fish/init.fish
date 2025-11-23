@@ -13,9 +13,11 @@ if type -q zoxide
     zoxide init fish | source
 end
 
-if type -q try
-    eval (try init ~/Work/tries)
-end
+# if type -q try
+#     # eval (try init ~/Work/tries) | source
+#     eval (try init ~/Work/tries | string collect)
+#     # try init ~/Work/tries | source
+# end
 
 # fzf
 if type -q fzf

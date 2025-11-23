@@ -1,35 +1,17 @@
 # If not running interactively, don't do anything (leave this at the top of this file)
 [[ $- != *i* ]] && return
 
+# Auto-launch fish shell if in interactive bash
+if command -v fish &> /dev/null; then
+	if [[ $(ps --no-header --pid=$PPID --format=comm) != "fish" && -z ${BASH_EXECUTION_STRING} && ${SHLVL} == 1 ]]
+	then
+		shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=''
+		exec fish $LOGIN_OPTION
+	fi
+fi
+
 # All the default Omarchy aliases and functions
 # (don't mess with these directly, just overwrite them here!)
 source ~/.local/share/omarchy/default/bash/rc
 
-# Add your own exports, aliases, and functions here.
-#
-# Make an alias for invoking commands you use constantly
-# alias p='python'
-
-# alias aliases='cd ~/.config/fish && n ./aliases.fish'
-alias aliases='n ~/.bashrc'
-
-# cli
-alias p=pnpm
-alias px='pnpm dlx'
-alias b='bun'
-alias bx='bunx'
-
-# dotfiles
-alias conf-bash='cd ~/.config/bash && n'
-alias conf-fish='cd ~/.config/fish && n'
-alias conf-nvim='cd ~/.config/nvim && n'
-alias conf-ghostty='cd ~/.config/ghostty && n'
-alias conf-hypr='cd ~/.config/hypr && n'
-alias conf-waybar='cd ~/.config/waybar && n'
-
-# extra
-alias portainer='docker run -p 8000:8000 -p 9443:9443 --name portainer -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:lts'
-alias zed=zeditor
-alias oo='cd ~/Documents/"Obsidian Vault" && n'
-alias vault='oo'
-alias update-themes='theme-hook-update'
+# Add your own exports, aliases, and functions below.

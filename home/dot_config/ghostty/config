@@ -30,7 +30,7 @@ keybind = super+control+shift+alt+arrow_right=resize_split:right,100
 # SSH session terminfo
 shell-integration-features = ssh-env
 
-command = /usr/bin/fish
+# command = /usr/bin/fish
 
 # Slowdown mouse scrolling
 mouse-scroll-multiplier = 0.95
