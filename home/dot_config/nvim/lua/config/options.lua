@@ -8,4 +8,4 @@ vim.opt.relativenumber = true
 vim.opt.spell = false
 vim.opt.spelllang = {}
 
-vim.opt.textwidth = 80
+-- vim.opt.textwidth = 80
