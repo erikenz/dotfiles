@@ -8,7 +8,7 @@
 		"x": 0,
 		"y": 0
 	},
-	"url": "https://music.youtube.com/watch?v=SF2IBfM8wHs&list=RDAMVMSF2IBfM8wHs&index=0",
+	"url": "https://music.youtube.com/watch?v=oGA3aHWBO0I&list=LM&index=0",
 	"options": {
 		"tray": false,
 		"appVisible": true,
@@ -58,6 +58,9 @@
 			"enabled": true
 		},
 		"shortcuts": {
+			"enabled": true
+		},
+		"bypass-age-restrictions": {
 			"enabled": true
 		}
 	},
