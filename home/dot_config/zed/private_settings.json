@@ -9,7 +9,6 @@
 {
   "context_servers": {
     "Balcon Padel MCP Server": {
-      "source": "custom",
       "enabled": true,
       "command": "npx",
       "args": [
@@ -22,7 +21,6 @@
       "env": {}
     },
     "mercadopago-mcp-server": {
-      "source": "custom",
       "command": "npx",
       "args": ["-y", "mcp-remote", "https://mcp.mercadopago.com/mcp", "--header", "Authorization:${AUTH_HEADER}"],
       "env": {
@@ -83,7 +81,7 @@
     "always_allow_tool_actions": true,
     "default_model": {
       "provider": "copilot_chat",
-      "model": "gpt-4.1"
+      "model": "gpt-5-mini"
     }
   },
   "auto_install_extensions": {

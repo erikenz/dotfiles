@@ -1,14 +1,14 @@
 {
 	"window-size": {
-		"width": 960,
-		"height": 1054
+		"width": 1920,
+		"height": 1080
 	},
 	"window-maximized": true,
 	"window-position": {
 		"x": 0,
 		"y": 0
 	},
-	"url": "https://music.youtube.com/watch?v=oGA3aHWBO0I&list=LM&index=0",
+	"url": "https://music.youtube.com/watch?v=FGMvI3okbjU&list=RDAMVMSF2IBfM8wHs&index=0",
 	"options": {
 		"tray": false,
 		"appVisible": true,
@@ -36,13 +36,20 @@
 			"mode": "custom"
 		},
 		"precise-volume": {
-			"globalShortcuts": {}
+			"enabled": true,
+			"steps": 1,
+			"arrowsShortcut": true,
+			"globalShortcuts": {
+				"volumeUp": "",
+				"volumeDown": ""
+			},
+			"savedVolume": 64
 		},
 		"discord": {
 			"listenAlong": true
 		},
 		"album-actions": {
-			"enabled": false
+			"enabled": true
 		},
 		"in-app-menu": {
 			"enabled": true

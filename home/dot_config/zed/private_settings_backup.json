@@ -7,6 +7,29 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "context_servers": {
+    "Balcon Padel MCP Server": {
+      "source": "custom",
+      "enabled": true,
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "http://localhost:3000/api/mcp",
+        "--header",
+        "Authorization: Bearer 1fac1b12-5b6b-4a2f-9ee8-7dc9c09efadb"
+      ],
+      "env": {}
+    },
+    "mercadopago-mcp-server": {
+      "source": "custom",
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://mcp.mercadopago.com/mcp", "--header", "Authorization:${AUTH_HEADER}"],
+      "env": {
+        "AUTH_HEADER": "Bearer TEST-36963611916062-121012-e301b7125c26de5fd1d716c0387f02a6-209204083"
+      }
+    }
+  },
   "base_keymap": "VSCode",
   "vim_mode": true,
   "vim": {
@@ -17,7 +40,7 @@
   "ui_font_size": 14,
   "buffer_font_size": 12,
   "theme": "Catppuccin",
-  "relative_line_numbers": true,
+  "relative_line_numbers": "enabled",
   "terminal": {
     "font_size": 12,
     "dock": "right",
@@ -56,7 +79,7 @@
       "provider": "copilot_chat",
       "model": "gpt-4.1"
     },
-    "default_profile": "ask",
+    "default_profile": "write",
     "always_allow_tool_actions": true,
     "default_model": {
       "provider": "copilot_chat",
@@ -72,6 +95,36 @@
     "scss": true,
     "toml": true,
     "lua": true
+  },
+  "theme_overrides": {
+    "Catppuccin": {
+      "syntax": {
+        "constant.comment.todo": {
+          "color": "#4078f2ff"
+          // "background_color": "#00000000",
+          // "font_weight": "bold",
+          // "font_style": "italic"
+        },
+        "string.comment.info": {
+          "color": "#50a14fff"
+          // "background_color": "#00000000",
+          // "font_weight": "bold",
+          // "font_style": "italic"
+        },
+        "keyword.comment.warn": {
+          "color": "#c18401ff"
+          // "background_color": "#00000000",
+          // "font_weight": "bold",
+          // "font_style": "italic"
+        },
+        "property.comment.error": {
+          "color": "#ca1243ff"
+          // "background_color": "#00000000",
+          // "font_weight": "bold",
+          // "font_style": "italic"
+        }
+      }
+    }
   },
   "languages": {
     "JavaScript": {
