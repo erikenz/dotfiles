@@ -45,7 +45,6 @@
   {
     "context": "Editor && VimControl && !VimWaiting && !menu",
     "bindings": {
-      "space q q": "zed::Quit",
       "g c o": ["workspace::SendKeystrokes", "o ctrl-/"],
       "g c O": ["workspace::SendKeystrokes", "O ctrl-/"],
       "ctrl-/": "terminal_panel::Toggle",
@@ -124,14 +123,8 @@
       "space f n": "workspace::NewFile",
       "space f T": "workspace::NewTerminal",
       "space f t": "workspace::OpenInTerminal",
-      "space f f": [
-        "task::Spawn",
-        { "task_name": "File Finder", "reveal_target": "center" }
-      ],
-      "space f d": [
-        "task::Spawn",
-        { "task_name": "Find Directories", "reveal_target": "center" }
-      ],
+      "space f f": ["task::Spawn", { "task_name": "File Finder", "reveal_target": "center" }],
+      "space f d": ["task::Spawn", { "task_name": "Find Directories", "reveal_target": "center" }],
       // Debugger
       "space d C": "debugger::Start",
       "space d c": "debugger::Continue",
@@ -152,17 +145,11 @@
       // Search
       "space s n a": "notification_panel::ToggleFocus",
       "space s n d": "workspace::ClearAllNotifications",
-      "space s g": [
-        "task::Spawn",
-        { "task_name": "Find in Files", "reveal_target": "center" }
-      ],
+      "space s g": ["task::Spawn", { "task_name": "Find in Files", "reveal_target": "center" }],
       "space s r": "buffer_search::DeployReplace",
       "space s k": "zed::OpenKeymap",
       // Markdown
-      "space m o": [
-        "task::Spawn",
-        { "task_name": "Obsidian", "reveal_target": "center" }
-      ],
+      "space m o": ["task::Spawn", { "task_name": "Obsidian", "reveal_target": "center" }],
       // Diagnostics
       "space x x": "diagnostics::Deploy",
       "[ q": "editor::GoToPreviousDiagnostic",
@@ -198,12 +185,6 @@
       "ctrl-left": "vim::ResizePaneLeft",
       "ctrl-up": "vim::ResizePaneUp",
       "ctrl-down": "vim::ResizePaneDown"
-    }
-  },
-  {
-    "context": "GitPanel",
-    "bindings": {
-      "q": "git_panel::Close"
     }
   },
   {
@@ -267,12 +248,6 @@
     "context": "vim_mode == visual",
     "bindings": {
       "shift-s": "vim::PushAddSurrounds"
-    }
-  },
-  {
-    "context": "vim_operator == a || vim_operator == i || vim_operator == cs",
-    "bindings": {
-      "b": "vim::AnyBrackets"
     }
   },
   {

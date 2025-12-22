@@ -8,11 +8,11 @@
 		"x": 12,
 		"y": 38
 	},
-	"url": "https://music.youtube.com/watch?v=gCQa5OD1C-0&list=RDAMVMNGrMCxQ8tLw&index=0",
+	"url": "https://music.youtube.com/watch?v=Ky1BBmX6K9Q&list=RDAMVMDs6mXHy3EK0&index=0",
 	"options": {
 		"tray": false,
 		"appVisible": true,
-		"autoUpdates": true,
+		"autoUpdates": false,
 		"alwaysOnTop": false,
 		"hideMenu": false,
 		"hideMenuWarned": false,
@@ -22,7 +22,7 @@
 		"restartOnConfigChanges": false,
 		"trayClickPlayPause": false,
 		"autoResetAppCache": false,
-		"resumeOnStart": true,
+		"resumeOnStart": false,
 		"likeButtons": "",
 		"proxy": "",
 		"startingPage": "",
@@ -33,7 +33,11 @@
 	"plugins": {
 		"notifications": {},
 		"video-toggle": {
-			"mode": "custom"
+			"enabled": false,
+			"hideVideo": true,
+			"mode": "custom",
+			"forceHide": true,
+			"align": "left"
 		},
 		"precise-volume": {
 			"enabled": true,
@@ -43,32 +47,117 @@
 				"volumeUp": "",
 				"volumeDown": ""
 			},
-			"savedVolume": 76
+			"savedVolume": 32
 		},
 		"discord": {
 			"listenAlong": true
 		},
-		"album-actions": {
-			"enabled": true
-		},
 		"in-app-menu": {
 			"enabled": true
 		},
-		"disable-autoplay": {
-			"enabled": true,
-			"applyOnce": true
+		"adblocker": {
+			"enabled": false
 		},
-		"exponential-volume": {
-			"enabled": true
-		},
-		"synced-lyrics": {
-			"enabled": true
-		},
-		"shortcuts": {
+		"album-actions": {
 			"enabled": true
 		},
 		"bypass-age-restrictions": {
 			"enabled": true
+		},
+		"exponential-volume": {
+			"enabled": false
+		},
+		"shortcuts": {
+			"enabled": true
+		},
+		"synced-lyrics": {
+			"enabled": true,
+			"preciseTiming": true,
+			"showLyricsEvenIfInexact": true,
+			"showTimeCodes": false,
+			"defaultTextString": "♪",
+			"lineEffect": "fancy",
+			"romanization": true,
+			"preferredProvider": "YTMusic"
+		},
+		"visualizer": {
+			"enabled": false,
+			"type": "wave",
+			"butterchurn": {
+				"preset": "martin [shadow harlequins shape code] - fata morgana",
+				"renderingFrequencyInMs": 500,
+				"blendTimeInSeconds": 2.7
+			},
+			"vudio": {
+				"effect": "lighting",
+				"accuracy": 128,
+				"lighting": {
+					"maxHeight": 160,
+					"maxSize": 12,
+					"lineWidth": 1,
+					"color": "#49f3f7",
+					"shadowBlur": 2,
+					"shadowColor": "rgba(244,244,244,.5)",
+					"fadeSide": true,
+					"prettify": false,
+					"horizontalAlign": "center",
+					"verticalAlign": "middle",
+					"dottify": true
+				}
+			},
+			"wave": {
+				"animations": [
+					{
+						"type": "Cubes",
+						"config": {
+							"bottom": true,
+							"count": 30,
+							"cubeHeight": 5,
+							"fillColor": {
+								"gradient": [
+									"#FAD961",
+									"#F76B1C"
+								]
+							},
+							"lineColor": "rgba(0,0,0,0)",
+							"radius": 20
+						}
+					},
+					{
+						"type": "Cubes",
+						"config": {
+							"top": true,
+							"count": 12,
+							"cubeHeight": 5,
+							"fillColor": {
+								"gradient": [
+									"#FAD961",
+									"#F76B1C"
+								]
+							},
+							"lineColor": "rgba(0,0,0,0)",
+							"radius": 10
+						}
+					},
+					{
+						"type": "Circles",
+						"config": {
+							"lineColor": {
+								"gradient": [
+									"#FAD961",
+									"#FAD961",
+									"#F76B1C"
+								],
+								"rotate": 90
+							},
+							"lineWidth": 4,
+							"diameter": 20,
+							"count": 10,
+							"frequencyBand": "base"
+						}
+					}
+				]
+			}
 		}
 	},
 	"__internal__": {
