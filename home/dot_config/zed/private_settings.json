@@ -159,10 +159,18 @@
     //   }
     // }
   },
-  "file_types": {
-    "CSS": ["scss"]
-  },
+  // "file_types": {
+  //   "CSS": ["scss"]
+  // },
   "lsp": {
+    "tailwindcss-language-server": {
+      "settings": {
+        "classFunctions": ["cva", "cx"],
+        "experimental": {
+          "classRegex": ["[cls|className]\\s\\:\\=\\s\"([^\"]*)", "tw=\"([^\"]*)\"", "tw='([^']*)'", "tw\\=\\('([^']*)'\\)"]
+        }
+      }
+    },
     "vtsls": {
       "settings": {
         "typescript": {
@@ -172,11 +180,5 @@
         }
       }
     }
-    // "vscode-css-language-server": {
-    //   "settings": {
-    //     "css": { "lint": { "unknownAtRules": "ignore" } },
-    //     "scss": { "lint": { "unknownAtRules": "ignore" } }
-    //   }
-    // }
   }
 }
