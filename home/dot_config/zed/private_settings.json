@@ -8,7 +8,7 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
   "context_servers": {
-    "Balcon Padel MCP Server": {
+    "balcon-padel-mcp-server": {
       "enabled": true,
       "command": "npx",
       "args": [
@@ -26,6 +26,10 @@
       "env": {
         "AUTH_HEADER": "Bearer TEST-36963611916062-121012-e301b7125c26de5fd1d716c0387f02a6-209204083"
       }
+    },
+    "next-devtools": {
+      "command": "npx",
+      "args": ["-y", "next-devtools-mcp@latest"]
     }
   },
   "base_keymap": "VSCode",
@@ -79,9 +83,13 @@
     },
     "default_profile": "write",
     "always_allow_tool_actions": true,
-    "default_model": {
+    "commit_message_model": {
       "provider": "copilot_chat",
       "model": "gpt-5-mini"
+    },
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "claude-sonnet-4.5"
     }
   },
   "auto_install_extensions": {
