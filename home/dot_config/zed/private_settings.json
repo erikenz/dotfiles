@@ -11,33 +11,29 @@
     "balcon-padel-mcp-server": {
       "enabled": true,
       "command": "npx",
-      "args": [
-        "-y",
-        "mcp-remote",
-        "http://localhost:3000/api/mcp",
-        "--header",
-        "Authorization: Bearer 1fac1b12-5b6b-4a2f-9ee8-7dc9c09efadb"
-      ],
-      "env": {}
+      "args": ["-y", "mcp-remote", "http://localhost:3000/api/mcp", "--header", "Authorization:${AUTH_HEADER}"],
+      "env": {
+        "AUTH_HEADER": "Bearer 5719aa34-d90c-439f-b66e-2bb981e05cb3",
+      },
     },
     "mercadopago-mcp-server": {
       "command": "npx",
       "args": ["-y", "mcp-remote", "https://mcp.mercadopago.com/mcp", "--header", "Authorization:${AUTH_HEADER}"],
       "env": {
-        "AUTH_HEADER": "Bearer TEST-36963611916062-121012-e301b7125c26de5fd1d716c0387f02a6-209204083"
-      }
+        "AUTH_HEADER": "Bearer TEST-36963611916062-121012-e301b7125c26de5fd1d716c0387f02a6-209204083",
+      },
     },
     "next-devtools": {
       "command": "npx",
-      "args": ["-y", "next-devtools-mcp@latest"]
-    }
+      "args": ["-y", "next-devtools-mcp@latest"],
+    },
   },
   "base_keymap": "VSCode",
   "vim_mode": true,
   "vim": {
     "toggle_relative_line_numbers": true,
     "use_system_clipboard": "always",
-    "use_smartcase_find": true
+    "use_smartcase_find": true,
   },
   "ui_font_size": 14,
   "buffer_font_size": 12,
@@ -47,50 +43,50 @@
     "font_size": 12,
     "dock": "right",
     "shell": {
-      "program": "/usr/bin/fish"
-    }
+      "program": "/usr/bin/fish",
+    },
   },
   "soft_wrap": "bounded",
   "preferred_line_length": 140,
   "project_panel": {
-    "auto_fold_dirs": false
+    "auto_fold_dirs": false,
   },
   "indent_guides": {
     "enabled": true,
-    "coloring": "indent_aware"
+    "coloring": "indent_aware",
   },
   "git": {
     "git_gutter": "tracked_files",
     "inline_blame": {
-      "enabled": false
-    }
+      "enabled": false,
+    },
   },
   "tabs": {
     "file_icons": true,
     "git_status": true,
-    "show_diagnostics": "all"
+    "show_diagnostics": "all",
   },
   "outline_panel": {
-    "dock": "right"
+    "dock": "right",
   },
   "features": {
-    "edit_prediction_provider": "copilot"
+    "edit_prediction_provider": "copilot",
   },
   "agent": {
     "inline_assistant_model": {
       "provider": "copilot_chat",
-      "model": "gpt-4.1"
+      "model": "gpt-4.1",
     },
     "default_profile": "write",
     "always_allow_tool_actions": true,
     "commit_message_model": {
       "provider": "copilot_chat",
-      "model": "gpt-5-mini"
+      "model": "gpt-5-mini",
     },
     "default_model": {
       "provider": "copilot_chat",
-      "model": "claude-sonnet-4.5"
-    }
+      "model": "claude-opus-4.5",
+    },
   },
   "auto_install_extensions": {
     "comment": true,
@@ -100,66 +96,66 @@
     "html": true,
     "scss": true,
     "toml": true,
-    "lua": true
+    "lua": true,
   },
   "theme_overrides": {
     "Catppuccin": {
       "syntax": {
         "constant.comment.todo": {
-          "color": "#4078f2ff"
+          "color": "#4078f2ff",
           // "background_color": "#00000000",
           // "font_weight": "bold",
           // "font_style": "italic"
         },
         "string.comment.info": {
-          "color": "#50a14fff"
+          "color": "#50a14fff",
           // "background_color": "#00000000",
           // "font_weight": "bold",
           // "font_style": "italic"
         },
         "keyword.comment.warn": {
-          "color": "#c18401ff"
+          "color": "#c18401ff",
           // "background_color": "#00000000",
           // "font_weight": "bold",
           // "font_style": "italic"
         },
         "property.comment.error": {
-          "color": "#ca1243ff"
+          "color": "#ca1243ff",
           // "background_color": "#00000000",
           // "font_weight": "bold",
           // "font_style": "italic"
-        }
-      }
-    }
+        },
+      },
+    },
   },
   "languages": {
     "JavaScript": {
       "formatter": { "language_server": { "name": "biome" } },
       "code_actions_on_format": {
         "source.fixAll.biome": true,
-        "source.organizeImports.biome": true
-      }
+        "source.organizeImports.biome": true,
+      },
     },
     "TypeScript": {
       "formatter": { "language_server": { "name": "biome" } },
       "code_actions_on_format": {
         "source.fixAll.biome": true,
-        "source.organizeImports.biome": true
-      }
+        "source.organizeImports.biome": true,
+      },
     },
     "TSX": {
       "formatter": { "language_server": { "name": "biome" } },
       "code_actions_on_format": {
         "source.fixAll.biome": true,
-        "source.organizeImports.biome": true
-      }
+        "source.organizeImports.biome": true,
+      },
     },
     "CSS": {
       "formatter": { "language_server": { "name": "biome" } },
       "code_actions_on_format": {
-        "source.fixAll.biome": true
-      }
-    }
+        "source.fixAll.biome": true,
+      },
+    },
     // "SCSS": {
     //   "formatter": { "language_server": { "name": "biome" } },
     //   "code_actions_on_format": {
@@ -175,18 +171,18 @@
       "settings": {
         "classFunctions": ["cva", "cx"],
         "experimental": {
-          "classRegex": ["[cls|className]\\s\\:\\=\\s\"([^\"]*)", "tw=\"([^\"]*)\"", "tw='([^']*)'", "tw\\=\\('([^']*)'\\)"]
-        }
-      }
+          "classRegex": ["[cls|className]\\s\\:\\=\\s\"([^\"]*)", "tw=\"([^\"]*)\"", "tw='([^']*)'", "tw\\=\\('([^']*)'\\)"],
+        },
+      },
     },
     "vtsls": {
       "settings": {
         "typescript": {
           "preferences": {
-            "importModuleSpecifier": "non-relative"
-          }
-        }
-      }
-    }
-  }
+            "importModuleSpecifier": "non-relative",
+          },
+        },
+      },
+    },
+  },
 }
