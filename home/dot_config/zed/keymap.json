@@ -11,15 +11,15 @@
     "bindings": {
       "j k": "vim::NormalBefore", // In insert mode, make jk escape to normal mode.
       "alt-j": "editor::MoveLineDown",
-      "alt-k": "editor::MoveLineUp"
-    }
+      "alt-k": "editor::MoveLineUp",
+    },
   },
   // Terminal
   {
     "context": "Workspace",
     "bindings": {
-      "ctrl-/": "terminal_panel::Toggle"
-    }
+      "ctrl-/": "terminal_panel::Toggle",
+    },
   },
   // Window's navigation
   {
@@ -28,8 +28,8 @@
       "ctrl-h": "workspace::ActivatePaneLeft",
       "ctrl-l": "workspace::ActivatePaneRight",
       "ctrl-k": "workspace::ActivatePaneUp",
-      "ctrl-j": "workspace::ActivatePaneDown"
-    }
+      "ctrl-j": "workspace::ActivatePaneDown",
+    },
   },
   {
     "context": "EmptyPane || SharedScreen",
@@ -39,14 +39,14 @@
       "space space": "file_finder::Toggle",
       "space f n": "workspace::NewFile",
       "space f t": "workspace::NewTerminal",
-      "space f T": "workspace::OpenInTerminal"
-    }
+      "space f T": "workspace::OpenInTerminal",
+    },
   },
   {
     "context": "Editor && VimControl && !VimWaiting && !menu",
     "bindings": {
-      "g c o": ["workspace::SendKeystrokes", "o ctrl-/"],
-      "g c O": ["workspace::SendKeystrokes", "O ctrl-/"],
+      // "g c o": ["workspace::SendKeystrokes", "o ctrl-/"],
+      // "g c O": ["workspace::SendKeystrokes", "O ctrl-/"],
       "ctrl-/": "terminal_panel::Toggle",
       "] d": "editor::GoToDiagnostic",
       "[ d": "editor::GoToPreviousDiagnostic",
@@ -111,8 +111,8 @@
         "task::Spawn",
         {
           "task_name": "lazygit",
-          "reveal_target": "center"
-        }
+          "reveal_target": "center",
+        },
       ],
       "space g d": "editor::ExpandAllDiffHunks",
       "space g D": "git::Diff",
@@ -174,8 +174,8 @@
       "space 7": ["pane::ActivateItem", 6],
       "space 8": ["pane::ActivateItem", 7],
       "space 9": ["pane::ActivateItem", 8],
-      "space 0": "pane::ActivateLastItem"
-    }
+      "space 0": "pane::ActivateLastItem",
+    },
   },
   // Resize panes
   {
@@ -184,15 +184,15 @@
       "ctrl-right": "vim::ResizePaneRight",
       "ctrl-left": "vim::ResizePaneLeft",
       "ctrl-up": "vim::ResizePaneUp",
-      "ctrl-down": "vim::ResizePaneDown"
-    }
+      "ctrl-down": "vim::ResizePaneDown",
+    },
   },
   {
     "context": "AgentPanel",
     "bindings": {
       "ctrl-\\": "workspace::ToggleRightDock",
-      "cmd-k": "workspace::ToggleRightDock"
-    }
+      "cmd-k": "workspace::ToggleRightDock",
+    },
   },
   // File panel (netrw)
   {
@@ -225,30 +225,30 @@
       "shift-g": "menu::SelectLast",
       "g g": "menu::SelectFirst",
       "-": "project_panel::SelectParent",
-      "ctrl-6": "pane::AlternateFile"
-    }
+      "ctrl-6": "pane::AlternateFile",
+    },
   },
   {
     "context": "vim_operator == d",
     "bindings": {
       "o": "editor::ExpandAllDiffHunks",
-      "r": "git::Restore"
-    }
+      "r": "git::Restore",
+    },
   },
   // Vim Sneak motion
   {
     "context": "vim_mode == normal || vim_mode == visual",
     "bindings": {
       "s": "vim::PushSneak",
-      "shift-s": "vim::PushSneakBackward"
-    }
+      "shift-s": "vim::PushSneakBackward",
+    },
   },
   // Add surrounds in visual mode
   {
     "context": "vim_mode == visual",
     "bindings": {
-      "shift-s": "vim::PushAddSurrounds"
-    }
+      "shift-s": "vim::PushAddSurrounds",
+    },
   },
   {
     "context": "vim_operator == a || vim_operator == i || vim_operator == cs",
@@ -259,8 +259,8 @@
 
       // mini.ai plugin behavior
       "Q": "vim::MiniQuotes",
-      "B": "vim::MiniBrackets"
-    }
+      "B": "vim::MiniBrackets",
+    },
   },
   {
     "context": "VimControl && !menu && vim_mode != operator",
@@ -268,8 +268,8 @@
       "w": "vim::NextSubwordStart",
       "b": "vim::PreviousSubwordStart",
       "e": "vim::NextSubwordEnd",
-      "g e": "vim::PreviousSubwordEnd"
-    }
+      "g e": "vim::PreviousSubwordEnd",
+    },
   },
   // Center the cursor on the screen when scrolling and find all references
   {
@@ -280,7 +280,7 @@
       "n": ["workspace::SendKeystrokes", "n z z z v"],
       "shift-n": ["workspace::SendKeystrokes", "shift-n z z z v"],
       "shift-g": ["workspace::SendKeystrokes", "shift-g z z"],
-      "g r": "editor::FindAllReferences"
-    }
-  }
+      "g r": "editor::FindAllReferences",
+    },
+  },
 ]

@@ -11,16 +11,24 @@
     "balcon-padel-mcp-server": {
       "enabled": true,
       "command": "npx",
-      "args": ["-y", "mcp-remote", "http://localhost:3000/api/mcp", "--header", "Authorization:${AUTH_HEADER}"],
+      "args": ["-y", "mcp-remote", "http://localhost:3000/api/mcp", "--header", "Authorization:Bearer ${AUTH_HEADER}"],
       "env": {
-        "AUTH_HEADER": "Bearer 5719aa34-d90c-439f-b66e-2bb981e05cb3",
+        "AUTH_HEADER": "5719aa34-d90c-439f-b66e-2bb981e05cb3",
+      },
+    },
+    "balcon-padel-mcp-server-prod": {
+      "enabled": true,
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://balconpadel.vercel.app/api/mcp", "--header", "Authorization:Bearer ${AUTH_HEADER}"],
+      "env": {
+        "AUTH_HEADER": "a0a4854c-2ed6-4348-a35b-eea113ae0ab7",
       },
     },
     "mercadopago-mcp-server": {
       "command": "npx",
-      "args": ["-y", "mcp-remote", "https://mcp.mercadopago.com/mcp", "--header", "Authorization:${AUTH_HEADER}"],
+      "args": ["-y", "mcp-remote", "https://mcp.mercadopago.com/mcp", "--header", "Authorization:Bearer ${AUTH_HEADER}"],
       "env": {
-        "AUTH_HEADER": "Bearer TEST-36963611916062-121012-e301b7125c26de5fd1d716c0387f02a6-209204083",
+        "AUTH_HEADER": "TEST-36963611916062-121012-e301b7125c26de5fd1d716c0387f02a6-209204083",
       },
     },
     "next-devtools": {
