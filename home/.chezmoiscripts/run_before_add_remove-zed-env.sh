@@ -3,12 +3,10 @@ set -euo pipefail
 
 ZED_CFG="$HOME/.config/zed/settings.json"
 
-# Only run if the file exists
 [ -f "$ZED_CFG" ] || exit 0
 
 tmp="$(mktemp)"
 
-# Remove all `.context_servers.*.env` keys
 jq '
   if .context_servers then
     .context_servers |= with_entries(
@@ -19,5 +17,5 @@ jq '
   end
 ' "$ZED_CFG" >"$tmp"
 
-# Overwrite the file ONLY for chezmoi to read
+# Overwrite only long enough for chezmoi add to read it
 mv "$tmp" "$ZED_CFG"
