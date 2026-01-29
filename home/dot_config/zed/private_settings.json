@@ -42,6 +42,7 @@
   "theme": "Catppuccin",
   "relative_line_numbers": "enabled",
   "terminal": {
+    "copy_on_select": true,
     "font_size": 12,
     "dock": "right",
     "shell": {
@@ -87,7 +88,7 @@
     },
     "default_model": {
       "provider": "copilot_chat",
-      "model": "claude-opus-4.5",
+      "model": "gpt-5-mini",
     },
   },
   "auto_install_extensions": {
