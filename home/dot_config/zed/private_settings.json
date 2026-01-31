@@ -159,16 +159,16 @@
         "source.fixAll.biome": true,
       },
     },
-    // "SCSS": {
-    //   "formatter": { "language_server": { "name": "biome" } },
-    //   "code_actions_on_format": {
-    //     "source.fixAll.biome": true
-    //   }
-    // }
+    "SCSS": {
+      "format_on_save": "on",
+      "formatter": {
+        "external": {
+          "command": "prettier",
+          "arguments": ["--stdin-filepath", "{buffer_path}"],
+        },
+      },
+    },
   },
-  // "file_types": {
-  //   "CSS": ["scss"]
-  // },
   "lsp": {
     "tailwindcss-language-server": {
       "settings": {
@@ -184,6 +184,41 @@
           "preferences": {
             "importModuleSpecifier": "non-relative",
           },
+        },
+      },
+    },
+    "some-sass-lsp": {
+      "settings": {
+        "somesass": {
+          "scss": {
+            "completion": {
+              "enabled": false,
+            },
+            "hover": {
+              "documentation": false,
+              "references": false,
+            },
+          },
+        },
+      },
+    },
+
+    // scss-lsp / vscode-css-languageserver: safe settings for the core scss server
+    "scss-lsp": {
+      "settings": {
+        "scss": {
+          "validate": false,
+          "lint": {},
+        },
+      },
+    },
+
+    // fallback key sometimes used by the extension
+    "vscode-css-languageserver": {
+      "settings": {
+        "scss": {
+          "validate": false,
+          "lint": {},
         },
       },
     },
