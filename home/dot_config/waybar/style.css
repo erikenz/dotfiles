@@ -37,7 +37,7 @@
 #pulseaudio,
 #pulseaudio.micropgone,
 #custom-omarchy,
-#custom-screenrecording-indicator,
+
 #idle_inhibitor,
 #custom-update {
   min-width: 12px;
@@ -90,9 +90,13 @@ tooltip {
   opacity: 0;
 }
 
-#custom-screenrecording-indicator {
+
+#custom-screenrecording-indicator,
+#custom-idle-indicator,
+#custom-notification-silencing-indicator {
   min-width: 12px;
   margin-left: 5px;
+  margin-right: 0;
   font-size: 10px;
   padding-bottom: 1px;
 }
@@ -107,5 +111,10 @@ tooltip {
 }
 
 #custom-voxtype.recording {
+  color: #a55555;
+}
+
+#custom-idle-indicator.active,
+#custom-notification-silencing-indicator.active {
   color: #a55555;
 }

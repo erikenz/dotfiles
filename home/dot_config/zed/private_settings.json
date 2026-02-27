@@ -7,9 +7,26 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "git_panel": {
+    "tree_view": true,
+  },
+  "edit_predictions": {
+    "provider": "copilot",
+  },
   "context_servers": {
-    "balcon-padel-mcp-server": {
+    "chrome-devtools-mcp-zed": {
       "enabled": true,
+      "remote": false,
+      "settings": {
+        "extra_args": [],
+        "chrome_arg": [],
+        // "executable_path": "/usr/bin/chromium",
+        "executable_path": null,
+        "browser_url": "http://127.0.0.1:9222",
+      },
+    },
+    "balcon-padel-mcp-server": {
+      "enabled": false,
       "command": "npx",
       "args": ["-y", "mcp-remote", "http://localhost:3000/api/mcp", "--header", "Authorization:Bearer ${AUTH_HEADER}"],
       "env": {},
@@ -28,6 +45,11 @@
     "next-devtools": {
       "command": "npx",
       "args": ["-y", "next-devtools-mcp@latest"],
+    },
+  },
+  "diagnostics": {
+    "inline": {
+      "enabled": true,
     },
   },
   "base_keymap": "VSCode",
@@ -72,16 +94,15 @@
   "outline_panel": {
     "dock": "right",
   },
-  "features": {
-    "edit_prediction_provider": "copilot",
-  },
   "agent": {
+    "tool_permissions": {
+      "default": "allow",
+    },
     "inline_assistant_model": {
       "provider": "copilot_chat",
       "model": "gpt-4.1",
     },
     "default_profile": "write",
-    "always_allow_tool_actions": true,
     "commit_message_model": {
       "provider": "copilot_chat",
       "model": "gpt-5-mini",
@@ -214,13 +235,13 @@
     },
 
     // fallback key sometimes used by the extension
-    "vscode-css-languageserver": {
-      "settings": {
-        "scss": {
-          "validate": false,
-          "lint": {},
-        },
-      },
-    },
+    // "vscode-css-languageserver": {
+    //   "settings": {
+    //     "scss": {
+    //       "validate": false,
+    //       "lint": {},
+    //     },
+    //   },
+    // },
   },
 }
