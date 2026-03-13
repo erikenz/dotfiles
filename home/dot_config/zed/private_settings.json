@@ -7,6 +7,11 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "agent_servers": {
+    "opencode": {
+      "type": "registry",
+    },
+  },
   "git_panel": {
     "tree_view": true,
   },
@@ -14,6 +19,20 @@
     "provider": "copilot",
   },
   "context_servers": {
+    "mcp-server-playwright": {
+      "enabled": true,
+      "remote": false,
+      "settings": {
+        "browser": "chromium",
+        "headless": false,
+        "vision": false,
+      },
+    },
+    "bun-docs-mcp": {
+      "enabled": true,
+      "remote": false,
+      "settings": {},
+    },
     "chrome-devtools-mcp-zed": {
       "enabled": true,
       "remote": false,
