@@ -8,6 +8,9 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
   "agent_servers": {
+    "claude-acp": {
+      "type": "registry",
+    },
     "codex-acp": {
       "type": "registry",
     },
@@ -15,6 +18,16 @@
       "type": "registry",
     },
     "opencode": {
+      "favorite_config_option_values": {
+        "model": ["opencode/big-pickle", "opencode/minimax-m2.5-free", "opencode/nemotron-3-super-free", "opencode/qwen3.6-plus-free"],
+      },
+      "favorite_models": [
+        "opencode/big-pickle",
+        "opencode/minimax-m2.5-free",
+        "opencode/mimo-v2-pro-free",
+        "opencode/mimo-v2-omni-free",
+        "opencode/nemotron-3-super-free",
+      ],
       "type": "registry",
     },
   },
@@ -26,7 +39,7 @@
   },
   "context_servers": {
     "mcp-server-playwright": {
-      "enabled": true,
+      "enabled": false,
       "remote": false,
       "settings": {
         "browser": "chromium",
@@ -48,7 +61,7 @@
       },
     },
     "balcon-padel-mcp-server": {
-      "enabled": false,
+      "enabled": true,
       "command": "npx",
       "args": ["-y", "mcp-remote", "http://localhost:3000/api/mcp", "--header", "Authorization:Bearer ${AUTH_HEADER}"],
       "env": {},
@@ -123,6 +136,16 @@
         "model": "v0-1.5-md",
         "enable_thinking": false,
       },
+      {
+        "provider": "copilot_chat",
+        "model": "gpt-5.2",
+        "enable_thinking": false,
+      },
+      {
+        "provider": "copilot_chat",
+        "model": "gemini-3.1-pro-preview",
+        "enable_thinking": false,
+      },
     ],
     "tool_permissions": {
       "default": "allow",
@@ -137,6 +160,7 @@
       "model": "gpt-5-mini",
     },
     "default_model": {
+      "effort": "high",
       "provider": "copilot_chat",
       "model": "gpt-5-mini",
     },
