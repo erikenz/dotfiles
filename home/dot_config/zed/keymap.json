@@ -143,7 +143,6 @@
       "space -": "pane::SplitHorizontal",
       "space |": "pane::SplitVertical",
       // Search
-      "space s n a": "notification_panel::ToggleFocus",
       "space s n d": "workspace::ClearAllNotifications",
       "space s g": ["task::Spawn", { "task_name": "Find in Files", "reveal_target": "center" }],
       "space s r": "buffer_search::DeployReplace",
