@@ -8,22 +8,24 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
   "which_key": {
-    "enabled": true
+    "enabled": true,
   },
   "proxy": "",
   "preview_tabs": {
     "enable_preview_multibuffer_from_code_navigation": true,
-    "enable_preview_from_file_finder": true
+    "enable_preview_from_file_finder": true,
   },
   "title_bar": {
-    "show_branch_status_icon": true
+    "show_branch_status_icon": true,
   },
   "collaboration_panel": {
     "dock": "right",
   },
   "agent_servers": {
     "gemini": {
-      "type": "registry"
+      "default_mode": "yolo",
+      "default_model": "gemini-3-flash-preview",
+      "type": "registry",
     },
     "claude-acp": {
       "type": "registry",
@@ -182,13 +184,14 @@
     },
     "default_profile": "write",
     "commit_message_model": {
-      "provider": "copilot_chat",
-      "model": "gpt-5-mini",
+      "provider": "google",
+      "model": "gemini-2.5-flash-lite",
     },
     "default_model": {
-      "effort": "high",
+      "enable_thinking": true,
+      "effort": "medium",
       "provider": "copilot_chat",
-      "model": "gpt-5-mini",
+      "model": "gpt-5.2-codex",
     },
   },
   "language_models": {
