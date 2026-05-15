@@ -53,6 +53,7 @@ alias p=pnpm
 alias px='pnpm dlx'
 alias b='bun'
 alias bx='bunx'
+alias npm=pnpm
 
 # dotfiles
 alias conf-bash='cd ~/.config/bash && n'
