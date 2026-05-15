@@ -35,8 +35,10 @@
 #temperature,
 #battery,
 #pulseaudio,
-#pulseaudio.microphone,
+#pulseaudio.micropgone,
 #custom-omarchy,
+
+#idle_inhibitor,
 #custom-update {
   min-width: 12px;
   margin: 0 7.5px;
@@ -48,6 +50,12 @@
 
 #pulseaudio.microphone {
   margin-left: 1rem;
+}
+
+#idle_inhibitor {
+  font-size: 12px;
+  margin-left: 0px;
+  margin-right: 8px;
 }
 
 #tray {
@@ -75,23 +83,13 @@ tooltip {
 }
 
 #clock {
-  margin-left: 8.75px;
-}
-
-#custom-weather {
-  margin-left: 7.5px;
-  margin-right: 7.5px;
-}
-
-#custom-weather.unavailable {
-  min-width: 0;
-  margin: 0;
-  padding: 0;
+  margin-left: 5px;
 }
 
 .hidden {
   opacity: 0;
 }
+
 
 #custom-screenrecording-indicator,
 #custom-idle-indicator,
@@ -107,11 +105,6 @@ tooltip {
   color: #a55555;
 }
 
-#custom-idle-indicator.active,
-#custom-notification-silencing-indicator.active {
-  color: #a55555;
-}
-
 #custom-voxtype {
   min-width: 12px;
   margin: 0 0 0 7.5px;
@@ -119,4 +112,20 @@ tooltip {
 
 #custom-voxtype.recording {
   color: #a55555;
+}
+
+#custom-idle-indicator.active,
+#custom-notification-silencing-indicator.active {
+  color: #a55555;
+}
+
+#custom-weather {
+  margin-left: 7.5px;
+  margin-right: 7.5px;
+}
+
+#custom-weather.unavailable {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
 }

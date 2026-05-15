@@ -7,12 +7,8 @@
   "modules-left": ["custom/omarchy", "hyprland/workspaces", "mpris"],
   "modules-center": [
     "clock",
-    "custom/weather",
     "custom/update",
-    "custom/voxtype",
     "custom/screenrecording-indicator",
-    "custom/idle-indicator",
-    "custom/notification-silencing-indicator",
   ],
   "modules-right": [
     "group/tray-expander",
@@ -56,25 +52,6 @@
       "10": [],
     },
   },
-  "mpris": {
-    "format": "{status_icon}  {title} - {artist}",
-    "format-paused": "{status_icon}  {title} - {artist}",
-    "tooltip-format": "Playing: {title} - {artist}",
-    "tooltip-format-paused": "Paused: {title} - {artist}",
-    "player-icons": {
-      "default": "",
-      "mpv": "🎵",
-      "pear-desktop": "🎵",
-    },
-    // "player": "pear-desktop",
-    // "player": "com.github.th_ch.youtube_music",
-    "status-icons": {
-      "playing": "⏸",
-      "paused": "▶",
-    },
-    "max-length": 60,
-    "ignore-players": ["vivaldi"],
-  },
   "custom/omarchy": {
     "format": "<span font='omarchy'>\ue900</span>",
     "on-click": "omarchy-menu",
@@ -87,33 +64,20 @@
     "on-click": "omarchy-launch-floating-terminal-with-presentation omarchy-update",
     "tooltip-format": "Omarchy update available",
     "signal": 7,
-    "interval": 21600,
+    "interval": 3600,
   },
-
   "cpu": {
-    "interval": 5,
-    // "format": "󰍛",
-    "format": "{usage}% ",
+    // "format": "󰍛 {load}%",
     "on-click": "omarchy-launch-or-focus-tui btop",
-    "on-click-right": "alacritty",
-  },
-  "memory": {
-    "interval": 30,
-    "format": "{}% ",
+    "interval": 10,
+    "format": "{usage}% ",
     "max-length": 10,
-  },
-  "temperature": {
-    // "thermal-zone": 2,
-    // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-    // "critical-threshold": 80,
-    // "format-critical": "{temperatureC}°C ",
-    "format": "{temperatureC}°C ",
   },
   "clock": {
     // "format": "{:L%A %H:%M}",
     "format": "{:L%A %d %H:%M}",
     "format-alt": "{:L%d %B W%V %Y}",
-    "tooltip": false,
+    // "tooltip": false,
     "on-click-right": "omarchy-launch-floating-terminal-with-presentation omarchy-tz-select",
     "tooltip-format": "<tt><small>{calendar}</small></tt>",
     "calendar": {
@@ -135,7 +99,7 @@
     "return-type": "json",
     "interval": 60,
     "tooltip": false,
-    "on-click": "notify-send -u low \"$(omarchy-weather-status)\"",
+    "on-click": "notify-send -u low \"$(omarchy-weather-status)\""
   },
   "network": {
     "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
@@ -172,8 +136,8 @@
   },
   "bluetooth": {
     "format": "",
-    "format-off": "󰂲",
     "format-disabled": "󰂲",
+    "format-off": "󰂲",
     "format-connected": "󰂱",
     "format-no-controller": "",
     "tooltip-format": "Devices connected: {num_connections}",
@@ -210,32 +174,16 @@
       "transition-duration": 600,
       "children-class": "tray-group-item",
     },
-    "modules": ["custom/expand-icon", "tray"],
+    "modules": ["custom/expand-icon", "tray", "idle_inhibitor"],
   },
   "custom/expand-icon": {
     "format": "",
     "tooltip": false,
-    "on-scroll-up": "",
-    "on-scroll-down": "",
-    "on-scroll-left": "",
-    "on-scroll-right": "",
   },
   "custom/screenrecording-indicator": {
     "on-click": "omarchy-capture-screenrecording",
     "exec": "$OMARCHY_PATH/default/waybar/indicators/screen-recording.sh",
     "signal": 8,
-    "return-type": "json",
-  },
-  "custom/idle-indicator": {
-    "on-click": "omarchy-toggle-idle",
-    "exec": "$OMARCHY_PATH/default/waybar/indicators/idle.sh",
-    "signal": 9,
-    "return-type": "json",
-  },
-  "custom/notification-silencing-indicator": {
-    "on-click": "omarchy-toggle-notification-silencing",
-    "exec": "$OMARCHY_PATH/default/waybar/indicators/notification-silencing.sh",
-    "signal": 10,
     "return-type": "json",
   },
   "custom/voxtype": {
@@ -251,8 +199,60 @@
     "on-click-right": "omarchy-voxtype-config",
     "on-click": "omarchy-voxtype-model",
   },
+  "custom/idle-indicator": {
+    "on-click": "omarchy-toggle-idle",
+    "exec": "$OMARCHY_PATH/default/waybar/indicators/idle.sh",
+    "signal": 9,
+    "return-type": "json"
+  },
+  "custom/notification-silencing-indicator": {
+    "on-click": "omarchy-toggle-notification-silencing",
+    "exec": "$OMARCHY_PATH/default/waybar/indicators/notification-silencing.sh",
+    "signal": 10,
+    "return-type": "json"
+  },
   "tray": {
     "icon-size": 12,
     "spacing": 17,
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "󰒳",
+      "deactivated": "󰒲",
+    },
+    "timeout": 30.5,
+    "tooltip": false,
+  },
+  "mpris": {
+    "format": "{status_icon}  {title} - {artist}",
+    "format-paused": "{status_icon}  {title} - {artist}",
+    "tooltip-format": "Playing: {title} - {artist}",
+    "tooltip-format-paused": "Paused: {title} - {artist}",
+    "player-icons": {
+      "default": "",
+      "mpv": "🎵",
+      "pear-desktop": "🎵",
+    },
+    // "player": "pear-desktop",
+    // "player": "com.github.th_ch.youtube_music",
+    "status-icons": {
+      "playing": "⏸",
+      "paused": "▶",
+    },
+    "max-length": 60,
+    "ignore-players": ["vivaldi"],
+  },
+  "memory": {
+    "interval": 30,
+    "format": "{}% ",
+    "max-length": 10,
+  },
+  "temperature": {
+    // "thermal-zone": 2,
+    // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+    // "critical-threshold": 80,
+    // "format-critical": "{temperatureC}°C ",
+    "format": "{temperatureC}°C ",
   },
 }
