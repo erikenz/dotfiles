@@ -7,6 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "diff_view_style": "unified",
   "which_key": {
     "enabled": true,
   },
@@ -115,7 +116,7 @@
   },
   "ui_font_size": 14,
   "buffer_font_size": 12,
-  "theme": "Catppuccin",
+  "theme": "Omazed",
   "relative_line_numbers": "enabled",
   "terminal": {
     "copy_on_select": true,
@@ -185,7 +186,7 @@
     "default_profile": "write",
     "commit_message_model": {
       "provider": "google",
-      "model": "gemini-2.5-flash-lite",
+      "model": "gemini-2.0-flash",
     },
     "default_model": {
       "enable_thinking": true,
