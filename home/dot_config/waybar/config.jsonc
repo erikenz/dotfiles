@@ -113,7 +113,7 @@
     // "format": "{:L%A %H:%M}",
     "format": "{:L%A %d %H:%M}",
     "format-alt": "{:L%d %B W%V %Y}",
-    "tooltip": false,
+    "tooltip": true,
     "on-click-right": "omarchy-launch-floating-terminal-with-presentation omarchy-tz-select",
     "tooltip-format": "<tt><small>{calendar}</small></tt>",
     "calendar": {
