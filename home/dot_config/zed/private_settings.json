@@ -28,25 +28,6 @@
       "default_model": "gemini-3-flash-preview",
       "type": "registry",
     },
-    "claude-acp": {
-      "type": "registry",
-    },
-    "codex-acp": {
-      "type": "registry",
-    },
-    "opencode": {
-      "favorite_config_option_values": {
-        "model": ["opencode/big-pickle", "opencode/minimax-m2.5-free", "opencode/nemotron-3-super-free", "opencode/qwen3.6-plus-free"],
-      },
-      "favorite_models": [
-        "opencode/big-pickle",
-        "opencode/minimax-m2.5-free",
-        "opencode/mimo-v2-pro-free",
-        "opencode/mimo-v2-omni-free",
-        "opencode/nemotron-3-super-free",
-      ],
-      "type": "registry",
-    },
   },
   "git_panel": {
     "show_count_badge": true,
@@ -55,7 +36,7 @@
     "tree_view": true,
   },
   "edit_predictions": {
-    "provider": "copilot",
+    "provider": "zed",
   },
   "context_servers": {
     "mcp-server-playwright": {
@@ -161,18 +142,34 @@
     "dock": "left",
     "favorite_models": [
       {
-        "provider": "vercel",
-        "model": "v0-1.5-md",
-        "enable_thinking": false,
-      },
-      {
         "provider": "copilot_chat",
         "model": "gpt-5.2",
+        "enable_thinking": true,
+        "effort": "medium",
+      },
+      {
+        "provider": "google",
+        "model": "gemini-3.1-pro-preview",
+        "enable_thinking": true,
+      },
+      {
+        "provider": "google",
+        "model": "gemini-3-flash-preview",
         "enable_thinking": false,
       },
       {
-        "provider": "copilot_chat",
-        "model": "gemini-3.1-pro-preview",
+        "provider": "opencode",
+        "model": "free/big-pickle",
+        "enable_thinking": false,
+      },
+      {
+        "provider": "opencode",
+        "model": "free/minimax-m2.5-free",
+        "enable_thinking": false,
+      },
+      {
+        "provider": "opencode",
+        "model": "free/nemotron-3-super-free",
         "enable_thinking": false,
       },
     ],
@@ -180,22 +177,29 @@
       "default": "allow",
     },
     "inline_assistant_model": {
-      "provider": "copilot_chat",
-      "model": "gpt-4.1",
+      "provider": "google",
+      "model": "gemini-3-flash-preview",
     },
     "default_profile": "write",
+    "default_model": {
+      "enable_thinking": false,
+      "provider": "copilot_chat",
+      "model": "claude-haiku-4.5",
+    },
+    "thread_summary_model": {
+      "provider": "google",
+      "model": "gemini-3-flash-preview",
+    },
     "commit_message_model": {
       "provider": "google",
-      "model": "gemini-2.0-flash",
-    },
-    "default_model": {
-      "enable_thinking": true,
-      "effort": "medium",
-      "provider": "copilot_chat",
-      "model": "gpt-5.2-codex",
+      "model": "gemini-3-flash-preview",
     },
   },
   "language_models": {
+    "opencode": {
+      "show_go_models": false,
+      "show_zen_models": false,
+    },
     "openai": {
       "api_url": "https://api.v0.dev/v1",
     },
