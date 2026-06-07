@@ -1,0 +1,20 @@
+#!/bin/bash
+# Install udev rule for MChose keyboard WebUSB access.
+# Runs once per machine.
+set -euo pipefail
+
+RULE_FILE="/etc/udev/rules.d/70-mchose.rules"
+RULE_CONTENT='# MChose keyboard - grant user access for WebUSB driver
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3837", TAG+="uaccess"
+SUBSYSTEM=="usb", ATTRS{idVendor}=="3837", TAG+="uaccess"
+'
+
+if [ -f "$RULE_FILE" ] && [ "$(cat "$RULE_FILE")" = "$RULE_CONTENT" ]; then
+    echo "MChose udev rule already installed"
+    exit 0
+fi
+
+echo "$RULE_CONTENT" | sudo tee "$RULE_FILE" > /dev/null
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+echo "MChose udev rule installed"
