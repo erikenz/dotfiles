@@ -32,8 +32,8 @@ hl.bind(mainMod .. " + SHIFT + G",           hl.dsp.exec_cmd(binDir .. "launch-o
 hl.bind(mainMod .. " + SHIFT + O",           hl.dsp.exec_cmd(binDir .. "launch-or-focus obsidian 'uwsm app -- obsidian'"), { desc = "Launch or focus Obsidian" })
 hl.bind(mainMod .. " + SHIFT + S",           hl.dsp.exec_cmd(binDir .. "launch-or-focus steam 'uwsm app -- steam'"), { desc = "Launch or focus Steam" })
 hl.bind(mainMod .. " + SHIFT + Z",           hl.dsp.exec_cmd("uwsm app -- zeditor"), { desc = "Launch Zed Editor" })
-hl.bind(mainMod .. " + SHIFT + W",           hl.dsp.exec_cmd("uwsm app -- typora --enable-wayland-ime"), { desc = "Launch Typora" })
-hl.bind(mainMod .. " + SHIFT + slash",       hl.dsp.exec_cmd("uwsm app -- bitwarden-desktop"), { desc = "Launch Bitwarden" })
+hl.bind(mainMod .. " + SHIFT + T",           hl.dsp.exec_cmd("uwsm app -- typora --enable-wayland-ime"), { desc = "Launch Typora" })
+hl.bind(mainMod .. " + SHIFT + B",           hl.dsp.exec_cmd("uwsm app -- bitwarden-desktop"), { desc = "Launch Bitwarden" })
 
 -- User Webapp Launchers
 hl.bind(mainMod .. " + SHIFT + A",           hl.dsp.exec_cmd(binDir .. "launch-webapp 'https://gemini.google.com/app'"), { desc = "Launch Gemini Web App" })

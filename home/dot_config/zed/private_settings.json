@@ -148,9 +148,8 @@
     },
     "default_profile": "write",
     "default_model": {
-      "effort": "medium",
-      "enable_thinking": true,
-      "provider": "copilot_chat",
+      "enable_thinking": false,
+      "provider": "zed.dev",
       "model": "gpt-5.2",
     },
     "thread_summary_model": {

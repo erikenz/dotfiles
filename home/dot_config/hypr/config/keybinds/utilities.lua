@@ -17,7 +17,7 @@ hl.bind(mainMod .. " + P",     hl.dsp.exec_cmd(noctCall .. "plugin:screen-toolki
 hl.bind("Print",               hl.dsp.exec_cmd(noctCall .. "plugin:screen-toolkit annotate"), { desc = "Take screenshot & annotate area" })
 hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd(noctCall .. "plugin:screen-toolkit annotateWindow"), { desc = "Take screenshot & annotate window" })
 hl.bind(mainMod .. " + R",     hl.dsp.exec_cmd(noctCall .. "plugin:screen-toolkit toggle"), { desc = "Screen recorder tool" })
-hl.bind(mainMod .. " + SHIFT + O", hl.dsp.exec_cmd(noctCall .. "plugin:screen-toolkit ocr"), { desc = "Extract text from screen (OCR)" })
+hl.bind(mainMod .. " + CONTROL + SHIFT + O", hl.dsp.exec_cmd(noctCall .. "plugin:screen-toolkit ocr"), { desc = "Extract text from screen (OCR)" })
 hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.exec_cmd(noctCall .. "plugin:screen-toolkit qr"), { desc = "Scan QR code from screen" })
 hl.bind(mainMod .. " + CONTROL + M", hl.dsp.exec_cmd(noctCall .. "plugin:screen-toolkit measure"), { desc = "Screen measuring ruler tool" })
 

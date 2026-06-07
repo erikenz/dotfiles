@@ -51,7 +51,7 @@ hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }), { desc 
 hl.bind(mainMod .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }), { desc = "Focus previous workspace" })
 
 -- Special workspace (scratchpad)
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special" }), { desc = "Move window to scratchpad" })
+hl.bind(mainMod .. " + CONTROL + SHIFT + S", hl.dsp.window.move({ workspace = "special" }), { desc = "Move window to scratchpad" })
 hl.bind(mainMod .. " + S",         hl.dsp.workspace.toggle_special(), { desc = "Toggle scratchpad workspace" })
 
 -- Advanced Tiling & Layout Controls (from Omarchy)
