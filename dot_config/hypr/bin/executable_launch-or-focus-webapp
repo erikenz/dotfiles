@@ -1,0 +1,17 @@
+#!/usr/bin/fish
+
+# Launch or focus on a given web app identified by the window-pattern
+if test (count $argv) -lt 2
+    echo "Usage: launch-or-focus-webapp <window-pattern> <url> [additional-flags...]"
+    exit 1
+end
+
+set window_pattern $argv[1]
+set url $argv[2]
+set flags $argv[3..-1]
+
+# Call launch-or-focus with launch-webapp in the same directory
+set script_dir (dirname (status filename))
+set launch_cmd "$script_dir/launch-webapp \"$url\" $flags"
+exec $script_dir/launch-or-focus --match-title "$window_pattern" "$launch_cmd"
+
