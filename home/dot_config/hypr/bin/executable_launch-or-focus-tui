@@ -1,0 +1,18 @@
+#!/usr/bin/fish
+
+# Launch a TUI or focus an existing terminal window for it
+if test (count $argv) -lt 1
+    echo "Usage: launch-or-focus-tui <command> [args...]"
+    exit 1
+end
+
+set cmd $argv[1]
+set app_name (basename $cmd)
+set app_id "org.cachyos.$app_name"
+
+# We want to launch the command inside ghostty with the specified app_id class
+set launch_cmd "uwsm app -- ghostty --class=$app_id -e $argv"
+
+# Call launch-or-focus in the same directory
+set script_dir (dirname (status filename))
+exec $script_dir/launch-or-focus "$app_id" "$launch_cmd"
