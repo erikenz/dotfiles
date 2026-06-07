@@ -23,9 +23,7 @@
       "enabled": true,
       "command": "npx",
       "args": ["-y", "mcp-remote", "http://localhost:3000/api/mcp", "--header", "Authorization:Bearer ${AUTH_HEADER}"],
-      "env": {
-        "AUTH_HEADER": "test",
-      },
+      "env": {},
     },
     "chrome-devtools-mcp-zed": {
       "enabled": true,
