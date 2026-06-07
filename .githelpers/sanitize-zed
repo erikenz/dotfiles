@@ -1,0 +1,8 @@
+#!/usr/bin/env fish
+# Git clean filter: strips sensitive values from Zed files
+# before content enters the git index. Working tree untouched.
+
+perl -0777 -pe '
+  s/(Authorization:Bearer\s+)(\S+?)"/${1}\${AUTH_HEADER}"/g;
+  s/"env"\s*:\s*\{[^}]*\}/"env": {}/g;
+'

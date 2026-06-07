@@ -1,0 +1,2 @@
+# Git clean filter: strips tokens before content enters git
+home/dot_config/zed/private_settings.json filter=sanitize-zed

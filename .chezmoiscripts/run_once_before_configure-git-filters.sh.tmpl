@@ -1,0 +1,9 @@
+#!/bin/bash
+# Configure git clean filter for the chezmoi repo.
+# Runs once per machine (chezmoi tracks the content hash).
+set -euo pipefail
+
+REPO_DIR="{{ .chezmoi.sourceDir }}"
+
+git -C "$REPO_DIR" config filter.sanitize-zed.clean '.githelpers/sanitize-zed'
+git -C "$REPO_DIR" config filter.sanitize-zed.smudge 'cat'
