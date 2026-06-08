@@ -7,7 +7,7 @@ hl.bind(mainMod .. " + Return",     hl.dsp.exec_cmd(launchPrefix .. TERMINAL), {
 hl.bind(mainMod .. " + E",          hl.dsp.exec_cmd(launchPrefix .. FILE_MANAGER), { desc = "Launch file manager" })
 hl.bind(mainMod .. " + T",          hl.dsp.exec_cmd(launchPrefix .. EDITOR), { desc = "Launch text editor" })
 hl.bind(mainMod .. " + C",          hl.dsp.exec_cmd(launchPrefix .. CALCULATOR), { desc = "Launch calculator" })
-hl.bind(mainMod .. " + W",          hl.dsp.exec_cmd(launchPrefix .. BROWSER), { desc = "Launch web browser" })
+hl.bind(mainMod .. " + SHIFT + W",  hl.dsp.exec_cmd(launchPrefix .. BROWSER), { desc = "Launch web browser" })
 hl.bind("CONTROL + SHIFT + Escape", hl.dsp.exec_cmd(launchPrefix .. "btop"), { desc = "Launch system monitor (btop)" })
 
 -- Noctalia UI Launchers

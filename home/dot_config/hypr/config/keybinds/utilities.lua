@@ -22,7 +22,7 @@ hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.exec_cmd(noctCall .. "plugin:screen-to
 hl.bind(mainMod .. " + CONTROL + M", hl.dsp.exec_cmd(noctCall .. "plugin:screen-toolkit measure"), { desc = "Screen measuring ruler tool" })
 
 -- Theming and Wallpaper
-hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd(noctCall .. " wallpaper toggle"), { desc = "Toggle desktop wallpaper menu" })
+hl.bind(mainMod .. " + CONTROL + SHIFT + W", hl.dsp.exec_cmd(noctCall .. " wallpaper toggle"), { desc = "Toggle desktop wallpaper menu" })
 
 -- Clipboard
 hl.bind(mainMod .. " + V", hl.dsp.exec_cmd(noctCall .. "launcher clipboard"), { desc = "Toggle clipboard history launcher" })
