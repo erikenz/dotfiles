@@ -8,8 +8,6 @@ hl.bind(mainMod .. " + E",          hl.dsp.exec_cmd(launchPrefix .. FILE_MANAGER
 hl.bind(mainMod .. " + T",          hl.dsp.exec_cmd(launchPrefix .. EDITOR), { desc = "Launch text editor" })
 hl.bind(mainMod .. " + C",          hl.dsp.exec_cmd(launchPrefix .. CALCULATOR), { desc = "Launch calculator" })
 hl.bind(mainMod .. " + SHIFT + W",  hl.dsp.exec_cmd(launchPrefix .. BROWSER), { desc = "Launch web browser" })
-hl.bind("CONTROL + SHIFT + Escape", hl.dsp.exec_cmd(launchPrefix .. "btop"), { desc = "Launch system monitor (btop)" })
-
 -- Noctalia UI Launchers
 hl.bind(mainMod .. " + Z",      hl.dsp.exec_cmd(noctCall .. "settings toggle"), { desc = "Toggle settings panel" })
 hl.bind(mainMod .. " + X",      hl.dsp.exec_cmd(noctCall .. "controlCenter toggle"), { desc = "Toggle control center" })
@@ -27,6 +25,7 @@ local binDir = "/home/erikzen/.config/hypr/bin/"
 hl.bind(mainMod .. " + SHIFT + M",           hl.dsp.exec_cmd(binDir .. "launch-or-focus youtube 'uwsm app -- pear-desktop'"), { desc = "Launch or focus YouTube Music" })
 hl.bind(mainMod .. " + SHIFT + ALT + M",     hl.dsp.exec_cmd(binDir .. "launch-or-focus-tui cliamp"), { desc = "Launch or focus Cliamp Music TUI" })
 hl.bind(mainMod .. " + CONTROL + SHIFT + D", hl.dsp.exec_cmd(binDir .. "launch-or-focus-tui lazydocker"), { desc = "Launch or focus LazyDocker TUI" })
+hl.bind(mainMod .. " + SHIFT + Escape",      hl.dsp.exec_cmd(binDir .. "launch-or-focus-tui btop"), { desc = "Launch system monitor (btop)" })
 hl.bind(mainMod .. " + SHIFT + D",           hl.dsp.exec_cmd(binDir .. "launch-or-focus vesktop 'uwsm app -- vesktop'"), { desc = "Launch or focus Discord (Vesktop)" })
 hl.bind(mainMod .. " + SHIFT + G",           hl.dsp.exec_cmd(binDir .. "launch-or-focus ferdium 'uwsm app -- ferdium'"), { desc = "Launch or focus Ferdium" })
 hl.bind(mainMod .. " + SHIFT + O",           hl.dsp.exec_cmd(binDir .. "launch-or-focus obsidian 'uwsm app -- obsidian'"), { desc = "Launch or focus Obsidian" })

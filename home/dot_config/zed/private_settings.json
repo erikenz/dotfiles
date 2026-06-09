@@ -19,6 +19,20 @@
   },
   "icon_theme": "Catppuccin Macchiato",
   "context_servers": {
+    "mcp-server-nextjs": {
+      "enabled": true,
+      "remote": false,
+      "settings": {},
+    },
+    "mcp-server-playwright": {
+      "enabled": true,
+      "remote": false,
+      "settings": {
+        "browser": "chromium",
+        "headless": false,
+        "cdp_endpoint": "http://localhost:9222",
+      },
+    },
     "balcon-padel-mcp-server": {
       "enabled": true,
       "command": "npx",
@@ -29,7 +43,7 @@
       "enabled": true,
       "remote": false,
       "settings": {
-        "browser_url": null,
+        "browser_url": "http://localhost:9222",
         "ws_endpoint": null,
         "ws_headers": null,
         "auto_connect": null,
@@ -53,7 +67,9 @@
   "agent_servers": {
     "opencode": {
       "default_config_options": {
-        "mode": "plan"
+        "effort": "low",
+        "model": "opencode/big-pickle",
+        "mode": "build",
       },
       "favorite_config_option_values": {
         "model": [
@@ -62,6 +78,7 @@
           "opencode/nemotron-3-ultra-free",
           "opencode/mimo-v2.5-free",
           "opencode/deepseek-v4-flash-free",
+          "google/gemini-3.5-flash",
         ],
       },
       "type": "registry",
