@@ -1,0 +1,19 @@
+# -----------------------------------------
+# Clipboard & Behavior
+# -----------------------------------------
+set selection-clipboard clipboard
+set database "sqlite"
+set show-recent 5
+
+# Smooth scrolling adjustments
+set scroll-step 50
+set scroll-full-percentage 0.85
+
+# Page adjustments
+set adjustment-step 10
+set page-padding 4
+set pages-per-row 1
+
+# Window settings
+set window-title-basename true
+set statusbar-home-tilde true
