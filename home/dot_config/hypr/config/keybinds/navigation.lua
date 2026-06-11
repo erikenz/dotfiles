@@ -17,10 +17,10 @@ hl.bind(mainMod .. " + CONTROL + SHIFT + L", hl.dsp.window.move({ workspace = "r
 hl.bind(mainMod .. " + CONTROL + SHIFT + H", hl.dsp.window.move({ workspace = "r-1" }), { desc = "Move window to previous workspace" })
 
 -- Keyboard-driven window resizing (Neovim style)
-hl.bind(mainMod .. " + ALT + H", hl.dsp.exec_raw("resizeactive -20 0"), { repeating = true, desc = "Shrink window width" })
-hl.bind(mainMod .. " + ALT + L", hl.dsp.exec_raw("resizeactive 20 0"),  { repeating = true, desc = "Grow window width" })
-hl.bind(mainMod .. " + ALT + K", hl.dsp.exec_raw("resizeactive 0 -20"), { repeating = true, desc = "Shrink window height" })
-hl.bind(mainMod .. " + ALT + J", hl.dsp.exec_raw("resizeactive 0 20"),  { repeating = true, desc = "Grow window height" })
+hl.bind(mainMod .. " + ALT + H", hl.dsp.window.resize({ x = -20, y = 0, relative = true }), { repeating = true, desc = "Shrink window width" })
+hl.bind(mainMod .. " + ALT + L", hl.dsp.window.resize({ x = 20, y = 0, relative = true }),  { repeating = true, desc = "Grow window width" })
+hl.bind(mainMod .. " + ALT + K", hl.dsp.window.resize({ x = 0, y = -20, relative = true }), { repeating = true, desc = "Shrink window height" })
+hl.bind(mainMod .. " + ALT + J", hl.dsp.window.resize({ x = 0, y = 20, relative = true }),  { repeating = true, desc = "Grow window height" })
 
 -- Mouse move & resize
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { desc = "Drag floating window" })

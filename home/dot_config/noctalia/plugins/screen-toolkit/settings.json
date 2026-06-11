@@ -2,7 +2,9 @@
   "colorHistory": [],
   "paletteColors": "",
   "installedLangs": [
-    "eng"
+    "deu",
+    "eng",
+    "spa"
   ],
   "transAvailable": true,
   "selectedOcrLang": "eng",
@@ -19,8 +21,8 @@
   "resultHsl": "",
   "colorCapturePath": "",
   "colorCacheBust": 0,
-  "ocrResult": "FUR SIE EMPFOHLEN\n\nNach Beliebteit gewichtet\n\nBELIEBT UNGEWOHNLICH\nLa\nTagiter hinzufigen AuszuschlieBende Tags hinzufigen\n\nNach Alter fltern\n\nwren Neue\nLg\n\nKein Zeitlimit\n\nee 0 Murat pie\n\nausschliefien",
-  "ocrCapturePath": "/tmp/screen-toolkit-ocr.png",
+  "ocrResult": "",
+  "ocrCapturePath": "",
   "qrResult": "",
   "qrCapturePath": "",
   "translateResult": "",
