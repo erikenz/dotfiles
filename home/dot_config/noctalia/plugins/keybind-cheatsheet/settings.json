@@ -316,6 +316,30 @@
           "undescribed": false
         },
         {
+          "keys": "Super + Shift + PERIOD",
+          "desc": "Switch to next workspace (Omarchy style)",
+          "bindId": "|65|period|000|__lua",
+          "undescribed": false
+        },
+        {
+          "keys": "Super + Shift + COMMA",
+          "desc": "Switch to previous workspace (Omarchy style)",
+          "bindId": "|65|comma|000|__lua",
+          "undescribed": false
+        },
+        {
+          "keys": "Super + Shift + Ctrl + PERIOD",
+          "desc": "Move window silently to next workspace",
+          "bindId": "|69|period|000|__lua",
+          "undescribed": false
+        },
+        {
+          "keys": "Super + Shift + Ctrl + COMMA",
+          "desc": "Move window silently to previous workspace",
+          "bindId": "|69|comma|000|__lua",
+          "undescribed": false
+        },
+        {
           "keys": "Super + Scroll Down",
           "desc": "Focus next workspace",
           "bindId": "|64|mouse_down|000|__lua",
@@ -328,9 +352,9 @@
           "undescribed": false
         },
         {
-          "keys": "Super + Shift + S",
+          "keys": "Super + Shift + Ctrl + S",
           "desc": "Move window to scratchpad",
-          "bindId": "|65|S|000|__lua",
+          "bindId": "|69|S|000|__lua",
           "undescribed": false
         },
         {
@@ -358,6 +382,24 @@
           "undescribed": false
         },
         {
+          "keys": "Super + Shift + Alt + H",
+          "desc": "Move current workspace to left monitor",
+          "bindId": "|73|H|000|__lua",
+          "undescribed": false
+        },
+        {
+          "keys": "Super + Shift + Alt + L",
+          "desc": "Move current workspace to right monitor",
+          "bindId": "|73|L|000|__lua",
+          "undescribed": false
+        },
+        {
+          "keys": "Super + TAB",
+          "desc": "Switch to previous active workspace",
+          "bindId": "|64|Tab|000|__lua",
+          "undescribed": false
+        },
+        {
           "keys": "Super + RETURN",
           "desc": "Launch terminal",
           "bindId": "|64|Return|000|__lua",
@@ -382,15 +424,9 @@
           "undescribed": false
         },
         {
-          "keys": "Super + W",
+          "keys": "Super + Shift + W",
           "desc": "Launch web browser",
-          "bindId": "|64|W|000|__lua",
-          "undescribed": false
-        },
-        {
-          "keys": "Shift + Ctrl + ESCAPE",
-          "desc": "Launch system monitor (btop)",
-          "bindId": "|5|Escape|000|__lua",
+          "bindId": "|65|W|000|__lua",
           "undescribed": false
         },
         {
@@ -419,7 +455,7 @@
         },
         {
           "keys": "Super + Alt + RETURN",
-          "desc": "Launch terminal inside tmux session",
+          "desc": "Launch terminal inside tmux session (attach or create 'Work')",
           "bindId": "|72|Return|000|__lua",
           "undescribed": false
         },
@@ -439,6 +475,96 @@
           "keys": "Calc",
           "desc": "Launch calculator key",
           "bindId": "|0|XF86Calculator|000|__lua",
+          "undescribed": false
+        },
+        {
+          "keys": "Super + Shift + M",
+          "desc": "Launch or focus YouTube Music",
+          "bindId": "|65|M|000|__lua",
+          "undescribed": false
+        },
+        {
+          "keys": "Super + Shift + Alt + M",
+          "desc": "Launch or focus Cliamp Music TUI",
+          "bindId": "|73|M|000|__lua",
+          "undescribed": false
+        },
+        {
+          "keys": "Super + Shift + Ctrl + D",
+          "desc": "Launch or focus LazyDocker TUI",
+          "bindId": "|69|D|000|__lua",
+          "undescribed": false
+        },
+        {
+          "keys": "Super + Shift + ESCAPE",
+          "desc": "Launch system monitor (btop)",
+          "bindId": "|65|Escape|000|__lua",
+          "undescribed": false
+        },
+        {
+          "keys": "Super + Shift + D",
+          "desc": "Launch or focus Discord (Vesktop)",
+          "bindId": "|65|D|000|__lua",
+          "undescribed": false
+        },
+        {
+          "keys": "Super + Shift + G",
+          "desc": "Launch or focus Ferdium",
+          "bindId": "|65|G|000|__lua",
+          "undescribed": false
+        },
+        {
+          "keys": "Super + Shift + O",
+          "desc": "Launch or focus Obsidian",
+          "bindId": "|65|O|000|__lua",
+          "undescribed": false
+        },
+        {
+          "keys": "Super + Shift + S",
+          "desc": "Launch or focus Steam",
+          "bindId": "|65|S|000|__lua",
+          "undescribed": false
+        },
+        {
+          "keys": "Super + Shift + Z",
+          "desc": "Launch Zed Editor",
+          "bindId": "|65|Z|000|__lua",
+          "undescribed": false
+        },
+        {
+          "keys": "Super + Shift + T",
+          "desc": "Launch Typora",
+          "bindId": "|65|T|000|__lua",
+          "undescribed": false
+        },
+        {
+          "keys": "Super + Shift + B",
+          "desc": "Launch Bitwarden",
+          "bindId": "|65|B|000|__lua",
+          "undescribed": false
+        },
+        {
+          "keys": "Super + Shift + A",
+          "desc": "Launch Gemini Web App",
+          "bindId": "|65|A|000|__lua",
+          "undescribed": false
+        },
+        {
+          "keys": "Super + Shift + C",
+          "desc": "Launch Google Calendar Web App",
+          "bindId": "|65|C|000|__lua",
+          "undescribed": false
+        },
+        {
+          "keys": "Super + Shift + E",
+          "desc": "Launch Google Mail Web App",
+          "bindId": "|65|E|000|__lua",
+          "undescribed": false
+        },
+        {
+          "keys": "Super + Shift + X",
+          "desc": "Launch X (Twitter) Web App",
+          "bindId": "|65|X|000|__lua",
           "undescribed": false
         },
         {
@@ -514,9 +640,27 @@
           "undescribed": false
         },
         {
-          "keys": "Super + Shift + W",
+          "keys": "Super + Shift + Ctrl + O",
+          "desc": "Extract text from screen (OCR)",
+          "bindId": "|69|O|000|__lua",
+          "undescribed": false
+        },
+        {
+          "keys": "Super + Shift + Q",
+          "desc": "Scan QR code from screen",
+          "bindId": "|65|Q|000|__lua",
+          "undescribed": false
+        },
+        {
+          "keys": "Super + Ctrl + M",
+          "desc": "Screen measuring ruler tool",
+          "bindId": "|68|M|000|__lua",
+          "undescribed": false
+        },
+        {
+          "keys": "Super + Shift + Ctrl + W",
           "desc": "Toggle desktop wallpaper menu",
-          "bindId": "|65|W|000|__lua",
+          "bindId": "|69|W|000|__lua",
           "undescribed": false
         },
         {
@@ -529,6 +673,12 @@
           "keys": "Super + A",
           "desc": "Toggle notifications history panel",
           "bindId": "|64|A|000|__lua",
+          "undescribed": false
+        },
+        {
+          "keys": "Super + Shift + SLASH",
+          "desc": "Toggle keyboard shortcuts cheatsheet",
+          "bindId": "|65|slash|000|__lua",
           "undescribed": false
         },
         {
@@ -556,6 +706,18 @@
           "undescribed": false
         },
         {
+          "keys": "Super + Ctrl + EQUAL",
+          "desc": "Increase speaker volume (Keyboard)",
+          "bindId": "|68|equal|000|__lua",
+          "undescribed": false
+        },
+        {
+          "keys": "Super + Ctrl + MINUS",
+          "desc": "Decrease speaker volume (Keyboard)",
+          "bindId": "|68|minus|000|__lua",
+          "undescribed": false
+        },
+        {
           "keys": "Play",
           "desc": "Play/Pause media playback",
           "bindId": "|0|XF86AudioPlay|000|__lua",
@@ -580,6 +742,24 @@
           "undescribed": false
         },
         {
+          "keys": "Super + Ctrl + BACKSLASH",
+          "desc": "Play/Pause media playback (Keyboard)",
+          "bindId": "|68|backslash|000|__lua",
+          "undescribed": false
+        },
+        {
+          "keys": "Super + Shift + Ctrl + EQUAL",
+          "desc": "Play next media track (Keyboard)",
+          "bindId": "|69|equal|000|__lua",
+          "undescribed": false
+        },
+        {
+          "keys": "Super + Shift + Ctrl + MINUS",
+          "desc": "Play previous media track (Keyboard)",
+          "bindId": "|69|minus|000|__lua",
+          "undescribed": false
+        },
+        {
           "keys": "Bright Up",
           "desc": "Increase monitor brightness",
           "bindId": "|0|XF86MonBrightnessUp|000|__lua",
@@ -590,6 +770,41 @@
           "desc": "Decrease monitor brightness",
           "bindId": "|0|XF86MonBrightnessDown|000|__lua",
           "undescribed": false
+        }
+      ]
+    },
+    {
+      "title": "Without Description",
+      "binds": [
+        {
+          "keys": "F19",
+          "desc": "",
+          "bindId": "|0|F19|000|__lua",
+          "undescribed": true
+        },
+        {
+          "keys": "XF86TOUCHPADTOGGLE",
+          "desc": "",
+          "bindId": "|0|XF86TouchpadToggle|000|__lua",
+          "undescribed": true
+        },
+        {
+          "keys": "XF86TOUCHPADON",
+          "desc": "",
+          "bindId": "|0|XF86TouchpadOn|000|__lua",
+          "undescribed": true
+        },
+        {
+          "keys": "F23",
+          "desc": "",
+          "bindId": "|0|F23|000|__lua",
+          "undescribed": true
+        },
+        {
+          "keys": "F24",
+          "desc": "",
+          "bindId": "|0|F24|000|__lua",
+          "undescribed": true
         }
       ]
     }

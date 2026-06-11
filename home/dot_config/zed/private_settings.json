@@ -84,6 +84,10 @@
       "type": "registry",
     },
     "github-copilot-cli": {
+      "default_config_options": {
+        "allow_all": "on",
+        "model": "gemini-3.1-pro-preview"
+      },
       "type": "registry",
     },
   },
