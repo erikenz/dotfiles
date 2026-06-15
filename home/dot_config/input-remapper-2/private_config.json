@@ -1,0 +1,6 @@
+{
+    "version": "2.2.0",
+    "autoload": {
+        "Logitech Gaming Mouse G600": "default"
+    }
+}
