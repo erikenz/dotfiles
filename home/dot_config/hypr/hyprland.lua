@@ -1,4 +1,9 @@
--- CachyOS Hyprland Configuration
+-- Clear package cache to allow dynamic reloading of config files on save
+for k, _ in pairs(package.loaded) do
+    if k:match("^config") then
+        package.loaded[k] = nil
+    end
+end
 
 require("config.animations")
 require("config.autostart")

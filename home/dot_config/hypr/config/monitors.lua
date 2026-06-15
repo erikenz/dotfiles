@@ -5,12 +5,9 @@ hl.monitor({ output = "eDP-1", mode = "1920x1080@144", position = "1920x0", scal
 
 -- Workspace Monitor Rules
 hl.workspace_rule({ workspace = "1", persistent = true, monitor = "HDMI-A-1" })
-hl.workspace_rule({ workspace = "2", persistent = true })
-hl.workspace_rule({ workspace = "3", persistent = true })
-hl.workspace_rule({ workspace = "4", persistent = true })
-hl.workspace_rule({ workspace = "5", persistent = true })
-hl.workspace_rule({ workspace = "6", persistent = true })
-hl.workspace_rule({ workspace = "7", persistent = true })
+hl.workspace_rule({ workspace = "2", persistent = true, monitor = "eDP-1" })
+hl.workspace_rule({ workspace = "3", persistent = true, monitor = "eDP-1" })
+hl.workspace_rule({ workspace = "4", persistent = true, monitor = "eDP-1" })
 hl.workspace_rule({ workspace = "8", monitor = "HDMI-A-1" })
 hl.workspace_rule({ workspace = "9", monitor = "HDMI-A-1" })
 hl.workspace_rule({ workspace = "10", monitor = "eDP-1" })
