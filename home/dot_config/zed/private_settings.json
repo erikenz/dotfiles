@@ -7,6 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "diff_view_style": "unified",
   "cli_default_open_behavior": "new_window",
   "language_models": {
     "opencode": {
@@ -86,7 +87,7 @@
     "github-copilot-cli": {
       "default_config_options": {
         "allow_all": "on",
-        "model": "gemini-3.1-pro-preview"
+        "model": "gemini-3.1-pro-preview",
       },
       "type": "registry",
     },
@@ -172,9 +173,10 @@
     },
     "default_profile": "write",
     "default_model": {
-      "enable_thinking": false,
-      "provider": "zed.dev",
-      "model": "gpt-5.2",
+      "effort": "high",
+      "enable_thinking": true,
+      "provider": "copilot_chat",
+      "model": "gpt-5.4-mini",
     },
     "thread_summary_model": {
       "provider": "google",
@@ -182,7 +184,7 @@
     },
     "commit_message_model": {
       "provider": "google",
-      "model": "gemini-3-flash-preview",
+      "model": "gemini-2.5-flash",
     },
   },
   "auto_install_extensions": {

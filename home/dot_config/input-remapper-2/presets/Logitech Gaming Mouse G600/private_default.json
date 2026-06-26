@@ -8,7 +8,7 @@
             }
         ],
         "target_uinput": "keyboard + mouse",
-        "output_symbol": "hold(key(BTN_RIGHT).wait(100))",
+        "output_symbol": "hold(key(BTN_RIGHT).wait(90))",
         "mapping_type": "key_macro"
     }
 ]

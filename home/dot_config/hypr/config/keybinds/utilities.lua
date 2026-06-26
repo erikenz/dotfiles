@@ -35,6 +35,8 @@ hl.bind(mainMod .. " + CONTROL + SHIFT + W", hl.dsp.exec_cmd(noctCall .. " wallp
 -- Clipboard
 hl.bind(mainMod .. " + V", hl.dsp.exec_cmd(noctCall .. "launcher clipboard"),
     { desc = "Toggle clipboard history launcher" })
+hl.bind(mainMod .. " + CONTROL + SHIFT + T", hl.dsp.exec_cmd("/home/erikzen/.config/hypr/bin/hypr-translate"),
+    { desc = "Translate selected German text" })
 
 -- Notifications
 hl.bind(mainMod .. " + A", hl.dsp.exec_cmd(noctCall .. "notifications toggleHistory"),
@@ -43,7 +45,3 @@ hl.bind(mainMod .. " + A", hl.dsp.exec_cmd(noctCall .. "notifications toggleHist
 -- Keybind Cheatsheet (Vim style help using '?') (Reference: https://noctalia.dev/plugins/keybind-cheatsheet)
 hl.bind(mainMod .. " + SHIFT + slash", hl.dsp.exec_cmd(noctCall .. "plugin:keybind-cheatsheet toggle"),
     { desc = "Toggle keyboard shortcuts cheatsheet" })
-
--- Autoclicker (runs only while G9 is held)
--- hl.bind("code:191", hl.dsp.exec_cmd("/home/erikzen/.config/hypr/bin/autoclicker start"))
--- hl.bind("XF86Tools", hl.dsp.exec_cmd("/home/erikzen/.config/hypr/bin/autoclicker stop"), { release = true })

@@ -39,3 +39,10 @@ alias conf-ghostty='cd ~/.config/ghostty && n'
 alias conf-hypr='cd ~/.config/hypr && n'
 
 alias portainer='docker run -p 8000:8000 -p 9443:9443 --name portainer -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:lts'
+
+# pnpm
+set -gx PNPM_HOME "/home/erikzen/.local/share/pnpm"
+if not string match -q -- "$PNPM_HOME/bin" $PATH
+  set -gx PATH "$PNPM_HOME/bin" $PATH
+end
+# pnpm end
