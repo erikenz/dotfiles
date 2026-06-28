@@ -3,7 +3,7 @@ local mainMod = "SUPER"
 local noctCall = "qs -c noctalia-shell ipc call "
 
 -- Window actions
-hl.bind(mainMod .. " + Escape", hl.dsp.exec_cmd("hyprctl kill"), { desc = "Kill unresponsive window" })
+hl.bind(mainMod .. " + CONTROL + Q", hl.dsp.exec_cmd("hyprctl kill"), { desc = "Kill unresponsive window" })
 hl.bind(mainMod .. " + Q", hl.dsp.window.close(), { desc = "Close active window" })
 hl.bind(mainMod .. " + ALT + Space", hl.dsp.window.float({ action = "toggle" }), { desc = "Toggle floating state" })
 hl.bind(mainMod .. " + D", hl.dsp.window.fullscreen({ mode = 1 }), { desc = "Toggle window maximized state" })
