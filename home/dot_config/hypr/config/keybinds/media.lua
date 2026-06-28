@@ -7,9 +7,9 @@ hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(noctCall .. "volume increase"),
 hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(noctCall .. "volume decrease"),
     { locked = true, repeating = true, desc = "Decrease speaker volume" })
 hl.bind("XF86AudioMute", hl.dsp.exec_cmd(noctCall .. "volume muteOutput"),
-    { locked = true, repeating = true, desc = "Toggle mute output" })
+    { locked = true, desc = "Toggle mute output" })
 hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd(noctCall .. "volume muteInput"),
-    { locked = true, repeating = true, desc = "Toggle mute microphone" })
+    { locked = true, desc = "Toggle mute microphone" })
 
 -- Audio (Normal Keyboard Shortcuts)
 local mainMod = "SUPER"
@@ -37,9 +37,9 @@ hl.bind(mainMod .. " + CONTROL + SHIFT + minus", hl.dsp.exec_cmd(noctCall .. "me
 
 -- Screen Brightness
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd(noctCall .. "brightness increase"),
-    { repeating = true, desc = "Increase monitor brightness" })
+    { repeating = true, locked = true, desc = "Increase monitor brightness" })
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd(noctCall .. "brightness decrease"),
-    { repeating = true, desc = "Decrease monitor brightness" })
+    { repeating = true, locked = true, desc = "Decrease monitor brightness" })
 
 -- G600 binds
 hl.bind("F19", hl.dsp.exec_cmd("wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%-"))
