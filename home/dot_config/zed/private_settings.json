@@ -191,8 +191,8 @@
     "default_profile": "write",
     "default_model": {
       "enable_thinking": false,
-      "provider": "opencode",
-      "model": "free/big-pickle",
+      "provider": "zed.dev",
+      "model": "gpt-5.2",
     },
     "thread_summary_model": {
       "provider": "google",
