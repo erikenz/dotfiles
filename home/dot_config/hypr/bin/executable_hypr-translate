@@ -1,0 +1,51 @@
+#!/usr/bin/env fish
+
+# Try to get primary selection (highlighted text) first
+set TEXT (wl-paste -p -t text 2>/dev/null)
+
+# If primary selection is empty, try to simulate copy (except in terminals)
+if test -z "$TEXT"
+    # Extract the active window class name
+    set ACTIVE_CLASS (hyprctl activewindow | string match -r 'class:\s*(\S+)' | string replace -r 'class:\s*' '')
+
+    # If the active window is not a known terminal, simulate Ctrl+C to copy
+    if not string match -q -r -i '^(kitty|foot|alacritty|wezterm|gnome-terminal|konsole|xfce4-terminal)' "$ACTIVE_CLASS"
+        hyprctl dispatch sendshortcut "CONTROL, C, activewindow"
+        sleep 0.1
+    end
+
+    # Read from standard clipboard
+    set TEXT (wl-paste -t text 2>/dev/null)
+end
+
+# Trim leading/trailing whitespace
+set TEXT (string trim "$TEXT")
+
+if test -z "$TEXT"
+    notify-send "Translation" "No text selected or copied." -i accessories-dictionary
+    exit 0
+end
+
+# Ensure translate-shell is installed
+if not type -q trans
+    notify-send "Translation Error" "translate-shell ('trans') is not installed.\nPlease run: sudo pacman -S translate-shell" -i dialog-error
+    exit 1
+end
+
+# Translate from German to English
+set TMPFILE (mktemp)
+set TRANSLATION (trans -brief -from de -to en "$TEXT" 2>$TMPFILE)
+
+if test -z "$TRANSLATION"
+    set ERR_MSG (cat $TMPFILE | string join "\n")
+    if test -z "$ERR_MSG"
+        set ERR_MSG "Translation service returned an empty response."
+    end
+    notify-send "Translation Error" "$ERR_MSG" -i dialog-error
+    rm -f $TMPFILE
+    exit 1
+end
+rm -f $TMPFILE
+
+# Display notification
+notify-send "Translation (DE -> EN)" "\"$TEXT\"\n\n➡️ $TRANSLATION" -i accessories-dictionary -t 8000
