@@ -1,0 +1,11 @@
+{
+  "id":  "904b2696-1fff-482b-bbc1-3641e815b2c2",
+  "name":  "/home/erikzen/.config/hypr",
+  "projectResources":  {
+    "resources":  [
+      {
+        "folderUri":  "file:///home/erikzen/.config/hypr"
+      }
+    ]
+  }
+}

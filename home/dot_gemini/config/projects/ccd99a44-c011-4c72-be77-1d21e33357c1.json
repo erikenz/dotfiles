@@ -1,0 +1,11 @@
+{
+  "id":  "ccd99a44-c011-4c72-be77-1d21e33357c1",
+  "name":  "/home/erikzen/.config/nvim",
+  "projectResources":  {
+    "resources":  [
+      {
+        "folderUri":  "file:///home/erikzen/.config/nvim"
+      }
+    ]
+  }
+}

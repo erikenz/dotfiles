@@ -1,0 +1,11 @@
+{
+  "id":  "2142edfc-0224-4c72-bd7a-01d4c3f346e9",
+  "name":  "/home/erikzen/.local/share/chezmoi",
+  "projectResources":  {
+    "resources":  [
+      {
+        "folderUri":  "file:///home/erikzen/.local/share/chezmoi"
+      }
+    ]
+  }
+}
