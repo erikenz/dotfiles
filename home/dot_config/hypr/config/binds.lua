@@ -31,6 +31,9 @@ hl.bind(mainMod .. " + CONTROL + SHIFT + L",        hl.dsp.window.move({ workspa
 hl.bind(mainMod .. " + CONTROL + SHIFT + H",        hl.dsp.window.move({ workspace = "r-1" }))
 hl.bind(mainMod .. " + SHIFT + 1",                  hl.dsp.window.move({ monitor = MONITOR1 }))
 hl.bind(mainMod .. " + SHIFT + 2",                  hl.dsp.window.move({ monitor = MONITOR2 }))
+-- Move workspace to adjacent monitor
+hl.bind(mainMod .. " + CTRL + ALT + H", hl.dsp.workspace.move({ monitor = "l" }))
+hl.bind(mainMod .. " + CTRL + ALT + L", hl.dsp.workspace.move({ monitor = "r" }))
 hl.bind(mainMod .. " + SHIFT + mouse_up",           hl.dsp.window.move({ monitor = "+1" }))
 hl.bind(mainMod .. " + SHIFT + mouse_down",         hl.dsp.window.move({ monitor = "-1" }))
 
@@ -71,10 +74,10 @@ hl.bind(mainMod .. " + X",          hl.dsp.exec_cmd(noctCall .. "panel-toggle co
 hl.bind(mainMod .. " + Space",      hl.dsp.exec_cmd(noctCall .. "panel-toggle launcher"))
 hl.bind(mainMod .. " + period",     hl.dsp.exec_cmd(noctCall .. "panel-toggle launcher /emo"))
 hl.bind(mainMod .. " + ALT + L",     hl.dsp.exec_cmd(noctCall .. "session lock"))
-hl.bind(mainMod .. " + ALT + C",    hl.dsp.exec_cmd(noctCall .. "panel-toggle session"))
+hl.bind(mainMod .. " + CONTROL + Escape",    hl.dsp.exec_cmd(noctCall .. "panel-toggle session"))
 
 -- Previous workspace
-hl.bind(mainMod .. " + Tab",        hl.dsp.exec_cmd("hyprctl dispatch focuspreviousworkspace"))
+hl.bind(mainMod .. " + Tab",        hl.dsp.focus({ workspace = "previous" }))
 
 -- System monitor
 hl.bind("CONTROL + SHIFT + Escape", hl.dsp.exec_cmd(launchPrefix .. TERMINAL .. " -e btop"))
@@ -97,6 +100,9 @@ hl.bind(mainMod .. " + SHIFT + S",           hl.dsp.exec_cmd(binDir .. "launch-o
 hl.bind(mainMod .. " + SHIFT + Z",           hl.dsp.exec_cmd("uwsm app -- zeditor"))
 hl.bind(mainMod .. " + SHIFT + T",           hl.dsp.exec_cmd("uwsm app -- typora --enable-wayland-ime"))
 hl.bind(mainMod .. " + SHIFT + B",           hl.dsp.exec_cmd("uwsm app -- bitwarden-desktop"))
+
+-- Chromium Debug launcher
+hl.bind(mainMod .. " + SHIFT + R",           hl.dsp.exec_cmd(binDir .. "launch-or-focus chromium 'uwsm app -- chromium --remote-debugging-port=9222 --no-first-run --no-default-browser-check'"))
 
 -- User webapp launchers
 hl.bind(mainMod .. " + SHIFT + A",           hl.dsp.exec_cmd(binDir .. "launch-webapp 'https://gemini.google.com/app'"))

@@ -105,7 +105,7 @@ builtin = "Catppuccin"
 
 [widget.clock]
 color = "secondary"
-format = "{:%H:%M %A %m/%d/%y}"
+format = "{:%H:%M %A %d/%m/%y}"
 
 [widget.launcher]
 color = "secondary"

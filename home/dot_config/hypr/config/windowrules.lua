@@ -51,7 +51,7 @@ hl.window_rule({
 
 -- Apps
 hl.window_rule({ match = { class = "^(.*\\.exe)$", float = true }, monitor = PRIMARY_MONITOR, center = true, fullscreen_state = 0 })
-hl.window_rule({ match = { class = "^(vesktop|discord)$" }, monitor = PRIMARY_MONITOR })
+hl.window_rule({ match = { class = "^(vesktop|discord)$" }, monitor = MONITOR2 })
 hl.window_rule({ match = { class = "^(.*[Cc]alculator.*)$" }, float = true, size = { "max(monitor_w, monitor_h)*0.17", "min(monitor_w, monitor_h)*0.43" } })
 hl.window_rule({ match = { class = "^(org\\.kde\\.keditfiletype)$" }, float = true })
 hl.window_rule({ match = { class = "^(org\\.kde\\.ark)$" }, size = { "max(monitor_w, monitor_h)*0.40", "min(monitor_w, monitor_h)*0.40" } })
@@ -126,6 +126,7 @@ hl.window_rule({
 hl.window_rule({
     match     = { class = "^(steam|Steam)$" },
     workspace = 10,
+    monitor   = MONITOR1,
     tile      = true,
 })
 
@@ -133,12 +134,14 @@ hl.window_rule({
 hl.window_rule({
     match     = { class = "^(vesktop)$" },
     workspace = 9,
+    monitor   = MONITOR2,
 })
 
 -- YouTube Music workspace
 hl.window_rule({
     match     = { class = "^(com\\.github\\.th-ch\\.youtube-music)$" },
     workspace = 8,
+    monitor   = MONITOR2,
 })
 
 -- Streaming sites full opacity
@@ -151,4 +154,25 @@ hl.window_rule({
 hl.window_rule({
     match = { class = "^(pot)$" },
     float = true,
+})
+
+-- Zed workspace
+hl.window_rule({
+    match     = { class = "^(dev\\.zed\\.Zed)$" },
+    workspace = 3,
+    monitor   = MONITOR1,
+})
+
+-- Ferdium workspace
+hl.window_rule({
+    match     = { class = "^( Ferdium)$" },
+    workspace = 5,
+    monitor   = MONITOR1,
+})
+
+-- Chromium Debug workspace
+hl.window_rule({
+    match     = { class = "^(chromium)$" },
+    workspace = 4,
+    monitor   = MONITOR1,
 })
