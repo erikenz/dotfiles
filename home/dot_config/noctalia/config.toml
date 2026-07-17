@@ -3,8 +3,9 @@ center = [ "workspaces", "spacer_1", "active_window" ]
 end = [ "media", "spacer_1", "tray", "notifications", "network", "volume", "session" ]
 margin_edge = 0
 margin_ends = 0
-radius_bottom_left = -10
-radius_bottom_right = -10
+radius_bottom_left = 10
+radius_bottom_right = 10
+concave_edge_corners = true
 radius_top_left = 0
 radius_top_right = 0
 scale = 1.10
@@ -24,7 +25,6 @@ clipboard_image_action_command = "satty -f -"
 launch_apps_as_systemd_services = true
 polkit_agent = true
 settings_show_advanced = true
-ui_scale = 1.20
 
     [shell.panel]
     open_near_click_control_center = true
@@ -98,10 +98,11 @@ builtin = "Catppuccin"
     [theme.templates]
     builtin_ids = [ "btop", "gtk3", "gtk4", "kcolorscheme", "kitty", "qt", "alacritty" ]
 
-    [theme.templates.user."base16nvim"]
-    command = "nvim --headless -c 'lua require(\"base16\")(\"$scheme\", \"$author\")' -c 'write! $output' -c 'qa!'"
-    extension = "lua"
-    output = "/home/erikzen/.config/nvim/lua/base16/colors/$scheme.lua"
+    [theme.templates.user.nvim-base16]
+    input_path = "~/.config/nvim/lua/matugen-template.lua"
+    output_path = "~/.config/nvim/lua/matugen.lua"
+    post_hook = "pkill -SIGUSR1 nvim"
+
 
 [widget.clock]
 color = "secondary"
@@ -131,7 +132,7 @@ show_label = false
 
 [widget.sysmon_2]
 glyph = "gpu-usage"
-show_lavel = false
+show_label = false
 stat = "gpu_temp"
 type = "sysmon"
 

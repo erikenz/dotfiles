@@ -1,0 +1,15 @@
+{
+  "userSettings": {
+    "remoteControlHostname": "laptop-glowing-sol",
+    "customThemeSeedsDark": {
+      "background": "#1e1e2e",
+      "foregroundOverride": "#cdd6f4",
+      "primary": "#cba6f7"
+    },
+    "customThemeSeedsLight": {
+      "background": "#eff1f5",
+      "foregroundOverride": "#4c4f69",
+      "primary": "#8839ef"
+    }
+  }
+}

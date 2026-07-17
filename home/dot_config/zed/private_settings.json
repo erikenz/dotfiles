@@ -77,6 +77,9 @@
   },
   "agent_servers": {
     "codex-acp": {
+      "default_config_options": {
+        "model": "gpt-5.5"
+      },
       "type": "registry"
     },
     "opencode": {
@@ -258,6 +261,9 @@
         },
       },
     },
+    "Lua": {
+      "language_servers": ["lua-language-server"]
+    }
   },
   "lsp": {
     "tailwindcss-language-server": {
