@@ -24,14 +24,6 @@
         "-y",
         "next-devtools-mcp@latest"
       ]
-    },
-    "ultracite": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "mcp-remote",
-        "https://docs.ultracite.ai/mcp"
-      ]
     }
   }
 }

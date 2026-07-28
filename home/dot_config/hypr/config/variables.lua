@@ -17,4 +17,4 @@ PRIMARY_MONITOR = MONITOR2
 NUM_WPM = 10 -- Number of workspaces per monitor (Max 10)
 
 -- Monitor preset: "dp-left" or "hdmi-left"
-MONITOR_PRESET = "dp-left"
+MONITOR_PRESET = "hdmi-left"
