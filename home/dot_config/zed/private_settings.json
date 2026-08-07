@@ -264,7 +264,7 @@
       "provider": "google",
       "model": "gemini-3-flash-preview",
     },
-    "default_profile": "ask",
+    "default_profile": "write",
     "default_model": {
       "effort": "max",
       "enable_thinking": true,
