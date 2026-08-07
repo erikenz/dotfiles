@@ -26,6 +26,9 @@ launch_apps_as_systemd_services = true
 polkit_agent = true
 settings_show_advanced = true
 
+    [shell.greeter_sync]
+    auto_sync = true
+
     [shell.panel]
     open_near_click_control_center = true
     session_placement = "floating"
@@ -128,11 +131,11 @@ color = "error"
 type = "spacer"
 
 [widget.temp]
-show_label = false
+show_value = false
 
 [widget.sysmon_2]
 glyph = "gpu-usage"
-show_label = false
+show_value = false
 stat = "gpu_temp"
 type = "sysmon"
 
@@ -152,7 +155,7 @@ color = "secondary"
 active_pill_size = 2.5
 capsule = true
 capsule_fill = "on_primary"
-display = "id"
+label_source = "id"
 hide_when_empty = true
 inactive_pill_size = 1.0
 pill_scale = 0.80

@@ -20,6 +20,12 @@
   },
   "icon_theme": "Catppuccin Macchiato",
   "context_servers": {
+    "balcon-padel-dev": {
+      "enabled": true,
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "http://localhost:3000/api/mcp", "--header", "Authorization:Bearer ${AUTH_HEADER}"],
+      "env": {},
+    },
     "sentry": {
       "url": "https://mcp.sentry.dev/mcp",
     },
@@ -39,12 +45,6 @@
         "headless": false,
         "cdp_endpoint": "http://localhost:9222",
       },
-    },
-    "balcon-padel-mcp-server": {
-      "enabled": true,
-      "command": "npx",
-      "args": ["-y", "mcp-remote", "http://localhost:3000/api/mcp", "--header", "Authorization:Bearer ${AUTH_HEADER}"],
-      "env": {},
     },
     "chrome-devtools-mcp-zed": {
       "enabled": true,
@@ -238,14 +238,21 @@
       },
       {
         "provider": "opencode",
-        "model": "go/qwen3.7-plus",
-        "enable_thinking": false,
-      },
-      {
-        "provider": "opencode",
         "model": "go/deepseek-v4-pro",
         "enable_thinking": true,
         "effort": "max",
+      },
+      {
+        "provider": "opencode",
+        "model": "zen/deepseek-v4-flash",
+        "enable_thinking": true,
+        "effort": "max",
+      },
+      {
+        "provider": "opencode",
+        "model": "free/nemotron-3-ultra-free",
+        "enable_thinking": true,
+        "effort": "high",
       },
     ],
     "use_modifier_to_send": true,
@@ -259,9 +266,10 @@
     },
     "default_profile": "ask",
     "default_model": {
-      "enable_thinking": false,
+      "effort": "max",
+      "enable_thinking": true,
       "provider": "opencode",
-      "model": "go/qwen3.7-plus",
+      "model": "go/deepseek-v4-flash",
     },
     "thread_summary_model": {
       "provider": "google",
