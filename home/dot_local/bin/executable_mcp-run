@@ -1,0 +1,196 @@
+#!/usr/bin/env fish
+# mcp-run - launch a stdio MCP server with secrets injected from Bitwarden or the environment.
+#
+# Usage: mcp-run <server-name> [extra args...]
+#
+# The server definition is looked up in the registry (default
+# ~/.config/mcp-run/servers.json; override with MCP_RUN_REGISTRY).
+#
+# Registry shape:
+#   {
+#     "servers": {
+#       "<name>": {
+#         "command": "npx",
+#         "args": ["-y", "some-mcp", "--api-key", "${MY_KEY}"],
+#         "env": { "MY_KEY": { "source": "bitwarden", "item": "...", "field": "password" } },
+#         "cwd": "/optional/dir"
+#       }
+#     }
+#   }
+#
+# Secret resolution, per env key (first match wins):
+#   1. key already set in the environment          -> used as-is (dev override, no vault call)
+#   2. { "source": "bitwarden", ... }              -> rbw get, then bw get (requires BW_SESSION)
+#   3. { "source": "env" }                         -> must be present in the environment
+#   4. { "source": "literal", "value": "..." } or a plain string -> fixed value
+#
+# ${KEY} placeholders in "command" and "args" are replaced with the resolved
+# values, and every key is exported to the child process as well.
+#
+# Set MCP_RUN_USE_ENV=1 to skip Bitwarden lookups entirely.
+# Requires: jq, and optionally rbw (recommended) or the official bw CLI.
+
+command -q jq; or begin
+    echo "mcp-run: jq is required (pacman -S jq)" >&2
+    exit 1
+end
+
+set -g registry "$HOME/.config/mcp-run/servers.json"
+if set -q MCP_RUN_REGISTRY
+    set -g registry "$MCP_RUN_REGISTRY"
+end
+
+set -g bw_timeout 15
+if set -q MCP_RUN_BW_TIMEOUT
+    set -g bw_timeout "$MCP_RUN_BW_TIMEOUT"
+end
+
+set -g skip_bitwarden false
+if set -q MCP_RUN_USE_ENV; and test "$MCP_RUN_USE_ENV" = 1
+    set -g skip_bitwarden true
+end
+
+function mcp_die
+    echo "mcp-run: $argv" >&2
+    exit 1
+end
+
+function mcp_capture
+    # run $argv (bounded by $bw_timeout), print stdout
+    if command -q timeout
+        timeout "$bw_timeout" $argv 2>/dev/null
+    else
+        $argv 2>/dev/null
+    end
+end
+
+function mcp_bitwarden_get --argument-names item field
+    # rbw: keyring-backed, no session tokens to manage; preferred backend
+    if command -q rbw
+        set -l cmd rbw get
+        if test "$field" != password
+            set -a cmd --field $field
+        end
+        set -a cmd $item
+        set -l out (mcp_capture $cmd)
+        if test $status -eq 0; and string length -q -- $out
+            string trim -- $out
+            return 0
+        end
+    end
+
+    # bw: official CLI; requires BW_SESSION (from `bw unlock`)
+    if command -q bw; and set -q BW_SESSION
+        if test "$field" = password
+            set -l out (mcp_capture bw get password $item)
+            if test $status -eq 0; and string length -q -- $out
+                string trim -- $out
+                return 0
+            end
+        else
+            set -l out (mcp_capture bw get item $item)
+            if test $status -eq 0; and string length -q -- $out
+                set -l value (echo "$out" | jq -r --arg f "$field" '.fields[]? | select(.name==$f) | .value' 2>/dev/null)
+                if string length -q -- $value
+                    echo "$value"
+                    return 0
+                end
+            end
+        end
+    end
+
+    return 1
+end
+
+function mcp_resolve --argument-names key
+    # 1) explicit environment override (dev convenience; skips the vault)
+    if set -q $key
+        set -gx "$key" $$key
+        return 0
+    end
+
+    set -l spec_type (jq -r --arg n "$server_name" --arg k "$key" '(.servers[$n].env // {})[$k] | type' "$registry" 2>/dev/null)
+    if test "$spec_type" = string
+        set -gx "$key" (jq -r --arg n "$server_name" --arg k "$key" '(.servers[$n].env // {})[$k]' "$registry" 2>/dev/null)
+        return 0
+    end
+
+    set -l source (jq -r --arg n "$server_name" --arg k "$key" '(.servers[$n].env // {})[$k].source // "bitwarden"' "$registry" 2>/dev/null)
+    switch "$source"
+        case literal
+            set -gx "$key" (jq -r --arg n "$server_name" --arg k "$key" '(.servers[$n].env // {})[$k].value // ""' "$registry" 2>/dev/null)
+            return 0
+        case env
+            mcp_die "environment variable '$key' is not set"
+        case bitwarden
+            set -l item (jq -r --arg n "$server_name" --arg k "$key" '(.servers[$n].env // {})[$k].item // $k' "$registry" 2>/dev/null)
+            set -l field (jq -r --arg n "$server_name" --arg k "$key" '(.servers[$n].env // {})[$k].field // "password"' "$registry" 2>/dev/null)
+            if not test "$skip_bitwarden" = true
+                set -l value (mcp_bitwarden_get "$item" "$field")
+                if string length -q -- $value
+                    set -gx "$key" "$value"
+                    return 0
+                end
+            end
+            mcp_die "could not resolve '$key' from Bitwarden (item='$item', field='$field'). Fix with: rbw unlock; or export BW_SESSION; or export $key directly; or install rbw (paru -S rbw)."
+        case '*'
+            mcp_die "unsupported secret source '$source' for '$key'"
+    end
+end
+
+function mcp_substitute
+    for text in $argv
+        for k in $env_keys
+            set -l pat (string join '' '${' $k '}')
+            set text (string replace -a -- $pat $$k $text)
+        end
+        echo $text
+    end
+end
+
+if test (count $argv) -lt 1
+    mcp_die "usage: mcp-run <server-name> [extra args...]"
+end
+
+set -l name $argv[1]
+set -l extra $argv[2..-1]
+
+if not test -f "$registry"
+    mcp_die "registry not found: $registry"
+end
+
+jq -e '.servers' "$registry" >/dev/null 2>&1; or mcp_die "registry $registry is not valid JSON (or missing the 'servers' key)"
+
+set -g server_name $name
+
+set -l entry (jq -c --arg n "$name" '.servers[$n] // empty' "$registry" 2>/dev/null)
+if test -z "$entry"
+    mcp_die "unknown server '$name' (registry: $registry)"
+end
+
+set -l command (echo "$entry" | jq -r '.command // empty' 2>/dev/null)
+if test -z "$command"
+    mcp_die "server '$name' has no command"
+end
+set -l args (echo "$entry" | jq -r '.args[]?' 2>/dev/null)
+set -l cwd (echo "$entry" | jq -r '.cwd // empty' 2>/dev/null)
+set -g env_keys (echo "$entry" | jq -r '.env | keys[]?' 2>/dev/null)
+
+for key in $env_keys
+    mcp_resolve "$key"
+end
+
+set -l command (mcp_substitute $command)
+set -l args (mcp_substitute $args)
+
+if test -n "$cwd"
+    cd "$cwd"; or mcp_die "cannot cd to '$cwd'"
+end
+
+set -l env_args
+for k in $env_keys
+    set -a env_args "$k=$$k"
+end
+
+# replace this process so stdio passes straight through to the MCP server
+exec env $env_args $command $args $extra

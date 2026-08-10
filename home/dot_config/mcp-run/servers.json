@@ -1,0 +1,23 @@
+{
+  "_comment": "mcp-run server registry. Secret-bearing MCP servers launch through ~/.local/bin/mcp-run. To add a server: add an entry here, then reference it from Zed (context_servers) and agy (~/.gemini/config/mcp_config.json) with { \"command\": \"/home/erikzen/.local/bin/mcp-run\", \"args\": [\"<name>\"] }.",
+  "servers": {
+    "balcon-padel-dev": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "http://localhost:3000/api/mcp",
+        "--header",
+        "Authorization:Bearer ${AUTH_HEADER}"
+      ],
+      "env": {
+        "AUTH_HEADER": {
+          "source": "bitwarden",
+          "item": "balcon-padel-dev",
+          "field": "password",
+          "_comment": "Bitwarden item holding the Balcon Padel MCP bearer token. Adjust 'item' to match your vault entry; 'field' defaults to 'password'."
+        }
+      }
+    }
+  }
+}
