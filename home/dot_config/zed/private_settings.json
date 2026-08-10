@@ -7,6 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "context_server_timeout": 120,
   "diff_view_style": "unified",
   "cli_default_open_behavior": "new_window",
   "language_models": {
@@ -22,9 +23,8 @@
   "context_servers": {
     "balcon-padel-dev": {
       "enabled": true,
-      "command": "npx",
-      "args": ["-y", "mcp-remote", "http://localhost:3000/api/mcp", "--header", "Authorization:Bearer ${AUTH_HEADER}"],
-      "env": {},
+      "command": "/home/erikzen/.local/bin/mcp-run",
+      "args": ["balcon-padel-dev"],
     },
     "sentry": {
       "url": "https://mcp.sentry.dev/mcp",
@@ -179,6 +179,29 @@
   },
   "agent": {
     "sandbox_permissions": {
+      "allow_unsandboxed": true,
+      "write_paths": [
+        {
+          "requested": "/home/erikzen/Projects/balcon-padel/apps/web/components/pos/components",
+          "resolved": "/home/erikzen/Projects/balcon-padel/apps/web/components/pos/components"
+        },
+        {
+          "requested": "/home/erikzen/Projects/balcon-padel/apps/web/components/pos/utils",
+          "resolved": "/home/erikzen/Projects/balcon-padel/apps/web/components/pos/utils"
+        },
+        {
+          "requested": "/home/erikzen/Projects/balcon-padel/apps/web/components/pos/store",
+          "resolved": "/home/erikzen/Projects/balcon-padel/apps/web/components/pos/store"
+        },
+        {
+          "requested": "/home/erikzen/Projects/balcon-padel/apps/web/components/pos/panels",
+          "resolved": "/home/erikzen/Projects/balcon-padel/apps/web/components/pos/panels"
+        },
+        {
+          "requested": "/home/erikzen/Projects/balcon-padel/apps/web/components/pos/hooks",
+          "resolved": "/home/erikzen/Projects/balcon-padel/apps/web/components/pos/hooks"
+        }
+      ],
       "network_hosts": [
         "github.com",
         "raw.githubusercontent.com",
@@ -294,7 +317,7 @@
   "file_types": {
     "Hyprland Config": ["hyprland.conf", "hyprlandd.conf", "hyprland.hl", "hyprlandd.hl"],
     "Dockerfile": ["Dockerfile", "Dockerfile.*"],
-    "JSON": ["json", "jsonc", "*.code-snippets"],
+    "JSON": ["json", "*.code-snippets"],
   },
   "languages": {
     "JavaScript": {

@@ -596,7 +596,7 @@
           "#fab387",
           "#94e2d5"
         ],
-        "background.appearance": "opaque",
+        "background.appearance": "transparent",
         "border": "#434658",
         "border.variant": "#646883",
         "border.focused": "#cba6f7",
@@ -888,7 +888,7 @@
           "#fe640b",
           "#40a02b"
         ],
-        "background.appearance": "opaque",
+        "background.appearance": "transparent",
         "border": "#b0b4c7",
         "border.variant": "#838aa7",
         "border.focused": "#8839ef",
