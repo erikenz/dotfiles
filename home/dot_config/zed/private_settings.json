@@ -183,24 +183,24 @@
       "write_paths": [
         {
           "requested": "/home/erikzen/Projects/balcon-padel/apps/web/components/pos/components",
-          "resolved": "/home/erikzen/Projects/balcon-padel/apps/web/components/pos/components"
+          "resolved": "/home/erikzen/Projects/balcon-padel/apps/web/components/pos/components",
         },
         {
           "requested": "/home/erikzen/Projects/balcon-padel/apps/web/components/pos/utils",
-          "resolved": "/home/erikzen/Projects/balcon-padel/apps/web/components/pos/utils"
+          "resolved": "/home/erikzen/Projects/balcon-padel/apps/web/components/pos/utils",
         },
         {
           "requested": "/home/erikzen/Projects/balcon-padel/apps/web/components/pos/store",
-          "resolved": "/home/erikzen/Projects/balcon-padel/apps/web/components/pos/store"
+          "resolved": "/home/erikzen/Projects/balcon-padel/apps/web/components/pos/store",
         },
         {
           "requested": "/home/erikzen/Projects/balcon-padel/apps/web/components/pos/panels",
-          "resolved": "/home/erikzen/Projects/balcon-padel/apps/web/components/pos/panels"
+          "resolved": "/home/erikzen/Projects/balcon-padel/apps/web/components/pos/panels",
         },
         {
           "requested": "/home/erikzen/Projects/balcon-padel/apps/web/components/pos/hooks",
-          "resolved": "/home/erikzen/Projects/balcon-padel/apps/web/components/pos/hooks"
-        }
+          "resolved": "/home/erikzen/Projects/balcon-padel/apps/web/components/pos/hooks",
+        },
       ],
       "network_hosts": [
         "github.com",
