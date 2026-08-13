@@ -34,9 +34,15 @@ alias npm=pnpm
 
 # dotfiles
 alias conf-fish='cd ~/.config/fish && n'
-alias conf-nvim='cd ~/.config/nvim && n'
 alias conf-ghostty='cd ~/.config/ghostty && n'
 alias conf-hypr='cd ~/.config/hypr && n'
+alias conf-nvim='cd ~/.config/nvim && n'
+alias conf-astronvim='cd ~/.config/astronvim && n'
+alias conf-lazyvim='cd ~/.config/lazyvim && n'
+
+# nvim
+alias astronvim='NVIM_APPNAME=astronvim nvim'
+alias lazyvim='NVIM_APPNAME=lazyvim nvim'
 
 alias portainer='docker run -p 8000:8000 -p 9443:9443 --name portainer -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:lts'
 
@@ -46,6 +52,6 @@ set -gx QT_QPA_PLATFORMTHEME qt6ct
 # pnpm
 set -gx PNPM_HOME "/home/erikzen/.local/share/pnpm"
 if not string match -q -- "$PNPM_HOME/bin" $PATH
-  set -gx PATH "$PNPM_HOME/bin" $PATH
+    set -gx PATH "$PNPM_HOME/bin" $PATH
 end
 # pnpm end
