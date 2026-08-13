@@ -1,0 +1,68 @@
+2026-08-13T04:05:45.989698Z  INFO herdr::api::server: api server listening path=/home/erikzen/.config/herdr/herdr.sock
+2026-08-13T04:05:46.007544Z  INFO herdr::app: using pane scrollback configuration pane_scrollback_limit_bytes=10000000
+2026-08-13T04:05:46.158920Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-08-13T04:05:46.263410Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=1 rows=24 cols=80 scrollback_limit_bytes=10000000
+2026-08-13T04:05:46.264076Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=1 pid=1253517
+2026-08-13T04:05:46.264198Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="w1" pane_id=1
+2026-08-13T04:05:46.264202Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w1"
+2026-08-13T04:05:46.264213Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-08-13T04:05:46.264219Z  INFO herdr::server::headless: created startup workspace cwd=/home/erikzen
+2026-08-13T04:05:46.264267Z  INFO herdr::server::headless: client protocol socket listening path=/home/erikzen/.config/herdr/herdr-client.sock
+2026-08-13T04:05:46.264280Z  INFO herdr::server::headless: herdr server started api_socket=/home/erikzen/.config/herdr/herdr.sock client_socket=/home/erikzen/.config/herdr/herdr-client.sock
+2026-08-13T04:05:46.264368Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="server" outcome="started" pid=1253493
+2026-08-13T04:05:46.367544Z  INFO herdr::server::headless: client connected client_id=2 cols=94 rows=48 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-08-13T04:05:46.515202Z  WARN herdr::detect::manifest_update: skipping unknown remote manifest agent agent="qwen"
+2026-08-13T04:05:51.266058Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/erikzen/.config/herdr/session.json workspaces=1
+2026-08-13T04:05:56.248031Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=1 status="ExitStatus { code: 0, signal: None }"
+2026-08-13T04:05:56.248104Z  INFO herdr::pane: pane session terminated pane=1 pid=1253517 signal=Hangup
+2026-08-13T04:05:56.248225Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=2 rows=47 cols=68 scrollback_limit_bytes=10000000
+2026-08-13T04:05:56.249035Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=2 pid=1253919
+2026-08-13T04:05:56.249166Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="w2" pane_id=2
+2026-08-13T04:05:56.249169Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w2"
+2026-08-13T04:05:56.249183Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w2" tab_id="w2:t1"
+2026-08-13T04:06:01.255172Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/erikzen/.config/herdr/session.json workspaces=1
+2026-08-13T04:06:50.139837Z  INFO herdr::server::headless: client detach requested via keybind client_id=2
+2026-08-13T04:06:50.177474Z  INFO herdr::server::headless: client disconnected client_id=2
+2026-08-13T04:35:46.167490Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-08-13T04:35:46.387382Z  WARN herdr::detect::manifest_update: skipping unknown remote manifest agent agent="qwen"
+2026-08-13T11:24:26.909617Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-08-13T11:25:15.584650Z  WARN herdr::detect::manifest_update: skipping unknown remote manifest agent agent="qwen"
+2026-08-13T11:25:54.228190Z  WARN herdr::detect::manifest_update: agent detection manifest update failed for agent agent="amp" error=fetch failed: failed to fetch https://herdr.dev/agent-detection/amp.toml
+2026-08-13T11:54:18.775183Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-08-13T11:54:25.753807Z  WARN herdr::detect::manifest_update: skipping unknown remote manifest agent agent="qwen"
+2026-08-13T12:07:07.571015Z  INFO herdr::server::headless: server shutdown initiated
+2026-08-13T12:07:07.573425Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=2 status="ExitStatus { code: 1, signal: Some(\"Terminated\") }"
+2026-08-13T12:07:07.621804Z  INFO herdr::server::headless: completing server shutdown
+2026-08-13T12:07:07.623080Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/erikzen/.config/herdr/session.json workspaces=1
+2026-08-13T12:07:07.623103Z  INFO herdr::server::headless: headless server exiting
+2026-08-13T12:07:07.623228Z  INFO herdr::pane: pane session terminated pane=2 pid=1253919 signal=Hangup
+2026-08-13T12:07:07.624045Z  INFO herdr::logging: herdr exiting event="app.shutdown" subsystem="server" outcome="completed" pid=1253493
+2026-08-13T17:44:16.315041Z  INFO herdr::api::server: api server listening path=/home/erikzen/.config/herdr/herdr.sock
+2026-08-13T17:44:16.323526Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=1 rows=24 cols=80 scrollback_limit_bytes=10000000
+2026-08-13T17:44:16.324426Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=1 pid=670724
+2026-08-13T17:44:16.324589Z  INFO herdr::logging: session restore evaluated event="persist.restore" subsystem="persist" outcome="ok" workspaces=1
+2026-08-13T17:44:16.324596Z  INFO herdr::app: using pane scrollback configuration pane_scrollback_limit_bytes=10000000
+2026-08-13T17:44:16.504890Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-08-13T17:44:16.544515Z  INFO herdr::server::headless: restored session already has workspaces; ignoring startup cwd cwd=/home/erikzen
+2026-08-13T17:44:16.544653Z  INFO herdr::server::headless: client protocol socket listening path=/home/erikzen/.config/herdr/herdr-client.sock
+2026-08-13T17:44:16.544685Z  INFO herdr::server::headless: herdr server started api_socket=/home/erikzen/.config/herdr/herdr.sock client_socket=/home/erikzen/.config/herdr/herdr-client.sock
+2026-08-13T17:44:16.545025Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="server" outcome="started" pid=670706
+2026-08-13T17:44:16.797626Z  INFO herdr::server::headless: client connected client_id=2 cols=189 rows=48 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-08-13T17:44:17.376008Z  WARN herdr::detect::manifest_update: skipping unknown remote manifest agent agent="qwen"
+2026-08-13T17:44:51.207830Z  INFO herdr::logging: integration action finished event="integration.action" subsystem="integration" outcome="ok" action="install" target="codex"
+2026-08-13T17:44:51.218840Z  INFO herdr::logging: integration action finished event="integration.action" subsystem="integration" outcome="ok" action="install" target="copilot"
+2026-08-13T17:44:51.221832Z  INFO herdr::logging: integration action finished event="integration.action" subsystem="integration" outcome="ok" action="install" target="opencode"
+2026-08-13T17:44:51.223139Z  INFO herdr::logging: integration action finished event="integration.action" subsystem="integration" outcome="ok" action="install" target="antigravity-cli"
+2026-08-13T17:44:56.227254Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/erikzen/.config/herdr/session.json workspaces=1
+2026-08-13T17:54:47.343171Z  INFO herdr::server::headless: client detached client_id=2
+2026-08-13T17:54:48.738234Z  INFO herdr::server::headless: client disconnected client_id=2
+2026-08-13T18:14:16.693097Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-08-13T18:14:17.230540Z  WARN herdr::detect::manifest_update: skipping unknown remote manifest agent agent="qwen"
+2026-08-13T18:44:16.855663Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-08-13T18:44:17.392465Z  WARN herdr::detect::manifest_update: skipping unknown remote manifest agent agent="qwen"
+2026-08-13T19:14:16.691290Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-08-13T19:14:16.895205Z  WARN herdr::detect::manifest_update: skipping unknown remote manifest agent agent="qwen"
+2026-08-13T19:44:16.921447Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-08-13T19:44:17.882662Z  WARN herdr::detect::manifest_update: skipping unknown remote manifest agent agent="qwen"
+2026-08-13T20:14:16.969674Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-08-13T20:14:17.356297Z  WARN herdr::detect::manifest_update: skipping unknown remote manifest agent agent="qwen"
