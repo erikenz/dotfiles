@@ -65,40 +65,11 @@ function mcp_capture
 end
 
 function mcp_bitwarden_get --argument-names item field
-    # rbw: keyring-backed, no session tokens to manage; preferred backend
-    if command -q rbw
-        set -l cmd rbw get
-        if test "$field" != password
-            set -a cmd --field $field
-        end
-        set -a cmd $item
-        set -l out (mcp_capture $cmd)
-        if test $status -eq 0; and string length -q -- $out
-            string trim -- $out
-            return 0
-        end
+    set -l out (~/.local/bin/get-secret "$item" "$field" 2>/dev/null)
+    if test $status -eq 0; and string length -q -- $out
+        string trim -- $out
+        return 0
     end
-
-    # bw: official CLI; requires BW_SESSION (from `bw unlock`)
-    if command -q bw; and set -q BW_SESSION
-        if test "$field" = password
-            set -l out (mcp_capture bw get password $item)
-            if test $status -eq 0; and string length -q -- $out
-                string trim -- $out
-                return 0
-            end
-        else
-            set -l out (mcp_capture bw get item $item)
-            if test $status -eq 0; and string length -q -- $out
-                set -l value (echo "$out" | jq -r --arg f "$field" '.fields[]? | select(.name==$f) | .value' 2>/dev/null)
-                if string length -q -- $value
-                    echo "$value"
-                    return 0
-                end
-            end
-        end
-    end
-
     return 1
 end
 

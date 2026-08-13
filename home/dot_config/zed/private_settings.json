@@ -24,7 +24,7 @@
     "balcon-padel-dev": {
       "enabled": true,
       "command": "/home/erikzen/.local/bin/mcp-run",
-      "args": ["balcon-padel-dev"],
+      "args": ["balcon-padel-dev-api-key"],
     },
     "sentry": {
       "url": "https://mcp.sentry.dev/mcp",

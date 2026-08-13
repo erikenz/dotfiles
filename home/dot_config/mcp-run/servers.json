@@ -13,7 +13,7 @@
       "env": {
         "AUTH_HEADER": {
           "source": "bitwarden",
-          "item": "balcon-padel-dev",
+          "item": "balcon-padel-dev-api-key",
           "field": "password",
           "_comment": "Bitwarden item holding the Balcon Padel MCP bearer token. Adjust 'item' to match your vault entry; 'field' defaults to 'password'."
         }
