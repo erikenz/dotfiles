@@ -66,3 +66,26 @@
 2026-08-13T19:44:17.882662Z  WARN herdr::detect::manifest_update: skipping unknown remote manifest agent agent="qwen"
 2026-08-13T20:14:16.969674Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
 2026-08-13T20:14:17.356297Z  WARN herdr::detect::manifest_update: skipping unknown remote manifest agent agent="qwen"
+2026-08-13T20:44:17.340590Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-08-13T20:44:18.133558Z  WARN herdr::detect::manifest_update: skipping unknown remote manifest agent agent="qwen"
+2026-08-13T21:14:17.076510Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-08-13T21:14:17.368993Z  WARN herdr::detect::manifest_update: skipping unknown remote manifest agent agent="qwen"
+2026-08-13T21:44:17.611813Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-08-13T21:44:19.089927Z  WARN herdr::detect::manifest_update: skipping unknown remote manifest agent agent="qwen"
+2026-08-13T22:14:17.181143Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-08-13T22:14:17.186719Z  WARN herdr::config::keybinds: config diagnostic prefix+s: kept keys.settings, disabled keys.split_horizontal
+2026-08-13T22:14:17.187116Z  WARN herdr::config::keybinds: config diagnostic prefix+s: kept keys.settings, disabled keys.split_horizontal
+2026-08-13T22:14:17.551238Z  WARN herdr::detect::manifest_update: skipping unknown remote manifest agent agent="qwen"
+2026-08-13T22:29:39.760719Z  INFO herdr::server::headless: client connected client_id=4 cols=189 rows=48 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-08-13T22:44:17.192564Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-08-13T22:44:17.211509Z  WARN herdr::config::keybinds: config diagnostic prefix+s: kept keys.settings, disabled keys.split_horizontal
+2026-08-13T22:44:17.214458Z  WARN herdr::config::keybinds: config diagnostic prefix+s: kept keys.settings, disabled keys.split_horizontal
+2026-08-13T22:44:17.570405Z  WARN herdr::detect::manifest_update: skipping unknown remote manifest agent agent="qwen"
+2026-08-13T23:14:17.339615Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-08-13T23:14:18.552706Z  WARN herdr::config::keybinds: config diagnostic prefix+s: kept keys.settings, disabled keys.split_horizontal
+2026-08-13T23:14:18.553140Z  WARN herdr::config::keybinds: config diagnostic prefix+s: kept keys.settings, disabled keys.split_horizontal
+2026-08-13T23:14:20.250655Z  WARN herdr::detect::manifest_update: skipping unknown remote manifest agent agent="qwen"
+2026-08-13T23:44:17.201025Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-08-13T23:44:17.205239Z  WARN herdr::config::keybinds: config diagnostic prefix+s: kept keys.settings, disabled keys.split_horizontal
+2026-08-13T23:44:17.205629Z  WARN herdr::config::keybinds: config diagnostic prefix+s: kept keys.settings, disabled keys.split_horizontal
+2026-08-13T23:44:17.559181Z  WARN herdr::detect::manifest_update: skipping unknown remote manifest agent agent="qwen"

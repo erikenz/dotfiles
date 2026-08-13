@@ -5,3 +5,7 @@
 2026-08-13T17:44:16.563981Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=670692
 2026-08-13T17:44:16.564035Z  INFO herdr::client: connecting to server path=/home/erikzen/.config/herdr/herdr-client.sock
 2026-08-13T17:44:16.797586Z  INFO herdr::client: handshake succeeded version=19 encoding=SemanticFrame
+2026-08-13T22:29:39.665470Z  WARN herdr::config::keybinds: config diagnostic prefix+s: kept keys.settings, disabled keys.split_horizontal
+2026-08-13T22:29:39.665552Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=1654755
+2026-08-13T22:29:39.665558Z  INFO herdr::client: connecting to server path=/home/erikzen/.config/herdr/herdr-client.sock
+2026-08-13T22:29:39.760593Z  INFO herdr::client: handshake succeeded version=19 encoding=SemanticFrame

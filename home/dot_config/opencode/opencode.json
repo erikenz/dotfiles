@@ -1,0 +1,46 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "theme": "catppuccin",
+  "model": "opencode/deepseek-v4-flash",
+  "small_model": "gemini/gemini-3.6-flash",
+  "permission": {
+    "read": "allow",
+    "grep": "allow",
+    "glob": "allow",
+    "list_dir": "allow",
+    "edit": "allow",
+    "create": "allow",
+    "delete": "ask",
+    "bash": "ask"
+  },
+  "mcp": {
+    "balcon-padel-dev": {
+      "type": "local",
+      "command": ["/home/erikzen/.local/bin/mcp-run", "balcon-padel-dev"]
+    },
+    "sentry": {
+      "type": "local",
+      "command": ["npx", "-y", "@sentry/mcp-server@latest"]
+    },
+    "shadcn": {
+      "type": "local",
+      "command": ["npx", "-y", "@shadcn/mcp-server@latest"]
+    },
+    "next-devtools": {
+      "type": "local",
+      "command": ["npx", "-y", "next-devtools-mcp@latest"]
+    },
+    "mcp-server-playwright": {
+      "type": "local",
+      "command": ["npx", "-y", "@playwright/mcp-server@latest"]
+    },
+    "chrome-devtools": {
+      "type": "local",
+      "command": ["npx", "-y", "@chrome-devtools/mcp-server@latest"]
+    },
+    "posthog": {
+      "type": "local",
+      "command": ["npx", "-y", "@posthog/mcp-server@latest"]
+    }
+  }
+}

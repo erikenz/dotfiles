@@ -1,0 +1,12 @@
+# chezmoi ignore rules (.chezmoiignore)
+# Patterns match target paths relative to home directory (~/)
+
+# Ignore all node_modules directories
+.config/opencode/node_modules/**
+**/node_modules/**
+node_modules/**
+
+# Ignore build artifacts and cache directories
+.cache/**
+**/.cache/**
+**/.DS_Store
