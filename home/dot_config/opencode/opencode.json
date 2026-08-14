@@ -1,13 +1,7 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "theme": "catppuccin",
   "model": "opencode/deepseek-v4-flash",
   "small_model": "gemini/gemini-3.6-flash",
-  "keybinds": {
-    "messages_submit": "ctrl+enter",
-    "editor_newline": "enter",
-    "editor_open": "ctrl+e"
-  },
   "permission": {
     "read": "allow",
     "grep": "allow",

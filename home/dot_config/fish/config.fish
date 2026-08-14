@@ -6,12 +6,16 @@ starship init fish | source
 # Initialize mise tool manager
 mise activate fish | source
 
+# Default Editor (AstroNvim)
+set -gx EDITOR "env NVIM_APPNAME=astronvim nvim"
+set -gx VISUAL "env NVIM_APPNAME=astronvim nvim"
+
 # Convenience 'n' function
 function n
     if test (count $argv) -eq 0
-        nvim .
+        astronvim .
     else
-        nvim $argv
+        astronvim $argv
     end
 end
 
