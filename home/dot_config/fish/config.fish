@@ -38,6 +38,7 @@ alias px='pnpm dlx'
 alias b='bun'
 alias bx='bunx'
 alias npm=pnpm
+alias oc=opencode
 
 # Dotfiles
 alias conf-fish='cd ~/.config/fish && n'
