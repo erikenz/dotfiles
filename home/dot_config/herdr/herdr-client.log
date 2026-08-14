@@ -30,3 +30,20 @@
 2026-08-14T11:38:21.269564Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=2475660
 2026-08-14T11:38:21.269573Z  INFO herdr::client: connecting to server path=/home/erikzen/.config/herdr/herdr-client.sock
 2026-08-14T11:38:21.354472Z  INFO herdr::client: handshake succeeded version=19 encoding=SemanticFrame
+2026-08-14T12:22:55.015306Z  WARN herdr::config::keybinds: config diagnostic prefix+s: kept keys.settings, disabled keys.split_horizontal
+2026-08-14T12:22:55.016691Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=2566589
+2026-08-14T12:22:55.016698Z  INFO herdr::client: connecting to server path=/home/erikzen/.config/herdr/herdr-client.sock
+2026-08-14T12:22:55.213021Z  INFO herdr::client: handshake succeeded version=19 encoding=SemanticFrame
+2026-08-14T12:25:59.783949Z  INFO herdr::logging: herdr exiting event="app.shutdown" subsystem="client" outcome="completed" pid=2566589
+2026-08-14T12:26:05.823987Z  WARN herdr::config::keybinds: config diagnostic prefix+s: kept keys.settings, disabled keys.split_horizontal
+2026-08-14T12:26:05.824071Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=2574604
+2026-08-14T12:26:05.824079Z  INFO herdr::client: connecting to server path=/home/erikzen/.config/herdr/herdr-client.sock
+2026-08-14T12:26:05.970477Z  INFO herdr::client: handshake succeeded version=19 encoding=SemanticFrame
+2026-08-14T12:29:40.717905Z  INFO herdr::logging: herdr exiting event="app.shutdown" subsystem="client" outcome="completed" pid=2574604
+2026-08-14T12:30:30.849731Z  WARN herdr::config::keybinds: config diagnostic prefix+s: kept keys.settings, disabled keys.split_horizontal
+2026-08-14T12:30:30.849850Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=2586223
+2026-08-14T12:30:30.849869Z  INFO herdr::client: connecting to server path=/home/erikzen/.config/herdr/herdr-client.sock
+2026-08-14T12:30:30.855077Z  INFO herdr::client: handshake succeeded version=19 encoding=SemanticFrame
+2026-08-14T12:48:05.314580Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=2624032
+2026-08-14T12:48:05.314751Z  INFO herdr::client: connecting to server path=/home/erikzen/.config/herdr/herdr-client.sock
+2026-08-14T12:48:05.478003Z  INFO herdr::client: handshake succeeded version=19 encoding=SemanticFrame

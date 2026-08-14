@@ -10,16 +10,24 @@ mise activate fish | source
 set -gx EDITOR "env NVIM_APPNAME=astronvim nvim"
 set -gx VISUAL "env NVIM_APPNAME=astronvim nvim"
 
-# Remap default Fish clear-screen to Alt+L
-bind \el clear-screen
+# Alias to quickly reload Fish configuration and re-evaluate keybindings live
+alias fish-reload='source ~/.config/fish/config.fish; fish_user_key_bindings 2>/dev/null; commandline -f repaint'
 
-# Unbind Ctrl+h/j/k/l in Fish to free them up for Herdr multiplexer navigation
-bind --erase \cl 2>/dev/null
-bind --erase \ck 2>/dev/null
-bind --erase \cj 2>/dev/null
-bind --erase \ch 2>/dev/null
-if functions -q __abbr_tips_bind_newline
-    bind -M insert --erase \cj 2>/dev/null
+# Canonical Fish User Keybindings override
+function fish_user_key_bindings
+    # Remap default Fish clear-screen to Alt+L
+    bind \el clear-screen
+
+    # Native Fish Ctrl+h/j/k/l bindings to focus adjacent Herdr panes quietly (stdout & stderr suppressed)
+    bind ctrl-h 'herdr pane focus --current --direction left >/dev/null 2>&1; commandline -f repaint'
+    bind ctrl-j 'herdr pane focus --current --direction down >/dev/null 2>&1; commandline -f repaint'
+    bind ctrl-k 'herdr pane focus --current --direction up >/dev/null 2>&1; commandline -f repaint'
+    bind ctrl-l 'herdr pane focus --current --direction right >/dev/null 2>&1; commandline -f repaint'
+
+    bind -M insert ctrl-h 'herdr pane focus --current --direction left >/dev/null 2>&1; commandline -f repaint'
+    bind -M insert ctrl-j 'herdr pane focus --current --direction down >/dev/null 2>&1; commandline -f repaint'
+    bind -M insert ctrl-k 'herdr pane focus --current --direction up >/dev/null 2>&1; commandline -f repaint'
+    bind -M insert ctrl-l 'herdr pane focus --current --direction right >/dev/null 2>&1; commandline -f repaint'
 end
 
 # Unified Upgrade Function (Shelly + Mise)

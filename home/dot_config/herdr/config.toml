@@ -11,15 +11,15 @@ new_cwd = "follow"
 # Prefix key for Herdr commands (Ctrl+b)
 prefix = "ctrl+b"
 
-# Direct Prefix-Free Pane Navigation (Vim Ctrl+h/j/k/l - no prefix needed!)
-focus_pane_left = "ctrl+h"
-focus_pane_down = "ctrl+j"
-focus_pane_up = "ctrl+k"
-focus_pane_right = "ctrl+l"
+# Pane Navigation (Prefix + Vim keys, allowing Neovim smart-splits to receive raw Ctrl+h/j/k/l)
+focus_pane_left = ["prefix+h", "ctrl+alt+h"]
+focus_pane_down = ["prefix+j", "ctrl+alt+j"]
+focus_pane_up = ["prefix+k", "ctrl+alt+k"]
+focus_pane_right = ["prefix+l", "ctrl+alt+l"]
 
 # Workspace & Tab Management
 help = "prefix+?"
-settings = "prefix+s"
+settings = "prefix+,"
 detach = "prefix+d"
 reload_config = "prefix+shift+r"
 workspace_picker = "prefix+w"
