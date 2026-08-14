@@ -6,10 +6,10 @@
       "custom_name": null,
       "identity_cwd": "/home/erikzen/Projects/second-brain",
       "public_pane_numbers": {
-        "17": 9,
-        "19": 11,
         "18": 10,
-        "11": 3
+        "11": 3,
+        "17": 9,
+        "19": 11
       },
       "next_public_pane_number": 12,
       "public_tab_numbers": [
@@ -50,16 +50,16 @@
             }
           },
           "panes": {
-            "17": {
+            "11": {
               "cwd": "/home/erikzen/Projects/second-brain"
             },
             "19": {
               "cwd": "/home/erikzen/Projects/second-brain"
             },
-            "18": {
+            "17": {
               "cwd": "/home/erikzen/Projects/second-brain"
             },
-            "11": {
+            "18": {
               "cwd": "/home/erikzen/Projects/second-brain"
             }
           },
