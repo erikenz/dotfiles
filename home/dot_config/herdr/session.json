@@ -2,11 +2,11 @@
   "version": 3,
   "workspaces": [
     {
-      "id": "w9",
+      "id": "wA",
       "custom_name": null,
       "identity_cwd": "/home/erikzen",
       "public_pane_numbers": {
-        "10": 1
+        "11": 1
       },
       "next_public_pane_number": 2,
       "public_tab_numbers": [
@@ -17,10 +17,10 @@
         {
           "custom_name": null,
           "layout": {
-            "Pane": 10
+            "Pane": 11
           },
           "panes": {
-            "10": {
+            "11": {
               "cwd": "/home/erikzen",
               "agent_session": {
                 "source": "herdr:antigravity_cli",
@@ -31,8 +31,8 @@
             }
           },
           "zoomed": false,
-          "focused": 10,
-          "root_pane": 10
+          "focused": 11,
+          "root_pane": 11
         }
       ],
       "active_tab": 0

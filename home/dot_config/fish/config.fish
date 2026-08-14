@@ -10,6 +10,14 @@ mise activate fish | source
 set -gx EDITOR "env NVIM_APPNAME=astronvim nvim"
 set -gx VISUAL "env NVIM_APPNAME=astronvim nvim"
 
+# Unified Upgrade Function (Shelly + Mise)
+function upgrade
+    echo "📦 Upgrading Arch, AUR, and Flatpaks via Shelly..."
+    shelly upgrade $argv
+    echo "⚡ Upgrading Mise tools (agy, etc.)..."
+    mise upgrade
+end
+
 # Convenience 'n' function
 function n
     if test (count $argv) -eq 0
@@ -38,7 +46,6 @@ alias px='pnpm dlx'
 alias b='bun'
 alias bx='bunx'
 alias npm=pnpm
-alias oc=opencode
 
 # Dotfiles
 alias conf-fish='cd ~/.config/fish && n'
