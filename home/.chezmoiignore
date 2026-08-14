@@ -10,3 +10,16 @@ node_modules/**
 .cache/**
 **/.cache/**
 **/.DS_Store
+
+# Ignore volatile runtime logs, session history, and secrets
+.config/herdr/*.log
+.config/herdr/session*.json
+.config/herdr/.plugins.lock
+.config/fish/fish_variables
+.gemini/config/projects/**
+.gemini/antigravity-cli/*.log
+.gemini/antigravity-cli/brain/**
+.gemini/antigravity-cli/conversations/**
+.gemini/antigravity-cli/history.jsonl
+.gemini/antigravity-cli/antigravity-oauth-token
+.gemini/antigravity-cli/mcp_oauth_tokens.json

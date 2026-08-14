@@ -1,0 +1,8 @@
+[tools]
+agy = "1.1.13"
+bun = "latest"
+herdr = "latest"
+node = "lts"
+"npm:cc-safety-net" = "latest"
+"npm:mcp-hub" = "latest"
+pnpm = "latest"
