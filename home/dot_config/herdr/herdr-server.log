@@ -317,3 +317,19 @@
 2026-08-14T11:33:52.765870Z  INFO herdr::pane: agent changed pane=15 previous_agent=None agent=Some(Antigravity) process=agy pgid=Some(2466599)
 2026-08-14T11:33:55.215977Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/erikzen/.config/herdr/session.json workspaces=1
 2026-08-14T11:35:18.086169Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/erikzen/.config/herdr/session.json workspaces=1
+2026-08-14T11:36:50.703764Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wB" tab_id="wB:t1"
+2026-08-14T11:36:55.711744Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/erikzen/.config/herdr/session.json workspaces=1
+2026-08-14T11:38:15.559369Z  INFO herdr::server::headless: client detach requested via keybind client_id=8
+2026-08-14T11:38:15.577287Z  INFO herdr::server::headless: client disconnected client_id=8
+2026-08-14T11:38:21.354400Z  INFO herdr::server::headless: client connected client_id=10 cols=189 rows=48 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-08-14T11:38:29.349833Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=17 status="ExitStatus { code: 0, signal: None }"
+2026-08-14T11:38:29.349983Z  INFO herdr::pane: pane session terminated pane=17 pid=2465989 signal=Hangup
+2026-08-14T11:38:34.399733Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/erikzen/.config/herdr/session.json workspaces=1
+2026-08-14T11:38:35.930098Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=18 rows=47 cols=163 scrollback_limit_bytes=10000000
+2026-08-14T11:38:35.938675Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=18 pid=2476097
+2026-08-14T11:38:35.938865Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wB" tab_id="wB:t1"
+2026-08-14T11:38:40.945915Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/erikzen/.config/herdr/session.json workspaces=1
+2026-08-14T11:38:46.422435Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wB" tab_id="wB:t1"
+2026-08-14T11:38:50.796340Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wB" tab_id="wB:t1"
+2026-08-14T11:38:53.783951Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wB" tab_id="wB:t1"
+2026-08-14T11:38:58.833934Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/erikzen/.config/herdr/session.json workspaces=1

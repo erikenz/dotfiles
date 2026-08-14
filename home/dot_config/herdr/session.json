@@ -6,10 +6,10 @@
       "custom_name": null,
       "identity_cwd": "/home/erikzen",
       "public_pane_numbers": {
-        "15": 1,
-        "17": 3
+        "18": 4,
+        "15": 1
       },
-      "next_public_pane_number": 4,
+      "next_public_pane_number": 5,
       "public_tab_numbers": [
         1
       ],
@@ -25,7 +25,7 @@
                 "Pane": 15
               },
               "second": {
-                "Pane": 17
+                "Pane": 18
               }
             }
           },
@@ -39,7 +39,7 @@
                 "value": "288c256b-152a-413c-81a4-b67a4baea12f"
               }
             },
-            "17": {
+            "18": {
               "cwd": "/home/erikzen"
             }
           },

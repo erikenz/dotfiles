@@ -10,6 +10,18 @@ mise activate fish | source
 set -gx EDITOR "env NVIM_APPNAME=astronvim nvim"
 set -gx VISUAL "env NVIM_APPNAME=astronvim nvim"
 
+# Remap default Fish clear-screen to Alt+L
+bind \el clear-screen
+
+# Unbind Ctrl+h/j/k/l in Fish to free them up for Herdr multiplexer navigation
+bind --erase \cl 2>/dev/null
+bind --erase \ck 2>/dev/null
+bind --erase \cj 2>/dev/null
+bind --erase \ch 2>/dev/null
+if functions -q __abbr_tips_bind_newline
+    bind -M insert --erase \cj 2>/dev/null
+end
+
 # Unified Upgrade Function (Shelly + Mise)
 function upgrade
     echo "📦 Upgrading Arch, AUR, and Flatpaks via Shelly..."
