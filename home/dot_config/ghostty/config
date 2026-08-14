@@ -1,0 +1,7 @@
+theme = noctalia
+
+# Use Ghostty csi: action for CSI-u Kitty Keyboard Protocol sequences
+keybind = ctrl+h=csi:104;5u
+keybind = ctrl+j=csi:106;5u
+keybind = ctrl+k=csi:107;5u
+keybind = ctrl+l=csi:108;5u
