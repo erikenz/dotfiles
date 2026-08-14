@@ -89,3 +89,7 @@
 2026-08-13T23:44:17.205239Z  WARN herdr::config::keybinds: config diagnostic prefix+s: kept keys.settings, disabled keys.split_horizontal
 2026-08-13T23:44:17.205629Z  WARN herdr::config::keybinds: config diagnostic prefix+s: kept keys.settings, disabled keys.split_horizontal
 2026-08-13T23:44:17.559181Z  WARN herdr::detect::manifest_update: skipping unknown remote manifest agent agent="qwen"
+2026-08-13T23:55:32.924528Z  INFO herdr::pane: agent changed pane=1 previous_agent=None agent=Some(Antigravity) process=agy pgid=Some(1926027)
+2026-08-13T23:57:41.525253Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/erikzen/.config/herdr/session.json workspaces=1
+2026-08-13T23:59:05.190720Z  INFO herdr::pane: agent changed pane=1 previous_agent=Some(Antigravity) agent=None pgid=Some(670724)
+2026-08-13T23:59:09.898386Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/erikzen/.config/herdr/session.json workspaces=1
