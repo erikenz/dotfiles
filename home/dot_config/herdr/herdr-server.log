@@ -896,3 +896,22 @@
 2026-08-14T13:01:14.935267Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/erikzen/.config/herdr/session.json workspaces=1
 2026-08-14T13:04:23.515343Z  INFO herdr::logging: api request received event="api.request.start" subsystem="api" outcome="started" request_id="cli:server:reload-config" method="server.reload_config" changes_ui=true
 2026-08-14T13:04:23.515879Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="ok" request_id="cli:server:reload-config" method="server.reload_config"
+2026-08-14T13:06:23.875104Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=18 status="ExitStatus { code: 1, signal: Some(\"Hangup\") }"
+2026-08-14T13:06:23.879126Z  INFO herdr::pane: pane session terminated pane=18 pid=2647340 signal=Hangup
+2026-08-14T13:06:23.880845Z  WARN herdr::app::actions: PaneDied for unknown pane pane=18
+2026-08-14T13:06:26.632424Z  INFO herdr::logging: api request received event="api.request.start" subsystem="api" outcome="started" request_id="cli:pane:focus" method="pane.focus_direction" changes_ui=true
+2026-08-14T13:06:26.632522Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wJ" tab_id="wJ:t1"
+2026-08-14T13:06:26.632539Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wJ" tab_id="wJ:t1"
+2026-08-14T13:06:26.632584Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="ok" request_id="cli:pane:focus" method="pane.focus_direction"
+2026-08-14T13:06:28.394426Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=19 status="ExitStatus { code: 1, signal: Some(\"Hangup\") }"
+2026-08-14T13:06:28.396081Z  INFO herdr::pane: pane session terminated pane=19 pid=2648108 signal=Hangup
+2026-08-14T13:06:28.396336Z  WARN herdr::app::actions: PaneDied for unknown pane pane=19
+2026-08-14T13:06:33.398253Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/erikzen/.config/herdr/session.json workspaces=1
+2026-08-14T13:06:43.857759Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=11 status="ExitStatus { code: 1, signal: Some(\"Hangup\") }"
+2026-08-14T13:06:43.860494Z  INFO herdr::pane: pane session terminated pane=11 pid=2609569 signal=Hangup
+2026-08-14T13:06:43.860927Z  WARN herdr::app::actions: PaneDied for unknown pane pane=11
+2026-08-14T13:06:48.863491Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/erikzen/.config/herdr/session.json workspaces=1
+2026-08-14T13:06:54.465193Z  INFO herdr::server::headless: client detach requested via keybind client_id=4
+2026-08-14T13:06:54.466801Z  INFO herdr::server::headless: client disconnected client_id=4
+2026-08-14T13:30:30.825872Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-08-14T13:30:31.010661Z  WARN herdr::detect::manifest_update: skipping unknown remote manifest agent agent="qwen"

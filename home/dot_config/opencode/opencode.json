@@ -10,7 +10,18 @@
     "edit": "allow",
     "create": "allow",
     "delete": "ask",
-    "bash": "ask"
+    "bash": {
+      "mode": "ask",
+      "deny": [
+        "rm -rf *",
+        "git reset --hard*",
+        "git push --force*",
+        "sudo *",
+        "dd *",
+        "mkfs*",
+        "chmod 777*"
+      ]
+    }
   },
   "mcp": {
     "balcon-padel-dev": {

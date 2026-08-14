@@ -6,10 +6,7 @@
       "custom_name": null,
       "identity_cwd": "/home/erikzen/Projects/second-brain",
       "public_pane_numbers": {
-        "18": 10,
-        "11": 3,
-        "17": 9,
-        "19": 11
+        "17": 9
       },
       "next_public_pane_number": 12,
       "public_tab_numbers": [
@@ -20,51 +17,15 @@
         {
           "custom_name": null,
           "layout": {
-            "Split": {
-              "direction": "Horizontal",
-              "ratio": 0.5,
-              "first": {
-                "Split": {
-                  "direction": "Vertical",
-                  "ratio": 0.5,
-                  "first": {
-                    "Pane": 17
-                  },
-                  "second": {
-                    "Pane": 18
-                  }
-                }
-              },
-              "second": {
-                "Split": {
-                  "direction": "Vertical",
-                  "ratio": 0.5,
-                  "first": {
-                    "Pane": 11
-                  },
-                  "second": {
-                    "Pane": 19
-                  }
-                }
-              }
-            }
+            "Pane": 17
           },
           "panes": {
-            "11": {
-              "cwd": "/home/erikzen/Projects/second-brain"
-            },
-            "19": {
-              "cwd": "/home/erikzen/Projects/second-brain"
-            },
             "17": {
-              "cwd": "/home/erikzen/Projects/second-brain"
-            },
-            "18": {
               "cwd": "/home/erikzen/Projects/second-brain"
             }
           },
           "zoomed": false,
-          "focused": 18,
+          "focused": 17,
           "root_pane": 17
         }
       ],
