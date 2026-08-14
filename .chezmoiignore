@@ -1,9 +1,0 @@
-# chezmoi ignore rules (.chezmoiignore)
-# Patterns match target paths relative to your home directory (~/)
-
-# Ignore all node_modules directories globally
-**/node_modules/**
-
-# Ignore build artifacts and cache directories
-**/.cache/**
-**/.DS_Store
