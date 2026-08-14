@@ -9,3 +9,14 @@
 2026-08-13T22:29:39.665552Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=1654755
 2026-08-13T22:29:39.665558Z  INFO herdr::client: connecting to server path=/home/erikzen/.config/herdr/herdr-client.sock
 2026-08-13T22:29:39.760593Z  INFO herdr::client: handshake succeeded version=19 encoding=SemanticFrame
+2026-08-14T01:25:35.163708Z  WARN herdr::config::keybinds: config diagnostic prefix+s: kept keys.settings, disabled keys.split_horizontal
+2026-08-14T01:25:35.163784Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=2155488
+2026-08-14T01:25:35.163793Z  INFO herdr::client: connecting to server path=/home/erikzen/.config/herdr/herdr-client.sock
+2026-08-14T01:25:35.254486Z  INFO herdr::client: handshake succeeded version=19 encoding=SemanticFrame
+2026-08-14T01:27:48.512078Z  WARN herdr::raw_input: flushing lone escape after input timeout; if this follows an alt chord or focus switch it may reach the pane as plain esc bytes=[27]
+2026-08-14T01:27:48.513072Z  WARN herdr::raw_input: flushing lone escape after input timeout; if this follows an alt chord or focus switch it may reach the pane as plain esc bytes=[27]
+2026-08-14T01:27:57.852699Z  WARN herdr::raw_input: flushing lone escape after input timeout; if this follows an alt chord or focus switch it may reach the pane as plain esc bytes=[27]
+2026-08-14T01:27:57.852776Z  WARN herdr::raw_input: flushing lone escape after input timeout; if this follows an alt chord or focus switch it may reach the pane as plain esc bytes=[27]
+2026-08-14T01:28:35.635380Z  WARN herdr::raw_input: flushing lone escape after input timeout; if this follows an alt chord or focus switch it may reach the pane as plain esc bytes=[27]
+2026-08-14T01:28:35.635572Z  WARN herdr::raw_input: flushing lone escape after input timeout; if this follows an alt chord or focus switch it may reach the pane as plain esc bytes=[27]
+2026-08-14T01:32:26.251399Z  INFO herdr::logging: herdr exiting event="app.shutdown" subsystem="client" outcome="completed" pid=2155488

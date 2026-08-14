@@ -2,11 +2,11 @@
   "version": 3,
   "workspaces": [
     {
-      "id": "w2",
+      "id": "w9",
       "custom_name": null,
       "identity_cwd": "/home/erikzen",
       "public_pane_numbers": {
-        "1": 1
+        "10": 1
       },
       "next_public_pane_number": 2,
       "public_tab_numbers": [
@@ -17,16 +17,22 @@
         {
           "custom_name": null,
           "layout": {
-            "Pane": 1
+            "Pane": 10
           },
           "panes": {
-            "1": {
-              "cwd": "/home/erikzen"
+            "10": {
+              "cwd": "/home/erikzen",
+              "agent_session": {
+                "source": "herdr:antigravity_cli",
+                "agent": "agy",
+                "kind": "id",
+                "value": "288c256b-152a-413c-81a4-b67a4baea12f"
+              }
             }
           },
           "zoomed": false,
-          "focused": 1,
-          "root_pane": 1
+          "focused": 10,
+          "root_pane": 10
         }
       ],
       "active_tab": 0
