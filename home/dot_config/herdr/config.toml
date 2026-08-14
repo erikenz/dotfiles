@@ -11,11 +11,27 @@ new_cwd = "follow"
 # Prefix key for Herdr commands (Ctrl+b)
 prefix = "ctrl+b"
 
-# Pane Navigation (Prefix + Vim keys, allowing Neovim smart-splits to receive raw Ctrl+h/j/k/l)
-focus_pane_left = ["prefix+h", "ctrl+alt+h"]
-focus_pane_down = ["prefix+j", "ctrl+alt+j"]
-focus_pane_up = ["prefix+k", "ctrl+alt+k"]
-focus_pane_right = ["prefix+l", "ctrl+alt+l"]
+# Direct Prefix-Free Pane Navigation (Vim Ctrl+h/j/k/l)
+focus_pane_left = "prefix+h"
+focus_pane_down = "prefix+j"
+focus_pane_up = "prefix+k"
+focus_pane_right = "prefix+l"
+
+# Neovim-Style Pane Swapping (Shift+H/J/K/L)
+swap_pane_left = "prefix+shift+h"
+swap_pane_down = "prefix+shift+j"
+swap_pane_up = "prefix+shift+k"
+swap_pane_right = "prefix+shift+l"
+
+# Vim Pane Splitting & Management
+split_vertical = "prefix+v"
+split_horizontal = "prefix+s"
+close_pane = "prefix+q"
+zoom = "prefix+z"
+resize_mode = "prefix+r"
+copy_mode = "prefix+["
+edit_scrollback = "prefix+e"
+toggle_sidebar = "prefix+b"
 
 # Workspace & Tab Management
 help = "prefix+?"
@@ -32,14 +48,6 @@ rename_tab = "prefix+shift+t"
 previous_tab = "prefix+p"
 next_tab = "prefix+n"
 close_tab = "prefix+shift+x"
-
-# Vim Pane Splitting (v = vertical, s = horizontal)
-split_vertical = "prefix+v"
-split_horizontal = "prefix+s"
-close_pane = "prefix+x"
-zoom = "prefix+z"
-resize_mode = "prefix+r"
-toggle_sidebar = "prefix+b"
 
 # Navigate-mode directional movement (Vim keys)
 navigate_workspace_up = "up"
