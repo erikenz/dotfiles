@@ -21,61 +21,18 @@
   },
   "icon_theme": "Catppuccin Macchiato",
   "context_servers": {
-    "balcon-padel-dev": {
+    "hub": {
       "enabled": true,
-      "command": "/home/erikzen/.local/bin/mcp-run",
-      "args": ["balcon-padel-dev-api-key"],
-    },
-    "sentry": {
-      "url": "https://mcp.sentry.dev/mcp",
-    },
-    "shadcn": {
-      "command": "npx",
-      "args": ["shadcn@latest", "mcp"],
-    },
-    "next-devtools": {
-      "command": "npx",
-      "args": ["-y", "next-devtools-mcp@latest"],
-    },
-    "mcp-server-playwright": {
-      "enabled": true,
-      "remote": false,
-      "settings": {
-        "browser": "chromium",
-        "headless": false,
-        "cdp_endpoint": "http://localhost:9222",
-      },
-    },
-    "chrome-devtools-mcp-zed": {
-      "enabled": true,
-      "remote": false,
-      "settings": {
-        "browser_url": "http://localhost:9222",
-        "ws_endpoint": null,
-        "ws_headers": null,
-        "auto_connect": null,
-        "channel": null,
-        "headless": null,
-        "isolated": null,
-        "user_data_dir": null,
-        "viewport": null,
-        "executable_path": null,
-        "chrome_arg": [],
-        "proxy_server": null,
-        "accept_insecure_certs": null,
-        "category_emulation": null,
-        "category_performance": null,
-        "category_network": null,
-        "log_file": null,
-        "extra_args": [],
-      },
-    },
-    "posthog": {
-      "enabled": true,
-      "url": "https://mcp.posthog.com/mcp",
+      "url": "http://localhost:37373/mcp",
     },
   },
   "agent_servers": {
+    "antigravity-acp": {
+      "default_config_options": {
+        "model": "gemini-3.7-flash-medium"
+      },
+      "type": "registry"
+    },
     "codex-acp": {
       "default_config_options": {
         "model": "gpt-5.5",

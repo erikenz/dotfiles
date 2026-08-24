@@ -12,18 +12,9 @@
     "pane.focus_up": "none",
     "pane.focus_down": "none"
   },
-  "model": "Gemini 3.6 Flash (High)",
+  "model": "Gemini 3.7 Flash (Medium)",
   "notifications": true,
   "permissions": {
-    "deny": [
-      "command(rm -rf *)",
-      "command(git push --force*)",
-      "command(git reset --hard*)",
-      "command(sudo *)",
-      "command(dd *)",
-      "command(mkfs*)",
-      "command(chmod 777*)"
-    ],
     "allow": [
       "command(find)",
       "command(grep)",
@@ -64,7 +55,18 @@
       "command(mpcli)",
       "mcp(sentry/*)",
       "command(pnpm gen:types)",
-      "command(git show)"
+      "command(git show)",
+      "unsandboxed(herdr)",
+      "unsandboxed(sleep)"
+    ],
+    "deny": [
+      "command(rm -rf *)",
+      "command(git push --force*)",
+      "command(git reset --hard*)",
+      "command(sudo *)",
+      "command(dd *)",
+      "command(mkfs*)",
+      "command(chmod 777*)"
     ]
   },
   "plugins": [

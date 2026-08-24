@@ -2,23 +2,27 @@
   "mcpServers": {
     "chrome-devtools": {
       "command": "npx",
-      "args": ["-y", "chrome-devtools-mcp@latest", "--browser-url=http://127.0.0.1:9222"]
+      "args": [
+        "-y",
+        "chrome-devtools-mcp@latest",
+        "--browser-url=http://127.0.0.1:9222"
+      ]
     },
     "sentry": {
       "serverUrl": "https://mcp.sentry.dev/mcp"
     },
     "shadcn": {
       "command": "npx",
-      "args": ["shadcn@latest", "mcp"]
+      "args": [
+        "shadcn@latest",
+        "mcp"
+      ]
     },
     "next-devtools": {
       "command": "npx",
-      "args": ["-y", "next-devtools-mcp@latest"]
-    },
-    "balcon-padel-dev": {
-      "command": "/home/erikzen/.local/bin/mcp-run",
       "args": [
-        "balcon-padel-dev"
+        "-y",
+        "next-devtools-mcp@latest"
       ]
     },
     "posthog": {
@@ -26,7 +30,14 @@
     },
     "mcp-server-playwright": {
       "command": "npx",
-      "args": ["-y", "@playwright/mcp@latest", "--browser", "chrome", "--cdp-endpoint", "http://localhost:9222"]
+      "args": [
+        "-y",
+        "@playwright/mcp@latest",
+        "--browser",
+        "chrome",
+        "--cdp-endpoint",
+        "http://localhost:9222"
+      ]
     }
   }
 }

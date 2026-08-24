@@ -1,5 +1,5 @@
 [tools]
-agy = "1.1.13"
+agy = "1.1.17"
 bun = "latest"
 herdr = "latest"
 node = "lts"
