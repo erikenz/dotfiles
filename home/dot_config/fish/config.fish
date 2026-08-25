@@ -82,6 +82,37 @@ alias nvim='astronvim' # Default 'nvim' command calls AstroNvim
 
 alias portainer='docker run -p 8000:8000 -p 9443:9443 --name portainer -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:lts'
 
+# Herdr
+alias h='herdr'
+alias hs='herdr status'
+alias hw='herdr workspace list'
+alias ht='herdr tab list'
+alias hp='herdr pane list'
+alias ha='herdr agent list'
+alias hstop='herdr server stop'
+
+# MCP Hub
+alias conf-mcphub='cd ~/.config/mcphub && n'
+alias mcphub='mcp-hub --port 37373 --config ~/.config/mcphub/servers.json --watch'
+alias mcphub-status='curl -s http://localhost:37373/api/servers | jq .'
+alias mcphub-auth='curl -s http://localhost:37373/api/servers | jq \'.servers[] | select(.authorizationUrl != null) | {name, authorizationUrl}\''
+
+function mcphub-start
+    if not herdr status 2>/dev/null | string match -q "*status: running*"
+        herdr server &
+        sleep 0.5
+    end
+    set -l ws (herdr workspace create --label mcp-hub --cwd "$HOME" 2>/dev/null)
+    set -l pane_id (echo $ws | jq -r '.result.root_pane.pane_id')
+    if test -n "$pane_id" -a "$pane_id" != "null"
+        herdr pane run $pane_id "mcp-hub --port 37373 --config ~/.config/mcphub/servers.json --watch"
+        echo "🚀 MCP Hub started in Herdr workspace 'mcp-hub' (pane $pane_id)"
+    else
+        echo "❌ Failed to create Herdr workspace for MCP Hub"
+    end
+end
+alias mcphub-herdr=mcphub-start
+
 # Qt
 set -gx QT_QPA_PLATFORMTHEME qt6ct
 

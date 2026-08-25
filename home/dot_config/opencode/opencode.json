@@ -14,16 +14,14 @@
     "create": "allow",
     "delete": "ask",
     "bash": {
-      "mode": "ask",
-      "deny": [
-        "rm -rf *",
-        "git reset --hard*",
-        "git push --force*",
-        "sudo *",
-        "dd *",
-        "mkfs*",
-        "chmod 777*"
-      ]
+      "*": "ask",
+      "rm -rf *": "deny",
+      "git reset --hard*": "deny",
+      "git push --force*": "deny",
+      "sudo *": "deny",
+      "dd *": "deny",
+      "mkfs*": "deny",
+      "chmod 777*": "deny"
     }
   },
   "mcp": {

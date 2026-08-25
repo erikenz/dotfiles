@@ -22,16 +22,16 @@
   "icon_theme": "Catppuccin Macchiato",
   "context_servers": {
     "hub": {
-      "enabled": true,
-      "url": "http://localhost:37373/mcp",
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "http://localhost:37373/mcp"],
     },
   },
   "agent_servers": {
     "antigravity-acp": {
       "default_config_options": {
-        "model": "gemini-3.7-flash-medium"
+        "model": "gemini-3.7-flash-high",
       },
-      "type": "registry"
+      "type": "registry",
     },
     "codex-acp": {
       "default_config_options": {
