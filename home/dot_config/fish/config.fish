@@ -94,8 +94,62 @@ alias hstop='herdr server stop'
 # MCP Hub
 alias conf-mcphub='cd ~/.config/mcphub && n'
 alias mcphub='mcp-hub --port 37373 --config ~/.config/mcphub/servers.json --watch'
+
+# MCP Hub Endpoints & Status
 alias mcphub-status='curl -s http://localhost:37373/api/servers | jq .'
+alias mcphub-health='curl -s http://localhost:37373/api/health | jq .'
+alias mcphub-tools='curl -s http://localhost:37373/api/servers | jq \'[.servers[] | {server: .name, status: .status, tools: [.capabilities.tools[].name]}]\''
+alias mcphub-resources='curl -s http://localhost:37373/api/servers | jq \'[.servers[] | {server: .name, resources: [.capabilities.resources[].name]}]\''
+alias mcphub-workspaces='curl -s http://localhost:37373/api/workspaces | jq .'
 alias mcphub-auth='curl -s http://localhost:37373/api/servers | jq \'.servers[] | select(.authorizationUrl != null) | {name, authorizationUrl}\''
+alias mcphub-refresh='curl -s http://localhost:37373/api/refresh | jq .'
+alias mcphub-restart='curl -s -X POST http://localhost:37373/api/restart | jq .'
+alias mcphub-hard-restart='curl -s -X POST http://localhost:37373/api/hard-restart | jq .'
+
+# MCP Hub Management Functions
+function mcphub-server-info
+    if test (count $argv) -eq 0
+        echo "Usage: mcphub-server-info <server_name>"
+        return 1
+    end
+    curl -s -X POST http://localhost:37373/api/servers/info \
+        -H "Content-Type: application/json" \
+        -d "{\"server_name\": \"$argv[1]\"}" | jq .
+end
+
+function mcphub-server-start
+    if test (count $argv) -eq 0
+        echo "Usage: mcphub-server-start <server_name>"
+        return 1
+    end
+    curl -s -X POST http://localhost:37373/api/servers/start \
+        -H "Content-Type: application/json" \
+        -d "{\"server_name\": \"$argv[1]\"}" | jq .
+end
+
+function mcphub-server-stop
+    if test (count $argv) -eq 0
+        echo "Usage: mcphub-server-stop <server_name>"
+        return 1
+    end
+    curl -s -X POST http://localhost:37373/api/servers/stop \
+        -H "Content-Type: application/json" \
+        -d "{\"server_name\": \"$argv[1]\"}" | jq .
+end
+
+function mcphub-call-tool
+    if test (count $argv) -lt 2
+        echo "Usage: mcphub-call-tool <server_name> <tool_name> [arguments_json]"
+        return 1
+    end
+    set -l args "{}"
+    if test (count $argv) -ge 3
+        set args "$argv[3]"
+    end
+    curl -s -X POST http://localhost:37373/api/servers/tools \
+        -H "Content-Type: application/json" \
+        -d "{\"server_name\": \"$argv[1]\", \"tool\": \"$argv[2]\", \"arguments\": $args}" | jq .
+end
 
 function mcphub-start
     if not herdr status 2>/dev/null | string match -q "*status: running*"

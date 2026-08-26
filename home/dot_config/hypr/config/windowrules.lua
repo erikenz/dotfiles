@@ -12,11 +12,11 @@ hl.window_rule({ match = { class = "^(steam|Steam)$", float = true }, center = t
 
 -- Picture-in-Picture
 hl.window_rule({
-    match = { title = "^([Pp]icture[-\\s]?[Ii]n[-\\s]?[Pp]icture)(.*)$" },
-    float = true,
-    keep_aspect_ratio = true,
-    size = { "max(monitor_w, monitor_h)*0.25", "min(monitor_w, monitor_h)*0.25" },
-    pin = true,
+	match = { title = "^([Pp]icture[-\\s]?[Ii]n[-\\s]?[Pp]icture)(.*)$" },
+	float = true,
+	keep_aspect_ratio = true,
+	size = { "max(monitor_w, monitor_h)*0.25", "min(monitor_w, monitor_h)*0.25" },
+	pin = true,
 })
 
 -- Gaming
@@ -25,79 +25,78 @@ local gamingWorkspace = "name:gaming"
 
 hl.window_rule({ match = { content = "game" }, workspace = gamingWorkspace })
 hl.window_rule({
-    match = { xdg_tag = "^(.*game.*)$" },
-    workspace = gamingWorkspace,
-    fullscreen_state = 2,
-    content = "game",
-    sync_fullscreen = true,
+	match = { xdg_tag = "^(.*game.*)$" },
+	workspace = gamingWorkspace,
+	fullscreen_state = 2,
+	content = "game",
+	sync_fullscreen = true,
 })
 hl.window_rule({ match = { class = gamingApps }, workspace = gamingWorkspace })
 hl.window_rule({ match = { class = "^(steam)$", title = "^(Friends List)$" }, float = true })
 hl.window_rule({
-    match = { class = "^(steam)$", title = "^(Launching\\.{3})$" },
-    float = true,
-    center = true,
-    workspace = gamingWorkspace,
+	match = { class = "^(steam)$", title = "^(Launching\\.{3})$" },
+	float = true,
+	center = true,
+	workspace = gamingWorkspace,
 })
 hl.window_rule({
-    match = {
-        class = gamingApps,
-        title = "^(.+)$",
-        initial_title = "negative:^(.*\\\\home\\\\.*)$",
-    },
-    content = "game",
-    decorate = false,
-    fullscreen_state = 2,
-    size = { "monitor_w", "monitor_h" },
-    sync_fullscreen = true,
+	match = {
+		class = gamingApps,
+		title = "^(.+)$",
+		initial_title = "negative:^(.*\\\\home\\\\.*)$",
+	},
+	content = "game",
+	decorate = false,
+	fullscreen_state = 2,
+	size = { "monitor_w", "monitor_h" },
+	sync_fullscreen = true,
 })
 hl.window_rule({
-    match = {
-        class = "^(steam_app.*)$",
-        initial_title = "^$",
-    },
-    center = true,
-    float = true,
-    fullscreen = false,
-    fullscreen_state = 0,
-    workspace = gamingWorkspace,
+	match = {
+		class = "^(steam_app.*)$",
+		initial_title = "^$",
+	},
+	center = true,
+	float = true,
+	fullscreen = false,
+	fullscreen_state = 0,
+	workspace = gamingWorkspace,
 })
 
 -- Apps
 hl.window_rule({
-    match = { class = "^(.*\\.exe)$", float = true },
-    monitor = PRIMARY_MONITOR,
-    center = true,
-    fullscreen_state = 0,
+	match = { class = "^(.*\\.exe)$", float = true },
+	monitor = PRIMARY_MONITOR,
+	center = true,
+	fullscreen_state = 0,
 })
 hl.window_rule({ match = { class = "^(vesktop|discord)$" }, monitor = MONITOR2 })
 hl.window_rule({
-    match = { class = "^(.*[Cc]alculator.*)$" },
-    float = true,
-    size = { "max(monitor_w, monitor_h)*0.17", "min(monitor_w, monitor_h)*0.43" },
+	match = { class = "^(.*[Cc]alculator.*)$" },
+	float = true,
+	size = { "max(monitor_w, monitor_h)*0.17", "min(monitor_w, monitor_h)*0.43" },
 })
 hl.window_rule({ match = { class = "^(org\\.kde\\.keditfiletype)$" }, float = true })
 hl.window_rule({
-    match = { class = "^(org\\.kde\\.ark)$" },
-    size = { "max(monitor_w, monitor_h)*0.40", "min(monitor_w, monitor_h)*0.40" },
+	match = { class = "^(org\\.kde\\.ark)$" },
+	size = { "max(monitor_w, monitor_h)*0.40", "min(monitor_w, monitor_h)*0.40" },
 })
 hl.window_rule({
-    match = { class = "^(.*swash)$", title = "^(Satty)$" },
-    min_size = { "max(monitor_w, monitor_h)*0.35", "min(monitor_w, monitor_h)*0.35" },
-    float = true,
+	match = { class = "^(.*swash)$", title = "^(Swash)$" },
+	min_size = { "max(monitor_w, monitor_h)*0.35", "min(monitor_w, monitor_h)*0.35" },
+	float = true,
 })
 hl.window_rule({
-    match = { class = "^(dev\\.)?(noctalia\\.Noctalia(\\.Settings)?)$" },
-    float = true,
-    size = { "monitor_w*0.70", "monitor_h*0.70" },
+	match = { class = "^(dev\\.)?(noctalia\\.Noctalia(\\.Settings)?)$" },
+	float = true,
+	size = { "monitor_w*0.70", "monitor_h*0.70" },
 })
 hl.window_rule({
-    match = {
-        class = "^(org\\.kde\\.dolphin)$",
-        title =
-        "negative:^(Moving.*|Create New.*|Extract.*|Compress.*|Copying.*|Progress.*|Configure.*|Properties.*|Choose\\sApplication.*)$",
-    },
-    tile = true,
+	match = {
+		class = "^(org\\.kde\\.dolphin)$",
+		title = "negative:^(Moving.*|Create New.*|Extract.*|Compress.*|Copying.*|Progress.*|Configure.*|Properties.*|Choose\\sApplication.*)$",
+	},
+	tile = true,
 })
 
 -- Opacity Overrides
@@ -106,56 +105,55 @@ local terminals = "^(kitty|ghostty|[Kk]onsole|Alacritty|gnome-terminal|xfce[0-9]
 hl.window_rule({ match = { class = "^(firefox|zen)$" }, opacity = "1.0 override" })
 hl.window_rule({ match = { class = terminals }, opacity = "1.0 override" })
 hl.window_rule({
-    match = { class = "^(mpv|org.kde.haruna|.*plex.*|org\\.kde\\.gwenview|.*vlc.*)$" },
-    opacity = "1.0 override",
+	match = { class = "^(mpv|org.kde.haruna|.*plex.*|org\\.kde\\.gwenview|.*vlc.*)$" },
+	opacity = "1.0 override",
 })
 
 -- Float Utility Windows
 local floatApps = {
-    { class = "^(kvantummanager|qt[56]ct|nwg-look)$" },
-    { class = "^(org.pulseaudio.pavucontrol|blueman-manager|nm-applet|nm-connection-editor)$" },
-    { title = "^(Winetricks.*|Protontricks.*)$" },
+	{ class = "^(kvantummanager|qt[56]ct|nwg-look)$" },
+	{ class = "^(org.pulseaudio.pavucontrol|blueman-manager|nm-applet|nm-connection-editor)$" },
+	{ title = "^(Winetricks.*|Protontricks.*)$" },
 }
 for _, m in ipairs(floatApps) do
-    hl.window_rule({ match = m, float = true })
+	hl.window_rule({ match = m, float = true })
 end
 
 -- Float Common Modals
 local modalMatches = {
-    {
-        title =
-        "^(Open|Authentication Required|Add Folder to Workspace|Choose Files|Save As|Confirm to replace files|File Operation Progress)$",
-    },
-    { initial_title = "^(Open File)$" },
-    { class = "^([Xx]dg-desktop-portal-gtk)$" },
-    { title = "^(File Upload|Choose wallpaper|Library)(.*)$" },
-    { class = "^(.*dialog.*)$" },
-    { title = "^(.*dialog.*)$" },
-    { class = "^(hyprland-share-picker)$" },
+	{
+		title = "^(Open|Authentication Required|Add Folder to Workspace|Choose Files|Save As|Confirm to replace files|File Operation Progress)$",
+	},
+	{ initial_title = "^(Open File)$" },
+	{ class = "^([Xx]dg-desktop-portal-gtk)$" },
+	{ title = "^(File Upload|Choose wallpaper|Library)(.*)$" },
+	{ class = "^(.*dialog.*)$" },
+	{ title = "^(.*dialog.*)$" },
+	{ class = "^(hyprland-share-picker)$" },
 }
 for _, m in ipairs(modalMatches) do
-    hl.window_rule({ match = m, float = true })
+	hl.window_rule({ match = m, float = true })
 end
 
 -- Ignore maximize requests from all apps
 hl.window_rule({
-    name = "suppress-maximize-events",
-    match = { class = ".*" },
-    suppress_event = "maximize",
+	name = "suppress-maximize-events",
+	match = { class = ".*" },
+	suppress_event = "maximize",
 })
 
 -- Fix some dragging issues with XWayland
 hl.window_rule({
-    name = "fix-xwayland-drags",
-    match = {
-        class = "^$",
-        title = "^$",
-        xwayland = true,
-        float = true,
-        fullscreen = false,
-        pin = false,
-    },
-    no_focus = true,
+	name = "fix-xwayland-drags",
+	match = {
+		class = "^$",
+		title = "^$",
+		xwayland = true,
+		float = true,
+		fullscreen = false,
+		pin = false,
+	},
+	no_focus = true,
 })
 
 -----------------------------------
@@ -164,55 +162,67 @@ hl.window_rule({
 
 -- Steam workspace
 hl.window_rule({
-    match = { class = "^(steam|Steam)$" },
-    workspace = 10,
-    monitor = MONITOR1,
-    tile = true,
+	match = { class = "^(steam|Steam)$" },
+	workspace = 10,
+	monitor = MONITOR1,
+	tile = true,
 })
 
 -- Vesktop workspace
 hl.window_rule({
-    match = { class = "^(vesktop)$" },
-    workspace = 9,
-    monitor = MONITOR2,
+	match = { class = "^(vesktop)$" },
+	workspace = 9,
+	monitor = MONITOR2,
 })
 
 -- YouTube Music workspace
 hl.window_rule({
-    match = { class = "^(com\\.github\\.th-ch\\.youtube-music)$" },
-    workspace = 8,
-    monitor = MONITOR2,
+	match = { class = "^(com\\.github\\.th-ch\\.youtube-music)$" },
+	workspace = 8,
+	monitor = MONITOR2,
 })
 
 -- Streaming sites full opacity
 hl.window_rule({
-    match = { title = ".*(YouTube|Kick|Twitch|Disney\\+).*" },
-    opacity = "1.0 override",
+	match = { title = ".*(YouTube|Kick|Twitch|Disney\\+).*" },
+	opacity = "1.0 override",
 })
 
 -- Pot translator float
 hl.window_rule({
-    match = { class = "^(pot)$" },
-    float = true,
+	match = { class = "^(pot)$" },
+	float = true,
 })
 
 -- Zed workspace
 hl.window_rule({
-    match = { class = "^(dev\\.zed\\.Zed)$" },
-    workspace = 3,
-    monitor = MONITOR1,
+	match = { class = "^(dev\\.zed\\.Zed)$" },
+	workspace = 3,
+	monitor = MONITOR1,
 })
 
 -- Ferdium workspace
 hl.window_rule({
-    match = { class = "^( Ferdium)$" },
-    workspace = 5,
-    monitor = MONITOR1,
+	match = { class = "^( Ferdium)$" },
+	workspace = 5,
+	monitor = MONITOR1,
 })
 
 -- Chromium Debug workspace
 hl.window_rule({
-    match = { class = "^(chromium)$" },
-    workspace = 4,
-    monitor = MONITOR1,
+	match = { class = "^(chromium)$" },
+	workspace = 4,
+	monitor = MONITOR1,
+})
+
+-- Noctalia layer rule
+hl.layer_rule({
+	name = "noctalia",
+	match = {
+		namespace = "^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd|window-switcher)$",
+	},
+	no_anim = true,
+	ignore_alpha = 0.5,
+	blur = true,
+	blur_popups = true,
 })

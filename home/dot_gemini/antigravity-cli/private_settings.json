@@ -1,4 +1,5 @@
 {
+  "agentMode": "accept-edits",
   "allowNonWorkspaceAccess": true,
   "editor": "env NVIM_APPNAME=astronvim nvim",
   "editorMode": "vim",
@@ -12,7 +13,7 @@
     "pane.focus_up": "none",
     "pane.focus_down": "none"
   },
-  "model": "Gemini 3.7 Flash (Medium)",
+  "model": "Gemini 3.7 Flash (High)",
   "notifications": true,
   "permissions": {
     "allow": [
@@ -57,7 +58,19 @@
       "command(pnpm gen:types)",
       "command(git show)",
       "unsandboxed(herdr)",
-      "unsandboxed(sleep)"
+      "unsandboxed(sleep)",
+      "mcp(chrome-devtools/list_pages)",
+      "mcp(chrome-devtools/navigate_page)",
+      "mcp(chrome-devtools/take_snapshot)",
+      "mcp(chrome-devtools/list_console_messages)",
+      "mcp(chrome-devtools/list_network_requests)",
+      "mcp(chrome-devtools/get_network_request)",
+      "mcp(chrome-devtools/evaluate_script)",
+      "command(pnpm gen)",
+      "unsandboxed(pnpm gen)",
+      "mcp(chrome-devtools/new_page)",
+      "mcp(chrome-devtools/select_page)",
+      "mcp(chrome-devtools/close_page)"
     ],
     "deny": [
       "command(rm -rf *)",
