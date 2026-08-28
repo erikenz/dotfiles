@@ -50,6 +50,7 @@ hl.window_rule({
 	fullscreen_state = 2,
 	size = { "monitor_w", "monitor_h" },
 	sync_fullscreen = true,
+	immediate = true,
 })
 hl.window_rule({
 	match = {

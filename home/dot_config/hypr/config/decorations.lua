@@ -2,6 +2,7 @@
 
 hl.config({
     general = {
+        allow_tearing = true,
         gaps_in = 3,
         gaps_out = 8,
         border_size = 2,

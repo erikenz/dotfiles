@@ -5,9 +5,7 @@
   "AurEnabled": true,
   "AurWarningConfirmed": true,
   "AppImageEnabled": true,
-  "AppImageInstallPath": "",
   "FlatPackEnabled": true,
-  "PackageDowngradeEnabled": false,
   "RecommendedEnabled": true,
   "ShellyIconsEnabled": true,
   "ShellySearchEnabled": false,
@@ -39,6 +37,7 @@
   "UseSymbolicTray": true,
   "TrayIconPath": "",
   "TrayUpdatesIconPath": "",
+  "UseUiForUpdate": false,
   "UseWeeklySchedule": false,
   "DaysOfWeek": [],
   "Time": ""

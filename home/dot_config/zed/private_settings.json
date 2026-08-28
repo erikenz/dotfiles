@@ -22,6 +22,7 @@
   "icon_theme": "Catppuccin Macchiato",
   "context_servers": {
     "hub": {
+      "enabled": true,
       "command": "npx",
       "args": ["-y", "mcp-remote", "http://localhost:37373/mcp"],
     },
@@ -174,67 +175,67 @@
       {
         "provider": "opencode",
         "model": "free/big-pickle",
-        "enable_thinking": false,
+        "enable_thinking": false
       },
       {
         "provider": "opencode",
         "model": "go/minimax-m3",
-        "enable_thinking": false,
+        "enable_thinking": false
       },
       {
         "provider": "google",
         "model": "gemini-3.5-flash",
         "enable_thinking": true,
-        "effort": "medium",
+        "effort": "medium"
       },
       {
         "provider": "zed.dev",
         "model": "claude-sonnet-4-6",
         "enable_thinking": true,
-        "effort": "high",
+        "effort": "high"
       },
       {
         "provider": "google",
         "model": "gemini-3.1-pro-preview",
         "enable_thinking": true,
-        "effort": "high",
+        "effort": "high"
       },
       {
         "provider": "opencode",
         "model": "go/mimo-v2.5",
         "enable_thinking": true,
-        "effort": "high",
+        "effort": "high"
       },
       {
         "provider": "opencode",
         "model": "go/mimo-v2.5-pro",
         "enable_thinking": true,
-        "effort": "high",
+        "effort": "high"
       },
       {
         "provider": "opencode",
         "model": "go/deepseek-v4-flash",
         "enable_thinking": true,
-        "effort": "max",
+        "effort": "high"
       },
       {
         "provider": "opencode",
         "model": "go/deepseek-v4-pro",
         "enable_thinking": true,
-        "effort": "max",
+        "effort": "max"
       },
       {
         "provider": "opencode",
         "model": "zen/deepseek-v4-flash",
         "enable_thinking": true,
-        "effort": "max",
+        "effort": "max"
       },
       {
         "provider": "opencode",
         "model": "free/nemotron-3-ultra-free",
         "enable_thinking": true,
-        "effort": "high",
-      },
+        "effort": "high"
+      }
     ],
     "use_modifier_to_send": true,
     "play_sound_when_agent_done": "always",
@@ -247,10 +248,9 @@
     },
     "default_profile": "write",
     "default_model": {
-      "effort": "max",
-      "enable_thinking": true,
+      "enable_thinking": false,
       "provider": "opencode",
-      "model": "go/deepseek-v4-flash",
+      "model": "go/minimax-m3",
     },
     "thread_summary_model": {
       "provider": "google",

@@ -35,7 +35,7 @@ settings_show_advanced = true
     session_position = "center"
 
     [shell.screenshot]
-    copy_to_clipboard = true
+    copy_to_clipboard = false
     pipe_command = "swash --stdin --name \"swash-$(date +'%Y-%m-%d_%H:%M:%S').png\""
     pipe_to_command = true
     save_to_file = false
@@ -120,6 +120,7 @@ title_scroll = "on_hover"
 
 [widget.network]
 color = "secondary"
+show_label = false
 
 [widget.notifications]
 color = "secondary"
@@ -131,18 +132,19 @@ color = "error"
 type = "spacer"
 
 [widget.temp]
-show_value = false
+show_value = true
 
-[widget.sysmon_2]
-glyph = "gpu-usage"
-show_value = false
-stat = "gpu_temp"
+[widget.sysmon_cpu]
+glyph = "cpu"
+stat = "cpu_usage"
 type = "sysmon"
+show_value = false
 
-[widget.sysmon_3]
-glyph = "cpu-2"
+[widget.sysmon_ram]
+glyph = "stack-2"
 stat = "ram_used"
 type = "sysmon"
+show_value = true
 
 [widget.tray]
 capsule = true
