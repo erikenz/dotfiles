@@ -248,9 +248,10 @@
     },
     "default_profile": "write",
     "default_model": {
-      "enable_thinking": false,
+      "effort": "high",
+      "enable_thinking": true,
       "provider": "opencode",
-      "model": "go/minimax-m3",
+      "model": "go/deepseek-v4-flash",
     },
     "thread_summary_model": {
       "provider": "google",

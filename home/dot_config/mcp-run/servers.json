@@ -18,6 +18,22 @@
           "_comment": "Bitwarden item holding the Balcon Padel MCP bearer token. Adjust 'item' to match your vault entry; 'field' defaults to 'password'."
         }
       }
+    },
+    "dokploy": {
+      "command": "npx",
+      "args": ["-y", "@dokploy/mcp"],
+      "env": {
+        "DOKPLOY_URL": {
+          "source": "bitwarden",
+          "item": "hostinger vps",
+          "field": "DOKPLOY_URL"
+        },
+        "DOKPLOY_API_KEY": {
+          "source": "bitwarden",
+          "item": "hostinger vps",
+          "field": "DOKPLOY_API_KEY"
+        }
+      }
     }
   }
 }
