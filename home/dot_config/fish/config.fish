@@ -156,16 +156,45 @@ function mcphub-start
         herdr server &
         sleep 0.5
     end
+    set -l existing_ws (herdr workspace list 2>/dev/null | jq -r '.result.workspaces[]? | select(.label == "mcp-hub") | .workspace_id')
+    if test -n "$existing_ws"
+        echo "ℹ️ MCP Hub is already running in Herdr workspace $existing_ws. Opening workspace..."
+        herdr workspace focus $existing_ws >/dev/null 2>&1
+        if test "$HERDR_ENV" != "1"
+            herdr
+        end
+        return 0
+    end
     set -l ws (herdr workspace create --label mcp-hub --cwd "$HOME" 2>/dev/null)
+    set -l ws_id (echo $ws | jq -r '.result.workspace.workspace_id // empty')
     set -l pane_id (echo $ws | jq -r '.result.root_pane.pane_id')
     if test -n "$pane_id" -a "$pane_id" != "null"
+        sleep 0.4
         herdr pane run $pane_id "mcp-hub --port 37373 --config ~/.config/mcphub/servers.json --watch"
         echo "🚀 MCP Hub started in Herdr workspace 'mcp-hub' (pane $pane_id)"
+        if test -n "$ws_id"
+            herdr workspace focus $ws_id >/dev/null 2>&1
+        end
+        if test "$HERDR_ENV" != "1"
+            herdr
+        end
     else
         echo "❌ Failed to create Herdr workspace for MCP Hub"
     end
 end
 alias mcphub-herdr=mcphub-start
+
+function mcphub-stop
+    set -l ws_ids (herdr workspace list 2>/dev/null | jq -r '.result.workspaces[]? | select(.label == "mcp-hub") | .workspace_id')
+    if test (count $ws_ids) -gt 0
+        for ws_id in $ws_ids
+            herdr workspace close $ws_id >/dev/null 2>&1
+            echo "🛑 Stopped MCP Hub (closed Herdr workspace $ws_id)"
+        end
+    else
+        echo "⚠️ No running MCP Hub Herdr workspace found"
+    end
+end
 
 # Qt
 set -gx QT_QPA_PLATFORMTHEME qt6ct

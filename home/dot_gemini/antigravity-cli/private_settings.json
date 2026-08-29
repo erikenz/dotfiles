@@ -70,7 +70,11 @@
       "unsandboxed(pnpm gen)",
       "mcp(chrome-devtools/new_page)",
       "mcp(chrome-devtools/select_page)",
-      "mcp(chrome-devtools/close_page)"
+      "mcp(chrome-devtools/close_page)",
+      "mcp(chrome-devtools/click)",
+      "execute_url(localhost)",
+      "mcp(chrome-devtools/resize_page)",
+      "unsandboxed(pnpm --filter web typecheck)"
     ],
     "deny": [
       "command(rm -rf *)",
