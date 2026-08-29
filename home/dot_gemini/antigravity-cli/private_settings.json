@@ -13,7 +13,7 @@
     "pane.focus_up": "none",
     "pane.focus_down": "none"
   },
-  "model": "Gemini 3.7 Flash (High)",
+  "model": "Gemini 3.7 Flash (Medium)",
   "notifications": true,
   "permissions": {
     "allow": [
@@ -74,7 +74,9 @@
       "mcp(chrome-devtools/click)",
       "execute_url(localhost)",
       "mcp(chrome-devtools/resize_page)",
-      "unsandboxed(pnpm --filter web typecheck)"
+      "unsandboxed(pnpm --filter web typecheck)",
+      "read_url(github.com)",
+      "mcp(chrome-devtools/take_screenshot)"
     ],
     "deny": [
       "command(rm -rf *)",

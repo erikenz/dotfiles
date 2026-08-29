@@ -8,6 +8,9 @@ return {
   -- Bars and Lines
   { import = "astrocommunity.bars-and-lines.dropbar-nvim" },
 
+  -- Completion
+  { import = "astrocommunity.completion.copilot-lua-cmp" },
+
   -- Diagnostics
   { import = "astrocommunity.diagnostics.trouble-nvim" },
 
