@@ -76,7 +76,13 @@
       "mcp(chrome-devtools/resize_page)",
       "unsandboxed(pnpm --filter web typecheck)",
       "read_url(github.com)",
-      "mcp(chrome-devtools/take_screenshot)"
+      "mcp(chrome-devtools/take_screenshot)",
+      "read_url(raw.githubusercontent.com)",
+      "mcp(chrome-devtools/wait_for)",
+      "mcp(chrome-devtools/type_text)",
+      "mcp(chrome-devtools/press_key)",
+      "command(sq)",
+      "unsandboxed(sq)"
     ],
     "deny": [
       "command(rm -rf *)",
