@@ -1,0 +1,114 @@
+# ==============================================================================
+# bottom (btm) Configuration File
+# ==============================================================================
+
+[flags]
+# Focus process widget by default
+default_widget_type = "proc"
+default_widget_count = 1
+
+# Display settings
+rate = "1s"
+show_table_scroll_position = true
+show_table_scroll_bar = true
+
+[processes]
+# Enable tree view by default
+default_tree = true
+tree_collapse = false
+
+# Process table search options
+case_sensitive = false
+whole_word = false
+regex = false
+
+# ==============================================================================
+# Process-First Layout (Vertical Split)
+# ==============================================================================
+[[row]]
+  ratio = 100
+
+  # Left Column: Hardware & System Metrics (50% width)
+  [[row.child]]
+    ratio = 50
+
+    # 1. CPU Graph & Cores
+    [[row.child.child]]
+      type = "cpu"
+      ratio = 32
+
+    # 2. Memory (RAM, Swap, GPU VRAM)
+    [[row.child.child]]
+      type = "mem"
+      ratio = 28
+
+    # 3. Disks Table
+    [[row.child.child]]
+      type = "disk"
+      ratio = 16
+
+    # 4. Temperatures Table
+    [[row.child.child]]
+      type = "temp"
+      ratio = 12
+
+    # 5. Network (Compact)
+    [[row.child.child]]
+      type = "net"
+      ratio = 12
+
+  # Right Column: Full-Height Process Tree (50% width)
+  [[row.child]]
+    ratio = 50
+    type = "proc"
+    default = true
+
+# ==============================================================================
+# Styling (Noctalia / Catppuccin Mocha Palette)
+# ==============================================================================
+[styles.widgets]
+border_color = "#585b70"
+selected_border_color = "#89b4fa"
+widget_title = { color = "#89b4fa", bold = true }
+text = { color = "#cdd6f4" }
+selected_text = { color = "#1e1e2e", bg_color = "#89b4fa", bold = true }
+disabled_text = { color = "#585b70" }
+
+[styles.tables]
+headers = { color = "#89b4fa", bold = true }
+
+[styles.cpu]
+all_entry_color = "#a6e3a1"
+avg_entry_color = "#f38ba8"
+cpu_core_colors = [
+    "#89b4fa",
+    "#f5c2e7",
+    "#a6e3a1",
+    "#f9e2af",
+    "#94e2d5",
+    "#fab387",
+    "#cba6f7",
+    "#74c7ec"
+]
+
+[styles.memory]
+ram_color = "#f9e2af"
+cache_color = "#fab387"
+swap_color = "#f38ba8"
+arc_color = "#94e2d5"
+gpu_colors = ["#f5c2e7", "#89b4fa", "#cba6f7", "#a6e3a1"]
+
+[styles.network]
+rx_color = "#94e2d5"
+tx_color = "#f5c2e7"
+rx_total_color = "#89b4fa"
+tx_total_color = "#a6e3a1"
+
+[styles.battery]
+high_battery_color = "#a6e3a1"
+medium_battery_color = "#f9e2af"
+low_battery_color = "#f38ba8"
+
+[styles.graphs]
+graph_color = "#585b70"
+legend_text = { color = "#cdd6f4" }
