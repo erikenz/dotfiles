@@ -82,7 +82,20 @@
       "mcp(chrome-devtools/type_text)",
       "mcp(chrome-devtools/press_key)",
       "command(sq)",
-      "unsandboxed(sq)"
+      "unsandboxed(sq)",
+      "mcp(chrome-devtools/fill)",
+      "unsandboxed(bunx ultracite fix)",
+      "unsandboxed(bunx ultracite check)",
+      "unsandboxed(pnpm typecheck)",
+      "read_url(supabase.com)",
+      "read_url(docs.dokploy.com)",
+      "mcp(chrome-devtools/fill_form)",
+      "unsandboxed(pnpm --filter=web exec tsc --noEmit)",
+      "unsandboxed(git show)",
+      "unsandboxed(head)",
+      "mcp(chrome-devtools/emulate)",
+      "unsandboxed(pnpm --filter @repo/react-schedule typecheck)",
+      "mcp(chrome-devtools/drag)"
     ],
     "deny": [
       "command(rm -rf *)",
@@ -117,5 +130,6 @@
     "/home/erikzen/.config/zed",
     "/home/erikzen/Projects/biome-plugin-payload",
     "/home/erikzen/.config/astronvim"
-  ]
+  ],
+  "vimInsertFirst": true
 }

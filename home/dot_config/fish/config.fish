@@ -67,6 +67,46 @@ alias b='bun'
 alias bx='bunx'
 alias npm=pnpm
 
+# Shelly Package Manager (Unified)
+alias s='shelly'
+alias si='shelly install'
+alias sin='shelly install'
+alias sr='shelly remove'
+alias srm='shelly remove'
+alias ssearch='shelly search'
+alias sup='shelly upgrade'
+alias supdate='shelly update'
+alias sls='shelly list'
+alias slu='shelly list-updates'
+alias spurge='shelly purify'
+alias ssync='shelly sync'
+alias snews='shelly news'
+alias sdown='shelly downgrade'
+alias spacfiles='shelly utility -p'
+
+# Shelly Backend-Specific Install (Standard/Arch, AUR, Flatpak, AppImage)
+alias sis='shelly install standard'
+alias sia='shelly install aur'
+alias sif='shelly install flatpak'
+alias sii='shelly install appimage'
+
+# Shelly Backend-Specific Remove
+alias srs='shelly remove standard'
+alias sra='shelly remove aur'
+alias srf='shelly remove flatpak'
+alias sri='shelly remove appimage'
+
+# Shelly Backend-Specific Search
+alias sss='shelly search standard'
+alias ssa='shelly search aur'
+alias ssf='shelly search flatpak'
+
+# Shelly Backend-Specific List
+alias slss='shelly list standard'
+alias slsa='shelly list aur'
+alias slsf='shelly list flatpak'
+alias slsi='shelly list appimage'
+
 # Dotfiles
 alias conf-fish='cd ~/.config/fish && n'
 alias conf-ghostty='cd ~/.config/ghostty && n'

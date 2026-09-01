@@ -90,9 +90,6 @@ hl.bind(mainMod .. " + CONTROL + Escape", hl.dsp.exec_cmd(noctCall .. "panel-tog
 -- Previous workspace
 hl.bind(mainMod .. " + Tab", hl.dsp.focus({ workspace = "previous" }), { desc = "Focus previous workspace" })
 
--- System monitor
-hl.bind("CONTROL + SHIFT + Escape", hl.dsp.exec_cmd(launchPrefix .. TERMINAL .. " -e btop"),
-    { desc = "System monitor (btop)" })
 
 -- Omarchy-style app launchers
 hl.bind(mainMod .. " + ALT + Return",
@@ -110,8 +107,8 @@ hl.bind(mainMod .. " + SHIFT + ALT + M", hl.dsp.exec_cmd(binDir .. "launch-or-fo
     { desc = "Open cliamp (TUI music player)" })
 hl.bind(mainMod .. " + CONTROL + SHIFT + D", hl.dsp.exec_cmd(binDir .. "launch-or-focus-tui lazydocker"),
     { desc = "Open lazydocker (TUI)" })
-hl.bind(mainMod .. " + SHIFT + Escape", hl.dsp.exec_cmd(binDir .. "launch-or-focus-tui btop"),
-    { desc = "Open btop (TUI)" })
+hl.bind(mainMod .. " + SHIFT + Escape", hl.dsp.exec_cmd(binDir .. "launch-or-focus-tui btm"),
+    { desc = "Open bottom (TUI)" })
 hl.bind(mainMod .. " + SHIFT + D", hl.dsp.exec_cmd(binDir .. "launch-or-focus vesktop 'uwsm app -- vesktop'"),
     { desc = "Open Vesktop (Discord)" })
 hl.bind(mainMod .. " + SHIFT + G", hl.dsp.exec_cmd(binDir .. "launch-or-focus ferdium 'uwsm app -- ferdium'"),
