@@ -10,8 +10,13 @@ set cmd $argv[1]
 set app_name (basename $cmd)
 set app_id "org.cachyos.$app_name"
 
+set config_arg ""
+if test -f "$HOME/.config/ghostty/$app_name.ghostty"
+    set config_arg "--config-file=$HOME/.config/ghostty/$app_name.ghostty"
+end
+
 # We want to launch the command inside ghostty with the specified app_id class
-set launch_cmd "uwsm app -- ghostty --class=$app_id -e $argv"
+set launch_cmd "uwsm app -- ghostty $config_arg --class=$app_id -e $argv"
 
 # Call launch-or-focus in the same directory
 set script_dir (dirname (status filename))
