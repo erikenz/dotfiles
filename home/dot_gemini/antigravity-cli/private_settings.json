@@ -13,7 +13,7 @@
     "pane.focus_up": "none",
     "pane.focus_down": "none"
   },
-  "model": "Gemini 3.7 Flash (Medium)",
+  "model": "Gemini 3.7 Flash (High)",
   "notifications": true,
   "permissions": {
     "allow": [
@@ -95,7 +95,10 @@
       "unsandboxed(head)",
       "mcp(chrome-devtools/emulate)",
       "unsandboxed(pnpm --filter @repo/react-schedule typecheck)",
-      "mcp(chrome-devtools/drag)"
+      "mcp(chrome-devtools/drag)",
+      "unsandboxed(git status)",
+      "unsandboxed(pnpm run typecheck)",
+      "unsandboxed(git log)"
     ],
     "deny": [
       "command(rm -rf *)",
