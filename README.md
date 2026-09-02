@@ -1,87 +1,115 @@
-# Chezmoi Dotfiles Manager
+# 🏠 Erik's Dotfiles
 
-This repository contains dotfiles managed by [chezmoi](https://www.chezmoi.io/).
+Automated, secure, and cross-platform dotfiles managed with [chezmoi](https://www.chezmoi.io/).
+
+Supported Environments:
+- 🐧 **CachyOS / Arch Linux** (Wayland / Hyprland / Full Desktop & CLI)
+- 📱 **Termux (Android)** (Fish / Neovim / CLI Development)
 
 ---
 
-## 🚀 Getting Started
+## 🚀 One-Line Automated Setup
 
-### 1. Install Chezmoi
-
+### On CachyOS / Arch Linux
 ```bash
-# Via one-line script
-sh -c "$(curl -fsLS https://chezmoi.io/get)"
-
-# Arch Linux
-sudo pacman -S chezmoi
-
-# macOS (Homebrew)
-brew install chezmoi
+sudo pacman -S --needed git chezmoi && chezmoi init --apply https://github.com/erikenz/dotfiles.git
 ```
 
-### 2. Initialize from this repository
-
-To initialize chezmoi on a new machine and apply these configurations:
-
+### On Termux (Android)
 ```bash
-chezmoi init --apply https://github.com/<your-username>/<your-repo-name>.git
+pkg update && pkg install -y git chezmoi && chezmoi init --apply https://github.com/erikenz/dotfiles.git
 ```
 
 ---
 
-## 🛠️ Daily Workflow
+## 🏗️ Architecture & Best Practices
 
-### Adding a file
-To start managing a configuration file with chezmoi:
-```bash
-chezmoi add ~/.bashrc
+This repository follows official `chezmoi` best practices:
+
+```
+~/.local/share/chezmoi/
+├── .chezmoiroot            # Sets target root to home/
+├── .chezmoidata/           # Static data manifests
+│   └── packages.yaml       # Declarative package lists for CachyOS and Termux
+├── .chezmoiscripts/        # Lifecycle scripts
+│   ├── run_onchange_before_10-install-packages-cachyos.sh.tmpl
+│   ├── run_onchange_before_10-install-packages-termux.sh.tmpl
+│   ├── run_onchange_after_20-mise-install.sh.tmpl
+│   ├── run_onchange_after_30-fisher-install.sh.tmpl
+│   ├── run_once_before_configure-git-hooks.sh.tmpl
+│   └── run_once_before_configure-mchose-udev.sh.tmpl
+├── home/                   # Source state for target files (~/)
+│   ├── .chezmoi.toml.tmpl  # Dynamic platform detection & config
+│   ├── .chezmoiignore      # Ignores logs, caches, and filters desktop configs on Termux
+│   ├── dot_config/         # Managed configurations (~/.config)
+│   └── dot_local/bin/      # Local executable helper scripts (~/.local/bin)
+└── bootstrap.sh            # Universal bootstrap script
 ```
 
-### Editing a file
-To edit a managed configuration file (this opens the file in your default editor):
-```bash
-chezmoi edit ~/.bashrc
-```
+### 1. Tiered Declarative Package Management
+The repository manages software across three clean tiers:
 
-### Checking changes
-To see the difference between your managed source files and your home directory:
-```bash
-chezmoi diff
-```
+1. **System Packages** ([`.chezmoidata/packages.yaml`](.chezmoidata/packages.yaml)):
+   - **`common`**: Shared CLI tools (`fish`, `starship`, `neovim`, `ripgrep`, `fd`, `bat`, `eza`, `zoxide`, `fzf`, `jq`, `bottom`, `lazygit`, `tmux`, `curl`, `wget`).
+   - **`cachyos`**: Full desktop & CLI stack (`ghostty`, `zed`, `hyprland`, `hyprpicker`, `hyprpolkitagent`, `xdg-desktop-portal-hyprland`, `uwsm`, `wofi`, `zathura`, `zathura-pdf-mupdf`, `cliphist`, `grim`, `slurp`, `pavucontrol`, `playerctl`, `brightnessctl`, `translate-shell`, `cachyos-fish-config`, `fisher`, `fastfetch`, `mise`, `lazydocker`, `shelly`, `swash`, `rbw`, AUR: `input-remapper-git`).
+   - **`termux`**: Android CLI stack (`termux-api`, `termux-exec`, `termux-tools`, `openssh`, `proot`, `python`, `nodejs`, `gh`).
 
-### Applying changes
-To apply changes from your source state to your home directory:
-```bash
-chezmoi apply -v
-```
+2. **Toolchain & Agent Runtimes** ([`~/.config/mise/config.toml`](home/dot_config/mise/config.toml)):
+   - Automated post-apply script (`run_onchange_after_20-mise-install.sh.tmpl`) runs `mise install -y` to provision:
+     - **`herdr`** (terminal multiplexer for coding agents)
+     - **`agy`** (Google Antigravity CLI)
+     - **`bun`**, **`node`**, **`pnpm`** (runtimes & package managers)
+     - **`mcp-hub`** (MCP server aggregator)
+     - **`@dokploy/cli`**, **`cc-safety-net`**
+
+3. **Fish Shell Plugins** ([`~/.config/fish/fish_plugins`](home/dot_config/fish/fish_plugins)):
+   - Automated post-apply script (`run_onchange_after_30-fisher-install.sh.tmpl`) updates Fisher plugins:
+     - `fzf.fish`, `gitnow`, `fish-abbreviation-tips`, `puffer-fish`, `zoxide.fish`.
+
+### 2. Platform Filtering via `.chezmoiignore`
+On **Termux**, GUI and desktop components (Hyprland, Wayland, Ghostty, Zed, GTK/QT, Udev rules) are automatically ignored and never copied to Android storage.
+
+### 3. Portable Scripts & Shebangs
+All scripts use `#!/usr/bin/env bash` and respect Termux's `$PREFIX` pathing and non-root execution model.
 
 ---
 
-## 🔄 Syncing Configuration
+## 🔒 Security & Secret Management
 
-### 1. Push changes
-To save your local changes to your remote repository:
+No sensitive tokens, credentials, or private keys are ever published in this public repository.
 
-```bash
-# Open a shell in the chezmoi source directory
-chezmoi cd
-
-# Run standard Git commands
-git add .
-git commit -m "update configuration"
-git push
-
-# Exit back to your original directory
-exit
-```
-
-### 2. Pull changes on another machine
-To fetch the latest changes from your repository and apply them:
-
-```bash
-chezmoi update -v
-```
+### Strategy:
+1. **API Keys & Passwords**:
+   - Retrieved at runtime using [`rbw`](https://github.com/doy/rbw) (Bitwarden CLI) via `get-secret` or chezmoi template functions:
+     ```gotemplate
+     {{ (rbw "openai").password }}
+     ```
+   - Falls back to local environment variables (e.g. `OPENCODE_API_KEY`).
+2. **Encrypted Files (SSH Keys, Certificates)**:
+   - Encrypted with [age](https://github.com/FiloSottile/age) before committing:
+     ```bash
+     chezmoi add --encrypt ~/.ssh/id_ed25519
+     ```
+3. **Pre-Commit Secret Scanner**:
+   - A Git pre-commit hook automatically scans staged changes for API keys, personal access tokens, and private key headers.
 
 ---
 
-For full documentation and advanced features, visit [chezmoi.io](https://www.chezmoi.io/).
+## 🛠️ Daily Chezmoi Workflow
+
+| Task | Command |
+| :--- | :--- |
+| **Edit configuration** | `chezmoi edit ~/.config/fish/config.fish` |
+| **Inspect pending changes** | `chezmoi diff` |
+| **Apply changes to home** | `chezmoi apply -v` |
+| **Add new file to management** | `chezmoi add ~/.config/app/config.json` |
+| **Update from GitHub on another machine** | `chezmoi update -v` |
+| **Open shell in chezmoi source** | `chezmoi cd` |
+| **Verify setup health** | `chezmoi doctor` |
+
+---
+
+## 📚 References
+- [chezmoi Documentation](https://www.chezmoi.io/)
+- [chezmoi Command Overview](https://www.chezmoi.io/user-guide/command-overview/)
+- [chezmoi Reference Guide](https://www.chezmoi.io/reference/)

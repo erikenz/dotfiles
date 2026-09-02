@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+# Configure git pre-commit hook to scan for leaked secrets before commits
+set -euo pipefail
+
+REPO_DIR="{{ .chezmoi.sourceDir }}"
+HOOK_FILE="$REPO_DIR/.git/hooks/pre-commit"
+
+if [ -d "$REPO_DIR/.git" ]; then
+    mkdir -p "$REPO_DIR/.git/hooks"
+    cat <<'EOF' > "$HOOK_FILE"
+#!/usr/bin/env bash
+# Chezmoi pre-commit hook: scan for leaked secrets and unencrypted private keys
+
+SECRET_PATTERNS=(
+  'ghp_[a-zA-Z0-9]{36}'
+  'github_pat_[a-zA-Z0-9_]{82}'
+  'sk-[a-zA-Z0-9]{20,}'
+  'xox[baprs]-[a-zA-Z0-9]{10,}'
+  '-----BEGIN (RSA|OPENSSH|EC|DSA) PRIVATE KEY-----'
+  'AIza[0-9A-Za-z\-_]{35}'
+)
+
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM)
+
+for file in $STAGED_FILES; do
+  # Skip encrypted files and sanitize filter scripts
+  if [[ "$file" == *.age || "$file" == .githelpers/* ]]; then
+    continue
+  fi
+
+  for pattern in "${SECRET_PATTERNS[@]}"; do
+    if git diff --cached "$file" | grep -E -q "$pattern"; then
+      echo "❌ ERROR: Potential secret / credential detected in staged file: $file"
+      echo "Matched pattern: $pattern"
+      echo "Please use rbw / bitwarden, age encryption, or environment variables instead."
+      exit 1
+    fi
+  done
+done
+
+exit 0
+EOF
+    chmod +x "$HOOK_FILE"
+fi

@@ -1,0 +1,77 @@
+{{- $is_cachyos := or (and (eq .chezmoi.os "linux") (hasKey .chezmoi "osRelease") (or (eq .chezmoi.osRelease.id "cachyos") (eq .chezmoi.osRelease.idLike "arch"))) (get . "is_cachyos" | default false) -}}
+{{ if $is_cachyos -}}
+#!/usr/bin/env bash
+# Package manifest hash: {{ include ".chezmoidata/packages.yaml" | sha256sum }}
+set -euo pipefail
+
+echo "==> [CachyOS] Checking and installing packages..."
+
+COMMON_PKGS=(
+{{ range .packages.common -}}
+  {{ . | quote }}
+{{ end -}}
+)
+
+PACMAN_PKGS=(
+{{ range .packages.cachyos.pacman -}}
+  {{ . | quote }}
+{{ end -}}
+)
+
+AUR_PKGS=(
+{{ range .packages.cachyos.aur -}}
+  {{ . | quote }}
+{{ end -}}
+)
+
+ALL_REPO_PKGS=("${COMMON_PKGS[@]}" "${PACMAN_PKGS[@]}")
+
+# Collect missing standard repo packages
+MISSING_REPO=()
+for pkg in "${ALL_REPO_PKGS[@]}"; do
+  if ! pacman -Qi "$pkg" &>/dev/null; then
+    MISSING_REPO+=("$pkg")
+  fi
+done
+
+# Collect missing AUR packages
+MISSING_AUR=()
+for pkg in "${AUR_PKGS[@]}"; do
+  if ! pacman -Qi "$pkg" &>/dev/null; then
+    MISSING_AUR+=("$pkg")
+  fi
+done
+
+# Check if shelly is available
+if command -v shelly &>/dev/null; then
+  echo "==> Using Shelly (unified package manager)..."
+  if [ ${#MISSING_REPO[@]} -gt 0 ]; then
+    echo "==> Installing repository packages via shelly (standard): ${MISSING_REPO[*]}"
+    shelly install standard "${MISSING_REPO[@]}"
+  fi
+  if [ ${#MISSING_AUR[@]} -gt 0 ]; then
+    echo "==> Installing AUR packages via shelly (aur): ${MISSING_AUR[*]}"
+    shelly install aur "${MISSING_AUR[@]}"
+  fi
+else
+  # Fallback to direct pacman + paru/yay if shelly is not yet installed
+  if [ ${#MISSING_REPO[@]} -gt 0 ]; then
+    echo "==> Installing repo packages via pacman: ${MISSING_REPO[*]}"
+    sudo pacman -S --needed --noconfirm "${MISSING_REPO[@]}"
+  fi
+
+  AUR_HELPER=""
+  if command -v paru &>/dev/null; then
+    AUR_HELPER="paru"
+  elif command -v yay &>/dev/null; then
+    AUR_HELPER="yay"
+  fi
+
+  if [ -n "$AUR_HELPER" ] && [ ${#MISSING_AUR[@]} -gt 0 ]; then
+    echo "==> Installing AUR packages via $AUR_HELPER: ${MISSING_AUR[*]}"
+    "$AUR_HELPER" -S --needed --noconfirm "${MISSING_AUR[@]}"
+  fi
+fi
+
+echo "==> [CachyOS] Package setup completed successfully."
+{{ end -}}

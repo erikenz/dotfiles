@@ -1,0 +1,86 @@
+packages:
+  common:
+    - fish
+    - starship
+    - neovim
+    - git
+    - ripgrep
+    - fd
+    - bat
+    - eza
+    - zoxide
+    - fzf
+    - jq
+    - bottom
+    - lazygit
+    - tmux
+    - curl
+    - wget
+    - unzip
+    - tar
+    - tree-sitter-cli
+
+  cachyos:
+    pacman:
+      - base-devel
+      - ghostty
+      - zed
+      - vivaldi
+      - vivaldi-ffmpeg-codecs
+      - chromium
+      - dolphin
+      - dolphin-plugins
+      - ark
+      - gnome-calculator
+      - obsidian
+      - vesktop
+      - steam
+      - steam-devices
+      - gamescope
+      - vlc
+      - satty
+      - swash
+      - kdeconnect
+      - zathura
+      - zathura-pdf-mupdf
+      - hyprland
+      - hyprpicker
+      - hyprpolkitagent
+      - xdg-desktop-portal-hyprland
+      - xdg-desktop-portal-gtk
+      - uwsm
+      - wl-clipboard
+      - cliphist
+      - pavucontrol
+      - playerctl
+      - brightnessctl
+      - translate-shell
+      - cachyos-fish-config
+      - fisher
+      - fastfetch
+      - mise
+      - lazydocker
+      - shelly
+      - rbw
+      - qt5ct
+      - qt6ct-kde
+      - nwg-look
+      - luarocks
+    aur:
+      - input-remapper-git
+      - ferdium-bin
+      - pear-desktop
+
+  termux:
+    pkg:
+      - termux-api
+      - termux-exec
+      - termux-tools
+      - openssh
+      - proot
+      - python
+      - nodejs
+      - gh
+      - clang
+      - make
+      - pkg-config

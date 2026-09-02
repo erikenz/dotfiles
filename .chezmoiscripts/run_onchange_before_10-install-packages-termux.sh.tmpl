@@ -1,0 +1,49 @@
+{{- $is_termux := or (eq .chezmoi.os "android") (get . "is_termux" | default false) -}}
+{{ if $is_termux -}}
+#!/usr/bin/env bash
+# Package manifest hash: {{ include ".chezmoidata/packages.yaml" | sha256sum }}
+set -euo pipefail
+
+echo "==> [Termux] Checking and updating packages..."
+
+# Ensure termux repository is ready
+pkg update -y
+
+PKGS=(
+{{ range .packages.common -}}
+  {{ . | quote }}
+{{ end -}}
+{{ range .packages.termux.pkg -}}
+  {{ . | quote }}
+{{ end -}}
+)
+
+MISSING_PKGS=()
+for pkg in "${PKGS[@]}"; do
+  if ! dpkg -s "$pkg" &>/dev/null; then
+    MISSING_PKGS+=("$pkg")
+  fi
+done
+
+if [ ${#MISSING_PKGS[@]} -gt 0 ]; then
+  echo "==> Installing missing Termux packages: ${MISSING_PKGS[*]}"
+  pkg install -y "${MISSING_PKGS[@]}" || {
+    echo "Warning: Batch installation had issues, trying packages individually..."
+    for pkg in "${MISSING_PKGS[@]}"; do
+      pkg install -y "$pkg" || echo "Warning: Failed to install $pkg, skipping."
+    done
+  }
+else
+  echo "==> Termux packages already up-to-date."
+fi
+
+# Set Fish as default shell in Termux
+if command -v fish &>/dev/null; then
+  echo "==> Setting Fish as default shell in Termux..."
+  if command -v chsh &>/dev/null; then
+    chsh -s fish 2>/dev/null || true
+  fi
+fi
+
+echo "==> [Termux] Package setup completed successfully."
+{{ end -}}

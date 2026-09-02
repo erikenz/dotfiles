@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Mise manifest hash: {{ include "dot_config/mise/config.toml" | sha256sum }}
+set -euo pipefail
+
+if command -v mise &>/dev/null; then
+  echo "==> [Mise] Installing configured runtime tools (herdr, agy, bun, node, pnpm, etc.)..."
+  mise install -y
+  mise reshim 2>/dev/null || true
+  echo "==> [Mise] Tools successfully installed."
+fi
