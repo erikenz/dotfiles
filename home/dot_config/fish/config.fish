@@ -1,10 +1,17 @@
-source /usr/share/cachyos-fish-config/cachyos-config.fish
+# Source CachyOS fish config if available
+if test -f /usr/share/cachyos-fish-config/cachyos-config.fish
+    source /usr/share/cachyos-fish-config/cachyos-config.fish
+end
 
 # Initialize Starship prompt
-starship init fish | source
+if command -q starship
+    starship init fish | source
+end
 
 # Initialize mise tool manager
-mise activate fish | source
+if command -q mise
+    mise activate fish | source
+end
 
 # Default Editor (AstroNvim)
 set -gx EDITOR "env NVIM_APPNAME=astronvim nvim"
@@ -203,14 +210,55 @@ function __herdr_close_workspace --description "Close Herdr workspace(s) by labe
 end
 
 # Local Server (192.168.0.101)
+alias ssh-server='ssh server'
 alias server-connect='ssh server'
+alias server-ssh='ssh server'
 
-function server --description "Open or focus Herdr workspace connected to local server"
-    __herdr_open_workspace "server" "server-connect" "$HOME"
+function herdr-server --description "Open or attach to an isolated Herdr session named 'server'"
+    if not herdr --session server status 2>/dev/null | string match -q "*status: running*"
+        herdr --session server server &
+        sleep 0.4
+        set -l root_pane (herdr --session server pane list 2>/dev/null | jq -r '.result.panes[0].pane_id // empty')
+        if test -n "$root_pane"
+            herdr --session server pane run $root_pane "ssh-server"
+        end
+    end
+    herdr --session server
 end
 
-function server-stop --description "Close local server Herdr workspace"
-    __herdr_close_workspace "server"
+function herdr-server-stop --description "Stop isolated 'server' Herdr session"
+    herdr --session server server stop 2>/dev/null
+    echo "🛑 Stopped Herdr 'server' session"
+end
+
+# Remote Laptop & Herdr Access (for Termux / remote clients)
+alias ssh-laptop='ssh laptop'
+alias laptop-connect='ssh laptop'
+alias laptop-ssh='ssh laptop'
+alias herdr-laptop='ssh -t laptop "herdr"'
+alias laptop-herdr=herdr-laptop
+alias laptop-agents='ssh laptop "herdr agent list"'
+alias laptop-status='ssh laptop "herdr status"'
+alias laptop-workspaces='ssh laptop "herdr workspace list"'
+alias laptop-lock='ssh laptop "loginctl lock-session 2>/dev/null; or hyprctl dispatch exit"'
+
+# Two-Way Mobile <-> Laptop Clipboard Sync (Termux API <-> Wayland wl-clipboard)
+function clip-push --description "Push local Android clipboard to remote laptop Hyprland clipboard"
+    if command -q termux-clipboard-get
+        termux-clipboard-get | ssh laptop "wl-copy"
+        echo "📋 Pushed mobile clipboard to laptop"
+    else
+        echo "termux-clipboard-get not found (requires Termux:API)"
+    end
+end
+
+function clip-pull --description "Pull remote laptop Hyprland clipboard to local Android clipboard"
+    if command -q termux-clipboard-set
+        ssh laptop "wl-paste" | termux-clipboard-set
+        echo "📋 Pulled laptop clipboard to mobile"
+    else
+        echo "termux-clipboard-set not found (requires Termux:API)"
+    end
 end
 
 # MCP Hub
@@ -282,11 +330,13 @@ function mcphub-stop
     __herdr_close_workspace "mcp-hub"
 end
 
-# Qt
-set -gx QT_QPA_PLATFORMTHEME qt6ct
+# Qt platform theme (Desktop Linux)
+if test -n "$WAYLAND_DISPLAY" -o -n "$DISPLAY"
+    set -gx QT_QPA_PLATFORMTHEME qt6ct
+end
 
 # pnpm
-set -gx PNPM_HOME "/home/erikzen/.local/share/pnpm"
+set -gx PNPM_HOME "$HOME/.local/share/pnpm"
 if not string match -q -- "$PNPM_HOME/bin" $PATH
     set -gx PATH "$PNPM_HOME/bin" $PATH
 end

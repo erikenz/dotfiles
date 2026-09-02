@@ -1,0 +1,25 @@
+# Home Server (192.168.0.101)
+Host server
+    HostName 192.168.0.101
+    User server
+    ForwardAgent yes
+    ServerAliveInterval 60
+    ServerAliveCountMax 3
+
+# Laptop routed via Home Server Tailscale jump host
+Host laptop
+    HostName 192.168.0.100
+    User erikzen
+    ProxyJump server
+    RequestTTY yes
+    ForwardAgent yes
+    ServerAliveInterval 60
+    ServerAliveCountMax 3
+
+# Laptop direct access
+Host laptop-direct
+    HostName 192.168.0.100
+    User erikzen
+    ForwardAgent yes
+    ServerAliveInterval 60
+    ServerAliveCountMax 3

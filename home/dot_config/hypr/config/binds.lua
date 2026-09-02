@@ -1,7 +1,7 @@
 local mainMod = "SUPER"
 local noctCall = "noctalia msg "
 local launchPrefix = "uwsm app -- "
-local binDir = "/home/erikzen/.config/hypr/bin/"
+local binDir = (os.getenv("HOME") or "") .. "/.config/hypr/bin/"
 
 ---------------------------
 ---- WINDOW MANAGEMENT ----

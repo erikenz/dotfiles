@@ -1,17 +1,19 @@
 # chezmoi ignore rules (.chezmoiignore)
 # Patterns match target paths relative to home directory (~/)
 
-# Ignore all node_modules directories
-.config/opencode/node_modules/**
+# --- Universal Ignores ---
 **/node_modules/**
 node_modules/**
-
-# Ignore build artifacts and cache directories
 .cache/**
 **/.cache/**
 **/.DS_Store
+*.swp
+*.bak
+*~
 
-# Ignore volatile runtime logs, session history, and secrets
+# --- Volatile runtime logs, session history, tokens, SSH keys, and cache ---
+.ssh/id_*
+.ssh/known_hosts*
 .config/herdr/*.log
 .config/herdr/session*.json
 .config/herdr/.plugins.lock
@@ -23,3 +25,29 @@ node_modules/**
 .gemini/antigravity-cli/history.jsonl
 .gemini/antigravity-cli/antigravity-oauth-token
 .gemini/antigravity-cli/mcp_oauth_tokens.json
+
+# --- Source repository helper files and docs ---
+.chezmoiroot
+.gitattributes
+bootstrap.sh
+README.md
+
+{{- if eq .chezmoi.os "android" }}
+# --- Desktop/GUI configurations (Ignored on Termux & Headless) ---
+.config/hypr/**
+.config/ghostty/**
+.config/gtk-3.0/**
+.config/gtk-4.0/**
+.config/input-remapper-2/**
+.config/kdeglobals
+.config/mchose/**
+.config/noctalia/**
+.config/private_dolphinrc
+.config/qt5ct/**
+.config/shelly/**
+.config/swash/**
+.config/uwsm/**
+.config/zathura/**
+.config/zed/**
+.config/environment.d/**
+{{- end }}

@@ -1,15 +1,26 @@
-{{/* Default dynamic values */}}
-{{- $gitname := "erikenz" -}}
-{{- $gitmail := "erikenz2001@gmail.com" -}}
+{{/* Dynamic platform and environment detection */}}
+{{- $is_termux := or (eq .chezmoi.os "android") (ne (env "TERMUX_VERSION") "") (hasPrefix "/data/data/com.termux" .chezmoi.homeDir) -}}
+{{- $is_cachyos := and (eq .chezmoi.os "linux") (or (eq (get .chezmoi.osRelease "id") "cachyos") (eq (get .chezmoi.osRelease "id") "arch")) -}}
+{{- $is_desktop := and (eq .chezmoi.os "linux") (not $is_termux) -}}
+
+{{/* Dynamic user values with prompt fallback during init */}}
+{{- $gitname := promptStringOnce . "gitname" "Git name for commits" "erikenz" -}}
+{{- $gitmail := promptStringOnce . "gitmail" "Git email address" "erikenz2001@gmail.com" -}}
 
 [data]
+    is_termux = {{ $is_termux }}
+    is_cachyos = {{ $is_cachyos }}
+    is_desktop = {{ $is_desktop }}
     gitname = {{ $gitname | quote }}
     gitmail = {{ $gitmail | quote }}
 
 [git]
     autoCommit = true
     autoPush = true
-    autoAdd = true # Add changes to the source state after any change
+    autoAdd = true
 
 [edit]
     command = "nvim"
+
+[diff]
+    exclude = ["scripts"]
