@@ -17,8 +17,16 @@ end
 set -gx EDITOR "env NVIM_APPNAME=astronvim nvim"
 set -gx VISUAL "env NVIM_APPNAME=astronvim nvim"
 
-# Alias to quickly reload Fish configuration and re-evaluate keybindings live
-alias fish-reload='source ~/.config/fish/config.fish; fish_user_key_bindings 2>/dev/null; commandline -f repaint'
+# Qt platform theme (Desktop Linux)
+if test -n "$WAYLAND_DISPLAY" -o -n "$DISPLAY"
+    set -gx QT_QPA_PLATFORMTHEME qt6ct
+end
+
+# pnpm
+set -gx PNPM_HOME "$HOME/.local/share/pnpm"
+if not string match -q -- "$PNPM_HOME/bin" $PATH
+    set -gx PATH "$PNPM_HOME/bin" $PATH
+end
 
 # Canonical Fish User Keybindings override
 function fish_user_key_bindings
@@ -61,82 +69,6 @@ function nvims
         env NVIM_APPNAME=$config nvim $argv
     end
 end
-
-# Directories
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-
-alias zed=zeditor
-alias p=pnpm
-alias px='pnpm dlx'
-alias b='bun'
-alias bx='bunx'
-alias npm=pnpm
-
-# Shelly Package Manager (Unified)
-alias s='shelly'
-alias si='shelly install'
-alias sin='shelly install'
-alias sr='shelly remove'
-alias srm='shelly remove'
-alias ssearch='shelly search'
-alias sup='shelly upgrade'
-alias supdate='shelly update'
-alias sls='shelly list'
-alias slu='shelly list-updates'
-alias spurge='shelly purify'
-alias ssync='shelly sync'
-alias snews='shelly news'
-alias sdown='shelly downgrade'
-alias spacfiles='shelly utility -p'
-
-# Shelly Backend-Specific Install (Standard/Arch, AUR, Flatpak, AppImage)
-alias sis='shelly install standard'
-alias sia='shelly install aur'
-alias sif='shelly install flatpak'
-alias sii='shelly install appimage'
-
-# Shelly Backend-Specific Remove
-alias srs='shelly remove standard'
-alias sra='shelly remove aur'
-alias srf='shelly remove flatpak'
-alias sri='shelly remove appimage'
-
-# Shelly Backend-Specific Search
-alias sss='shelly search standard'
-alias ssa='shelly search aur'
-alias ssf='shelly search flatpak'
-
-# Shelly Backend-Specific List
-alias slss='shelly list standard'
-alias slsa='shelly list aur'
-alias slsf='shelly list flatpak'
-alias slsi='shelly list appimage'
-
-# Dotfiles
-alias conf-fish='cd ~/.config/fish && n'
-alias conf-ghostty='cd ~/.config/ghostty && n'
-alias conf-hypr='cd ~/.config/hypr && n'
-alias conf-astronvim='cd ~/.config/astronvim && astronvim .'
-alias conf-lazyvim='cd ~/.config/lazyvim && lazyvim .'
-alias conf-nvim='conf-astronvim'
-
-# Neovim Distros (using 'env' for Fish compatibility)
-alias astronvim='env NVIM_APPNAME=astronvim nvim'
-alias lazyvim='env NVIM_APPNAME=lazyvim nvim'
-alias nvim='astronvim' # Default 'nvim' command calls AstroNvim
-
-alias portainer='docker run -p 8000:8000 -p 9443:9443 --name portainer -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:lts'
-
-# Herdr
-alias h='herdr'
-alias hs='herdr status'
-alias hw='herdr workspace list'
-alias ht='herdr tab list'
-alias hp='herdr pane list'
-alias ha='herdr agent list'
-alias hstop='herdr server stop'
 
 # Herdr Workspace Helpers
 function __herdr_open_workspace --description "Open or focus a Herdr workspace by label, optionally running a command"
@@ -209,41 +141,17 @@ function __herdr_close_workspace --description "Close Herdr workspace(s) by labe
     end
 end
 
-# Local Server (192.168.0.101)
-alias ssh-server='ssh server'
-alias server-connect='ssh server'
-alias server-ssh='ssh server'
-
-function herdr-server --description "Open or attach to an isolated Herdr session named 'server'"
-    if not herdr --session server status 2>/dev/null | string match -q "*status: running*"
-        herdr --session server server &
-        sleep 0.4
-        set -l root_pane (herdr --session server pane list 2>/dev/null | jq -r '.result.panes[0].pane_id // empty')
-        if test -n "$root_pane"
-            herdr --session server pane run $root_pane "ssh-server"
-        end
-    end
-    herdr --session server
+# Isolated Herdr Session for Home Server (192.168.0.101)
+function herdr_server_session_start --description "Launch or attach to an isolated Herdr session for the home server"
+    herdr session attach server
 end
 
-function herdr-server-stop --description "Stop isolated 'server' Herdr session"
-    herdr --session server server stop 2>/dev/null
-    echo "🛑 Stopped Herdr 'server' session"
+function herdr_server_session_stop --description "Stop the isolated 'server' Herdr session"
+    herdr session stop server
 end
-
-# Remote Laptop & Herdr Access (for Termux / remote clients)
-alias ssh-laptop='ssh laptop'
-alias laptop-connect='ssh laptop'
-alias laptop-ssh='ssh laptop'
-alias herdr-laptop='ssh -t laptop "herdr"'
-alias laptop-herdr=herdr-laptop
-alias laptop-agents='ssh laptop "herdr agent list"'
-alias laptop-status='ssh laptop "herdr status"'
-alias laptop-workspaces='ssh laptop "herdr workspace list"'
-alias laptop-lock='ssh laptop "loginctl lock-session 2>/dev/null; or hyprctl dispatch exit"'
 
 # Two-Way Mobile <-> Laptop Clipboard Sync (Termux API <-> Wayland wl-clipboard)
-function clip-push --description "Push local Android clipboard to remote laptop Hyprland clipboard"
+function termux_clipboard_push --description "Push local Android clipboard to remote laptop Hyprland clipboard"
     if command -q termux-clipboard-get
         termux-clipboard-get | ssh laptop "wl-copy"
         echo "📋 Pushed mobile clipboard to laptop"
@@ -252,7 +160,7 @@ function clip-push --description "Push local Android clipboard to remote laptop 
     end
 end
 
-function clip-pull --description "Pull remote laptop Hyprland clipboard to local Android clipboard"
+function termux_clipboard_pull --description "Pull remote laptop Hyprland clipboard to local Android clipboard"
     if command -q termux-clipboard-set
         ssh laptop "wl-paste" | termux-clipboard-set
         echo "📋 Pulled laptop clipboard to mobile"
@@ -260,21 +168,6 @@ function clip-pull --description "Pull remote laptop Hyprland clipboard to local
         echo "termux-clipboard-set not found (requires Termux:API)"
     end
 end
-
-# MCP Hub
-alias conf-mcphub='cd ~/.config/mcphub && n'
-alias mcphub='mcp-hub --port 37373 --config ~/.config/mcphub/servers.json --watch'
-
-# MCP Hub Endpoints & Status
-alias mcphub-status='curl -s http://localhost:37373/api/servers | jq .'
-alias mcphub-health='curl -s http://localhost:37373/api/health | jq .'
-alias mcphub-tools='curl -s http://localhost:37373/api/servers | jq \'[.servers[] | {server: .name, status: .status, tools: [.capabilities.tools[].name]}]\''
-alias mcphub-resources='curl -s http://localhost:37373/api/servers | jq \'[.servers[] | {server: .name, resources: [.capabilities.resources[].name]}]\''
-alias mcphub-workspaces='curl -s http://localhost:37373/api/workspaces | jq .'
-alias mcphub-auth='curl -s http://localhost:37373/api/servers | jq \'.servers[] | select(.authorizationUrl != null) | {name, authorizationUrl}\''
-alias mcphub-refresh='curl -s http://localhost:37373/api/refresh | jq .'
-alias mcphub-restart='curl -s -X POST http://localhost:37373/api/restart | jq .'
-alias mcphub-hard-restart='curl -s -X POST http://localhost:37373/api/hard-restart | jq .'
 
 # MCP Hub Management Functions
 function mcphub-server-info
@@ -321,22 +214,7 @@ function mcphub-call-tool
         -d "{\"server_name\": \"$argv[1]\", \"tool\": \"$argv[2]\", \"arguments\": $args}" | jq .
 end
 
-function mcphub-start
-    __herdr_open_workspace "mcp-hub" "mcp-hub --port 37373 --config ~/.config/mcphub/servers.json --watch" "$HOME"
-end
-alias mcphub-herdr=mcphub-start
-
-function mcphub-stop
-    __herdr_close_workspace "mcp-hub"
-end
-
-# Qt platform theme (Desktop Linux)
-if test -n "$WAYLAND_DISPLAY" -o -n "$DISPLAY"
-    set -gx QT_QPA_PLATFORMTHEME qt6ct
-end
-
-# pnpm
-set -gx PNPM_HOME "$HOME/.local/share/pnpm"
-if not string match -q -- "$PNPM_HOME/bin" $PATH
-    set -gx PATH "$PNPM_HOME/bin" $PATH
+# Load external aliases
+if test -f ~/.config/fish/aliases.fish
+    source ~/.config/fish/aliases.fish
 end
