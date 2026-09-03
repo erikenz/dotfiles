@@ -30,6 +30,7 @@ alias cf-mcp='cd ~/.config/mcphub && n'
 alias cf-mcphub='cf-mcp'
 alias cf-herdr='cd ~/.config/herdr && n'
 alias cf-cz='cd ~/.local/share/chezmoi && n'
+alias cf-mise='cd ~/.config/mise && n'
 
 # --- 4. Shelly Package Manager (Prefix: s*) ---
 # Note: 'ssearch' is used to avoid collision with iproute2's /usr/bin/ss
@@ -77,12 +78,18 @@ alias hstop='herdr server stop'
 alias server-ssh='ssh server'
 alias server-herdr='herdr_server_session_start'
 alias server-stop='herdr_server_session_stop'
+alias server-tg-start='ssh server "systemctl --user start telegram-bot"'
+alias server-tg-stop='ssh server "systemctl --user stop telegram-bot"'
+alias server-tg-restart='ssh server "systemctl --user restart telegram-bot"'
+alias server-tg-status='ssh server "systemctl --user status telegram-bot"'
+alias server-tg-logs='ssh server "journalctl --user -u telegram-bot -f"'
 
 # Remote Laptop (for Termux / Mobile)
 alias laptop-ssh='ssh laptop'
 alias laptop-herdr='ssh -t laptop "herdr"'
 alias laptop-agents='ssh laptop "herdr agent list"'
 alias laptop-status='ssh laptop "herdr status"'
+alias laptop-wake='ssh server "wakeonlan d8:43:ae:d7:2f:86"'
 alias laptop-workspaces='ssh laptop "herdr workspace list"'
 alias laptop-lock='ssh laptop "loginctl lock-session 2>/dev/null; or hyprctl dispatch exit"'
 

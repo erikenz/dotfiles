@@ -13,7 +13,7 @@
     "pane.focus_up": "none",
     "pane.focus_down": "none"
   },
-  "model": "Gemini 3.7 Flash (High)",
+  "model": "Gemini 3.8 Flash (Medium)",
   "notifications": true,
   "permissions": {
     "allow": [
@@ -98,7 +98,8 @@
       "mcp(chrome-devtools/drag)",
       "unsandboxed(git status)",
       "unsandboxed(pnpm run typecheck)",
-      "unsandboxed(git log)"
+      "unsandboxed(git log)",
+      "unsandboxed(pnpm --filter web exec vitest run tests/unit/)"
     ],
     "deny": [
       "command(rm -rf *)",

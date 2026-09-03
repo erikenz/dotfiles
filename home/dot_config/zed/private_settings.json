@@ -13,6 +13,17 @@
   "language_models": {
     "opencode": {
       "show_zen_models": true,
+      "available_models": [
+        {
+          "name": "deepseek-v4-flash-vision-exp",
+          "display_name": "DeepSeek V4 Flash Vision (Exp)",
+          "max_tokens": 1000000,
+          "max_output_tokens": 384000,
+          "protocol": "openai_chat",
+          "reasoning_effort_levels": ["low", "high", "max"],
+          "subscription": "go",
+        },
+      ],
     },
   },
   "which_key": {
@@ -235,6 +246,12 @@
         "model": "free/nemotron-3-ultra-free",
         "enable_thinking": true,
         "effort": "high"
+      },
+      {
+        "provider": "opencode",
+        "model": "go/deepseek-v4-flash-vision-exp",
+        "enable_thinking": true,
+        "effort": "max"
       }
     ],
     "use_modifier_to_send": true,
@@ -248,10 +265,10 @@
     },
     "default_profile": "write",
     "default_model": {
-      "effort": "high",
+      "effort": "max",
       "enable_thinking": true,
       "provider": "opencode",
-      "model": "go/deepseek-v4-flash",
+      "model": "go/deepseek-v4-flash-vision-exp",
     },
     "thread_summary_model": {
       "provider": "google",
