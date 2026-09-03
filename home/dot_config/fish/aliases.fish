@@ -109,8 +109,7 @@ alias mcp-resources='curl -s http://localhost:37373/api/servers | jq \'[.servers
 alias mcp-workspaces='curl -s http://localhost:37373/api/workspaces | jq .'
 alias mcp-auth='curl -s http://localhost:37373/api/servers | jq \'.servers[] | select(.authorizationUrl != null) | {name, authorizationUrl}\''
 alias mcp-refresh='curl -s http://localhost:37373/api/refresh | jq .'
-alias mcp-restart='curl -s -X POST http://localhost:37373/api/restart | jq .'
-alias mcp-hard-restart='curl -s -X POST http://localhost:37373/api/hard-restart | jq .'
+alias mcp-server-restart='mcphub-server-restart'
 
 # --- 8. Chezmoi Dotfiles Manager (Prefix: cz*) ---
 alias cz='chezmoi'

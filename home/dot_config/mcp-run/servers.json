@@ -1,6 +1,25 @@
 {
-  "_comment": "mcp-run server registry. Secret-bearing MCP servers launch through ~/.local/bin/mcp-run. To add a server: add an entry here, then reference it from Zed (context_servers) and agy (~/.gemini/config/mcp_config.json) with { \"command\": \"/home/erikzen/.local/bin/mcp-run\", \"args\": [\"<name>\"] }.",
+  "_comment": "mcp-run server registry. Secret-bearing MCP servers launch through ~/.local/bin/mcp-run. To add a server: add an entry here, then reference it from the mcphub config (~/.config/mcphub/servers.json) with { \"command\": \"/home/erikzen/.local/bin/mcp-run\", \"args\": [\"<name>\"] }.",
   "servers": {
+    "dokploy": {
+      "command": "npx",
+      "args": ["-y", "@dokploy/mcp"],
+      "env": {
+        "DOKPLOY_URL": {
+          "source": "bitwarden",
+          "item": "hostinger vps",
+          "field": "DOKPLOY_URL"
+        },
+        "DOKPLOY_API_KEY": {
+          "source": "bitwarden",
+          "item": "hostinger vps",
+          "field": "DOKPLOY_API_KEY"
+        }
+      }
+    }
+  },
+  "_disabled_servers": {
+    "_comment": "Previously active servers, kept for reference. Move back under 'servers' to re-enable.",
     "balcon-padel-dev": {
       "command": "npx",
       "args": [
@@ -16,22 +35,6 @@
           "item": "balcon-padel-dev-api-key",
           "field": "password",
           "_comment": "Bitwarden item holding the Balcon Padel MCP bearer token. Adjust 'item' to match your vault entry; 'field' defaults to 'password'."
-        }
-      }
-    },
-    "dokploy": {
-      "command": "npx",
-      "args": ["-y", "@dokploy/mcp"],
-      "env": {
-        "DOKPLOY_URL": {
-          "source": "bitwarden",
-          "item": "hostinger vps",
-          "field": "DOKPLOY_URL"
-        },
-        "DOKPLOY_API_KEY": {
-          "source": "bitwarden",
-          "item": "hostinger vps",
-          "field": "DOKPLOY_API_KEY"
         }
       }
     }

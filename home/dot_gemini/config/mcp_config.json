@@ -1,43 +1,8 @@
 {
   "mcpServers": {
-    "chrome-devtools": {
+    "hub": {
       "command": "npx",
-      "args": [
-        "-y",
-        "chrome-devtools-mcp@latest",
-        "--browser-url=http://127.0.0.1:9222"
-      ]
-    },
-    "sentry": {
-      "serverUrl": "https://mcp.sentry.dev/mcp"
-    },
-    "shadcn": {
-      "command": "npx",
-      "args": [
-        "shadcn@latest",
-        "mcp"
-      ]
-    },
-    "next-devtools": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "next-devtools-mcp@latest"
-      ]
-    },
-    "posthog": {
-      "serverUrl": "https://mcp.posthog.com/mcp"
-    },
-    "mcp-server-playwright": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@playwright/mcp@latest",
-        "--browser",
-        "chrome",
-        "--cdp-endpoint",
-        "http://localhost:9222"
-      ]
+      "args": ["-y", "mcp-remote", "http://localhost:37373/mcp"]
     }
   }
 }

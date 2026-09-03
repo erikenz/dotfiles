@@ -200,6 +200,15 @@ function mcphub-server-stop
         -d "{\"server_name\": \"$argv[1]\"}" | jq .
 end
 
+function mcphub-server-restart
+    if test (count $argv) -eq 0
+        echo "Usage: mcphub-server-restart <server_name>"
+        return 1
+    end
+    mcphub-server-stop $argv[1]
+    mcphub-server-start $argv[1]
+end
+
 function mcphub-call-tool
     if test (count $argv) -lt 2
         echo "Usage: mcphub-call-tool <server_name> <tool_name> [arguments_json]"

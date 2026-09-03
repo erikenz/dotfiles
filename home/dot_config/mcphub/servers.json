@@ -35,6 +35,15 @@
     },
     "posthog": {
       "url": "https://mcp.posthog.com/mcp"
+    },
+    "dokploy": {
+      "command": "npx",
+      "args": ["-y", "@dokploy/mcp"],
+      "env": {
+        "DOKPLOY_URL": "${cmd: ~/.local/bin/get-secret 'hostinger vps' DOKPLOY_URL}",
+        "DOKPLOY_API_KEY": "${cmd: ~/.local/bin/get-secret 'hostinger vps' DOKPLOY_API_KEY}",
+        "DOKPLOY_TOOL_PRESET": "minimal"
+      }
     }
   }
 }
