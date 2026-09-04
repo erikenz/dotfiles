@@ -4,6 +4,11 @@ bun = "latest"
 herdr = "latest"
 node = "lts"
 "npm:@dokploy/cli" = "latest"
+"npm:@earendil-works/pi-coding-agent" = "latest"
 "npm:cc-safety-net" = "latest"
 "npm:mcp-hub" = "latest"
+"npm:sentry" = "latest"
 pnpm = "latest"
+
+[settings.npm]
+package_manager = "pnpm"

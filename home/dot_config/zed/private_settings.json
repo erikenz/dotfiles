@@ -265,10 +265,10 @@
     },
     "default_profile": "write",
     "default_model": {
-      "effort": "max",
+      "effort": "high",
       "enable_thinking": true,
       "provider": "opencode",
-      "model": "go/deepseek-v4-flash-vision-exp",
+      "model": "go/deepseek-v4-flash",
     },
     "thread_summary_model": {
       "provider": "google",
@@ -278,6 +278,7 @@
       "provider": "google",
       "model": "gemini-2.5-flash",
     },
+    "commit_message_instructions": "Use Conventional Commits: <type>(<scope>): <description>, e.g. feat(checkout): ... or fix(pricing): .... Allowed types: feat, fix, chore, ci, docs, refactor, test. Mark breaking changes with ! before the colon (e.g. feat(api)!: ...). Keep the subject under 72 characters, no trailing period."
   },
   "auto_install_extensions": {
     "comment": true,

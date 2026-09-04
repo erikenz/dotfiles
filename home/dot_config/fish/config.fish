@@ -13,6 +13,9 @@ if command -q mise
     mise activate fish | source
 end
 
+# pi coding agent config directory (settings, auth, sessions, packages)
+set -gx PI_CODING_AGENT_DIR "$HOME/.config/pi/agent"
+
 # Default Editor (AstroNvim)
 set -gx EDITOR "env NVIM_APPNAME=astronvim nvim"
 set -gx VISUAL "env NVIM_APPNAME=astronvim nvim"
@@ -227,3 +230,6 @@ end
 if test -f ~/.config/fish/aliases.fish
     source ~/.config/fish/aliases.fish
 end
+
+# sentry
+fish_add_path "/home/erikzen/.local/share/mise/installs/node/24.20.0/bin"
