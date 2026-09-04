@@ -87,3 +87,18 @@ README.md
 .local/share/opencode/mcp-auth.json
 .local/share/opencode/mcp-oauth.json
 .local/share/opencode/oauth.json
+
+# --- runtime-data dirs that should never be synced wholesale ---
+.local/share/opencode/**
+.local/share/herdr/**
+.local/share/sentry/**
+.claude/**
+.claude.json
+.codex/**
+.cursor/**
+.copilot/**
+.kimi/**
+.kimi-code/**
+.grok/**
+.hermes/**
+.openclaw/**
