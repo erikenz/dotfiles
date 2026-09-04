@@ -1,0 +1,2 @@
+allowBuilds:
+  tree-sitter-bash: set this to true or false

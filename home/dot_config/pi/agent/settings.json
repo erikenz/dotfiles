@@ -1,0 +1,15 @@
+{
+  "lastChangelogVersion": "0.84.4",
+  "theme": "dark",
+  "defaultProvider": "opencode-go",
+  "defaultModel": "deepseek-v4-flash",
+  "npmCommand": [
+    "pnpm"
+  ],
+  "packages": [
+    "npm:pi-mcp-adapter",
+    "npm:pi-web-access",
+    "npm:cc-safety-net",
+    "npm:@gotgenes/pi-permission-system"
+  ]
+}

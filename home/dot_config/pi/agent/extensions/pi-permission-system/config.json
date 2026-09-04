@@ -1,0 +1,73 @@
+{
+  "$schema": "https://raw.githubusercontent.com/gotgenes/pi-packages/main/packages/pi-permission-system/schemas/permissions.schema.json",
+
+  "debugLog": false,
+  "permissionReviewLog": true,
+  "yoloMode": false,
+  "doublePressToConfirm": true,
+
+  "permission": {
+    "*": "ask",
+
+    "read": "allow",
+    "ls": "allow",
+    "grep": "allow",
+    "find": "allow",
+    "cat": "allow",
+    "web_search": "allow",
+    "get_search_content": "allow",
+    "source_check": "allow",
+
+    "write": "ask",
+    "edit": "ask",
+
+    "path": {
+      "*": "allow",
+      "*.env": "deny",
+      "*.env.*": "deny",
+      "*.env.example": "allow",
+      "~/.ssh/*": "deny",
+      "~/.aws/*": "deny",
+      "~/.gnupg/*": "deny",
+      "~/.netrc": "deny",
+      "~/.config/gh/hosts.yml": "deny",
+      "~/.config/gcloud/*": "deny",
+      "~/.kube/config": "deny",
+      "~/.docker/config.json": "deny",
+      "~/.config/pi/agent/auth.json": "deny",
+      "~/.config/opencode/auth.json": "deny",
+      "~/.local/share/opencode/opencode.db": "deny"
+    },
+
+    "bash": {
+      "*": "ask",
+      "git status*": "allow",
+      "git diff*": "allow",
+      "git log*": "allow",
+      "git show*": "allow",
+      "git branch*": "allow",
+      "git rev-parse*": "allow",
+      "git remote*": "allow",
+      "ls*": "allow",
+      "cat*": "allow",
+      "head*": "allow",
+      "tail*": "allow",
+      "wc*": "allow",
+      "pwd": "allow",
+      "echo*": "allow",
+      "which*": "allow",
+      "node --version": "allow",
+      "pnpm --version": "allow",
+      "npm *": { "action": "deny", "reason": "This workspace is pinned to pnpm (pi npmCommand). Use pnpm instead." }
+    },
+
+    "mcp": { "*": "ask" },
+    "skill": { "*": "ask" },
+
+    "external_directory": {
+      "*": "ask",
+      "~/.local/share/mise/installs/*": "allow",
+      "~/.cache/mise/*": "allow"
+    }
+  }
+}

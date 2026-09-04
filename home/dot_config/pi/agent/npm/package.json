@@ -1,0 +1,10 @@
+{
+  "name": "pi-extensions",
+  "private": true,
+  "dependencies": {
+    "@gotgenes/pi-permission-system": "^31.0.0",
+    "cc-safety-net": "^2.3.2",
+    "pi-mcp-adapter": "^2.32.1",
+    "pi-web-access": "^0.27.0"
+  }
+}
