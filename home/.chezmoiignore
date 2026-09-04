@@ -81,3 +81,9 @@ README.md
 .aws/**
 .gnupg/**
 .local/share/mise/installs/**
+
+# --- OpenCode account & MCP credentials (live keys found on this machine) ---
+.local/share/opencode/account.json
+.local/share/opencode/mcp-auth.json
+.local/share/opencode/mcp-oauth.json
+.local/share/opencode/oauth.json
