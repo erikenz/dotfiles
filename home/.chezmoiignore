@@ -51,3 +51,33 @@ README.md
 .config/zed/**
 .config/environment.d/**
 {{- end }}
+
+# --- Pi coding agent (auth, model store, sessions, caches, package store) ---
+.config/pi/agent/auth.json
+.config/pi/agent/models-store.json
+.config/pi/agent/sessions/**
+.config/pi/agent/web-search-cache/**
+.config/pi/agent/npm/**
+
+# --- Coding-agent credentials & local state outside .config ---
+.local/share/opencode/auth.json
+.local/share/opencode/*.db*
+.local/share/opencode/sessions/**
+.local/share/opencode/log/**
+.local/share/opencode/tmp/**
+.config/opencode/auth.json
+.config/opencode/log/**
+.config/cc-safety-net/**
+
+# --- Classic credential carriers ---
+.netrc
+.npmrc
+.pypirc
+.docker/config.json
+.config/gh/hosts.yml
+.config/gcloud/**
+.kube/config
+.kube/**
+.aws/**
+.gnupg/**
+.local/share/mise/installs/**
