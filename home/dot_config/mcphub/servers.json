@@ -17,11 +17,12 @@
         "next-devtools-mcp@latest"
       ]
     },
-    "mcp-server-playwright": {
+    "playwright": {
       "command": "npx",
       "args": [
         "-y",
-        "@playwright/mcp@latest"
+        "@playwright/mcp@latest",
+        "--cdp-endpoint=http://127.0.0.1:9222"
       ]
     },
     "chrome-devtools": {

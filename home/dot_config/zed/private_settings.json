@@ -212,7 +212,7 @@
         "provider": "opencode",
         "model": "go/deepseek-v4-flash",
         "enable_thinking": true,
-        "effort": "high"
+        "effort": "max"
       },
       {
         "provider": "opencode",
@@ -250,7 +250,7 @@
     },
     "default_profile": "write",
     "default_model": {
-      "effort": "high",
+      "effort": "max",
       "enable_thinking": true,
       "provider": "opencode",
       "model": "go/deepseek-v4-flash",

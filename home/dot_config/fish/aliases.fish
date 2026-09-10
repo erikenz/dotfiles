@@ -7,6 +7,7 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias r-fish='source ~/.config/fish/config.fish; fish_user_key_bindings 2>/dev/null; commandline -f repaint'
+alias r='r-fish'
 
 # --- 2. Runtimes, Package Managers & Editors ---
 alias p='pnpm'
@@ -74,6 +75,16 @@ alias hp='herdr pane list'
 alias ha='herdr agent list'
 alias hstop='herdr server stop'
 
+# Herdr Dev Session Shortcuts
+alias hd='herdr session attach dev'
+alias hds='herdr --session dev status'
+alias hdw='herdr --session dev workspace list'
+alias hdt='herdr --session dev tab list'
+alias hdp='herdr --session dev pane list'
+alias hda='herdr --session dev agent list'
+alias dev-herdr='herdr_dev_session_start'
+alias dev-stop='herdr_dev_session_stop'
+
 # --- 6. Remote Sessions (Server & Laptop) ---
 # Home Server
 alias server-ssh='ssh server'
@@ -101,8 +112,8 @@ alias clip-pull='termux_clipboard_pull'
 # --- 7. MCP Hub Controls (Prefix: mcp-*) ---
 # Starts mcp-hub daemon in foreground with servers.json
 alias mcp-up='mcp-hub --port 37373 --config ~/.config/mcphub/servers.json --watch'
-alias mcp-start='__herdr_open_workspace "mcp-hub" "mcp-up" "$HOME"'
-alias mcp-stop='__herdr_close_workspace "mcp-hub"'
+alias mcp-start='__herdr_open_workspace "mcp-hub" "mcp-up" "$HOME" "dev"'
+alias mcp-stop='__herdr_close_workspace "mcp-hub" "dev"'
 alias mcp-status='curl -s http://localhost:37373/api/servers | jq .'
 alias mcp-health='curl -s http://localhost:37373/api/health | jq .'
 alias mcp-tools='curl -s http://localhost:37373/api/servers | jq \'[.servers[] | {server: .name, status: .status, tools: [.capabilities.tools[].name]}]\''

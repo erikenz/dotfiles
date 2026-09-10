@@ -3,7 +3,6 @@
   "allowNonWorkspaceAccess": true,
   "editor": "env NVIM_APPNAME=astronvim nvim",
   "editorMode": "vim",
-  "enableTelemetry": false,
   "enableTerminalSandbox": true,
   "keybindings": {
     "list.next": "alt+j",
@@ -13,7 +12,7 @@
     "pane.focus_up": "none",
     "pane.focus_down": "none"
   },
-  "model": "Gemini 3.8 Flash (Medium)",
+  "model": "Gemini 3.8 Flash (Low)",
   "notifications": true,
   "permissions": {
     "allow": [
@@ -99,7 +98,32 @@
       "unsandboxed(git status)",
       "unsandboxed(pnpm run typecheck)",
       "unsandboxed(git log)",
-      "unsandboxed(pnpm --filter web exec vitest run tests/unit/)"
+      "unsandboxed(pnpm --filter web exec vitest run tests/unit/)",
+      "mcp(hub/chrome_devtools__list_pages)",
+      "mcp(hub/chrome_devtools__take_snapshot)",
+      "mcp(hub/chrome_devtools__click)",
+      "mcp(hub/chrome_devtools__press_key)",
+      "mcp(hub/chrome_devtools__evaluate_script)",
+      "mcp(hub/call_mcp_tool)",
+      "mcp(hub/chrome_devtools__list_console_messages)",
+      "unsandboxed(npx tsc --noEmit)",
+      "unsandboxed(git diff)",
+      "mcp(hub/chrome_devtools__navigate_page)",
+      "mcp(hub/chrome_devtools__take_screenshot)",
+      "mcp(hub/chrome_devtools__new_page)",
+      "mcp(hub/chrome_devtools__select_page)",
+      "mcp(hub/chrome_devtools__close_page)",
+      "mcp(hub/chrome_devtools__type_text)",
+      "mcp(hub/chrome_devtools__fill)",
+      "mcp(hub/chrome_devtools__get_console_message)",
+      "command(scripts/test.fish)",
+      "unsandboxed(scripts/test.fish)",
+      "unsandboxed(tail)",
+      "unsandboxed(pnpm --filter web gen:importmap)",
+      "unsandboxed(pnpm test:unit)",
+      "unsandboxed(pnpm --filter web gen:types)",
+      "unsandboxed(pnpm --filter web exec tsc --noEmit)",
+      "unsandboxed(pnpm fix)"
     ],
     "deny": [
       "command(rm -rf *)",
