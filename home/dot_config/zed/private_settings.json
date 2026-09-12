@@ -7,7 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "context_server_timeout": 120,
+  "context_server_timeout": 60,
   "diff_view_style": "unified",
   "cli_default_open_behavior": "new_window",
   "language_models": {

@@ -1,5 +1,8 @@
 theme = noctalia
 
+# Copy selection to primary + system clipboard (middle-click and Ctrl+V)
+copy-on-select = clipboard
+
 # Use Ghostty csi: action for CSI-u Kitty Keyboard Protocol sequences
 keybind = ctrl+h=csi:104;5u
 keybind = ctrl+j=csi:106;5u
