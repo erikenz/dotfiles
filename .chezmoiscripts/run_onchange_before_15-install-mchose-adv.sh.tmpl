@@ -1,0 +1,71 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/usr/bin/env bash
+# Prompts once per machine to install mchose-adv, the userspace bridge that
+# brings MCHOSE hall-effect keyboard advanced keys (SOCD / RS / DKS) to Linux.
+#
+# Not on the AUR yet, so this builds from source via the project's install.sh.
+# Once it is packaged, replace the source build with:
+#   shelly install aur mchose-adv
+#
+# Bump MCHOSE_ADV_REF to force a re-run (run_onchange_ re-runs when the
+# rendered script content changes).
+set -euo pipefail
+
+MCHOSE_ADV_REF="main"
+MCHOSE_ADV_REPO="https://github.com/erikenz/mchose-adv.git"
+MCHOSE_ADV_SRC="${XDG_CACHE_HOME:-$HOME/.cache}/chezmoi/mchose-adv"
+MCHOSE_ADV_BIN="${XDG_BIN_HOME:-$HOME/.local/bin}/mchose-adv"
+
+if [ -x "$MCHOSE_ADV_BIN" ]; then
+  echo "==> [mchose-adv] already installed at $MCHOSE_ADV_BIN; nothing to do."
+  exit 0
+fi
+
+echo "==> [mchose-adv] MCHOSE hall-effect advanced keys (SOCD/RS/DKS) are not set up."
+echo "    This is only useful on a machine with a MCHOSE hall-effect keyboard."
+
+ask() {
+  # Read from the controlling terminal so this still works when the script is
+  # run with stdin redirected.
+  if [ -r /dev/tty ]; then
+    printf '%s' "$1" > /dev/tty
+    read -r answer < /dev/tty || answer=""
+    printf '%s' "$answer"
+  else
+    printf '%s' ""
+  fi
+}
+
+if [ ! -r /dev/tty ]; then
+  echo "    no terminal available to ask; skipping."
+  echo "    Install later with: git clone $MCHOSE_ADV_REPO && cd mchose-adv && ./install.sh"
+  exit 0
+fi
+
+answer="$(ask '    Install it now? [y/N] ')"
+case "$answer" in
+  [yY] | [yY][eE][sS])
+    echo "==> [mchose-adv] fetching $MCHOSE_ADV_REPO"
+    mkdir -p "$(dirname "$MCHOSE_ADV_SRC")"
+    if [ -d "$MCHOSE_ADV_SRC/.git" ]; then
+      git -C "$MCHOSE_ADV_SRC" fetch --depth 1 origin "$MCHOSE_ADV_REF"
+      git -C "$MCHOSE_ADV_SRC" checkout --quiet FETCH_HEAD
+    else
+      git clone --depth 1 --branch "$MCHOSE_ADV_REF" "$MCHOSE_ADV_REPO" "$MCHOSE_ADV_SRC"
+    fi
+
+    echo "==> [mchose-adv] building and installing (needs sudo for the udev rule)"
+    if (cd "$MCHOSE_ADV_SRC" && ./install.sh); then
+      echo "==> [mchose-adv] installed."
+    else
+      # Do not fail the whole bootstrap over an optional component.
+      echo "!!  [mchose-adv] install failed; continuing."
+      echo "    Retry manually: (cd $MCHOSE_ADV_SRC && ./install.sh)"
+    fi
+    ;;
+  *)
+    echo "    skipped."
+    echo "    Install later with: git clone $MCHOSE_ADV_REPO && cd mchose-adv && ./install.sh"
+    ;;
+esac
+{{ end -}}
