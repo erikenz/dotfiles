@@ -161,3 +161,13 @@ label_source = "id"
 hide_when_empty = true
 inactive_pill_size = 1.0
 pill_scale = 0.80
+
+[notification]
+filter_order = ["pi"]
+
+    # Pi (@pi-unipi/notify) sends expire-time=10000ms via notify-send.
+    # Force a shorter on-screen duration for Pi's notifications only.
+    [notification.filter.pi]
+    enabled = true
+    match_content = "^Pi "
+    override_duration = 4000
