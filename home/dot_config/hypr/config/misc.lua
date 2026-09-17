@@ -10,6 +10,8 @@ hl.config({
         enable_swallow = true,
         swallow_regex = "(kitty|ghostty|[Kk]onsole|Alacritty|gnome-terminal|xfce[0-9]?-terminal)",
         vrr = 3,
+        mouse_move_enables_dpms = true,
+        key_press_enables_dpms = true,
     },
     xwayland = {
         force_zero_scaling = true

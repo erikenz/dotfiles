@@ -39,6 +39,7 @@
   "TrayUpdatesIconPath": "",
   "UseUiForUpdate": false,
   "UseWeeklySchedule": false,
+  "TrayRunAsCron": true,
   "DaysOfWeek": [],
   "Time": ""
 }

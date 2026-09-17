@@ -75,6 +75,16 @@ settings_show_advanced = true
     shortcut = "5"
     variant = "destructive"
 
+    [[shell.session.actions]]
+    action = "command"
+    command = "sleep 0.5 && noctalia msg dpms-off"
+    countdown_seconds = 0.0
+    enabled = true
+    glyph = "device-desktop-off"
+    label = "Turn Off Screen"
+    shortcut = "6"
+    variant = "default"
+
 [system.monitor]
 gpu_poll_seconds = 2
 

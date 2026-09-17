@@ -17,6 +17,7 @@
     "npm:@pi-unipi/notify",
     "npm:pi-vimmode",
     "npm:pi-inline-skill-autocomplete",
-    "npm:@aiwayds/pi-model-favorites"
+    "npm:@aiwayds/pi-model-favorites",
+    "npm:pi-image-view"
   ]
 }

@@ -15,8 +15,8 @@
       "show_zen_models": true,
       "available_models": [
         {
-          "name": "deepseek-v4-flash-vision-exp",
-          "display_name": "DeepSeek V4 Flash Vision (Exp)",
+          "name": "deepseek-v4.1-flash",
+          "display_name": "DeepSeek V4.1 Flash",
           "max_tokens": 1000000,
           "max_output_tokens": 384000,
           "protocol": "openai_chat",
@@ -40,7 +40,7 @@
   },
   "agent_servers": {
     "pi-acp": {
-      "type": "registry"
+      "type": "registry",
     },
     "antigravity-acp": {
       "default_config_options": {
@@ -179,20 +179,8 @@
         "enable_thinking": false
       },
       {
-        "provider": "google",
-        "model": "gemini-3.5-flash",
-        "enable_thinking": true,
-        "effort": "medium"
-      },
-      {
         "provider": "zed.dev",
         "model": "claude-sonnet-4-6",
-        "enable_thinking": true,
-        "effort": "high"
-      },
-      {
-        "provider": "google",
-        "model": "gemini-3.1-pro-preview",
         "enable_thinking": true,
         "effort": "high"
       },
@@ -222,12 +210,6 @@
       },
       {
         "provider": "opencode",
-        "model": "zen/deepseek-v4-flash",
-        "enable_thinking": true,
-        "effort": "max"
-      },
-      {
-        "provider": "opencode",
         "model": "free/nemotron-3-ultra-free",
         "enable_thinking": true,
         "effort": "high"
@@ -235,6 +217,12 @@
       {
         "provider": "opencode",
         "model": "go/deepseek-v4-flash-vision-exp",
+        "enable_thinking": true,
+        "effort": "max"
+      },
+      {
+        "provider": "opencode",
+        "model": "go/deepseek-v4.1-flash",
         "enable_thinking": true,
         "effort": "max"
       }
@@ -253,7 +241,7 @@
       "effort": "max",
       "enable_thinking": true,
       "provider": "opencode",
-      "model": "go/deepseek-v4-flash",
+      "model": "go/deepseek-v4.1-flash",
     },
     "thread_summary_model": {
       "provider": "google",
@@ -263,7 +251,7 @@
       "provider": "google",
       "model": "gemini-2.5-flash",
     },
-    "commit_message_instructions": "Use Conventional Commits: <type>(<scope>): <description>, e.g. feat(checkout): ... or fix(pricing): .... Allowed types: feat, fix, chore, ci, docs, refactor, test. Mark breaking changes with ! before the colon (e.g. feat(api)!: ...). Keep the subject under 72 characters, no trailing period."
+    "commit_message_instructions": "Use Conventional Commits: <type>(<scope>): <description>, e.g. feat(checkout): ... or fix(pricing): .... Allowed types: feat, fix, chore, ci, docs, refactor, test. Mark breaking changes with ! before the colon (e.g. feat(api)!: ...). Keep the subject under 72 characters, no trailing period.",
   },
   "auto_install_extensions": {
     "comment": true,
