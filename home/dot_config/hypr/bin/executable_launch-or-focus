@@ -48,10 +48,8 @@ if test -n "$result"; and test "$result" != "null"
     set window_address $parts[1]
     set workspace_name $parts[2]
 
-    # Focus the workspace first to ensure it switches screens/workspaces
-    hyprctl dispatch "hl.dsp.focus({ workspace = \"$workspace_name\" })"
-    # Focus the window
-    hyprctl dispatch "hl.dsp.exec_raw(\"focuswindow address:$window_address\")"
+    # Focus the window (automatically switches monitor and workspace)
+    hyprctl dispatch "hl.dsp.focus({ window = \"address:$window_address\" })"
 else
     # Execute launch command in background
     eval "$launch_command" &

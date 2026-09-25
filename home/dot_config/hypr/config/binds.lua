@@ -11,7 +11,6 @@ local binDir = (os.getenv("HOME") or "") .. "/.config/hypr/bin/"
 hl.bind(mainMod .. " + Escape", hl.dsp.exec_cmd("hyprctl kill"), { desc = "Kill active window" })
 hl.bind(mainMod .. " + Q", hl.dsp.window.close(), { desc = "Close active window" })
 hl.bind(mainMod .. " + ALT + Space", hl.dsp.window.float({ action = "toggle" }), { desc = "Toggle floating" })
-hl.bind(mainMod .. " + D", hl.dsp.window.fullscreen({ mode = 1 }), { desc = "Fullscreen (maximize)" })
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen(), { desc = "Toggle fullscreen" })
 hl.bind(mainMod .. " + backslash", hl.dsp.layout("togglesplit"), { desc = "Toggle split layout" })
 
@@ -27,9 +26,9 @@ hl.bind(mainMod .. " + SHIFT + H", hl.dsp.window.move({ direction = "l" }), { de
 hl.bind(mainMod .. " + SHIFT + L", hl.dsp.window.move({ direction = "r" }), { desc = "Move window right" })
 hl.bind(mainMod .. " + SHIFT + K", hl.dsp.window.move({ direction = "u" }), { desc = "Move window up" })
 hl.bind(mainMod .. " + SHIFT + J", hl.dsp.window.move({ direction = "d" }), { desc = "Move window down" })
-hl.bind(mainMod .. " + CONTROL + SHIFT + L", hl.dsp.window.move({ workspace = "r+1" }),
+hl.bind(mainMod .. " + CONTROL + SHIFT + L", hl.dsp.window.move({ workspace = "m+1" }),
     { desc = "Move window to next workspace" })
-hl.bind(mainMod .. " + CONTROL + SHIFT + H", hl.dsp.window.move({ workspace = "r-1" }),
+hl.bind(mainMod .. " + CONTROL + SHIFT + H", hl.dsp.window.move({ workspace = "m-1" }),
     { desc = "Move window to previous workspace" })
 hl.bind(mainMod .. " + SHIFT + 1", hl.dsp.window.move({ monitor = MONITOR1 }), { desc = "Move window to monitor 1" })
 hl.bind(mainMod .. " + SHIFT + 2", hl.dsp.window.move({ monitor = MONITOR2 }), { desc = "Move window to monitor 2" })
@@ -66,18 +65,21 @@ hl.bind(mainMod .. " + ALT + F", hl.dsp.window.fullscreen({ mode = 1 }), { desc 
 hl.bind(mainMod .. " + CONTROL + F", hl.dsp.window.fullscreen_state({ internal = 0, client = 2 }),
     { desc = "Toggle fullscreen state (client)" })
 
+-- Tabbed window groups (Vim-style tabs)
+hl.bind(mainMod .. " + G", hl.dsp.layout("togglegroup"), { desc = "Toggle tabbed window group" })
+hl.bind(mainMod .. " + bracketleft", hl.dsp.layout("changegroupactive", "b"), { desc = "Previous tab in group" })
+hl.bind(mainMod .. " + bracketright", hl.dsp.layout("changegroupactive", "f"), { desc = "Next tab in group" })
+
 ------------------
 ---- LAUNCHER ----
 ------------------
 
 -- Core app launchers
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(launchPrefix .. TERMINAL), { desc = "Launch terminal" })
-hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(launchPrefix .. FILE_MANAGER), { desc = "Open file manager" })
-hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(launchPrefix .. EDITOR), { desc = "Open editor" })
 hl.bind(mainMod .. " + C", hl.dsp.exec_cmd(launchPrefix .. CALCULATOR), { desc = "Open calculator" })
-hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(launchPrefix .. BROWSER), { desc = "Open browser" })
-
 hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd(launchPrefix .. BROWSER), { desc = "Open browser" })
+hl.bind(mainMod .. " + CONTROL + SHIFT + W", hl.dsp.exec_cmd(launchPrefix .. "zen-browser"),
+    { desc = "Open Zen Browser" })
 
 -- Noctalia UI launchers
 hl.bind(mainMod .. " + Z", hl.dsp.exec_cmd(noctCall .. "settings-toggle"), { desc = "Toggle settings panel" })
@@ -118,7 +120,7 @@ hl.bind(mainMod .. " + SHIFT + O", hl.dsp.exec_cmd(binDir .. "launch-or-focus ob
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd(binDir .. "launch-or-focus steam 'uwsm app -- steam'"),
     { desc = "Open Steam" })
 hl.bind(mainMod .. " + SHIFT + Z", hl.dsp.exec_cmd("uwsm app -- zeditor"), { desc = "Open Zed editor" })
-hl.bind(mainMod .. " + SHIFT + T", hl.dsp.exec_cmd("uwsm app -- typora --enable-wayland-ime"), { desc = "Open Typora" })
+hl.bind(mainMod .. " + SHIFT + T", hl.dsp.exec_cmd(launchPrefix .. TERMINAL .. " -e " .. EDITOR), { desc = "Open Neovim" })
 hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd("uwsm app -- bitwarden-desktop"), { desc = "Open Bitwarden" })
 
 -- Chromium Debug launcher
@@ -225,10 +227,6 @@ end
 hl.bind(mainMod .. " + Minus", function() zoomfunction(-0.3) end, { repeating = true, desc = "Zoom out" })
 hl.bind(mainMod .. " + Equal", function() zoomfunction(0.3) end, { repeating = true, desc = "Zoom in" })
 
---# Zoom with keypad
-hl.bind(mainMod .. " + code:82", function() zoomfunction(-0.3) end, { repeating = true, desc = "Zoom out (keypad)" })
-hl.bind(mainMod .. " + code:86", function() zoomfunction(0.3) end, { repeating = true, desc = "Zoom in (keypad)" })
-
 -------------------------------
 ---- WORKSPACES & MONITORS ----
 -------------------------------
@@ -237,13 +235,6 @@ hl.bind(mainMod .. " + code:86", function() zoomfunction(0.3) end, { repeating =
 for i = 1, NUM_WPM do
     local key = i % 10
     hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }), { desc = "Focus workspace " .. i })
-end
-
--- Focus on workspace (absolute, all monitors)
-for i = 1, NUM_WPM do
-    local key = i % 10
-    hl.bind(mainMod .. " + TAB + " .. key, hl.dsp.focus({ workspace = i }),
-        { desc = "Focus workspace " .. i .. " (all monitors)" })
 end
 
 -- Focus on monitors
@@ -258,18 +249,16 @@ for i = 1, NUM_WPM do
         { desc = "Move window to workspace " .. i })
 end
 
--- Navigate adjacent workspaces on current monitor
-hl.bind(mainMod .. " + CONTROL + Right", hl.dsp.focus({ workspace = "m+1" }), { desc = "Focus next workspace" })
-hl.bind(mainMod .. " + CONTROL + Left", hl.dsp.focus({ workspace = "m-1" }), { desc = "Focus previous workspace" })
-hl.bind(mainMod .. " + CONTROL + Down", hl.dsp.focus({ workspace = "emptym" }), { desc = "Focus empty workspace" })
+-- Move window to workspace silently (stay on current workspace)
+for i = 1, NUM_WPM do
+    local key = i % 10
+    hl.bind(mainMod .. " + SHIFT + ALT + " .. key, hl.dsp.window.move({ workspace = i, follow = false }),
+        { desc = "Move window to workspace " .. i .. " (silent)" })
+end
 
--- Move window to adjacent workspace on current monitor
-hl.bind(mainMod .. " + CONTROL + SHIFT + Right", hl.dsp.window.move({ workspace = "m+1" }),
-    { desc = "Move window to next workspace" })
-hl.bind(mainMod .. " + CONTROL + SHIFT + Left", hl.dsp.window.move({ workspace = "m-1" }),
-    { desc = "Move window to previous workspace" })
-
--- Navigate empty workspaces
+-- Navigate adjacent workspaces on current monitor (Vim style)
+hl.bind(mainMod .. " + CONTROL + L", hl.dsp.focus({ workspace = "m+1" }), { desc = "Focus next workspace" })
+hl.bind(mainMod .. " + CONTROL + H", hl.dsp.focus({ workspace = "m-1" }), { desc = "Focus previous workspace" })
 hl.bind(mainMod .. " + CONTROL + J", hl.dsp.focus({ workspace = "emptym" }), { desc = "Focus empty workspace" })
 
 -- Scroll through workspaces & monitors

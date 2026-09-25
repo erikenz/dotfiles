@@ -123,7 +123,14 @@
       "unsandboxed(pnpm test:unit)",
       "unsandboxed(pnpm --filter web gen:types)",
       "unsandboxed(pnpm --filter web exec tsc --noEmit)",
-      "unsandboxed(pnpm fix)"
+      "unsandboxed(pnpm fix)",
+      "command(pnpm oxlint)",
+      "command(pnpm --filter @repo/design-system typecheck)",
+      "command(pnpm --filter @repo/web typecheck)",
+      "command(git grep)",
+      "command(pnpm test:unit)",
+      "command(pnpm exec oxfmt)",
+      "mcp(hub/chrome_devtools__resize_page)"
     ],
     "deny": [
       "command(rm -rf *)",

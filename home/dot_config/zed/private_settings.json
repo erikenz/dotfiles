@@ -262,6 +262,7 @@
     "scss": true,
     "toml": true,
     "lua": true,
+    "tsgo": true,
   },
   "format_on_save": "on",
   "file_types": {
@@ -271,6 +272,12 @@
   },
   "languages": {
     "JavaScript": {
+      "language_servers": [
+        "typescript-ls",
+        "!vtsls",
+        "!typescript-language-server",
+        "...",
+      ],
       "formatter": { "language_server": { "name": "biome" } },
       "code_actions_on_format": {
         "source.fixAll.biome": true,
@@ -278,6 +285,12 @@
       },
     },
     "TypeScript": {
+      "language_servers": [
+        "typescript-ls",
+        "!vtsls",
+        "!typescript-language-server",
+        "...",
+      ],
       "formatter": { "language_server": { "name": "biome" } },
       "code_actions_on_format": {
         "source.fixAll.biome": true,
@@ -285,6 +298,12 @@
       },
     },
     "TSX": {
+      "language_servers": [
+        "typescript-ls",
+        "!vtsls",
+        "!typescript-language-server",
+        "...",
+      ],
       "formatter": { "language_server": { "name": "biome" } },
       "code_actions_on_format": {
         "source.fixAll.biome": true,
