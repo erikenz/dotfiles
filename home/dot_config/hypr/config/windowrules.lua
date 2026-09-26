@@ -32,7 +32,7 @@ hl.window_rule({
 	sync_fullscreen = true,
 })
 hl.window_rule({ match = { class = gamingApps }, workspace = gamingWorkspace })
-hl.window_rule({ match = { class = "^(steam)$", title = "^(Friends List)$" }, float = true })
+hl.window_rule({ match = { class = "^(steam)$", title = "^(Friends List|Freundesliste)$" }, float = true })
 hl.window_rule({
 	match = { class = "^(steam)$", title = "^(Launching\\.{3})$" },
 	float = true,
@@ -161,12 +161,21 @@ hl.window_rule({
 ---- USER CUSTOM WINDOW RULES ----
 -----------------------------------
 
--- Steam workspace
+-- Steam workspace & window management
 hl.window_rule({
-	match = { class = "^(steam|Steam)$" },
+	match = { class = "^(steam|Steam)$", title = "^(Steam)$" },
 	workspace = 10,
 	monitor = MONITOR1,
 	tile = true,
+})
+hl.window_rule({
+	match = { class = "^(steam|Steam)$", title = "negative:^(Steam)$" },
+	float = true,
+})
+hl.window_rule({
+	match = { class = "^(steam|Steam)$", title = "^$" },
+	stay_focused = true,
+	min_size = { 1, 1 },
 })
 
 -- Vesktop workspace

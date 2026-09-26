@@ -15,6 +15,10 @@ hl.config({
             scroll_factor = 0.4,
         },
     },
+    cursor = {
+        no_hardware_cursors = true,
+        enable_hyprcursor = false,
+    },
 })
 
 hl.gesture({ fingers = 4, direction = "horizontal", action = "workspace" })
