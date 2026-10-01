@@ -130,7 +130,15 @@
       "command(git grep)",
       "command(pnpm test:unit)",
       "command(pnpm exec oxfmt)",
-      "mcp(hub/chrome_devtools__resize_page)"
+      "mcp(hub/chrome_devtools__resize_page)",
+      "command(pnpm exec oxlint)",
+      "command(pnpm --filter=web run typecheck)",
+      "command(herdr)",
+      "mcp(hub/chrome_devtools__drag)",
+      "command(agent-browser)",
+      "mcp(hub/chrome_devtools__list_network_requests)",
+      "mcp(hub/chrome_devtools__performance_start_trace)",
+      "mcp(hub/chrome_devtools__performance_stop_trace)"
     ],
     "deny": [
       "command(rm -rf *)",

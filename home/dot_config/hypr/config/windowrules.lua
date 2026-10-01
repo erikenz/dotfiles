@@ -51,6 +51,7 @@ hl.window_rule({
 	size = { "monitor_w", "monitor_h" },
 	sync_fullscreen = true,
 	immediate = true,
+	confine_pointer = true,
 })
 hl.window_rule({
 	match = {
