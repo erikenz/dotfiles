@@ -76,7 +76,7 @@ alias ha='herdr agent list'
 alias hstop='herdr server stop'
 
 # Herdr Dev Session Shortcuts
-alias hd='herdr session attach dev'
+alias hd='herdr_dev_session_start'
 alias hds='herdr --session dev status'
 alias hdw='herdr --session dev workspace list'
 alias hdt='herdr --session dev tab list'

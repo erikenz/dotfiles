@@ -92,7 +92,8 @@ function __herdr_open_workspace --description "Open or focus a Herdr workspace b
     end
 
     if not herdr --session "$session" status 2>/dev/null | string match -q "*status: running*"
-        setsid herdr --session "$session" server >/dev/null 2>&1 &
+        systemctl --user start herdr@$session.service 2>/dev/null
+        or setsid herdr --session "$session" server >/dev/null 2>&1 &
         set -l attempts 0
         while not herdr --session "$session" status 2>/dev/null | string match -q "*status: running*"
             set attempts (math $attempts + 1)
@@ -163,20 +164,24 @@ end
 
 # Persistent Herdr Session for Local Development
 function herdr_dev_session_start --description "Launch or attach to the persistent 'dev' Herdr session"
-    herdr session attach dev
+    systemctl --user start herdr@dev.service
+    and herdr session attach dev $argv
 end
 
 function herdr_dev_session_stop --description "Stop the 'dev' Herdr session"
-    herdr session stop dev
+    systemctl --user stop herdr@dev.service 2>/dev/null
+    or herdr session stop dev
 end
 
 # Isolated Herdr Session for Home Server (192.168.0.101)
 function herdr_server_session_start --description "Launch or attach to an isolated Herdr session for the home server"
-    herdr session attach server
+    systemctl --user start herdr@server.service
+    and herdr session attach server $argv
 end
 
 function herdr_server_session_stop --description "Stop the isolated 'server' Herdr session"
-    herdr session stop server
+    systemctl --user stop herdr@server.service 2>/dev/null
+    or herdr session stop server
 end
 
 # Two-Way Mobile <-> Laptop Clipboard Sync (Termux API <-> Wayland wl-clipboard)

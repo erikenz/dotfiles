@@ -138,7 +138,8 @@
       "command(agent-browser)",
       "mcp(hub/chrome_devtools__list_network_requests)",
       "mcp(hub/chrome_devtools__performance_start_trace)",
-      "mcp(hub/chrome_devtools__performance_stop_trace)"
+      "mcp(hub/chrome_devtools__performance_stop_trace)",
+      "command(pnpm exec turbo)"
     ],
     "deny": [
       "command(rm -rf *)",
