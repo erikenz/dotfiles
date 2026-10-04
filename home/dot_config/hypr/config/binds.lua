@@ -99,7 +99,7 @@ hl.bind(mainMod .. " + ALT + Return",
     { desc = "Terminal with tmux session" })
 hl.bind(mainMod .. " + SHIFT + ALT + B", hl.dsp.exec_cmd(launchPrefix .. BROWSER .. " --private-window"),
     { desc = "Open private browser window" })
-hl.bind(mainMod .. " + SHIFT + F", hl.dsp.exec_cmd(launchPrefix .. FILE_MANAGER), { desc = "Open file manager" })
+hl.bind(mainMod .. " + SHIFT + F", hl.dsp.exec_cmd(binDir .. "launch-or-focus-tui yazi"), { desc = "Open file manager (Yazi)" })
 hl.bind("XF86Calculator", hl.dsp.exec_cmd(launchPrefix .. CALCULATOR), { desc = "Open calculator" })
 
 -- User custom app launchers (using launch-or-focus)

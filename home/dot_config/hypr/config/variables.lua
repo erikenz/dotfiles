@@ -1,7 +1,7 @@
 -- Hyprland default apps
 
 TERMINAL     = "ghostty"
-FILE_MANAGER = "dolphin"
+FILE_MANAGER = "yazi"
 BROWSER      = "vivaldi"
 EDITOR       = "nvim"
 CALCULATOR   = "gnome-calculator"
