@@ -1,0 +1,34 @@
+[Added Associations]
+application/json=nvim.desktop;
+application/pdf=org.pwmt.zathura.desktop;
+video/mp4=vlc.desktop;
+x-scheme-handler/t3code=t3code.desktop;
+
+[Default Applications]
+application/json=nvim.desktop;
+application/pdf=org.pwmt.zathura.desktop
+text/html=vivaldi-stable.desktop
+video/mp4=vlc.desktop;
+x-scheme-handler/about=vivaldi-stable.desktop
+x-scheme-handler/discord=vesktop.desktop
+x-scheme-handler/http=vivaldi-stable.desktop
+x-scheme-handler/https=vivaldi-stable.desktop
+x-scheme-handler/stremio=stremio-enhanced.desktop
+x-scheme-handler/unknown=vivaldi-stable.desktop
+x-scheme-handler/t3code=com.t3tools.T3Code.desktop
+image/png=imv-dir.desktop
+image/jpeg=imv-dir.desktop
+image/jpg=imv-dir.desktop
+image/webp=imv-dir.desktop
+image/gif=imv-dir.desktop
+image/bmp=imv-dir.desktop
+image/tiff=imv-dir.desktop
+image/svg+xml=imv-dir.desktop
+image/avif=imv-dir.desktop
+image/heif=imv-dir.desktop
+image/jxl=imv-dir.desktop
+image/pjpeg=imv-dir.desktop
+image/x-png=imv-dir.desktop
+image/x-bmp=imv-dir.desktop
+image/x-farbfeld=imv-dir.desktop
+image/qoi=imv-dir.desktop
