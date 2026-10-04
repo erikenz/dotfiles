@@ -1,0 +1,85 @@
+# ~/.config/imv/config
+
+[options]
+suppress_default_binds = true
+background = 1e1e2e
+scaling_mode = full
+upscaling_method = linear
+loop_input = true
+overlay = false
+overlay_font = monospace:12
+overlay_text = [${imv_current_index}/${imv_file_count}] (${imv_scale}%) [${imv_width}x${imv_height}] ${imv_current_file}
+overlay_position_bottom = true
+title_text = imv - [${imv_current_index}/${imv_file_count}] ${imv_current_file}
+
+[aliases]
+# Custom aliases for command mode (accessed via ':')
+q = quit
+w = close
+
+[binds]
+# Quit and Close
+q = quit
+<Escape> = quit
+x = close
+
+# Image navigation (Vim style + Arrows)
+n = next
+p = prev
+<Shift+N> = prev
+<bracketright> = next
+<bracketleft> = prev
+<Right> = next
+<Left> = prev
+<BackSpace> = prev
+gg = goto 1
+<Shift+G> = goto -1
+
+# Panning (Vim hjkl)
+h = pan 50 0
+j = pan 0 -50
+k = pan 0 50
+l = pan -50 0
+
+# Fast Panning (Shift + hjkl)
+<Shift+H> = pan 200 0
+<Shift+J> = pan 0 -200
+<Shift+K> = pan 0 200
+<Shift+L> = pan -200 0
+
+# Zooming
+i = zoom 1
+o = zoom -1
+<Shift+plus> = zoom 1
+<equal> = zoom 1
+<Up> = zoom 1
+<minus> = zoom -1
+<Down> = zoom -1
+a = zoom actual
+c = center
+r = reset
+
+# Rotation and Flipping
+<Shift+R> = rotate by 90
+<Ctrl+r> = rotate by 90
+<Ctrl+Shift+R> = rotate by 270
+m = flip horizontal
+<Shift+M> = flip vertical
+
+# Display & Layout
+f = fullscreen
+d = overlay
+s = scaling next
+<Shift+S> = upscaling next
+
+# Clipboard (Yank)
+y = exec echo -n "$imv_current_file" | wl-copy
+<Shift+Y> = exec wl-copy --type "$(file -b --mime-type "$imv_current_file")" < "$imv_current_file"
+
+# Animations / GIFs
+<period> = next_frame
+<space> = toggle_playing
+
+# Slideshow
+t = slideshow +1
+<Shift+T> = slideshow -1
