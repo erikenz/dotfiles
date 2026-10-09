@@ -1,7 +1,7 @@
 [tools]
 agy = "latest"
 bun = "latest"
-herdr = "latest"
+herdr = "0.9.3"
 node = "lts"
 "npm:@dokploy/cli" = "latest"
 "npm:@earendil-works/pi-coding-agent" = "latest"

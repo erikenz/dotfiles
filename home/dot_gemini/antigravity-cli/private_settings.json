@@ -127,7 +127,8 @@
       "mcp(hub/chrome_devtools__wait_for)",
       "mcp(hub/chrome_devtools__fill_form)",
       "command(rg)",
-      "mcp(hub/chrome_devtools__get_network_request)"
+      "mcp(hub/chrome_devtools__get_network_request)",
+      "command(pnpm --filter @repo/web exec tsc --noEmit)"
     ],
     "deny": [
       "command(rm -rf *)",
