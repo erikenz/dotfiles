@@ -128,7 +128,13 @@
       "mcp(hub/chrome_devtools__fill_form)",
       "command(rg)",
       "mcp(hub/chrome_devtools__get_network_request)",
-      "command(pnpm --filter @repo/web exec tsc --noEmit)"
+      "command(pnpm --filter @repo/web exec tsc --noEmit)",
+      "command(pnpm exec ultracite)",
+      "command(hyprctl)",
+      "command(ps)",
+      "command(which)",
+      "mcp(hub/chrome_devtools__hover)",
+      "command(pnpm exec tsc)"
     ],
     "deny": [
       "command(rm -rf *)",
@@ -162,7 +168,8 @@
     "/home/erikzen/Projects/javaClases",
     "/home/erikzen/.config/zed",
     "/home/erikzen/Projects/biome-plugin-payload",
-    "/home/erikzen/.config/astronvim"
+    "/home/erikzen/.config/astronvim",
+    "/home/erikzen/Projects/watchdeck"
   ],
   "vimInsertFirst": true
 }

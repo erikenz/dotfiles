@@ -224,7 +224,7 @@
         "provider": "opencode",
         "model": "go/deepseek-v4.1-flash",
         "enable_thinking": true,
-        "effort": "max"
+        "effort": "high"
       }
     ],
     "use_modifier_to_send": true,
@@ -238,7 +238,7 @@
     },
     "default_profile": "write",
     "default_model": {
-      "effort": "max",
+      "effort": "high",
       "enable_thinking": true,
       "provider": "opencode",
       "model": "go/deepseek-v4.1-flash",
@@ -255,7 +255,7 @@
   },
   "auto_install_extensions": {
     "comment": true,
-    "biome": true,
+    "oxc": true,
     "dockerfile": true,
     "git-firefly": true,
     "html": true,
@@ -278,10 +278,10 @@
         "!typescript-language-server",
         "...",
       ],
-      "formatter": { "language_server": { "name": "biome" } },
+      "formatter": { "language_server": { "name": "oxfmt" } },
       "code_actions_on_format": {
-        "source.fixAll.biome": true,
-        "source.organizeImports.biome": true,
+        "source.fixAll.oxc": true,
+        "source.organizeImports.oxc": true,
       },
     },
     "TypeScript": {
@@ -291,10 +291,10 @@
         "!typescript-language-server",
         "...",
       ],
-      "formatter": { "language_server": { "name": "biome" } },
+      "formatter": { "language_server": { "name": "oxfmt" } },
       "code_actions_on_format": {
-        "source.fixAll.biome": true,
-        "source.organizeImports.biome": true,
+        "source.fixAll.oxc": true,
+        "source.organizeImports.oxc": true,
       },
     },
     "TSX": {
@@ -304,17 +304,14 @@
         "!typescript-language-server",
         "...",
       ],
-      "formatter": { "language_server": { "name": "biome" } },
+      "formatter": { "language_server": { "name": "oxfmt" } },
       "code_actions_on_format": {
-        "source.fixAll.biome": true,
-        "source.organizeImports.biome": true,
+        "source.fixAll.oxc": true,
+        "source.organizeImports.oxc": true,
       },
     },
     "CSS": {
-      "formatter": { "language_server": { "name": "biome" } },
-      "code_actions_on_format": {
-        "source.fixAll.biome": true,
-      },
+      "formatter": { "language_server": { "name": "oxfmt" } },
     },
     "SCSS": {
       "format_on_save": "on",
@@ -334,6 +331,22 @@
     },
   },
   "lsp": {
+    "oxfmt": {
+      "initialization_options": {
+        "settings": {
+          "fmt.configPath": null,
+          "run": "onSave"
+        }
+      }
+    },
+    "oxlint": {
+      "initialization_options": {
+        "settings": {
+          "configPath": null,
+          "run": "onType"
+        }
+      }
+    },
     "tailwindcss-language-server": {
       "settings": {
         "classFunctions": ["cva", "cx"],

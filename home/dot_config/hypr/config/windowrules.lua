@@ -219,6 +219,13 @@ hl.window_rule({
 	monitor = MONITOR1,
 })
 
+-- WatchDeck workspace
+hl.window_rule({
+	match = { class = "^(watchdeck)$" },
+	workspace = 7,
+	monitor = MONITOR1,
+})
+
 -- Chromium Debug workspace
 hl.window_rule({
 	match = { class = "^(chromium)$" },
