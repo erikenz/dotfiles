@@ -1,0 +1,26 @@
+# ~/.config/yazi/keymap.toml
+
+[mgr]
+prepend_keymap = [
+	# Direct Goto Jumps (g + key)
+	{ on = [ "g", "p" ], run = "cd ~/Projects",     desc = "Go to ~/Projects" },
+	{ on = [ "g", "v" ], run = "cd ~/Vault",        desc = "Go to ~/Vault" },
+	{ on = [ "g", "D" ], run = "cd ~/Documents",    desc = "Go to ~/Documents" },
+	{ on = [ "g", "P" ], run = "cd ~/Pictures",     desc = "Go to ~/Pictures" },
+	{ on = [ "g", "V" ], run = "cd ~/Videos",       desc = "Go to ~/Videos" },
+	{ on = [ "g", "H" ], run = "cd ~/.config/hypr",  desc = "Go to ~/.config/hypr" },
+
+	# Dynamic Bookmarks (yamb)
+	# Jump to bookmarks menu (FZF fuzzy finder)
+	{ on = [ "b" ], run = "plugin yamb -- jump_by_fzf", desc = "Jump bookmark (fzf)" },
+	{ on = [ "'" ], run = "plugin yamb -- jump_by_key", desc = "Jump bookmark by key" },
+
+	# Bookmark management (u prefix)
+	{ on = [ "u", "a" ], run = "plugin yamb -- save",          desc = "Bookmark/pin current folder" },
+	{ on = [ "u", "g" ], run = "plugin yamb -- jump_by_key",   desc = "Jump bookmark by key" },
+	{ on = [ "u", "G" ], run = "plugin yamb -- jump_by_fzf",   desc = "Jump bookmark (fzf)" },
+	{ on = [ "u", "d" ], run = "plugin yamb -- delete_by_key", desc = "Delete bookmark by key" },
+	{ on = [ "u", "D" ], run = "plugin yamb -- delete_by_fzf", desc = "Delete bookmark (fzf)" },
+	{ on = [ "u", "r" ], run = "plugin yamb -- rename_by_key", desc = "Rename bookmark by key" },
+	{ on = [ "u", "A" ], run = "plugin yamb -- delete_all",    desc = "Delete all bookmarks" },
+]
