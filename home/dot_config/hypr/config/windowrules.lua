@@ -222,7 +222,7 @@ hl.window_rule({
 -- WatchDeck workspace
 hl.window_rule({
 	match = { class = "^(watchdeck)$" },
-	workspace = 7,
+	workspace = "7 silent",
 	monitor = MONITOR1,
 })
 

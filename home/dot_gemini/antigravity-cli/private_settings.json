@@ -134,7 +134,13 @@
       "command(ps)",
       "command(which)",
       "mcp(hub/chrome_devtools__hover)",
-      "command(pnpm exec tsc)"
+      "command(pnpm exec tsc)",
+      "command(git add)",
+      "command(curl -s http://localhost:9222/json)",
+      "command(curl -s http://127.0.0.1:9222/json)",
+      "command(curl -s -H \"Host: localhost\" http://127.0.0.1:9222/json)",
+      "command(strings)",
+      "command(echo)"
     ],
     "deny": [
       "command(rm -rf *)",
