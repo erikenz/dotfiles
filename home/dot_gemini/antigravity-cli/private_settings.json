@@ -140,7 +140,8 @@
       "command(curl -s http://127.0.0.1:9222/json)",
       "command(curl -s -H \"Host: localhost\" http://127.0.0.1:9222/json)",
       "command(strings)",
-      "command(echo)"
+      "command(echo)",
+      "command(sqlite3)"
     ],
     "deny": [
       "command(rm -rf *)",
@@ -175,7 +176,8 @@
     "/home/erikzen/.config/zed",
     "/home/erikzen/Projects/biome-plugin-payload",
     "/home/erikzen/.config/astronvim",
-    "/home/erikzen/Projects/watchdeck"
+    "/home/erikzen/Projects/watchdeck",
+    "/home/erikzen/Projects/mcp-ctl"
   ],
   "vimInsertFirst": true
 }

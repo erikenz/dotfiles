@@ -8,3 +8,7 @@ keybind = ctrl+h=csi:104;5u
 keybind = ctrl+j=csi:106;5u
 keybind = ctrl+k=csi:107;5u
 keybind = ctrl+l=csi:108;5u
+
+# Custom font mapping for Delta app icon
+font-codepoint-map = U+E060=Delta Symbols
+font-codepoint-map = U+E000=Delta Symbols

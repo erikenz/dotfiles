@@ -7,5 +7,6 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("xhost +SI:localuser:root")
     hl.exec_cmd("kdeconnect-indicator")
     hl.exec_cmd("input-remapper-control --command autoload")
+    hl.exec_cmd("mcp-ctl up")
 end)
 
