@@ -31,7 +31,6 @@ hl.window_rule({
 	content = "game",
 	sync_fullscreen = true,
 })
-hl.window_rule({ match = { class = gamingApps }, workspace = gamingWorkspace })
 hl.window_rule({ match = { class = "^(steam)$", title = "^(Friends List|Freundesliste)$" }, float = true })
 hl.window_rule({
 	match = { class = "^(steam)$", title = "^(Launching\\.{3})$" },
@@ -40,28 +39,15 @@ hl.window_rule({
 	workspace = gamingWorkspace,
 })
 hl.window_rule({
-	match = {
-		class = gamingApps,
-		title = "^(.+)$",
-		initial_title = "negative:^(.*\\\\home\\\\.*)$",
-	},
+	match = { class = gamingApps },
 	content = "game",
 	decorate = false,
 	fullscreen_state = 2,
+	opaque = true,
 	size = { "monitor_w", "monitor_h" },
 	sync_fullscreen = true,
 	immediate = true,
 	confine_pointer = true,
-})
-hl.window_rule({
-	match = {
-		class = "^(steam_app.*)$",
-		initial_title = "^$",
-	},
-	center = true,
-	float = true,
-	fullscreen = false,
-	fullscreen_state = 0,
 	workspace = gamingWorkspace,
 })
 
@@ -212,6 +198,13 @@ hl.window_rule({
 	monitor = MONITOR1,
 })
 
+-- Delta workspace
+hl.window_rule({
+	match = { class = "^(dev\\.zed\\.Delta)$" },
+	workspace = 3,
+	monitor = MONITOR1,
+})
+
 -- Ferdium workspace
 hl.window_rule({
 	match = { class = "^( Ferdium)$" },
@@ -223,6 +216,13 @@ hl.window_rule({
 hl.window_rule({
 	match = { class = "^(watchdeck)$" },
 	workspace = "7 silent",
+	monitor = MONITOR1,
+})
+
+-- Stremio workspace
+hl.window_rule({
+	match = { class = "^(stremio)$" },
+	workspace = 7,
 	monitor = MONITOR1,
 })
 

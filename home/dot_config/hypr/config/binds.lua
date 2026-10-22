@@ -119,7 +119,13 @@ hl.bind(mainMod .. " + SHIFT + O", hl.dsp.exec_cmd(binDir .. "launch-or-focus ob
     { desc = "Open Obsidian" })
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd(binDir .. "launch-or-focus steam 'uwsm app -- steam'"),
     { desc = "Open Steam" })
+hl.bind(mainMod .. " + CONTROL + SHIFT + S",
+    hl.dsp.exec_cmd(binDir .. "launch-or-focus stremio 'uwsm app -- stremio'"),
+    { desc = "Open Stremio" })
 hl.bind(mainMod .. " + SHIFT + Z", hl.dsp.exec_cmd("uwsm app -- zeditor"), { desc = "Open Zed editor" })
+hl.bind(mainMod .. " + CONTROL + SHIFT + Z",
+    hl.dsp.exec_cmd(binDir .. "launch-or-focus delta 'uwsm app -- delta open'"),
+    { desc = "Open Delta" })
 hl.bind(mainMod .. " + SHIFT + T", hl.dsp.exec_cmd(launchPrefix .. TERMINAL .. " -e " .. EDITOR), { desc = "Open Neovim" })
 hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd("uwsm app -- bitwarden-desktop"), { desc = "Open Bitwarden" })
 

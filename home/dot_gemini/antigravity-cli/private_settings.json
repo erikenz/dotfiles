@@ -177,7 +177,8 @@
     "/home/erikzen/Projects/biome-plugin-payload",
     "/home/erikzen/.config/astronvim",
     "/home/erikzen/Projects/watchdeck",
-    "/home/erikzen/Projects/mcp-ctl"
+    "/home/erikzen/Projects/mcp-ctl",
+    "/home/erikzen/Projects/watchdeck/.delta/worktrees/wr6fddbfeda1/watchdeck"
   ],
   "vimInsertFirst": true
 }
