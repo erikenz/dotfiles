@@ -12,7 +12,7 @@
     "pane.focus_up": "none",
     "pane.focus_down": "none"
   },
-  "model": "Gemini 3.8 Flash (Medium)",
+  "model": "Gemini 4 Argon (Medium)",
   "notifications": true,
   "permissions": {
     "allow": [

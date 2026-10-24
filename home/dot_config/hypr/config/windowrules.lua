@@ -221,7 +221,7 @@ hl.window_rule({
 
 -- Stremio workspace
 hl.window_rule({
-	match = { class = "^(stremio)$" },
+	match = { class = "^(com\\.stremio\\.stremio|stremio)$" },
 	workspace = 7,
 	monitor = MONITOR1,
 })
