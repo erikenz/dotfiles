@@ -102,3 +102,17 @@ README.md
 .grok/**
 .hermes/**
 .openclaw/**
+# --- T3 Code (auth, secrets, databases, logs, worktrees, caches) ---
+.t3/bin/**
+.t3/caches/**
+.t3/worktrees/**
+.t3/userdata/clerk-tokens.json
+.t3/userdata/environment-id
+.t3/userdata/secrets/**
+.t3/userdata/*.sqlite*
+.t3/userdata/logs/**
+.t3/userdata/attachments/**
+.t3/userdata/browser-artifacts/**
+.t3/userdata/opencode-servers/**
+.t3/userdata/usage-*.json
+.t3/userdata/server-owner.sqlite*
