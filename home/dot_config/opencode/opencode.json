@@ -27,8 +27,13 @@
   "mcp": {
     "hub": {
       "type": "local",
-      "command": ["npx", "-y", "mcp-remote", "http://localhost:37373/mcp"],
-      "timeout": 20000
+      "command": [
+        "npx",
+        "-y",
+        "mcp-remote",
+        "http://127.0.0.1:37373/mcp"
+      ],
+      "timeout": 60000
     }
   }
 }

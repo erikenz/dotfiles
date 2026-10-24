@@ -12,7 +12,7 @@
     "pane.focus_up": "none",
     "pane.focus_down": "none"
   },
-  "model": "Gemini 4 Argon (Medium)",
+  "model": "Gemini 3.8 Flash (Medium)",
   "notifications": true,
   "permissions": {
     "allow": [
@@ -163,6 +163,7 @@
     "showMcpStatus": true,
     "theme": "catppuccin"
   },
+  "toolPermission": "always-proceed",
   "trustedWorkspaces": [
     "/home/erikzen/.config/hypr",
     "/home/erikzen/.config/nvim",
@@ -178,7 +179,8 @@
     "/home/erikzen/.config/astronvim",
     "/home/erikzen/Projects/watchdeck",
     "/home/erikzen/Projects/mcp-ctl",
-    "/home/erikzen/Projects/watchdeck/.delta/worktrees/wr6fddbfeda1/watchdeck"
+    "/home/erikzen/Projects/watchdeck/.delta/worktrees/wr6fddbfeda1/watchdeck",
+    "/home/erikzen/Projects/balcon-padel/.delta/worktrees/5a77tsjeffat/balcon-padel"
   ],
   "vimInsertFirst": true
 }

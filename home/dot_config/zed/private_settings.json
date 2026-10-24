@@ -35,7 +35,7 @@
     "hub": {
       "enabled": true,
       "command": "npx",
-      "args": ["-y", "mcp-remote", "http://localhost:37373/mcp"],
+      "args": ["-y", "mcp-remote", "http://127.0.0.1:37373/mcp"],
     },
   },
   "agent_servers": {
