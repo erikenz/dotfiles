@@ -163,3 +163,17 @@ README.md
 .agent-browser/**
 .cc-safety-net/**
 .pi-lens/**
+# --- Flatpak, toolchain caches, certificates & third-party app states ---
+.var/**
+.bun/**
+.cargo/**
+.gradle/**
+.npm/**
+.pki/**
+.nv/**
+.zoom/**
+.config/zoom/**
+.config/heroic/**
+.config/obsidian/**
+.config/dconf/**
+.config/configstore/**
