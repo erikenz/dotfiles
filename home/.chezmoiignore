@@ -7,9 +7,15 @@ node_modules/**
 .cache/**
 **/.cache/**
 **/.DS_Store
-*.swp
-*.bak
-*~
+**/*.swp
+**/*.bak
+**/*.bak*
+**/*.old
+**/*.orig
+**/*~
+**/*.log
+**/*.pid
+**/*.sock
 
 # --- Volatile runtime logs, session history, tokens, SSH keys, and cache ---
 .ssh/id_*
@@ -116,3 +122,44 @@ README.md
 .t3/userdata/opencode-servers/**
 .t3/userdata/usage-*.json
 .t3/userdata/server-owner.sqlite*
+# --- Cloudflare, Sentry, Supabase credentials ---
+.cloudflared/**
+.sentryclirc
+.sentry/**
+.supabase/**
+
+# --- MCP & mcp-ctl secrets, profiles & auth ---
+.config/mcp-ctl/.env*
+.config/mcp-ctl/profiles/**
+.local/state/mcp-ctl/**
+.local/share/mcp-ctl/**
+.mcp-auth/**
+
+# --- Bitwarden & GitHub Copilot session keys ---
+.config/Bitwarden/**
+.config/rbw/**
+.config/github-copilot/**
+
+# --- Browsers, Electron app data & messenger session stores ---
+.config/zen/**
+.config/chromium/**
+.config/chromium-headless/**
+.config/google-chrome-for-testing/**
+.config/t3code/**
+.config/t3code-v2/**
+.config/Ferdium/**
+.config/vesktop/**
+
+# --- Ephemeral shell history, games & agent state ---
+.pulse-cookie
+.node_repl_history
+.viminfo
+.steam/**
+.steampath
+.steampid
+.playwright/**
+.playwright-mcp/**
+.posthog/**
+.agent-browser/**
+.cc-safety-net/**
+.pi-lens/**
