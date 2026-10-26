@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "opencode/deepseek-v4-flash",
+  "model": "opencode/deepseek-v4.1-flash",
   "small_model": "gemini/gemini-3.6-flash",
   "plugin": [
     "cc-safety-net"
