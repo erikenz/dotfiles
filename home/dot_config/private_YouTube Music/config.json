@@ -1,0 +1,98 @@
+{
+	"window-size": {
+		"width": 1920,
+		"height": 1080
+	},
+	"window-maximized": true,
+	"window-position": {
+		"x": 0,
+		"y": 0
+	},
+	"url": "https://music.youtube.com/watch?v=AHaIdOXzzuE&list=RDTMAK5uy_n_5IN6hzAOwdCnM8D8rzrs3vDl12UcZpA&index=0",
+	"options": {
+		"tray": false,
+		"appVisible": true,
+		"autoUpdates": false,
+		"alwaysOnTop": false,
+		"hideMenu": false,
+		"hideMenuWarned": false,
+		"startAtLogin": false,
+		"disableHardwareAcceleration": false,
+		"removeUpgradeButton": false,
+		"restartOnConfigChanges": false,
+		"trayClickPlayPause": false,
+		"autoResetAppCache": false,
+		"resumeOnStart": false,
+		"likeButtons": "",
+		"proxy": "",
+		"startingPage": "",
+		"overrideUserAgent": false,
+		"usePodcastParticipantAsArtist": false,
+		"themes": [
+			"/home/erikzen/.config/YouTube Music/noctalia.css"
+		]
+	},
+	"plugins": {
+		"notifications": {},
+		"video-toggle": {
+			"mode": "custom",
+			"enabled": true,
+			"hideVideo": true,
+			"forceHide": false,
+			"align": "left"
+		},
+		"precise-volume": {
+			"enabled": true,
+			"steps": "1",
+			"arrowsShortcut": true,
+			"globalShortcuts": {
+				"volumeUp": "F18",
+				"volumeDown": "F16"
+			},
+			"savedVolume": 45
+		},
+		"discord": {
+			"listenAlong": true
+		},
+		"album-actions": {
+			"enabled": true
+		},
+		"bypass-age-restrictions": {
+			"enabled": true
+		},
+		"synced-lyrics": {
+			"enabled": true,
+			"preciseTiming": true,
+			"showLyricsEvenIfInexact": true,
+			"showTimeCodes": false,
+			"defaultTextString": "♪",
+			"lineEffect": "fancy",
+			"romanization": true,
+			"preferredProvider": "YTMusic"
+		},
+		"custom-output-device": {
+			"enabled": true,
+			"output": "default",
+			"devices": {
+				"default": "Default",
+				"912121c0e83bd0d965d8ec1d62d712844066e05e76fa1c0d1e69bdf9ea1aed72": "HyperX Cloud Flight Wireless Analog Stereo",
+				"20e781ceae41b350ccf440887848f454de60e125d2466399a40f758d997ac848": "Alder Lake PCH-P High Definition Audio Controller HDMI / DisplayPort 3 Output (Stereo)",
+				"3639ce9aef649e5327df4f1c3cb978fbebc6cb522e265d42b04b7f2f0b98d167": "Alder Lake PCH-P High Definition Audio Controller HDMI / DisplayPort 2 Output (Stereo)",
+				"35749bf031dcf6a4047072c5ec7f90f0f55432ad46606afeb9f86ac30ad23104": "Alder Lake PCH-P High Definition Audio Controller HDMI / DisplayPort 1 Output [SAMSUNG] (Stereo)",
+				"268f7b7045add26b1e2555427112c6f5c662f54181016aa9b411edb70bc8b9ae": "Alder Lake PCH-P High Definition Audio Controller Headphones",
+				"5f3dcf6d0c84c53ca94e97e643e125ee283d046cf0c9e5e98deeac7f5051f781": "Alder Lake PCH-P High Definition Audio Controller Speaker"
+			}
+		},
+		"shortcuts": {
+			"enabled": true
+		},
+		"exponential-volume": {
+			"enabled": true
+		}
+	},
+	"__internal__": {
+		"migrations": {
+			"version": "3.12.0"
+		}
+	}
+}
