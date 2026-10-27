@@ -149,6 +149,9 @@ README.md
 .config/t3code-v2/**
 .config/Ferdium/**
 .config/vesktop/**
+.config/YouTube Music/*
+!.config/YouTube Music/config.json
+!.config/YouTube Music/noctalia.css
 
 # --- Ephemeral shell history, games & agent state ---
 .pulse-cookie
