@@ -162,6 +162,10 @@ hl.bind(mainMod .. " + CONTROL + equal", hl.dsp.exec_cmd(noctCall .. "volume-up"
     { locked = true, repeating = true, desc = "Volume up" })
 hl.bind(mainMod .. " + CONTROL + minus", hl.dsp.exec_cmd(noctCall .. "volume-down"),
     { locked = true, repeating = true, desc = "Volume down" })
+hl.bind(mainMod .. " + ALT + equal", hl.dsp.exec_cmd(binDir .. "ytm-volume up"),
+    { locked = true, repeating = true, desc = "YouTube Music volume up" })
+hl.bind(mainMod .. " + ALT + minus", hl.dsp.exec_cmd(binDir .. "ytm-volume down"),
+    { locked = true, repeating = true, desc = "YouTube Music volume down" })
 
 -- Media playback (physical keys)
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd(noctCall .. "media toggle"), { locked = true, desc = "Toggle play/pause" })
@@ -184,6 +188,10 @@ hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd(noctCall .. "brightness-down"),
     { locked = true, repeating = true, desc = "Brightness down" })
 
 -- G600 mouse binds
+hl.bind("XF86Launch7", hl.dsp.exec_cmd(binDir .. "ytm-volume down"),
+    { locked = true, repeating = true, desc = "YouTube Music volume down (G600 G12)" })
+hl.bind("XF86Launch9", hl.dsp.exec_cmd(binDir .. "ytm-volume up"),
+    { locked = true, repeating = true, desc = "YouTube Music volume up (G600 G14)" })
 hl.bind("F19", hl.dsp.exec_cmd("wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%-"), { desc = "Volume down (G600)" })
 hl.bind("XF86TouchpadToggle", hl.dsp.exec_cmd("wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"),
     { desc = "Volume up (G600)" })

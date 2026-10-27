@@ -1,0 +1,90 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [ -z "${DBUS_SESSION_BUS_ADDRESS:-}" ] && [ -n "${XDG_RUNTIME_DIR:-}" ] && [ -S "$XDG_RUNTIME_DIR/bus" ]; then
+    export DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus"
+fi
+
+DIR="${XDG_RUNTIME_DIR:-/tmp}/ytm-volume"
+mkdir -p "$DIR"
+LOCK="$DIR/lock"
+STATE="$DIR/state"
+
+exec 200>"$LOCK"
+flock -x 200
+
+ACTION="${1:-up}"
+STEP="${2:-1}"
+
+DELTA="$STEP"
+if [ "$ACTION" = "down" ] || [ "$ACTION" = "-" ]; then
+    DELTA="-$STEP"
+fi
+
+NOW=$(date +%s%3N)
+CUR=""
+
+if [ -f "$STATE" ]; then
+    read -r LAST_TIME LAST_VOL < "$STATE" || true
+    if [ -n "${LAST_TIME:-}" ] && [ -n "${LAST_VOL:-}" ]; then
+        DIFF=$((NOW - LAST_TIME))
+        # Keep cached target during active repeat bursts (up to 800ms)
+        if [ "$DIFF" -ge 0 ] && [ "$DIFF" -lt 800 ]; then
+            CUR="$LAST_VOL"
+        fi
+    fi
+fi
+
+parse_vol() {
+    local v="$1"
+    if [[ "$v" =~ ^0*1(\.0+)?$ ]]; then
+        echo 100; return
+    fi
+    if [[ "$v" =~ ^0+(\.0+)?$ ]]; then
+        echo 0; return
+    fi
+    if [[ "$v" =~ ^0*\.([0-9]{1,2}) ]]; then
+        local dec="${BASH_REMATCH[1]}"
+        if [ ${#dec} -eq 1 ]; then
+            echo "$(( 10#$dec * 10 ))"
+        else
+            echo "$(( 10#$dec ))"
+        fi
+        return
+    fi
+    echo 0
+}
+
+format_vol() {
+    local n="$1"
+    if [ "$n" -ge 100 ]; then
+        echo "1.0"
+    elif [ "$n" -le 0 ]; then
+        echo "0.0"
+    elif [ "$n" -lt 10 ]; then
+        echo "0.0$n"
+    else
+        echo "0.$n"
+    fi
+}
+
+if [ -z "$CUR" ]; then
+    RAW=$(busctl --user get-property org.mpris.MediaPlayer2.YoutubeMusic /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player Volume 2>/dev/null || true)
+    if [ -z "$RAW" ]; then
+        exit 0
+    fi
+    VAL="${RAW#d }"
+    CUR=$(parse_vol "$VAL")
+fi
+
+NEW=$((CUR + DELTA))
+if [ "$NEW" -gt 100 ]; then
+    NEW=100
+elif [ "$NEW" -lt 0 ]; then
+    NEW=0
+fi
+
+echo "$NOW $NEW" > "$STATE"
+
+NEW_FLOAT=$(format_vol "$NEW")
+busctl --user set-property org.mpris.MediaPlayer2.YoutubeMusic /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player Volume d "$NEW_FLOAT" >/dev/null 2>&1 || true

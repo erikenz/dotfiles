@@ -61,8 +61,8 @@
       "npm *": { "action": "deny", "reason": "This workspace is pinned to pnpm (pi npmCommand). Use pnpm instead." }
     },
 
-    "mcp": { "*": "ask" },
-    "skill": { "*": "ask" },
+    "mcp": { "*": "allow" },
+    "skill": { "*": "allow" },
 
     "external_directory": {
       "*": "ask",
