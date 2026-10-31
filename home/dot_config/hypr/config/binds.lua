@@ -126,8 +126,8 @@ hl.bind(mainMod .. " + SHIFT + Z", hl.dsp.exec_cmd("uwsm app -- zeditor"), { des
 hl.bind(mainMod .. " + CONTROL + SHIFT + Z",
     hl.dsp.exec_cmd(binDir .. "launch-or-focus delta 'uwsm app -- delta open'"),
     { desc = "Open Delta" })
-hl.bind(mainMod .. " + SHIFT + T", hl.dsp.exec_cmd(launchPrefix .. TERMINAL .. " -e " .. EDITOR), { desc = "Open Neovim" })
-hl.bind(mainMod .. " + T",
+hl.bind(mainMod .. " + SHIFT + V", hl.dsp.exec_cmd(launchPrefix .. TERMINAL .. " -e " .. EDITOR), { desc = "Open Neovim" })
+hl.bind(mainMod .. " + SHIFT + T",
     hl.dsp.exec_cmd(binDir .. "launch-or-focus t3code 'uwsm app -- t3code'"),
     { desc = "Open T3 Code" })
 hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd("uwsm app -- bitwarden-desktop"), { desc = "Open Bitwarden" })
