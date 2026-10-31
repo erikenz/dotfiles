@@ -15,6 +15,11 @@
   "model": "Gemini 3.8 Flash (Medium)",
   "notifications": true,
   "permissions": {
+    "allow": [
+      "command(*)",
+      "read_file(*)",
+      "write_file(*)"
+    ],
     "deny": [
       "command(sudo *)",
       "command(su *)",
@@ -33,26 +38,7 @@
       "command(git push *--force*)",
       "command(git push *-f*)",
       "command(git push --force*)",
-      "command(git push -f*)",
-      "read_file(~/.ssh/*)",
-      "read_file(~/.aws/*)",
-      "read_file(~/.gnupg/*)",
-      "read_file(~/.netrc)",
-      "read_file(~/.config/gh/hosts.yml)",
-      "read_file(~/.kube/config)",
-      "read_file(~/.docker/config.json)",
-      "read_file(*.env)",
-      "read_file(*.env.*)",
-      "edit_file(*.env)",
-      "edit_file(*.env.*)",
-      "write_file(*.env)",
-      "write_file(*.env.*)"
-    ],
-    "allow": [
-      "command(*)",
-      "read_file(*)",
-      "write_file(*)",
-      "edit_file(*)"
+      "command(git push -f*)"
     ]
   },
   "plugins": [
