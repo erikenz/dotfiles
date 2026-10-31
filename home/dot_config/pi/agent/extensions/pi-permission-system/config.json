@@ -1,26 +1,15 @@
 {
   "$schema": "https://raw.githubusercontent.com/gotgenes/pi-packages/main/packages/pi-permission-system/schemas/permissions.schema.json",
-
   "debugLog": false,
   "permissionReviewLog": true,
   "yoloMode": false,
-  "doublePressToConfirm": true,
-
+  "doublePressToConfirm": false,
   "permission": {
-    "*": "ask",
-
+    "*": "allow",
     "read": "allow",
-    "ls": "allow",
-    "grep": "allow",
-    "find": "allow",
-    "cat": "allow",
-    "web_search": "allow",
-    "get_search_content": "allow",
-    "source_check": "allow",
-
-    "write": "ask",
-    "edit": "ask",
-
+    "write": "allow",
+    "edit": "allow",
+    "delete": "allow",
     "path": {
       "*": "allow",
       "*.env": "deny",
@@ -35,39 +24,92 @@
       "~/.kube/config": "deny",
       "~/.docker/config.json": "deny",
       "~/.config/pi/agent/auth.json": "deny",
-      "~/.config/opencode/auth.json": "deny",
-      "~/.local/share/opencode/opencode.db": "deny"
+      "~/.config/opencode/auth.json": "deny"
     },
-
     "bash": {
-      "*": "ask",
-      "git status*": "allow",
-      "git diff*": "allow",
-      "git log*": "allow",
-      "git show*": "allow",
-      "git branch*": "allow",
-      "git rev-parse*": "allow",
-      "git remote*": "allow",
-      "ls*": "allow",
-      "cat*": "allow",
-      "head*": "allow",
-      "tail*": "allow",
-      "wc*": "allow",
-      "pwd": "allow",
-      "echo*": "allow",
-      "which*": "allow",
-      "node --version": "allow",
-      "pnpm --version": "allow",
-      "npm *": { "action": "deny", "reason": "This workspace is pinned to pnpm (pi npmCommand). Use pnpm instead." }
+      "*": "allow",
+      "sudo *": "deny",
+      "su *": "deny",
+      "rm -rf *": "ask",
+      "rm -r *": "ask",
+      "rm -fr *": "ask",
+      "rm -rf node_modules*": "allow",
+      "rm -rf */node_modules*": "allow",
+      "rm -rf dist*": "allow",
+      "rm -rf build*": "allow",
+      "rm -rf .next*": "allow",
+      "rm -rf .turbo*": "allow",
+      "rm -rf .cache*": "allow",
+      "rm -rf /tmp/*": "allow",
+      "rm -rf /": "deny",
+      "rm -rf /*": "deny",
+      "rm -rf ~": "deny",
+      "rm -rf ~/*": "deny",
+      "rm -rf ~*": "deny",
+      "rm -rf $HOME": "deny",
+      "rm -rf $HOME/*": "deny",
+      "rm -rf $HOME*": "deny",
+      "rm -rf /home": "deny",
+      "rm -rf /home/*": "deny",
+      "rm -rf /boot*": "deny",
+      "rm -rf /etc*": "deny",
+      "rm -rf /usr*": "deny",
+      "rm -rf /bin*": "deny",
+      "rm -rf /sbin*": "deny",
+      "rm -rf /lib*": "deny",
+      "rm -rf /sys*": "deny",
+      "rm -rf /proc*": "deny",
+      "rm -rf /dev*": "deny",
+      "rm -rf /var*": "deny",
+      "rm -r /": "deny",
+      "rm -r /*": "deny",
+      "rm -r ~*": "deny",
+      "rm -r $HOME*": "deny",
+      "rm -r /home*": "deny",
+      "rm -r /boot*": "deny",
+      "rm -r /etc*": "deny",
+      "rm -r /usr*": "deny",
+      "rm -fr /": "deny",
+      "rm -fr /*": "deny",
+      "rm -fr ~*": "deny",
+      "rm -fr $HOME*": "deny",
+      "rm -fr /home*": "deny",
+      "rm -fr /boot*": "deny",
+      "rm -fr /etc*": "deny",
+      "rm -fr /usr*": "deny",
+      "dd *": "deny",
+      "mkfs*": "deny",
+      "chmod -R 777*": "deny",
+      "chmod 777*": "deny",
+      "shutdown*": "deny",
+      "reboot*": "deny",
+      "poweroff*": "deny",
+      "git reset --hard*": "deny",
+      "git push *--force*": "deny",
+      "git push *-f*": "deny",
+      "git push --force*": "deny",
+      "git push -f*": "deny",
+      "npm *": {
+        "action": "deny",
+        "reason": "This workspace is pinned to pnpm. Use pnpm instead."
+      }
     },
-
-    "mcp": { "*": "allow" },
-    "skill": { "*": "allow" },
-
-    "external_directory": {
+    "external_directory_read": {
+      "*": "allow"
+    },
+    "external_directory_write": {
       "*": "ask",
-      "~/.local/share/mise/installs/*": "allow",
-      "~/.cache/mise/*": "allow"
+      "/tmp/*": "allow",
+      "~/Projects/*": "allow",
+      "~/.t3/*": "allow",
+      "~/.agents/*": "allow",
+      "~/.config/pi/*": "allow"
+    },
+    "mcp": {
+      "*": "allow"
+    },
+    "skill": {
+      "*": "allow"
     }
   }
 }

@@ -26,7 +26,6 @@
       "command(rm -rf /)",
       "command(rm -rf /*)",
       "command(rm -rf ~*)",
-      "command(rm -rf *)",
       "command(dd *)",
       "command(mkfs*)",
       "command(chmod -R 777*)",
