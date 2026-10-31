@@ -207,7 +207,7 @@ hl.window_rule({
 
 -- T3 Code workspace
 hl.window_rule({
-	match = { class = "^([Tt]3code)$" },
+	match = { class = "^(com\\.t3tools\\.T3Code|[Tt]3code)$" },
 	workspace = 3,
 	monitor = MONITOR1,
 })
