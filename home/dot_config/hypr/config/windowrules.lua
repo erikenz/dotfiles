@@ -205,6 +205,13 @@ hl.window_rule({
 	monitor = MONITOR1,
 })
 
+-- T3 Code workspace
+hl.window_rule({
+	match = { class = "^([Tt]3code)$" },
+	workspace = 3,
+	monitor = MONITOR1,
+})
+
 -- Ferdium workspace
 hl.window_rule({
 	match = { class = "^( Ferdium)$" },

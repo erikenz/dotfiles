@@ -3,7 +3,7 @@
 -- No persistent rules — allow free movement between monitors
 
 -- Primary monitor (eDP-1) defaults
-hl.workspace_rule({ workspace = "3", monitor = MONITOR1, default = true }) -- Zed / Delta
+hl.workspace_rule({ workspace = "3", monitor = MONITOR1, default = true }) -- Zed / Delta / T3 Code
 hl.workspace_rule({ workspace = "4", monitor = MONITOR1, default = true }) -- Chromium Debug
 hl.workspace_rule({ workspace = "5", monitor = MONITOR1, default = true }) -- Ferdium
 hl.workspace_rule({ workspace = "7", monitor = MONITOR1, default = true }) -- WatchDeck / Stremio
