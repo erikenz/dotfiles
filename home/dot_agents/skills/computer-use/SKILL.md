@@ -1,6 +1,6 @@
 ---
 name: computer-use
-description: "Operating rules for Erik's Arch Linux machine: dev servers in Herdr, dotfiles with chezmoi, mcp-ctl recovery, scoped testing, and Chrome DevTools debug launches. Activate whenever running local servers, executing tests, modifying dotfiles, debugging MCP, or testing web UIs."
+description: "Operating rules for Erik's Arch Linux machine: dev servers in tmux, dotfiles with chezmoi, mcp-ctl recovery, scoped testing, and Chrome DevTools debug launches. Activate whenever running local servers, executing tests, modifying dotfiles, debugging MCP, or testing web UIs."
 ---
 
 # Computer Use & Machine Rules
@@ -22,10 +22,11 @@ All MCP servers are orchestrated via `mcp-ctl`. When an MCP server disconnects, 
 - Diagnose errors: `mcp-ctl logs`
 Never spawn ad-hoc, unmanaged Node or Python background MCP processes.
 
-## Dev Servers & Long-Running Services (`herdr`)
+## Dev Servers & Long-Running Services (`tmux`)
 
-Always run development servers inside **`herdr`**.
-- **Shared Control Plane**: Herdr provides a persistent TTY that both the user and agents can inspect and attach to.
+Always run development servers, interactive commands, and long-running services inside detached **`tmux`** sessions:
+- **Never Steal Focus**: Always start commands in detached sessions (`tmux new-session -d -s <service-name> -c "<dir>" "<cmd>"`) so the user's active window and typing focus are never interrupted.
+- **Shared Control & Inspection**: Both agents and the user can inspect output (`tmux capture-pane -ep -t <service-name>`), send input (`tmux send-keys -t <service-name> "..." Enter`), or stop services gracefully (`tmux send-keys -t <service-name> C-c` followed by `tmux kill-session -t <service-name>`).
 - **No Orphaned Processes**: Never spawn detached background subshells (`nohup`, `&`) for servers.
 
 ## Resource Safety & Freezing Prevention
@@ -33,7 +34,7 @@ Always run development servers inside **`herdr`**.
 The machine has strict hardware resource limits. Prevent CPU and memory exhaustion:
 - **Server Concurrency**: Only small or lightweight services may run simultaneously. Never run more than one heavy, full-stack dev stack at a time.
 - **Workload Separation**: Never run broad test suites, container builds, or heavy multi-package compilations while a heavy dev server is active (causes severe swap thrashing and UI freezes).
-- **Targeted Process Control**: Stop services gracefully via `herdr`, `docker compose`, or explicit PID. Never run blanket process killers (`pkill -f node`, `killall`).
+- **Targeted Process Control**: Stop services gracefully via `tmux`, `docker compose`, or explicit PID. Never run blanket process killers (`pkill -f node`, `killall`).
 
 ## Scoped Testing
 

@@ -180,12 +180,12 @@ function wt --description "Unified switcher for T3 Code and Delta worktrees"
             set proj_prefix "[$proj] "
         end
 
-        set -l branch_info ""
+        set -l entry
         if test -n "$branch"
-            set branch_info " \e[33m($branch)\e[0m"
+            set entry (printf "\e[1;36m[T3 Code]\e[0m %s\e[1m%s\e[0m \e[2m[%s]\e[0m \e[33m(%s)\e[0m\t%s" "$proj_prefix" "$tname" "$id" "$branch" "$w")
+        else
+            set entry (printf "\e[1;36m[T3 Code]\e[0m %s\e[1m%s\e[0m \e[2m[%s]\e[0m\t%s" "$proj_prefix" "$tname" "$id" "$w")
         end
-
-        set -l entry (printf "\e[1;36m[T3 Code]\e[0m %s\e[1m%s\e[0m \e[2m[%s]\e[0m%s \e[2m-> %s\e[0m" "$proj_prefix" "$tname" "$id" "$branch_info" "$w")
         set -a display_entries "$entry"
         set -a raw_targets "$w"
     end
@@ -194,6 +194,7 @@ function wt --description "Unified switcher for T3 Code and Delta worktrees"
     for w in $delta_wts
         set -l sess (basename (dirname "$w"))
         set -l tname (delta_thread_name "$sess")
+        set -l branch (git -C "$w" branch --show-current 2>/dev/null)
         set -l proj (basename "$w")
 
         set -l proj_prefix ""
@@ -201,13 +202,20 @@ function wt --description "Unified switcher for T3 Code and Delta worktrees"
             set proj_prefix "[$proj] "
         end
 
-        set -l entry (printf "\e[1;35m[Delta]\e[0m   %s\e[1m%s\e[0m \e[2m[%s]\e[0m \e[2m-> %s\e[0m" "$proj_prefix" "$tname" "$sess" "$w")
+        set -l entry
+        if test -n "$branch"
+            set entry (printf "\e[1;35m[Delta]\e[0m   %s\e[1m%s\e[0m \e[2m[%s]\e[0m \e[33m(%s)\e[0m\t%s" "$proj_prefix" "$tname" "$sess" "$branch" "$w")
+        else
+            set entry (printf "\e[1;35m[Delta]\e[0m   %s\e[1m%s\e[0m \e[2m[%s]\e[0m\t%s" "$proj_prefix" "$tname" "$sess" "$w")
+        end
         set -a display_entries "$entry"
         set -a raw_targets "$w"
     end
 
     if command -q fzf
         set -l chosen (printf "%s\n" $display_entries | fzf --ansi \
+            --delimiter=\t \
+            --with-nth=1 \
             --prompt=" Select Worktree ❯ " \
             --header="Groups: [T3 Code] (cyan) | [Delta] (purple)  •  Type 't3' or 'delta' to filter" \
             --height=~50% \
@@ -215,7 +223,7 @@ function wt --description "Unified switcher for T3 Code and Delta worktrees"
             --border)
 
         if test -n "$chosen"
-            set -l target (string replace -r '.*-> ' '' "$chosen" | string trim)
+            set -l target (echo "$chosen" | string split \t)[-1]
             if test -d "$target"
                 cd "$target"
                 if string match -q "*/.delta/*" "$target"
@@ -256,7 +264,12 @@ function wt --description "Unified switcher for T3 Code and Delta worktrees"
             for w in $delta_wts
                 set -l sess (basename (dirname "$w"))
                 set -l tname (delta_thread_name "$sess")
-                echo "[$idx] $tname [$sess]"
+                set -l branch (git -C "$w" branch --show-current 2>/dev/null)
+                if test -n "$branch"
+                    echo "[$idx] $tname [$sess] ($branch)"
+                else
+                    echo "[$idx] $tname [$sess]"
+                end
                 set idx (math $idx + 1)
             end
         end
