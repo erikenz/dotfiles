@@ -23,6 +23,7 @@ case "$menu_name" in
 Root)
     show_menu \
         "󰒋 Session Dashboard (Alt-s)" s "run-shell 'bash ~/.config/tmux/scripts/session-switcher.sh'" \
+        "󰒋 Sesh Picker (Alt-o)" o "display-popup -E -w 85% -h 75% 'sesh picker --icons --preview'" \
         "󰒋 Last Active Session (Tab)" Tab "switch-client -l" \
         "+󰒋 Sessions Menu" S "$(reopen Sessions)" \
         "" \

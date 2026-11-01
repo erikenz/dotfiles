@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+# Global Git hook dispatcher
+# 1. On 'post-checkout' in a new worktree, auto-copies files from .worktreeinclude (or root .env*)
+# 2. Transparently delegates to any repository-local hook in $GIT_COMMON_DIR/hooks/
+
+hook_name="$(basename "$0")"
+
+if [ "$hook_name" = "post-checkout" ]; then
+    checkout_type="$3"
+    # Flag 1 indicates a branch/worktree checkout
+    if [ "$checkout_type" = "1" ]; then
+        common_dir=$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null)
+        main_root=$(dirname "$common_dir")
+        current_wt=$(pwd)
+
+        # Only run inside a worktree that is not the main repository root
+        if [ -n "$main_root" ] && [ "$main_root" != "$current_wt" ]; then
+            include_file="$main_root/.worktreeinclude"
+            if [ -f "$include_file" ]; then
+                while IFS= read -r pattern || [ -n "$pattern" ]; do
+                    pattern=$(echo "$pattern" | tr -d '\r' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+                    case "$pattern" in
+                        \#*|"") continue ;;
+                    esac
+                    src="$main_root/$pattern"
+                    dest="$current_wt/$pattern"
+                    if [ -e "$src" ] && [ ! -e "$dest" ]; then
+                        mkdir -p "$(dirname "$dest")"
+                        cp -p "$src" "$dest" 2>/dev/null
+                    fi
+                done < "$include_file"
+            else
+                # Fallback: copy any root .env* files if no .worktreeinclude exists
+                for f in "$main_root"/.env*; do
+                    if [ -f "$f" ] && [ ! -e "$current_wt/$(basename "$f")" ]; then
+                        cp -p "$f" "$current_wt/$(basename "$f")" 2>/dev/null
+                    fi
+                done
+            fi
+        fi
+    fi
+fi
+
+# Delegate to local repository hook if one exists
+common_dir=$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null)
+if [ -n "$common_dir" ] && [ -x "$common_dir/hooks/$hook_name" ]; then
+    exec "$common_dir/hooks/$hook_name" "$@"
+fi

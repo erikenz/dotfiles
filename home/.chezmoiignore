@@ -16,6 +16,7 @@ node_modules/**
 **/*.log
 **/*.pid
 **/*.sock
+**/*.tmp
 
 # --- Volatile runtime logs, session history, tokens, SSH keys, and cache ---
 .ssh/id_*

@@ -1,0 +1,22 @@
+# ==============================================================================
+#  SESH CONFIGURATION (~/.config/sesh/sesh.toml)
+# ==============================================================================
+
+# Directory preview command using eza
+default_preview_command = "eza --all --git --icons --color=always {}"
+
+# Global wildcard for all Git repositories under ~/Projects
+[[wildcard]]
+pattern = "~/Projects/**"
+preview_command = "eza --all --git --icons --color=always {}"
+
+# Quick-access session aliases
+[[session]]
+name = "dotfiles"
+path = "~/.local/share/chezmoi"
+alias = "dot"
+
+[[session]]
+name = "config"
+path = "~/.config"
+alias = "cfg"

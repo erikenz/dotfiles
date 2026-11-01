@@ -22,11 +22,12 @@ All MCP servers are orchestrated via `mcp-ctl`. When an MCP server disconnects, 
 - Diagnose errors: `mcp-ctl logs`
 Never spawn ad-hoc, unmanaged Node or Python background MCP processes.
 
-## Dev Servers & Long-Running Services (`tmux`)
+## Dev Servers & Long-Running Services (`sesh` & `tmux`)
 
-Always run development servers, interactive commands, and long-running services inside detached **`tmux`** sessions:
-- **Never Steal Focus**: Always start commands in detached sessions (`tmux new-session -d -s <service-name> -c "<dir>" "<cmd>"`) so the user's active window and typing focus are never interrupted.
-- **Shared Control & Inspection**: Both agents and the user can inspect output (`tmux capture-pane -ep -t <service-name>`), send input (`tmux send-keys -t <service-name> "..." Enter`), or stop services gracefully (`tmux send-keys -t <service-name> C-c` followed by `tmux kill-session -t <service-name>`).
+Always run development servers, interactive commands, and long-running services inside managed **`sesh`** / **`tmux`** sessions:
+- **Session & Window Management (`sesh`)**: Use `sesh` to resolve and start work in the right session without duplicating it (`sesh connect <dir>` or `sesh window connect <name> -t <project> -b -c "<command>"`). Always use `-b` (background) so the user's active window/workspace is never yanked. Fall back to `tmux new-session -d -s <name> -c "<dir>" "<cmd>"` if `sesh` is not available.
+- **Process Inspection & Input (`tmux`)**: Use raw tmux to inspect live logs (`tmux capture-pane -ep -t <target>`), send inputs (`tmux send-keys -t <target> "..." Enter`), or stop services gracefully (`tmux send-keys -t <target> C-c` followed by `tmux kill-session -t <target>`).
+- **Never Steal Focus**: All background services must run detached/in the background without interrupting the user's active typing focus.
 - **No Orphaned Processes**: Never spawn detached background subshells (`nohup`, `&`) for servers.
 
 ## Resource Safety & Freezing Prevention
