@@ -1,41 +1,55 @@
 #!/usr/bin/env bash
-# Interactive fuzzy session switcher for tmux with quick creation support
+# ==============================================================================
+#  TMUX INTERACTIVE SESSION DASHBOARD & SWITCHER
+# ==============================================================================
+# Designed for managing AI agent dev servers, background processes, and interactive commands.
+#
+# Features:
+# - Live ANSI color preview of the selected session's terminal output
+# - Enter: Switch to session (or create new if typed query does not exist)
+# - Ctrl-x: Kill session immediately & refresh list
+# - Ctrl-c: Send SIGINT (Ctrl-C) to interrupt running command & refresh list
+# - Ctrl-k: Send Ctrl-D / EOF to session
+# ==============================================================================
 
 set -euo pipefail
 
-# Check if inside tmux
 if [ -z "${TMUX:-}" ]; then
-  echo "Error: Must be run inside a tmux session" >&2
+  echo "Error: Must be run inside tmux" >&2
   exit 1
 fi
 
-# Get list of current sessions formatted as: <name> (<windows> windows, <attached/detached>)
-current_session="$(tmux display-message -p '#S')"
+get_sessions() {
+  tmux list-sessions -F "#{session_name}	#{pane_current_command}	#{session_windows} win#{?session_attached, (attached),}" 2>/dev/null || true
+}
 
-selected=$(tmux list-sessions -F "#{session_name}" 2>/dev/null | \
-  grep -v "^${current_session}$" || true)
+export -f get_sessions
 
-# If only 1 session exists, list it too
-if [ -z "$selected" ]; then
-  selected="$current_session"
-fi
-
-choice=$(echo "$selected" | fzf \
+choice=$(get_sessions | fzf \
+  --delimiter='\t' \
+  --with-nth=1,2,3 \
   --reverse \
-  --prompt="Switch session > " \
-  --header="Enter: switch/create | Esc: cancel" \
+  --prompt="Sessions > " \
+  --header="Enter: Switch/Create | C-x: Kill Session | C-c: Send SIGINT | Esc: Cancel" \
+  --preview="tmux capture-pane -ep -t {1} 2>/dev/null | tail -n 50" \
+  --preview-window="right:65%:wrap" \
+  --bind "ctrl-x:execute-silent(tmux kill-session -t {1})+reload(get_sessions)" \
+  --bind "ctrl-c:execute-silent(tmux send-keys -t {1} C-c)+reload(sleep 0.1; get_sessions)" \
+  --bind "ctrl-r:reload(get_sessions)" \
   --print-query \
-  --preview="tmux list-windows -t {1} -F ' #I: #W #{?window_active,(active),}' 2>/dev/null" \
-  --preview-window=right:50%:wrap \
-  --height=100%)
+  --height=100%) || true
 
 query=$(echo "$choice" | head -n 1)
-target=$(echo "$choice" | tail -n 1)
+target_line=$(echo "$choice" | tail -n 1)
+target=$(echo "$target_line" | awk -F'\t' '{print $1}')
 
-# If target is empty, use the typed query
+# If target is empty, use typed query
 if [ -z "$target" ]; then
   target="$query"
 fi
+
+# Clean up whitespace
+target="$(echo "$target" | xargs)"
 
 if [ -n "$target" ]; then
   if ! tmux has-session -t "$target" 2>/dev/null; then
