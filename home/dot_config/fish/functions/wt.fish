@@ -1,60 +1,11 @@
-function __wt_sync_include --description "Sync .worktreeinclude files from main root to target worktree"
-    set -l wt_dir $argv[1]
-    test -d "$wt_dir"; or return 0
-
-    set -l common_git (git -C "$wt_dir" rev-parse --path-format=absolute --git-common-dir 2>/dev/null)
-    test -n "$common_git"; or return 0
-    set -l main_root (dirname "$common_git")
-    test -d "$main_root"; or return 0
-    test "$main_root" != "$wt_dir"; or return 0
-
-    set -l synced_count 0
-    set -l include_file "$main_root/.worktreeinclude"
-
-    if test -f "$include_file"
-        for line in (cat "$include_file" 2>/dev/null)
-            set -l pattern (string trim "$line")
-            switch $pattern
-                case "" "#*"
-                    continue
-            end
-            set -l src "$main_root/$pattern"
-            set -l dest "$wt_dir/$pattern"
-            if test -e "$src" -a ! -e "$dest"
-                mkdir -p (dirname "$dest")
-                cp -p "$src" "$dest" 2>/dev/null
-                set synced_count (math $synced_count + 1)
-            end
-        end
-    else
-        # Fallback to root .env* files
-        for src in "$main_root"/.env*
-            test -f "$src"; or continue
-            set -l fname (basename "$src")
-            set -l dest "$wt_dir/$fname"
-            if test ! -e "$dest"
-                cp -p "$src" "$dest" 2>/dev/null
-                set synced_count (math $synced_count + 1)
-            end
-        end
-    end
-
-    if test $synced_count -gt 0
-        echo "📋 Synced $synced_count .worktreeinclude / .env file(s) into worktree"
-    end
-end
-
 function wt --description "Unified switcher for T3 Code and Delta worktrees"
     set -l filter_mode "all"  # "all", "t3", or "delta"
     set -l show_all_projects 0
     set -l force_switch 0
-    set -l do_sync 0
 
     # Parse arguments
     for arg in $argv
         switch $arg
-            case sync
-                set do_sync 1
             case -t --t3
                 set filter_mode "t3"
             case -d --delta
@@ -64,11 +15,8 @@ function wt --description "Unified switcher for T3 Code and Delta worktrees"
             case -s --switch -l --list
                 set force_switch 1
             case -h --help
-                echo "Usage: wt [options|sync]"
+                echo "Usage: wt [options]"
                 echo "Quickly toggle/switch between main project root and T3 Code / Delta worktrees."
-                echo ""
-                echo "Commands:"
-                echo "  wt sync           Sync .worktreeinclude / .env files to all project worktrees"
                 echo ""
                 echo "Options:"
                 echo "  wt                Toggle between current worktree and main project root"
@@ -83,56 +31,7 @@ function wt --description "Unified switcher for T3 Code and Delta worktrees"
 
     set -l top (git rev-parse --show-toplevel 2>/dev/null)
 
-    # 1. Handle `wt sync`
-    if test $do_sync -eq 1
-        if test -z "$top"
-            echo "❌ Not inside a git repository."
-            return 1
-        end
-
-        set -l repo_root "$top"
-        if string match -q "*/.delta/worktrees/*" "$top"
-            set repo_root (string replace -r '/\.delta/.*' '' "$top")
-        else if string match -q "*/.t3/worktrees/*" "$top"
-            set -l git_first (git worktree list --porcelain 2>/dev/null | head -n 1 | string replace "worktree " "")
-            if test -n "$git_first"
-                set repo_root "$git_first"
-            end
-        end
-
-        set -l all_project_wts
-        # T3 worktrees
-        set -l raw_t3 (git -C "$repo_root" worktree list --porcelain 2>/dev/null | string match -r "^worktree (.*/\.t3/worktrees/.*)" | string replace -r "^worktree " "" | sort -u)
-        for w in $raw_t3
-            if test -d "$w"
-                set -a all_project_wts "$w"
-            end
-        end
-        # Delta worktrees
-        set -l raw_delta (find "$repo_root/.delta/worktrees" -mindepth 2 -maxdepth 2 -type d 2>/dev/null)
-        for w in $raw_delta
-            if test -d "$w"
-                set -a all_project_wts "$w"
-            end
-        end
-
-        set -l total (count $all_project_wts)
-        if test $total -eq 0
-            echo "ℹ️  No active worktrees found for this project."
-            return 0
-        end
-
-        echo "Syncing .worktreeinclude files to $total worktree(s)..."
-        for w in $all_project_wts
-            set -l id (basename "$w")
-            echo "👉 $id ($w):"
-            __wt_sync_include "$w"
-        end
-        echo "✅ Sync complete."
-        return 0
-    end
-
-    # 2. If currently inside a worktree and not forcing switch, jump back to main project root
+    # 1. If currently inside a worktree and not forcing switch, jump back to main project root
     if test $force_switch -eq 0 -a $show_all_projects -eq 0 -a -n "$top"
         # Delta worktree check
         if string match -q "*/.delta/worktrees/*" "$top"
@@ -159,7 +58,7 @@ function wt --description "Unified switcher for T3 Code and Delta worktrees"
         end
     end
 
-    # 3. Gather worktrees for both groups
+    # 2. Gather worktrees for both groups
     set -l t3_wts
     set -l delta_wts
 
@@ -261,7 +160,6 @@ function wt --description "Unified switcher for T3 Code and Delta worktrees"
         end
 
         cd "$target"
-        __wt_sync_include "$target"
         echo " Switched to $group_name worktree: $tname [$id]"
         return 0
     end
@@ -328,7 +226,6 @@ function wt --description "Unified switcher for T3 Code and Delta worktrees"
             set -l target (echo "$chosen" | string split \t)[-1]
             if test -d "$target"
                 cd "$target"
-                __wt_sync_include "$target"
                 if string match -q "*/.delta/*" "$target"
                     set -l sess (basename (dirname "$target"))
                     set -l tname (delta_thread_name "$sess")
@@ -382,7 +279,6 @@ function wt --description "Unified switcher for T3 Code and Delta worktrees"
         if test -n "$choice" -a "$choice" -ge 1 -a "$choice" -le (count $raw_targets)
             set -l target "$raw_targets[$choice]"
             cd "$target"
-            __wt_sync_include "$target"
             if string match -q "*/.delta/*" "$target"
                 set -l sess (basename (dirname "$target"))
                 set -l tname (delta_thread_name "$sess")
