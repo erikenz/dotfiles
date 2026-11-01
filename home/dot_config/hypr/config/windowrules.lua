@@ -240,6 +240,13 @@ hl.window_rule({
 	monitor = MONITOR1,
 })
 
+-- Vivaldi workspace
+hl.window_rule({
+	match = { class = "^([Vv]ivaldi.*)$" },
+	workspace = 1,
+	monitor = MONITOR2,
+})
+
 -- Noctalia layer rule
 hl.layer_rule({
 	name = "noctalia",
