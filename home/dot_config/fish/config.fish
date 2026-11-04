@@ -83,7 +83,7 @@ function __herdr_open_workspace --description "Open or focus a Herdr workspace b
         set ws_cwd "$HOME"
     end
     if test -z "$session"
-        set session (set -q HERDR_DEFAULT_SESSION; and echo $HERDR_DEFAULT_SESSION; or echo "dev")
+        set session (set -q HERDR_DEFAULT_SESSION; and echo $HERDR_DEFAULT_SESSION; or echo "default")
     end
 
     if test -z "$label"
@@ -143,7 +143,7 @@ function __herdr_close_workspace --description "Close Herdr workspace(s) by labe
     set -l label $argv[1]
     set -l session $argv[2]
     if test -z "$session"
-        set session (set -q HERDR_DEFAULT_SESSION; and echo $HERDR_DEFAULT_SESSION; or echo "dev")
+        set session (set -q HERDR_DEFAULT_SESSION; and echo $HERDR_DEFAULT_SESSION; or echo "default")
     end
 
     if test -z "$label"

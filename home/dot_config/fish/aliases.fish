@@ -112,8 +112,8 @@ alias clip-pull='termux_clipboard_pull'
 # --- 7. MCP Hub Controls (Prefix: mcp-*) ---
 # Starts mcp-hub daemon in foreground with servers.json
 alias mcp-up='mcp-hub --port 37373 --config ~/.config/mcphub/servers.json --watch'
-alias mcp-start='__herdr_open_workspace "mcp-hub" "mcp-up" "$HOME" "dev"'
-alias mcp-stop='__herdr_close_workspace "mcp-hub" "dev"'
+alias mcp-start='__herdr_open_workspace "mcp-hub" "mcp-up" "$HOME"'
+alias mcp-stop='__herdr_close_workspace "mcp-hub"'
 alias mcp-status='curl -s http://localhost:37373/api/servers | jq .'
 alias mcp-health='curl -s http://localhost:37373/api/health | jq .'
 alias mcp-tools='curl -s http://localhost:37373/api/servers | jq \'[.servers[] | {server: .name, status: .status, tools: [.capabilities.tools[].name]}]\''

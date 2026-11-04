@@ -61,10 +61,14 @@ README.md
 
 # --- Pi coding agent (auth, model store, sessions, caches, package store) ---
 .config/pi/agent/auth.json
+.config/pi/agent/mcp-auth.json
+.config/pi/agent/trust.json
+.config/pi/agent/tmp/**
 .config/pi/agent/models-store.json
 .config/pi/agent/sessions/**
 .config/pi/agent/web-search-cache/**
 .config/pi/agent/npm/**
+.local/opt/agy-acp/**
 
 # --- Coding-agent credentials & local state outside .config ---
 .local/share/opencode/auth.json
