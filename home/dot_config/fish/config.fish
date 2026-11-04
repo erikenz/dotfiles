@@ -162,28 +162,6 @@ function __herdr_close_workspace --description "Close Herdr workspace(s) by labe
     end
 end
 
-# Persistent Herdr Session for Local Development
-function herdr_dev_session_start --description "Launch or attach to the persistent 'dev' Herdr session"
-    systemctl --user start herdr@dev.service
-    and herdr session attach dev $argv
-end
-
-function herdr_dev_session_stop --description "Stop the 'dev' Herdr session"
-    systemctl --user stop herdr@dev.service 2>/dev/null
-    or herdr session stop dev
-end
-
-# Isolated Herdr Session for Home Server (192.168.0.101)
-function herdr_server_session_start --description "Launch or attach to an isolated Herdr session for the home server"
-    systemctl --user start herdr@server.service
-    and herdr session attach server $argv
-end
-
-function herdr_server_session_stop --description "Stop the isolated 'server' Herdr session"
-    systemctl --user stop herdr@server.service 2>/dev/null
-    or herdr session stop server
-end
-
 # Two-Way Mobile <-> Laptop Clipboard Sync (Termux API <-> Wayland wl-clipboard)
 function termux_clipboard_push --description "Push local Android clipboard to remote laptop Hyprland clipboard"
     if command -q termux-clipboard-get
@@ -201,60 +179,6 @@ function termux_clipboard_pull --description "Pull remote laptop Hyprland clipbo
     else
         echo "termux-clipboard-set not found (requires Termux:API)"
     end
-end
-
-# MCP Hub Management Functions
-function mcphub-server-info
-    if test (count $argv) -eq 0
-        echo "Usage: mcphub-server-info <server_name>"
-        return 1
-    end
-    curl -s -X POST http://localhost:37373/api/servers/info \
-        -H "Content-Type: application/json" \
-        -d "{\"server_name\": \"$argv[1]\"}" | jq .
-end
-
-function mcphub-server-start
-    if test (count $argv) -eq 0
-        echo "Usage: mcphub-server-start <server_name>"
-        return 1
-    end
-    curl -s -X POST http://localhost:37373/api/servers/start \
-        -H "Content-Type: application/json" \
-        -d "{\"server_name\": \"$argv[1]\"}" | jq .
-end
-
-function mcphub-server-stop
-    if test (count $argv) -eq 0
-        echo "Usage: mcphub-server-stop <server_name>"
-        return 1
-    end
-    curl -s -X POST http://localhost:37373/api/servers/stop \
-        -H "Content-Type: application/json" \
-        -d "{\"server_name\": \"$argv[1]\"}" | jq .
-end
-
-function mcphub-server-restart
-    if test (count $argv) -eq 0
-        echo "Usage: mcphub-server-restart <server_name>"
-        return 1
-    end
-    mcphub-server-stop $argv[1]
-    mcphub-server-start $argv[1]
-end
-
-function mcphub-call-tool
-    if test (count $argv) -lt 2
-        echo "Usage: mcphub-call-tool <server_name> <tool_name> [arguments_json]"
-        return 1
-    end
-    set -l args "{}"
-    if test (count $argv) -ge 3
-        set args "$argv[3]"
-    end
-    curl -s -X POST http://localhost:37373/api/servers/tools \
-        -H "Content-Type: application/json" \
-        -d "{\"server_name\": \"$argv[1]\", \"tool\": \"$argv[2]\", \"arguments\": $args}" | jq .
 end
 
 # Load external aliases
