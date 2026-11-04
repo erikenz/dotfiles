@@ -2,7 +2,6 @@
 agy = "latest"
 bun = "latest"
 "github:sigbit/mcp-auth-proxy" = "latest"
-herdr = "0.9.3"
 node = "lts"
 "npm:@dokploy/cli" = "latest"
 "npm:@playwright/cli" = "latest"

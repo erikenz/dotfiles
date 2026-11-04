@@ -70,6 +70,7 @@ packages:
       - input-remapper-git
       - ferdium-bin
       - pear-desktop
+      - herdr-bin
 
   termux:
     pkg:

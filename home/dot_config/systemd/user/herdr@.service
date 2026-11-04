@@ -1,0 +1,24 @@
+[Unit]
+Description=Herdr terminal session server (%i)
+Documentation=https://herdr.dev
+After=default.target
+StartLimitIntervalSec=300
+StartLimitBurst=3
+
+[Service]
+Type=simple
+Environment="HERDR_SESSION=%i"
+ExecStart=/usr/bin/herdr server
+Restart=on-failure
+RestartSec=10
+RestartPreventExitStatus=SIGKILL
+KillMode=mixed
+TimeoutStopSec=10
+
+# NOTE: for --user units this is ignored for systemd-oomd *swap-based* kills
+# (only respected when the cgroup is root-owned). Kept because it can still
+# bias the memory-pressure path. It is not protection against the swap trigger.
+ManagedOOMPreference=avoid
+
+[Install]
+WantedBy=default.target
