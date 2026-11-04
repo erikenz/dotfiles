@@ -219,6 +219,13 @@ hl.window_rule({
 	monitor = MONITOR1,
 })
 
+-- Herdr TUI workspace
+hl.window_rule({
+	match = { class = "^(org\\.cachyos\\.herdr)$" },
+	workspace = 5,
+	monitor = MONITOR1,
+})
+
 -- WatchDeck workspace
 hl.window_rule({
 	match = { class = "^(watchdeck)$" },
