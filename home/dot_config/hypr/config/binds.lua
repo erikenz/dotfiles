@@ -226,8 +226,9 @@ hl.bind(mainMod .. " + ALT + P",
         "grim -g \"$(slurp)\" ~/.cache/com.pot-app.desktop/pot_screenshot_cut.png && curl -s \"127.0.0.1:60828/ocr_recognize?screenshot=false\" || notify-send \"Pot Error\" \"Is Pot running?\""),
     { desc = "OCR screenshot (Pot)" })
 
--- Translate
-hl.bind(mainMod .. " + CONTROL + SHIFT + T", hl.dsp.exec_cmd(binDir .. "hypr-translate"),
+hl.bind(mainMod .. " + CONTROL + SHIFT + T", hl.dsp.exec_cmd(binDir .. "launch-or-focus-tui herdr"),
+    { desc = "Open or focus Herdr (TUI)" })
+hl.bind(mainMod .. " + CONTROL + ALT + T", hl.dsp.exec_cmd(binDir .. "hypr-translate"),
     { desc = "Translate selection" })
 
 -- Zoom
