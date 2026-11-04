@@ -76,8 +76,6 @@ alias hstop='herdr server stop'
 # --- 6. Remote Sessions (Server & Laptop) ---
 # Home Server
 alias server-ssh='ssh server'
-alias server-herdr='herdr_server_session_start'
-alias server-stop='herdr_server_session_stop'
 alias server-tg-start='ssh server "systemctl --user start telegram-bot"'
 alias server-tg-stop='ssh server "systemctl --user stop telegram-bot"'
 alias server-tg-restart='ssh server "systemctl --user restart telegram-bot"'
