@@ -1,8 +1,21 @@
 {
-  "lastChangelogVersion": "1.4.0",
+  "$schema": "https://pi.dev/schemas/settings.schema.json",
+  "lastChangelogVersion": "1.5.0",
   "theme": "dark",
   "defaultProvider": "opencode-go",
   "defaultModel": "deepseek-v4.1-flash",
+  "defaultThinkingLevel": "medium",
+  "modelThinkingLevels": {
+    "opencode-go/deepseek-v4.1-flash": "medium",
+    "opencode-go/deepseek-v4-pro": "medium"
+  },
+  "cacheWarming": "streaming",
+  "showCacheMissNotices": true,
+  "compaction": {
+    "enabled": true,
+    "reserveTokens": 40000,
+    "keepRecentTokens": 30000
+  },
   "npmCommand": [
     "pnpm"
   ],
@@ -13,10 +26,38 @@
     "npm:pi-subagents",
     "npm:pi-lens",
     "npm:@narumitw/pi-btw",
-    "npm:@pi-unipi/notify",
     "npm:pi-vimmode",
     "npm:pi-inline-skill-autocomplete",
     "npm:@aiwayds/pi-model-favorites",
-    "npm:pi-image-view"
-  ]
+    "npm:pi-image-view",
+    "npm:@complexthings/pi-dynamic-context-pruning",
+    "npm:@burneikis/pi-plan",
+    "npm:pi-antigravity-acp-provider"
+  ],
+  "subagents": {
+    "defaultProvider": "antigravity-acp",
+    "defaultModel": "antigravity-acp/gemini-4-argon",
+    "agentOverrides": {
+      "scout": {
+        "model": "antigravity-acp/gemini-3.8-flash",
+        "thinking": "off"
+      },
+      "researcher": {
+        "model": "antigravity-acp/gemini-4-argon",
+        "thinking": "medium"
+      },
+      "reviewer": {
+        "model": "antigravity-acp/gemini-4-argon",
+        "thinking": "low"
+      }
+    }
+  },
+  "extensionChangelogVersions": {
+    "{\"source\":\"npm:pi-web-access\",\"scope\":\"user\"}": "0.46.0",
+    "{\"source\":\"npm:@gotgenes/pi-permission-system\",\"scope\":\"user\"}": "42.0.0",
+    "{\"source\":\"npm:pi-subagents\",\"scope\":\"user\"}": "0.84.0",
+    "{\"source\":\"npm:pi-lens\",\"scope\":\"user\"}": "4.4.7",
+    "{\"source\":\"npm:pi-image-view\",\"scope\":\"user\"}": "0.5.0",
+    "{\"source\":\"npm:@complexthings/pi-dynamic-context-pruning\",\"scope\":\"user\"}": "1.0.7"
+  }
 }

@@ -23,4 +23,8 @@ prepend_keymap = [
 	{ on = [ "u", "D" ], run = "plugin yamb -- delete_by_fzf", desc = "Delete bookmark (fzf)" },
 	{ on = [ "u", "r" ], run = "plugin yamb -- rename_by_key", desc = "Rename bookmark by key" },
 	{ on = [ "u", "A" ], run = "plugin yamb -- delete_all",    desc = "Delete all bookmarks" },
+
+	# Clipboard - Copy image to system clipboard (Wayland)
+	{ on = [ "Y" ], run = "plugin copy-image", desc = "Copy image to system clipboard" },
+	{ on = [ "c", "i" ], run = "plugin copy-image", desc = "Copy image to system clipboard" },
 ]

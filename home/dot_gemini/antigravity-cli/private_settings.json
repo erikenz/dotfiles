@@ -33,11 +33,20 @@
       "command(shutdown*)",
       "command(reboot*)",
       "command(poweroff*)",
-      "command(git reset --hard*)",
-      "command(git push *--force*)",
-      "command(git push *-f*)",
-      "command(git push --force*)",
-      "command(git push -f*)"
+      "command(git push *--force*main*)",
+      "command(git push *--force*master*)",
+      "command(git push *main*--force*)",
+      "command(git push *master*--force*)",
+      "command(git push *-f *main*)",
+      "command(git push *-f *master*)",
+      "command(git push *main* -f*)",
+      "command(git push *master* -f*)",
+      "command(git push *main*-f*)",
+      "command(git push *master*-f*)",
+      "command(git push *--force-with-lease*main*)",
+      "command(git push *--force-with-lease*master*)",
+      "command(git push *main*--force-with-lease*)",
+      "command(git push *master*--force-with-lease*)"
     ]
   },
   "plugins": [

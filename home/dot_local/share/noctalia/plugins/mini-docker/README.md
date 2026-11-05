@@ -1,11 +1,12 @@
 # Mini Docker
 
-> **Local fork.** This is a copy of upstream `8bury/mini-docker` 1.0.4, plugin id
+> **Local fork.** This is a copy of upstream `8bury/mini-docker` 1.0.6, plugin id
 > `erikzen/mini-docker`, living in `~/.local/share/noctalia/plugins/mini-docker`
 > (Noctalia's built-in `local` source, never overwritten by plugin updates).
-> `service.luau` adds a watchdog so a dead refresh callback can no longer freeze
-> the service, plus a `pcall` around each refresh step. Details, re-sync pointers
-> and the upstream patch: `~/.local/share/noctalia-mini-docker-patch/README.md`.
+> It incorporates upstream's batched JSON decoding and lazy inventory loading
+> (preventing Luau CPU budget exhaustion) while preserving the fork's watchdog
+> and `pcall` error recovery. Details, re-sync pointers and notes:
+> `~/.local/share/noctalia-mini-docker-patch/README.md`.
 
 Mini Docker manages Docker containers, images, volumes, and networks from
 Noctalia. Its bar widget shows Docker availability and the number of running
@@ -47,6 +48,7 @@ The panel has four tabs:
 | Setting | Type | Default | Description |
 | --- | --- | --- | --- |
 | `refresh_interval` | `int` | `5` | Seconds between Docker state refreshes. |
+| `respect_socket_activation` | `bool` | `false` | Only poll Docker when the daemon or service is actively running on supported local sockets. |
 | `default_network` | `string` | `bridge` | Network initially selected when running an image. |
 | `show_count` | `bool` | `true` | Shows the running-container count in the widget. |
 | `glyph_color` | `select` | `on_surface` | Theme color used for the Docker glyph. |

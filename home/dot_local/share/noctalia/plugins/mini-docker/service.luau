@@ -22,12 +22,15 @@ local refreshAgain = false
 local refreshStartedAt = 0
 local actionBusy = false
 local dataSignature = ""
+local signatureParts = {}
+local refreshAgainDetails = false
+local detailsLoaded = false
+local detailsStale = false
 
--- Local fork fix (upstream 1.0.4):
--- A refresh whose callbacks die (Luau error, "script callback exceeded its CPU
--- budget", killed process) never reaches finish(), so refreshPending stays
--- closed forever and every later refresh silently does nothing. Anything still
--- pending after this many seconds is treated as dead and restarted.
+-- Local fork fix (upstream 1.0.4 - 1.0.6):
+-- A refresh whose callbacks die (Luau error, killed process, network stall)
+-- never reaches finish(), leaving refreshPending closed forever.
+-- Anything still pending after this many seconds is treated as dead and restarted.
 local REFRESH_WATCHDOG_SECONDS = 45
 
 local function trim(value)
@@ -54,73 +57,132 @@ local function runDocker(args, callback, timeoutMs)
   return noctalia.runAsync(shellCommand(command), callback, timeoutMs or 30000)
 end
 
-local function decodeLines(output, mapper)
-  local rows = {}
-  for line in (tostring(output or "") .. "\n"):gmatch("(.-)\n") do
+local CHECK_DAEMON_CMD = table.concat({
+  "endpoint=\"${DOCKER_HOST:-$(docker context inspect --format '{{.Endpoints.docker.Host}}' 2>/dev/null)}\"",
+  "endpoint=\"${endpoint:-unix:///var/run/docker.sock}\"",
+  "case \"$endpoint\" in",
+  "  tcp://*|http://*|https://*|ssh://*)",
+  "    exit 0 ;;",
+  "  *)",
+  "    path=\"${endpoint#unix://}\"",
+  "    uid=\"$(id -u 2>/dev/null)\"",
+  "    runtime_dir=\"${XDG_RUNTIME_DIR:-/run/user/$uid}\"",
+  "    if [ \"$path\" = '/var/run/docker.sock' ] || [ \"$path\" = '/run/docker.sock' ]; then",
+  "      systemctl is-active --quiet docker.service",
+  "    elif [ -n \"$uid\" ] && { [ \"$path\" = \"$runtime_dir/docker.sock\" ] || [ \"$path\" = \"/run/user/$uid/docker.sock\" ] || [ \"$path\" = \"$HOME/.docker/run/docker.sock\" ]; }; then",
+  "      systemctl --user is-active --quiet docker.service",
+  "    else",
+  "      exit 1",
+  "    fi ;;",
+  "esac",
+}, "\n")
+
+local function checkDaemonActive(callback)
+  local started = noctalia.runAsync(CHECK_DAEMON_CMD, function(result)
+    local active = result ~= nil and result.exitCode == 0
+    callback(active)
+  end, 3000)
+  if not started then
+    callback(false)
+  end
+end
+
+-- Noctalia aborts a luau callback that exceeds its CPU budget (~40-70 decoded
+-- rows), so rows are decoded a small batch per update() tick, never all in the
+-- callback that received the output.
+local DECODE_BATCH_ROWS = 25
+local DECODE_TICK_MS = 50
+local decodeQueue = {}
+
+local function decodeLines(output, mapper, onDone)
+  if trim(output) == "" then
+    onDone({})
+    return
+  end
+  table.insert(decodeQueue, {
+    nextLine = (tostring(output or "") .. "\n"):gmatch("(.-)\n"),
+    mapper = mapper,
+    onDone = onDone,
+    rows = {},
+  })
+  noctalia.setUpdateInterval(DECODE_TICK_MS)
+end
+
+local function runDecodeBatch()
+  local job = decodeQueue[1]
+  if not job then return end
+  local decodedRows = 0
+  while decodedRows < DECODE_BATCH_ROWS do
+    local line = job.nextLine()
+    if line == nil then
+      table.remove(decodeQueue, 1)
+      local ok, err = pcall(job.onDone, job.rows)
+      if not ok then
+        noctalia.log(`mini-docker: decode onDone error: {tostring(err)}`)
+      end
+      return
+    end
     line = trim(line)
     if line ~= "" then
+      decodedRows += 1
       local decoded, err = noctalia.json.decode(line)
       if type(decoded) == "table" then
-        table.insert(rows, mapper(decoded))
+        local ok, mapped = pcall(job.mapper, decoded)
+        if ok and mapped ~= nil then
+          table.insert(job.rows, mapped)
+        elseif not ok then
+          noctalia.log(`mini-docker: mapper error: {tostring(mapped)}`)
+        end
       else
         noctalia.log(`mini-docker: ignored malformed Docker JSON: {err or "unknown error"}`)
       end
     end
   end
-  return rows
 end
 
-local function parseContainers(output)
-  return decodeLines(output, function(item)
-    return {
-      id = tostring(item.ID or ""),
-      name = tostring(item.Names or ""),
-      image = tostring(item.Image or ""),
-      state = tostring(item.State or "unknown"),
-      status = tostring(item.Status or ""),
-      ports = tostring(item.Ports or ""),
-      created = tostring(item.CreatedAt or ""),
-    }
-  end)
+local function mapContainer(item)
+  return {
+    id = tostring(item.ID or ""),
+    name = tostring(item.Names or ""),
+    image = tostring(item.Image or ""),
+    state = tostring(item.State or "unknown"),
+    status = tostring(item.Status or ""),
+    ports = tostring(item.Ports or ""),
+    created = tostring(item.CreatedAt or ""),
+  }
 end
 
-local function parseImages(output)
-  return decodeLines(output, function(item)
-    local repository = tostring(item.Repository or "<none>")
-    local tag = tostring(item.Tag or "latest")
-    return {
-      repository = repository,
-      tag = tag,
-      name = repository .. ":" .. tag,
-      id = tostring(item.ID or ""),
-      size = tostring(item.Size or ""),
-      created = tostring(item.CreatedAt or ""),
-      isRunning = false,
-    }
-  end)
+local function mapImage(item)
+  local repository = tostring(item.Repository or "<none>")
+  local tag = tostring(item.Tag or "latest")
+  return {
+    repository = repository,
+    tag = tag,
+    name = repository .. ":" .. tag,
+    id = tostring(item.ID or ""),
+    size = tostring(item.Size or ""),
+    created = tostring(item.CreatedAt or ""),
+    isRunning = false,
+  }
 end
 
-local function parseVolumes(output)
-  return decodeLines(output, function(item)
-    return {
-      name = tostring(item.Name or ""),
-      driver = tostring(item.Driver or ""),
-      mountpoint = tostring(item.Mountpoint or ""),
-    }
-  end)
+local function mapVolume(item)
+  return {
+    name = tostring(item.Name or ""),
+    driver = tostring(item.Driver or ""),
+    mountpoint = tostring(item.Mountpoint or ""),
+  }
 end
 
-local function parseNetworks(output)
-  return decodeLines(output, function(item)
-    local name = tostring(item.Name or "")
-    return {
-      name = name,
-      id = tostring(item.ID or ""),
-      driver = tostring(item.Driver or ""),
-      scope = tostring(item.Scope or ""),
-      isDefault = name == "bridge" or name == "host" or name == "none",
-    }
-  end)
+local function mapNetwork(item)
+  local name = tostring(item.Name or "")
+  return {
+    name = name,
+    id = tostring(item.ID or ""),
+    driver = tostring(item.Driver or ""),
+    scope = tostring(item.Scope or ""),
+    isDefault = name == "bridge" or name == "host" or name == "none",
+  }
 end
 
 local function markRunningImages(images, containers)
@@ -158,22 +220,29 @@ end
 
 local refreshAll
 
-refreshAll = function()
+-- The bar widget only needs the container list, so the periodic refresh skips
+-- images/volumes/networks; `withDetails` (panel open, manual refresh, after an
+-- action) also loads them.
+refreshAll = function(withDetails)
+  withDetails = withDetails == true or detailsStale
   if refreshPending then
     if refreshStartedAt > 0 and os.time() - refreshStartedAt >= REFRESH_WATCHDOG_SECONDS then
       noctalia.log(`mini-docker: watchdog restarting a refresh stuck since {refreshStartedAt}`)
       refreshGeneration += 1
       refreshPending = false
       refreshAgain = false
+      decodeQueue = {}
       snapshot.loading = false
     else
       refreshAgain = true
+      refreshAgainDetails = refreshAgainDetails or withDetails
       return
     end
   end
 
   refreshPending = true
   refreshAgain = false
+  refreshAgainDetails = false
   refreshStartedAt = os.time()
   refreshGeneration += 1
   local generation = refreshGeneration
@@ -187,120 +256,181 @@ refreshAll = function()
     snapshot.volumes = {}
     snapshot.networks = {}
     snapshot.runningCount = 0
+    detailsStale = detailsStale or detailsLoaded
+    detailsLoaded = false
     refreshPending = false
+    refreshStartedAt = 0
     updateRevision("docker-missing:" .. snapshot.error)
     publishSnapshot()
     return
   end
 
-  snapshot.loading = true
-  publishSnapshot()
-
-  local signatureParts = {}
-  local containers = {}
-  local images = {}
-  local volumes = {}
-  local networks = {}
-
-  local function recordResult(kind, result)
-    signatureParts[kind] = table.concat({
-      tostring(result and result.exitCode or -1),
-      tostring(result and result.stdout or ""),
-      tostring(result and result.stderr or ""),
-    }, "\0")
-  end
-
-  local function finish(containerResult)
-    if generation ~= refreshGeneration then
-      return
-    end
-    if containerResult == nil or containerResult.exitCode ~= 0 then
-      snapshot.available = false
-      snapshot.error = trim(containerResult and containerResult.stderr)
-      if snapshot.error == "" then
-        snapshot.error = noctalia.tr("result.docker_unreachable")
-      end
-      snapshot.containers = {}
-      snapshot.images = {}
-      snapshot.volumes = {}
-      snapshot.networks = {}
-      snapshot.runningCount = 0
-    else
-      local runningCount = 0
-      for _, container in ipairs(containers) do
-        if container.state == "running" then
-          runningCount += 1
-        end
-      end
-      markRunningImages(images, containers)
-      snapshot.available = true
-      snapshot.error = ""
-      snapshot.containers = containers
-      snapshot.images = images
-      snapshot.volumes = volumes
-      snapshot.networks = networks
-      snapshot.runningCount = runningCount
-      snapshot.updatedAt = os.time()
-    end
-
-    snapshot.loading = false
-    refreshPending = false
-    updateRevision(table.concat({
-      signatureParts.containers or "",
-      signatureParts.images or "",
-      signatureParts.volumes or "",
-      signatureParts.networks or "",
-    }, "\1"))
+  local function doRefresh()
+    snapshot.loading = true
     publishSnapshot()
-    if refreshAgain then
-      refreshAll()
-    end
-  end
 
-  local function launch(kind, args, callback)
-    local started = runDocker(args, function(result)
-      if generation ~= refreshGeneration then return end
-      recordResult(kind, result)
-      -- Local fork fix: a raising step must not leave the pending latch closed.
-      local ok, err = pcall(callback, result)
-      if not ok and generation == refreshGeneration then
-        noctalia.log(`mini-docker: refresh step '{kind}' failed: {tostring(err)}`)
-        refreshPending = false
-        snapshot.loading = false
-        snapshot.error = tostring(err)
-        publishSnapshot()
-      end
-    end)
-    if not started then
-      local result = { exitCode = -1, stdout = "", stderr = "could not start Docker", timedOut = false }
-      recordResult(kind, result)
-      callback(result)
-    end
-  end
+    local containers = {}
+    local details = {}
 
-  launch("containers", { "ps", "-a", "--format", "{{json .}}" }, function(containerResult)
-    if containerResult.exitCode ~= 0 then
-      finish(containerResult)
-      return
+    local function recordResult(kind, result)
+      signatureParts[kind] = table.concat({
+        tostring(result and result.exitCode or -1),
+        tostring(result and result.stdout or ""),
+        tostring(result and result.stderr or ""),
+      }, "\0")
     end
-    containers = parseContainers(containerResult.stdout)
-    launch("images", { "images", "--format", "{{json .}}" }, function(imageResult)
-      if imageResult.exitCode == 0 then
-        images = parseImages(imageResult.stdout)
+
+    local function finish(containerResult)
+      if generation ~= refreshGeneration then
+        return
       end
-      launch("volumes", { "volume", "ls", "--format", "{{json .}}" }, function(volumeResult)
-        if volumeResult.exitCode == 0 then
-          volumes = parseVolumes(volumeResult.stdout)
+      if containerResult == nil or containerResult.exitCode ~= 0 then
+        snapshot.available = false
+        snapshot.error = trim(containerResult and containerResult.stderr)
+        if snapshot.error == "" then
+          snapshot.error = noctalia.tr("result.docker_unreachable")
         end
-        launch("networks", { "network", "ls", "--format", "{{json .}}" }, function(networkResult)
-          if networkResult.exitCode == 0 then
-            networks = parseNetworks(networkResult.stdout)
+        snapshot.containers = {}
+        snapshot.images = {}
+        snapshot.volumes = {}
+        snapshot.networks = {}
+        snapshot.runningCount = 0
+        detailsStale = detailsStale or detailsLoaded
+        detailsLoaded = false
+      else
+        local runningCount = 0
+        for _, container in ipairs(containers) do
+          if container.state == "running" then
+            runningCount += 1
           end
-          finish(containerResult)
+        end
+        if withDetails then
+          local images = details.images or {}
+          markRunningImages(images, containers)
+          snapshot.images = images
+          snapshot.volumes = details.volumes or {}
+          snapshot.networks = details.networks or {}
+          detailsLoaded = true
+          detailsStale = false
+        end
+        snapshot.available = true
+        snapshot.error = ""
+        snapshot.containers = containers
+        snapshot.runningCount = runningCount
+        snapshot.updatedAt = os.time()
+      end
+
+      snapshot.loading = false
+      refreshPending = false
+      refreshStartedAt = 0
+      updateRevision(table.concat({
+        signatureParts.containers or "",
+        signatureParts.images or "",
+        signatureParts.volumes or "",
+        signatureParts.networks or "",
+      }, "\1"))
+      publishSnapshot()
+      if refreshAgain then
+        refreshAll(refreshAgainDetails)
+      end
+    end
+
+    local function launch(kind, args, callback)
+      local started = runDocker(args, function(result)
+        if generation ~= refreshGeneration then return end
+        recordResult(kind, result)
+        local ok, err = pcall(callback, result)
+        if not ok and generation == refreshGeneration then
+          noctalia.log(`mini-docker: refresh step '{kind}' failed: {tostring(err)}`)
+          refreshPending = false
+          refreshStartedAt = 0
+          snapshot.loading = false
+          snapshot.error = tostring(err)
+          publishSnapshot()
+        end
+      end)
+      if not started then
+        local result = { exitCode = -1, stdout = "", stderr = "could not start Docker", timedOut = false }
+        recordResult(kind, result)
+        callback(result)
+      end
+    end
+
+    local function decode(output, mapper, callback)
+      decodeLines(output, mapper, function(rows)
+        if generation ~= refreshGeneration then return end
+        callback(rows)
+      end)
+    end
+
+    local detailSteps = {
+      { kind = "images", args = { "images", "--format", "{{json .}}" }, mapper = mapImage },
+      { kind = "volumes", args = { "volume", "ls", "--format", "{{json .}}" }, mapper = mapVolume },
+      { kind = "networks", args = { "network", "ls", "--format", "{{json .}}" }, mapper = mapNetwork },
+    }
+
+    local function runDetailStep(containerResult, index)
+      local step = detailSteps[index]
+      if step == nil then
+        finish(containerResult)
+        return
+      end
+      launch(step.kind, step.args, function(result)
+        if result.exitCode ~= 0 then
+          runDetailStep(containerResult, index + 1)
+          return
+        end
+        decode(result.stdout, step.mapper, function(rows)
+          details[step.kind] = rows
+          runDetailStep(containerResult, index + 1)
         end)
       end)
+    end
+
+    launch("containers", { "ps", "-a", "--format", "{{json .}}" }, function(containerResult)
+      if containerResult.exitCode ~= 0 then
+        finish(containerResult)
+        return
+      end
+      decode(containerResult.stdout, mapContainer, function(rows)
+        containers = rows
+        if withDetails then
+          runDetailStep(containerResult, 1)
+        else
+          finish(containerResult)
+        end
+      end)
     end)
-  end)
+  end
+
+  if noctalia.getConfig("respect_socket_activation") == true then
+    checkDaemonActive(function(active)
+      if generation ~= refreshGeneration then return end
+      if not active then
+        snapshot.available = false
+        snapshot.loading = false
+        snapshot.error = noctalia.tr("result.docker_unreachable")
+        snapshot.containers = {}
+        snapshot.images = {}
+        snapshot.volumes = {}
+        snapshot.networks = {}
+        snapshot.runningCount = 0
+        detailsStale = detailsStale or detailsLoaded
+        detailsLoaded = false
+        refreshPending = false
+        refreshStartedAt = 0
+        updateRevision("daemon-inactive")
+        publishSnapshot()
+        if refreshAgain then
+          refreshAll(refreshAgainDetails)
+        end
+        return
+      end
+      doRefresh()
+    end)
+  else
+    doRefresh()
+  end
 end
 
 local function actionResult(command, ok, message, extra)
@@ -332,7 +462,7 @@ local function finishAction(command, result)
     noctalia.notifyError(noctalia.tr("title"), message)
   end
   publishSnapshot()
-  refreshAll()
+  refreshAll(detailsLoaded)
 end
 
 local function validContainerName(name)
@@ -380,7 +510,7 @@ local function executeAction(command)
     return
   end
   if command.action == "refresh" then
-    refreshAll()
+    refreshAll(command.details == true)
     return
   end
   if command.action == "inspect_image" then
@@ -473,20 +603,29 @@ end
 
 noctalia.state.watch("docker_command", executeAction)
 noctalia.setUpdateInterval(refreshIntervalMs())
-noctalia.log("mini-docker: local fork loaded (refresh watchdog)")
+noctalia.log("mini-docker: local fork loaded (batched decode + refresh watchdog)")
 refreshAll()
 
 function update()
+  if #decodeQueue > 0 then
+    runDecodeBatch()
+    if #decodeQueue == 0 then
+      noctalia.setUpdateInterval(refreshIntervalMs())
+    end
+    return
+  end
   refreshAll()
 end
 
 function onConfigChanged()
-  noctalia.setUpdateInterval(refreshIntervalMs())
+  if #decodeQueue == 0 then
+    noctalia.setUpdateInterval(refreshIntervalMs())
+  end
   refreshAll()
 end
 
 function onIpc(event, _payload)
   if event == "refresh" then
-    refreshAll()
+    refreshAll(detailsLoaded)
   end
 end
