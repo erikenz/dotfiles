@@ -46,7 +46,6 @@ hl.window_rule({
 	opaque = true,
 	size = { "monitor_w", "monitor_h" },
 	sync_fullscreen = true,
-	immediate = true,
 	confine_pointer = true,
 	workspace = gamingWorkspace,
 })
