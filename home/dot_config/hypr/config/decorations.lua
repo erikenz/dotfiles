@@ -2,6 +2,8 @@
 
 hl.config({
     general = {
+        -- Tearing (immediate presentation) triggers atomic async flip failures (EINVAL)
+        -- on Intel i915 hybrid setups under Aquamarine / Hyprland 0.57+. Disabled for smooth 144Hz VBlank.
         allow_tearing = false,
         gaps_in = 3,
         gaps_out = 8,
@@ -40,7 +42,9 @@ hl.config({
         fullscreen_opacity = 1,
         blur = {
             size = 5,
-            passes = 4,
+            -- Lowered passes from 4 to 2 to significantly reduce Intel iGPU compositing load
+            -- and memory bandwidth, saving battery and GPU power while maintaining smooth blur.
+            passes = 2,
             special = true,
         },
     },

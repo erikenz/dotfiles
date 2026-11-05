@@ -16,7 +16,10 @@ hl.config({
         },
     },
     cursor = {
-        no_hardware_cursors = true,
+        -- Hardware cursors offload cursor rendering from the compositor plane to the
+        -- display hardware plane. Modern NVIDIA drivers (555+) with explicit sync no
+        -- longer have the invisible cursor bug, and hardware cursors allow direct scanout.
+        no_hardware_cursors = false,
         enable_hyprcursor = false,
     },
 })

@@ -45,6 +45,7 @@ hl.window_rule({
 	fullscreen_state = 2,
 	opaque = true,
 	size = { "monitor_w", "monitor_h" },
+	-- Note: immediate = true (tearing) omitted to prevent atomic DRM commit rejection on hybrid graphics
 	sync_fullscreen = true,
 	confine_pointer = true,
 	workspace = gamingWorkspace,
