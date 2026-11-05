@@ -1,16 +1,13 @@
 function herdr --description "Wrapper for herdr to prevent stealing TUI focus on split/create"
-    set -l real_herdr (type -P herdr | grep -v "/\.local/bin/herdr" | head -n 1)
-    if test -z "$real_herdr"
+    set -l real_herdr /usr/bin/herdr
+    if not test -x "$real_herdr"
         set real_herdr (command -v herdr)
     end
 
     # Check if user or agent passed an explicit focus flag
     set -l has_focus_flag 0
-    for arg in $argv
-        if test "$arg" = "--focus" -o "$arg" = "--no-focus"
-            set has_focus_flag 1
-            break
-        end
+    if contains -- --focus $argv; or contains -- --no-focus $argv
+        set has_focus_flag 1
     end
 
     set -l should_inject 0
@@ -22,9 +19,9 @@ function herdr --description "Wrapper for herdr to prevent stealing TUI focus on
 
         while test $idx -le $total
             set -l item $argv[$idx]
-            if test "$item" = "--session"
+            if string match -q -- "--session" -- "$item"
                 set idx (math $idx + 2)
-            else if string match -q -- "--session=*" "$item"
+            else if string match -q -- "--session=*" -- "$item"
                 set idx (math $idx + 1)
             else
                 set remaining_args $argv[$idx..$total]
@@ -36,9 +33,9 @@ function herdr --description "Wrapper for herdr to prevent stealing TUI focus on
             set -l sub1 $remaining_args[1]
             set -l sub2 $remaining_args[2]
 
-            if test "$sub1" = "pane" -a "$sub2" = "split"
+            if string match -q -- "pane" -- "$sub1"; and string match -q -- "split" -- "$sub2"
                 set should_inject 1
-            else if test "$sub1" = "workspace" -a "$sub2" = "create"
+            else if string match -q -- "workspace" -- "$sub1"; and string match -q -- "create" -- "$sub2"
                 set should_inject 1
             end
         end
