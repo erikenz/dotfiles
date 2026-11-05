@@ -2,8 +2,8 @@
   "$schema": "https://pi.dev/schemas/settings.schema.json",
   "lastChangelogVersion": "1.5.0",
   "theme": "dark",
-  "defaultProvider": "opencode-go",
-  "defaultModel": "deepseek-v4.1-flash",
+  "defaultProvider": "antigravity-acp",
+  "defaultModel": "gemini-3.8-flash",
   "defaultThinkingLevel": "medium",
   "modelThinkingLevels": {
     "opencode-go/deepseek-v4.1-flash": "medium",
@@ -28,11 +28,11 @@
     "npm:@narumitw/pi-btw",
     "npm:pi-vimmode",
     "npm:pi-inline-skill-autocomplete",
-    "npm:@aiwayds/pi-model-favorites",
     "npm:pi-image-view",
     "npm:@complexthings/pi-dynamic-context-pruning",
     "npm:@burneikis/pi-plan",
-    "npm:pi-antigravity-acp-provider"
+    "npm:pi-antigravity-acp-provider",
+    "npm:@erikenz/pi-model-switch"
   ],
   "subagents": {
     "defaultProvider": "antigravity-acp",
@@ -56,8 +56,9 @@
     "{\"source\":\"npm:pi-web-access\",\"scope\":\"user\"}": "0.46.0",
     "{\"source\":\"npm:@gotgenes/pi-permission-system\",\"scope\":\"user\"}": "42.0.0",
     "{\"source\":\"npm:pi-subagents\",\"scope\":\"user\"}": "0.84.0",
-    "{\"source\":\"npm:pi-lens\",\"scope\":\"user\"}": "4.4.7",
+    "{\"source\":\"npm:pi-lens\",\"scope\":\"user\"}": "4.4.8",
     "{\"source\":\"npm:pi-image-view\",\"scope\":\"user\"}": "0.5.0",
-    "{\"source\":\"npm:@complexthings/pi-dynamic-context-pruning\",\"scope\":\"user\"}": "1.0.7"
+    "{\"source\":\"npm:@complexthings/pi-dynamic-context-pruning\",\"scope\":\"user\"}": "1.0.7",
+    "{\"source\":\"npm:@narumitw/pi-btw\",\"scope\":\"user\"}": "0.63.4"
   }
 }
