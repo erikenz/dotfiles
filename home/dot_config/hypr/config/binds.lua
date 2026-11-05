@@ -199,7 +199,7 @@ hl.bind("F19", hl.dsp.exec_cmd("wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%-
 hl.bind("XF86TouchpadToggle", hl.dsp.exec_cmd("wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"),
     { desc = "Volume up (G600)" })
 hl.bind("XF86TouchpadOn", hl.dsp.exec_cmd("playerctl previous"), { desc = "Previous track (G600)" })
-hl.bind("F23", hl.dsp.exec_cmd("playerctl play-pause"), { desc = "Play/pause (G600)" })
+hl.bind("XF86TouchpadOff", hl.dsp.exec_cmd("playerctl play-pause"), { desc = "Play/pause (G600)" })
 hl.bind("F24", hl.dsp.exec_cmd("playerctl next"), { desc = "Next track (G600)" })
 
 -------------------
