@@ -6,9 +6,9 @@
 hl.window_rule({ match = { float = true }, persistent_size = true })
 
 -- Steam's update loader floats at the top-left on startup; center it instead.
--- (Only matches floating windows: the main Steam window is tiled, so this is a no-op there,
--- and Steam's CEF popups are class steamwebhelper, so they keep their own positions.)
-hl.window_rule({ match = { class = "^(steam|Steam)$", float = true }, center = true })
+-- Must match non-empty titles (title = "^(.+)$"): Steam's dropdown menus and
+-- context popups are class `steam` with empty titles, and forcing center breaks their positioning.
+hl.window_rule({ match = { class = "^(steam|Steam)$", title = "^(.+)$", float = true }, center = true })
 
 -- Picture-in-Picture
 hl.window_rule({

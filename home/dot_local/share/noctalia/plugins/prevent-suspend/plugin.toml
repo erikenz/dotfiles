@@ -1,0 +1,17 @@
+id = "erikzen/prevent-suspend"
+name = "Prevent Suspend"
+version = "1.0.0"
+plugin_api = 43
+author = "erikzen"
+license = "MIT"
+icon = "device-desktop-off"
+description = "Keep system awake while allowing the screen to turn off on idle timeout."
+tags = ["control-center", "shortcut", "widget", "power", "utility"]
+
+[[shortcut]]
+id = "toggle"
+entry = "shortcut.luau"
+
+[[widget]]
+id = "prevent-suspend"
+entry = "widget.luau"
