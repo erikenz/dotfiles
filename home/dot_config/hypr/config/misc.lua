@@ -15,9 +15,11 @@ hl.config({
         key_press_enables_dpms = true,
     },
     render = {
-        -- Direct scanout allows fullscreen games to bypass compositor rendering and scan out
-        -- directly to the display hardware, reducing latency and GPU compositing load.
-        direct_scanout = 1,
+        -- 0 = disabled: Direct scanout causes noticeable hitching/frame drops whenever overlays
+        -- or desktop popups (such as song notifications or bar updates from pear-desktop) appear,
+        -- as the compositor is forced to repeatedly drop and re-acquire direct KMS hardware scanout.
+        -- Keeping it disabled ensures smooth, consistent compositor frame pacing without stutter.
+        direct_scanout = 0,
     },
     xwayland = {
         force_zero_scaling = true
