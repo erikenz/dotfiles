@@ -1,14 +1,14 @@
 {
 	"window-size": {
-		"width": 1920,
-		"height": 1080
+		"width": 952,
+		"height": 1029
 	},
 	"window-maximized": true,
 	"window-position": {
 		"x": 0,
 		"y": 0
 	},
-	"url": "https://music.youtube.com/watch?v=0TkzqLaqOVI&list=LM&index=0",
+	"url": "https://music.youtube.com/watch?v=MHEgNEtfM4o&list=LM&index=0",
 	"options": {
 		"tray": false,
 		"appVisible": true,
@@ -33,7 +33,9 @@
 		]
 	},
 	"plugins": {
-		"notifications": {},
+		"notifications": {
+			"enabled": false
+		},
 		"video-toggle": {
 			"mode": "custom",
 			"enabled": true,
@@ -49,7 +51,7 @@
 				"volumeUp": "F18",
 				"volumeDown": "F16"
 			},
-			"savedVolume": 47
+			"savedVolume": 20
 		},
 		"discord": {
 			"listenAlong": true
