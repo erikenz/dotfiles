@@ -15,11 +15,11 @@ hl.config({
         key_press_enables_dpms = true,
     },
     render = {
-        -- 0 = disabled: Direct scanout causes noticeable hitching/frame drops whenever overlays
-        -- or desktop popups (such as song notifications or bar updates from pear-desktop) appear,
-        -- as the compositor is forced to repeatedly drop and re-acquire direct KMS hardware scanout.
-        -- Keeping it disabled ensures smooth, consistent compositor frame pacing without stutter.
-        direct_scanout = 0,
+        -- 2 = Auto (only enable direct scanout when content type is "game").
+        -- Matches CachyOS defaults. Direct scanout bypasses compositor rendering for fullscreen games,
+        -- eliminating ~1 frame of latency. Pear-desktop song notifications have been disabled to prevent
+        -- overlay popups from kicking the compositor in and out of direct scanout.
+        direct_scanout = 2,
     },
     xwayland = {
         force_zero_scaling = true
