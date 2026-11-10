@@ -20,7 +20,7 @@ hl.window_rule({
 })
 
 -- Gaming
-local gamingApps = "^(steam_app.*|gamescope|RocketLeague.*|rocketleague.*)$"
+local gamingApps = "^(steam_app.*|gamescope|RocketLeague.*|rocketleague.*|[Mm]inecraft.*)$"
 local gamingWorkspace = "name:gaming"
 
 hl.window_rule({ match = { content = "game" }, workspace = gamingWorkspace })
@@ -49,6 +49,15 @@ hl.window_rule({
 	sync_fullscreen = true,
 	confine_pointer = true,
 	workspace = gamingWorkspace,
+})
+hl.window_rule({
+	match = { class = "^(org\\.prismlauncher\\.PrismLauncher)$", title = "^(Minecraft.*)$" },
+	content = "game",
+	confine_pointer = true,
+	opaque = true,
+	workspace = gamingWorkspace,
+	fullscreen_state = 2,
+	sync_fullscreen = true,
 })
 
 -- Apps
@@ -252,6 +261,20 @@ hl.window_rule({
 	match = { class = "^([Vv]ivaldi.*)$" },
 	workspace = 1,
 	monitor = MONITOR2,
+})
+
+-- Prism Launcher
+hl.window_rule({
+	match = { class = "^(org\\.prismlauncher\\.PrismLauncher)$", title = "^(Prism Launcher.*)$" },
+	workspace = 10,
+	monitor = MONITOR1,
+})
+hl.window_rule({
+	match = {
+		class = "^(org\\.prismlauncher\\.PrismLauncher)$",
+		title = "^(Console window.*|Edit Instance.*|Select .*|Settings.*|Mod Downloader.*)$",
+	},
+	float = true,
 })
 
 -- Noctalia layer rule
