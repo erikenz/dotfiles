@@ -66,7 +66,7 @@ hl.bind(mainMod .. " + CONTROL + F", hl.dsp.window.fullscreen_state({ internal =
     { desc = "Toggle fullscreen state (client)" })
 
 -- Tabbed window groups (Vim-style tabs)
--- hl.bind(mainMod .. " + G", hl.dsp.group.toggle(), { desc = "Toggle tabbed window group" })
+hl.bind(mainMod .. " + ALT + G", hl.dsp.group.toggle(), { desc = "Toggle tabbed window group" })
 hl.bind(mainMod .. " + bracketleft", hl.dsp.group.prev(), { desc = "Previous tab in group" })
 hl.bind(mainMod .. " + bracketright", hl.dsp.group.next(), { desc = "Next tab in group" })
 
