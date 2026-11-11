@@ -21,6 +21,9 @@ hl.config({
         -- longer have the invisible cursor bug, and hardware cursors allow direct scanout.
         no_hardware_cursors = false,
         enable_hyprcursor = false,
+        inactive_timeout = 3,
+        hide_on_key_press = true,
+        hide_on_touch = true,
     },
 })
 
