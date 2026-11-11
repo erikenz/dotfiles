@@ -66,7 +66,7 @@ hl.bind(mainMod .. " + CONTROL + F", hl.dsp.window.fullscreen_state({ internal =
     { desc = "Toggle fullscreen state (client)" })
 
 -- Tabbed window groups (Vim-style tabs)
-hl.bind(mainMod .. " + G", hl.dsp.group.toggle(), { desc = "Toggle tabbed window group" })
+-- hl.bind(mainMod .. " + G", hl.dsp.group.toggle(), { desc = "Toggle tabbed window group" })
 hl.bind(mainMod .. " + bracketleft", hl.dsp.group.prev(), { desc = "Previous tab in group" })
 hl.bind(mainMod .. " + bracketright", hl.dsp.group.next(), { desc = "Next tab in group" })
 
@@ -99,7 +99,8 @@ hl.bind(mainMod .. " + ALT + Return",
     { desc = "Terminal with tmux session" })
 hl.bind(mainMod .. " + SHIFT + ALT + B", hl.dsp.exec_cmd(launchPrefix .. BROWSER .. " --private-window"),
     { desc = "Open private browser window" })
-hl.bind(mainMod .. " + SHIFT + F", hl.dsp.exec_cmd(binDir .. "launch-or-focus-tui yazi"), { desc = "Open file manager (Yazi)" })
+hl.bind(mainMod .. " + SHIFT + F", hl.dsp.exec_cmd(binDir .. "launch-or-focus ferdium 'uwsm app -- ferdium'"),
+    { desc = "Open Ferdium" })
 hl.bind("XF86Calculator", hl.dsp.exec_cmd(launchPrefix .. CALCULATOR), { desc = "Open calculator" })
 
 -- User custom app launchers (using launch-or-focus)
@@ -113,8 +114,6 @@ hl.bind(mainMod .. " + SHIFT + Escape", hl.dsp.exec_cmd(binDir .. "launch-or-foc
     { desc = "Open bottom (TUI)" })
 hl.bind(mainMod .. " + SHIFT + D", hl.dsp.exec_cmd(binDir .. "launch-or-focus vesktop 'uwsm app -- vesktop'"),
     { desc = "Open Vesktop (Discord)" })
-hl.bind(mainMod .. " + SHIFT + G", hl.dsp.exec_cmd(binDir .. "launch-or-focus ferdium 'uwsm app -- ferdium'"),
-    { desc = "Open Ferdium" })
 hl.bind(mainMod .. " + SHIFT + O", hl.dsp.exec_cmd(binDir .. "launch-or-focus obsidian 'uwsm app -- obsidian'"),
     { desc = "Open Obsidian" })
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd(binDir .. "launch-or-focus steam 'uwsm app -- steam'"),
@@ -143,7 +142,9 @@ hl.bind(mainMod .. " + SHIFT + A", hl.dsp.exec_cmd(binDir .. "launch-webapp 'htt
     { desc = "Open Gemini webapp" })
 hl.bind(mainMod .. " + SHIFT + C", hl.dsp.exec_cmd(binDir .. "launch-webapp 'https://calendar.google.com'"),
     { desc = "Open Google Calendar" })
-hl.bind(mainMod .. " + SHIFT + E", hl.dsp.exec_cmd(binDir .. "launch-webapp 'https://mail.google.com'"),
+hl.bind(mainMod .. " + SHIFT + E", hl.dsp.exec_cmd(binDir .. "launch-or-focus-tui yazi"),
+    { desc = "Open file manager (Yazi)" })
+hl.bind(mainMod .. " + CONTROL + SHIFT + E", hl.dsp.exec_cmd(binDir .. "launch-webapp 'https://mail.google.com'"),
     { desc = "Open Gmail" })
 hl.bind(mainMod .. " + SHIFT + X", hl.dsp.exec_cmd(binDir .. "launch-webapp 'https://x.com/'"),
     { desc = "Open X (Twitter)" })
@@ -254,6 +255,7 @@ for i = 1, NUM_WPM do
     local key = i % 10
     hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }), { desc = "Focus workspace " .. i })
 end
+hl.bind(mainMod .. " + G", hl.dsp.focus({ workspace = "name:gaming" }), { desc = "Focus gaming workspace" })
 
 -- Focus on monitors
 hl.bind(mainMod .. " + CONTROL + 1", hl.dsp.focus({ monitor = MONITOR1 }), { desc = "Focus monitor 1" })
@@ -266,6 +268,8 @@ for i = 1, NUM_WPM do
     hl.bind(mainMod .. " + SHIFT + CONTROL + " .. key, hl.dsp.window.move({ workspace = i }),
         { desc = "Move window to workspace " .. i })
 end
+hl.bind(mainMod .. " + SHIFT + CONTROL + G", hl.dsp.window.move({ workspace = "name:gaming" }),
+    { desc = "Move window to gaming workspace" })
 
 -- Move window to workspace silently (stay on current workspace)
 for i = 1, NUM_WPM do
@@ -273,6 +277,8 @@ for i = 1, NUM_WPM do
     hl.bind(mainMod .. " + SHIFT + ALT + " .. key, hl.dsp.window.move({ workspace = i, follow = false }),
         { desc = "Move window to workspace " .. i .. " (silent)" })
 end
+hl.bind(mainMod .. " + SHIFT + ALT + G", hl.dsp.window.move({ workspace = "name:gaming", follow = false }),
+    { desc = "Move window to gaming workspace (silent)" })
 
 -- Navigate adjacent workspaces on current monitor (Vim style)
 hl.bind(mainMod .. " + CONTROL + L", hl.dsp.focus({ workspace = "m+1" }), { desc = "Focus next workspace" })
