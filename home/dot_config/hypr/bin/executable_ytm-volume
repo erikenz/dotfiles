@@ -5,10 +5,15 @@ if [ -z "${DBUS_SESSION_BUS_ADDRESS:-}" ] && [ -n "${XDG_RUNTIME_DIR:-}" ] && [ 
     export DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus"
 fi
 
+if ! busctl --user status org.mpris.MediaPlayer2.YoutubeMusic >/dev/null 2>&1; then
+    exit 0
+fi
+
 DIR="${XDG_RUNTIME_DIR:-/tmp}/ytm-volume"
 mkdir -p "$DIR"
 LOCK="$DIR/lock"
 STATE="$DIR/state"
+CONFIG_FILE="$HOME/.config/YouTube Music/config.json"
 
 exec 200>"$LOCK"
 flock -x 200
@@ -23,17 +28,6 @@ fi
 
 NOW=$(date +%s%3N)
 CUR=""
-
-if [ -f "$STATE" ]; then
-    read -r LAST_TIME LAST_VOL < "$STATE" || true
-    if [ -n "${LAST_TIME:-}" ] && [ -n "${LAST_VOL:-}" ]; then
-        DIFF=$((NOW - LAST_TIME))
-        # Keep cached target during active repeat bursts (up to 800ms)
-        if [ "$DIFF" -ge 0 ] && [ "$DIFF" -lt 800 ]; then
-            CUR="$LAST_VOL"
-        fi
-    fi
-fi
 
 parse_vol() {
     local v="$1"
@@ -68,13 +62,31 @@ format_vol() {
     fi
 }
 
+# 1. Read last known volume from state
+if [ -f "$STATE" ]; then
+    read -r LAST_TIME LAST_VOL < "$STATE" || true
+    if [ -n "${LAST_VOL:-}" ]; then
+        CUR="$LAST_VOL"
+    fi
+fi
+
+# 2. If no state (e.g. after reboot), fall back to saved volume in config.json
+if [ -z "$CUR" ] && [ -f "$CONFIG_FILE" ]; then
+    CONFIG_VOL=$(jq -r '.plugins["precise-volume"].savedVolume // empty' "$CONFIG_FILE" 2>/dev/null || true)
+    if [ -n "$CONFIG_VOL" ] && [ "$CONFIG_VOL" != "null" ]; then
+        CUR="$CONFIG_VOL"
+    fi
+fi
+
+# 3. If still empty, fall back to MPRIS D-Bus
 if [ -z "$CUR" ]; then
     RAW=$(busctl --user get-property org.mpris.MediaPlayer2.YoutubeMusic /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player Volume 2>/dev/null || true)
-    if [ -z "$RAW" ]; then
-        exit 0
+    if [ -n "$RAW" ]; then
+        VAL="${RAW#d }"
+        CUR=$(parse_vol "$VAL")
+    else
+        CUR=50
     fi
-    VAL="${RAW#d }"
-    CUR=$(parse_vol "$VAL")
 fi
 
 NEW=$((CUR + DELTA))
