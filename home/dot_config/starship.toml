@@ -106,26 +106,43 @@ $shell\
 $character"""
 
 [custom.git_worktree]
-description = "Shows the active Git worktree name (or Delta thread title) when inside a worktree"
+description = "Shows the active Git worktree name (or Delta / T3 Code thread title) when inside a worktree"
 command = '''
 IFS="
 "
 set -f
 set -- $(git rev-parse --path-format=absolute --git-dir --git-common-dir --show-toplevel 2>/dev/null)
 set +f
-if [ $# -ge 3 ]; then
-    if [ "$1" != "$2" ]; then
-        echo "🌲 $(basename "$3")"
-    elif case "$3" in */.delta/worktrees/*) true;; *) false;; esac; then
-        session=$(basename "$(dirname "$3")")
-        for f in "$HOME"/.local/share/delta/user_*/data.sqlite; do
-            if [ -f "$f" ]; then
-                tname=$(sqlite3 -batch -noheader "$f" "SELECT t.name FROM app_worktree_mounts m JOIN app_worktrees w ON instr(m.state, w.history_id) > 0 JOIN histories hw ON hw.history_uuid = w.history_id LEFT JOIN history_dependencies d ON d.dependency_history_uuid = w.history_id LEFT JOIN histories hd ON hd.history_key = d.history_key JOIN app_threads t ON (t.history_id = hd.history_uuid OR t.history_id = (SELECT history_uuid FROM histories WHERE history_key = hw.history_key - 1)) WHERE m.namespace = '$session' ORDER BY COALESCE(t.last_prompted_at, t.created_at, 0) DESC LIMIT 1;" 2>/dev/null)
-                break
+if [ $# -ge 3 ] && [ "$1" != "$2" ]; then
+    case "$3" in
+        */.t3/worktrees/*)
+            id=$(basename "$3")
+            safe_target=$(printf '%s' "$3" | sed "s/'/''/g")
+            safe_id=$(printf '%s' "$id" | sed "s/'/''/g")
+            db="$HOME/.t3/userdata/statev2.sqlite"
+            [ ! -f "$db" ] && db="$HOME/.t3/userdata/state.sqlite"
+            if [ -f "$db" ]; then
+                tname=$(sqlite3 -batch -noheader "$db" "SELECT title FROM orchestration_v2_projection_threads WHERE json_extract(payload_json, '$.worktreePath') = '$safe_target' OR json_extract(payload_json, '$.worktreePath') LIKE '%/$safe_id' ORDER BY updated_at DESC LIMIT 1;" 2>/dev/null | head -n 1)
+                if [ -z "$tname" ]; then
+                    tname=$(sqlite3 -batch -noheader "$db" "SELECT title FROM projection_threads WHERE worktree_path = '$safe_target' OR worktree_path LIKE '%/$safe_id' ORDER BY updated_at DESC LIMIT 1;" 2>/dev/null | head -n 1)
+                fi
             fi
-        done
-        echo " ${tname:-$session}"
-    fi
+            echo "🌲 ${tname:-$id}"
+            ;;
+        */.delta/worktrees/*)
+            session=$(basename "$(dirname "$3")")
+            for f in "$HOME"/.local/share/delta/user_*/data.sqlite; do
+                if [ -f "$f" ]; then
+                    tname=$(sqlite3 -batch -noheader "$f" "SELECT t.name FROM app_worktree_mounts m JOIN app_worktrees w ON instr(m.state, w.history_id) > 0 JOIN histories hw ON hw.history_uuid = w.history_id LEFT JOIN history_dependencies d ON d.dependency_history_uuid = w.history_id LEFT JOIN histories hd ON hd.history_key = d.history_key JOIN app_threads t ON (t.history_id = hd.history_uuid OR t.history_id = (SELECT history_uuid FROM histories WHERE history_key = hw.history_key - 1)) WHERE m.namespace = '$session' ORDER BY COALESCE(t.last_prompted_at, t.created_at, 0) DESC LIMIT 1;" 2>/dev/null | head -n 1)
+                    break
+                fi
+            done
+            echo " ${tname:-$session}"
+            ;;
+        *)
+            echo "🌲 $(basename "$3")"
+            ;;
+    esac
 fi
 '''
 when = "git rev-parse --is-inside-work-tree 2>/dev/null"
