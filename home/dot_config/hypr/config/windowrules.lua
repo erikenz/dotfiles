@@ -224,7 +224,7 @@ hl.window_rule({
 -- Ferdium workspace
 hl.window_rule({
 	match = { class = "^( Ferdium)$" },
-	workspace = 5,
+	workspace = 6,
 	monitor = MONITOR1,
 })
 

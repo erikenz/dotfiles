@@ -6,7 +6,8 @@
 hl.workspace_rule({ workspace = "2", monitor = MONITOR1, default = true })
 hl.workspace_rule({ workspace = "3", monitor = MONITOR1, default = true }) -- Zed / Delta / T3 Code
 hl.workspace_rule({ workspace = "4", monitor = MONITOR1, default = true }) -- Chromium Debug
-hl.workspace_rule({ workspace = "5", monitor = MONITOR1, default = true }) -- Ferdium
+hl.workspace_rule({ workspace = "5", monitor = MONITOR1, default = true }) -- Herdr
+hl.workspace_rule({ workspace = "6", monitor = MONITOR1, default = true }) -- Ferdium
 hl.workspace_rule({ workspace = "7", monitor = MONITOR1, default = true }) -- WatchDeck / Stremio
 hl.workspace_rule({ workspace = "10", monitor = MONITOR1, default = true }) -- Steam
 
