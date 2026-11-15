@@ -223,7 +223,7 @@ hl.window_rule({
 
 -- Ferdium workspace
 hl.window_rule({
-	match = { class = "^( Ferdium)$" },
+	match = { class = "^([Ff]erdium)$" },
 	workspace = 6,
 	monitor = MONITOR1,
 })
