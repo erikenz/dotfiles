@@ -23,10 +23,11 @@ hl.window_rule({
 local gamingApps = "^(steam_app.*|gamescope|RocketLeague.*|rocketleague.*|[Mm]inecraft.*)$"
 local gamingWorkspace = "name:gaming"
 
-hl.window_rule({ match = { content = "game" }, workspace = gamingWorkspace })
+hl.window_rule({ match = { content = "game" }, workspace = gamingWorkspace, monitor = MONITOR1 })
 hl.window_rule({
 	match = { xdg_tag = "^(.*game.*)$" },
 	workspace = gamingWorkspace,
+	monitor = MONITOR1,
 	fullscreen_state = 2,
 	content = "game",
 	sync_fullscreen = true,
@@ -37,6 +38,7 @@ hl.window_rule({
 	float = true,
 	center = true,
 	workspace = gamingWorkspace,
+	monitor = MONITOR1,
 })
 hl.window_rule({
 	match = { class = gamingApps },
@@ -49,30 +51,35 @@ hl.window_rule({
 	sync_fullscreen = true,
 	confine_pointer = true,
 	workspace = gamingWorkspace,
+	monitor = MONITOR1,
 })
 hl.window_rule({
 	match = {
 		class = "^($|[Mm]inecraft.*|org\\.prismlauncher\\.PrismLauncher)$",
-		initial_title = "^([Mm]inecraft.*|FML [Ee]arly.*)$",
+		initial_title = "^([Mm]inecraft.*|FML.*|All [Tt]he [Mm]ods.*)$",
 	},
 	content = "game",
 	confine_pointer = true,
 	opaque = true,
 	workspace = gamingWorkspace,
+	monitor = MONITOR1,
 	fullscreen_state = 2,
 	sync_fullscreen = true,
+	suppress_event = "fullscreen activate activatefocus",
 })
 hl.window_rule({
 	match = {
 		class = "^($|[Mm]inecraft.*|org\\.prismlauncher\\.PrismLauncher)$",
-		title = "^([Mm]inecraft.*)$",
+		title = "^([Mm]inecraft.*|All [Tt]he [Mm]ods.*)$",
 	},
 	content = "game",
 	confine_pointer = true,
 	opaque = true,
 	workspace = gamingWorkspace,
+	monitor = MONITOR1,
 	fullscreen_state = 2,
 	sync_fullscreen = true,
+	suppress_event = "fullscreen activate activatefocus",
 })
 
 -- Apps

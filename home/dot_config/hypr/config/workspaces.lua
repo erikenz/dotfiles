@@ -10,6 +10,7 @@ hl.workspace_rule({ workspace = "5", monitor = MONITOR1, default = true }) -- He
 hl.workspace_rule({ workspace = "6", monitor = MONITOR1, default = true }) -- Ferdium
 hl.workspace_rule({ workspace = "7", monitor = MONITOR1, default = true }) -- WatchDeck / Stremio
 hl.workspace_rule({ workspace = "10", monitor = MONITOR1, default = true }) -- Steam
+hl.workspace_rule({ workspace = "name:gaming", monitor = MONITOR1, default = true }) -- Gaming
 
 -- Secondary monitor (HDMI-A-1) defaults
 hl.workspace_rule({ workspace = "1", monitor = MONITOR2, default = true }) -- Vivaldi
