@@ -51,7 +51,22 @@ hl.window_rule({
 	workspace = gamingWorkspace,
 })
 hl.window_rule({
-	match = { class = "^(org\\.prismlauncher\\.PrismLauncher)$", title = "^(Minecraft.*)$" },
+	match = {
+		class = "^($|[Mm]inecraft.*|org\\.prismlauncher\\.PrismLauncher)$",
+		initial_title = "^([Mm]inecraft.*|FML [Ee]arly.*)$",
+	},
+	content = "game",
+	confine_pointer = true,
+	opaque = true,
+	workspace = gamingWorkspace,
+	fullscreen_state = 2,
+	sync_fullscreen = true,
+})
+hl.window_rule({
+	match = {
+		class = "^($|[Mm]inecraft.*|org\\.prismlauncher\\.PrismLauncher)$",
+		title = "^([Mm]inecraft.*)$",
+	},
 	content = "game",
 	confine_pointer = true,
 	opaque = true,
