@@ -2,6 +2,7 @@ function wt --description "Unified switcher for T3 Code and Delta worktrees"
     set -l filter_mode "all"  # "all", "t3", or "delta"
     set -l show_all_projects 0
     set -l force_switch 0
+    set -l active_only 0
     set -l tab (printf "\t")
 
     # ANSI color codes
@@ -16,6 +17,7 @@ function wt --description "Unified switcher for T3 Code and Delta worktrees"
     set -l c_cyan (printf "\033[1;36m")
     set -l c_dim_gray (printf "\033[2;37m")
 
+    # Resolve repo root and worktree state
     set -l top (git rev-parse --show-toplevel 2>/dev/null)
     set -l repo_root "$top"
     set -l is_worktree 0
@@ -36,11 +38,39 @@ function wt --description "Unified switcher for T3 Code and Delta worktrees"
         if test "$top" != "$repo_root"
             set is_worktree 1
         end
+    else
+        # Fallback when current working directory was deleted/unlinked
+        if string match -q "*/.t3/worktrees/*/*" "$PWD"
+            set -l proj (string split "/" -- "$PWD")[-2]
+            if test -d "$HOME/Projects/$proj"
+                set repo_root "$HOME/Projects/$proj"
+                set is_worktree 1
+                echo "$c_yellow⚠️ Current worktree directory does not exist on disk! Detected project: $repo_root$c_reset"
+            end
+        else if string match -q "*/.delta/worktrees/*/*" "$PWD"
+            set -l proj (string split "/" -- "$PWD")[-1]
+            if test -d "$HOME/Projects/$proj"
+                set repo_root "$HOME/Projects/$proj"
+                set is_worktree 1
+                echo "$c_yellow⚠️ Current worktree directory does not exist on disk! Detected project: $repo_root$c_reset"
+            end
+        end
     end
 
     # Parse arguments
     for arg in $argv
         switch $arg
+            case main -m --main
+                if test -n "$repo_root" -a -d "$repo_root"
+                    cd "$repo_root"
+                    echo "🏠 Switched to main project root: $repo_root"
+                    return 0
+                else
+                    echo "❌ Not inside a git repository."
+                    return 1
+                end
+            case -A --active
+                set active_only 1
             case -t --t3
                 set filter_mode "t3"
             case -d --delta
@@ -57,16 +87,48 @@ function wt --description "Unified switcher for T3 Code and Delta worktrees"
                     echo "ℹ️  Run within a git project to prune worktrees."
                 end
                 return 0
+            case --clean-deleted
+                if test -z "$repo_root" -o ! -d "$repo_root"
+                    echo "❌ Not inside a git repository."
+                    return 1
+                end
+                echo "🔍 Scanning worktrees for deleted T3 Code threads in "(basename "$repo_root")"..."
+                set -l raw_wts (git -C "$repo_root" worktree list --porcelain 2>/dev/null | string match -r "^worktree (.*/\.t3/worktrees/.*)" | string replace -r "^worktree " "" | sort -u)
+                set -l count_cleaned 0
+                for w in $raw_wts
+                    set -l t_stat (t3_thread_name --status "$w" 2>/dev/null)
+                    if test "$t_stat" = "deleted"
+                        set -l t_title (t3_thread_name "$w" 2>/dev/null)
+                        set -l w_id (basename "$w")
+                        set -l st (git -C "$w" status --short 2>/dev/null)
+                        if test -n "$st"
+                            echo "⚠️  Skipping $w_id ('$t_title'): has uncommitted changes!"
+                        else
+                            read -l -P "Remove clean worktree for deleted thread '$t_title' ($w_id)? [y/N] " ans
+                            if string match -qi "y*" "$ans"
+                                git -C "$repo_root" worktree remove "$w" 2>/dev/null
+                                or rm -rf "$w"
+                                echo "   🗑️ Removed $w_id"
+                                set count_cleaned (math $count_cleaned + 1)
+                            end
+                        end
+                    end
+                end
+                git -C "$repo_root" worktree prune -v
+                echo "✨ Cleaned $count_cleaned worktree(s)."
+                return 0
             case -h --help
                 echo "Usage: wt [options]"
                 echo "Quickly switch between main project root and T3 Code / Delta worktrees."
                 echo ""
                 echo "Options:"
-                echo "  wt                Open interactive worktree picker (includes option to switch to main)"
-                echo "  wt -s, --switch   Switch to another worktree (same as wt)"
+                echo "  wt                Open interactive worktree picker (includes main project root)"
+                echo "  wt main, -m       Switch directly to the main project root"
+                echo "  wt -A, --active   Filter out worktrees whose T3 threads were deleted"
                 echo "  wt -t, --t3       Filter to only T3 Code worktrees"
                 echo "  wt -d, --delta    Filter to only Delta worktrees"
                 echo "  wt -a, --all      Show worktrees across all projects on this machine"
+                echo "  wt --clean-deleted Safely prune worktrees from deleted T3 Code threads"
                 echo "  wt -p, --prune    Prune stale/deleted worktrees for this repository"
                 echo "  wt -h, --help     Show this help message"
                 return 0
@@ -77,12 +139,16 @@ function wt --description "Unified switcher for T3 Code and Delta worktrees"
     set -l t3_wts
     set -l delta_wts
 
-    if test $show_all_projects -eq 1 -o -z "$top"
+    if test $show_all_projects -eq 1 -o -z "$repo_root"
         # Across all projects
         if test "$filter_mode" != "delta"
             set -l all_t3 (find "$HOME/.t3/worktrees" -mindepth 2 -maxdepth 2 -type d 2>/dev/null)
             for w in $all_t3
                 if test -d "$w"
+                    if test $active_only -eq 1
+                        set -l t_stat (t3_thread_name --status "$w" 2>/dev/null)
+                        test "$t_stat" = "deleted"; and continue
+                    end
                     set -a t3_wts "$w"
                 end
             end
@@ -105,6 +171,10 @@ function wt --description "Unified switcher for T3 Code and Delta worktrees"
             set -l raw_t3 (git -C "$repo_root" worktree list --porcelain 2>/dev/null | string match -r "^worktree (.*/\.t3/worktrees/.*)" | string replace -r "^worktree " "" | sort -u)
             for w in $raw_t3
                 if test -d "$w"
+                    if test $active_only -eq 1
+                        set -l t_stat (t3_thread_name --status "$w" 2>/dev/null)
+                        test "$t_stat" = "deleted"; and continue
+                    end
                     set -a t3_wts "$w"
                 end
             end
@@ -113,6 +183,10 @@ function wt --description "Unified switcher for T3 Code and Delta worktrees"
             if test (count $t3_wts) -eq 0 -a -d "$HOME/.t3/worktrees/$proj_name"
                 for w in (find "$HOME/.t3/worktrees/$proj_name" -mindepth 1 -maxdepth 1 -type d 2>/dev/null)
                     if test -d "$w" -a ! (contains "$w" $t3_wts)
+                        if test $active_only -eq 1
+                            set -l t_stat (t3_thread_name --status "$w" 2>/dev/null)
+                            test "$t_stat" = "deleted"; and continue
+                        end
                         set -a t3_wts "$w"
                     end
                 end
@@ -136,7 +210,7 @@ function wt --description "Unified switcher for T3 Code and Delta worktrees"
     set -l total_count (math (count $t3_wts) + (count $delta_wts))
 
     if test $total_count -eq 0 -a $is_worktree -eq 0
-        if test -z "$top"
+        if test -z "$repo_root"
             echo "❌ Not inside a git repository and no T3 or Delta worktrees found."
         else
             echo "ℹ️  No active T3 or Delta worktrees found for this project."
@@ -230,7 +304,7 @@ function wt --description "Unified switcher for T3 Code and Delta worktrees"
         end
         set -l counts (git -C "$w" rev-list --left-right --count "$base_branch...HEAD" 2>/dev/null)
         if test -n "$counts"
-            set -l c_parts (string split "$tab" -- $counts)
+            set -l c_parts (string split (printf "\t") -- "$counts")
             set -l behind $c_parts[1]
             set -l ahead $c_parts[2]
             set -l ab_inner ""
@@ -248,31 +322,47 @@ function wt --description "Unified switcher for T3 Code and Delta worktrees"
         set -l current_str ""
         if test -n "$top" -a "$w" = "$top"
             set current_str " "$c_cyan"(current)"$c_reset
+        else if test -n "$PWD" -a "$w" = "$PWD"
+            set current_str " "$c_cyan"(current)"$c_reset
         end
 
         set -l entry
         if test "$kind" = "t3"
             set -l id (basename "$w")
-            set -l tname (t3_thread_name "$w")
+            set -l details (t3_thread_name --details "$w" 2>/dev/null)
+            set -l d_parts (string split "$tab" -- "$details")
+            set -l tname "$d_parts[1]"
+            test -z "$tname"; and set tname (basename "$w")
+            set -l t_stat "$d_parts[2]"
+
+            set -l status_tag ""
+            if test "$t_stat" = "deleted"
+                set status_tag " "$c_red"[deleted]"$c_reset
+            else if test "$t_stat" = "archived"
+                set status_tag " "$c_yellow"[archived]"$c_reset
+            end
+
             set -l proj (basename (dirname "$w"))
             set -l proj_prefix ""
-            if test $show_all_projects -eq 1 -o -z "$top"
+            if test $show_all_projects -eq 1 -o -z "$repo_root"
                 set proj_prefix " "$c_dim"[$proj]"$c_reset
             end
-            set entry (printf "%s[T3 Code]%s%s %s%s%s%s%s%s%s %s[%s]%s%s%s%s\t%s" \
+            set entry (printf "%s[T3 Code]%s%s %s%s%s%s%s%s%s%s %s[%s]%s%s%s%s\t%s" \
                 "$c_cyan" "$c_reset" \
                 "$proj_prefix" \
                 "$c_bold" "$tname" "$c_reset" \
+                "$status_tag" \
                 "$branch_str" "$current_str" "$ab_str" "$dirty_str" \
                 "$c_dim" "$id" "$c_reset" \
                 "$c_dim_gray" "$time_str" "$c_reset" \
                 "$w")
         else
             set -l sess (basename (dirname "$w"))
-            set -l tname (delta_thread_name "$sess")
+            set -l tname (delta_thread_name "$sess" 2>/dev/null)
+            test -z "$tname"; and set tname "$sess"
             set -l proj (basename "$w")
             set -l proj_prefix ""
-            if test $show_all_projects -eq 1 -o -z "$top"
+            if test $show_all_projects -eq 1 -o -z "$repo_root"
                 set proj_prefix " "$c_dim"[$proj]"$c_reset
             end
             set entry (printf "%s[Delta]%s  %s %s%s%s%s%s%s%s %s[%s]%s%s%s%s\t%s" \
@@ -289,8 +379,8 @@ function wt --description "Unified switcher for T3 Code and Delta worktrees"
         set -a raw_targets "$w"
     end
 
-    # If inside a worktree, prepend an option to return to the main project root
-    if test $is_worktree -eq 1 -a $show_all_projects -eq 0 -a -n "$repo_root" -a -d "$repo_root"
+    # ALWAYS include [Main] project root entry at the top when scoped to a repository
+    if test $show_all_projects -eq 0 -a -n "$repo_root" -a -d "$repo_root"
         set -l main_branch (git -C "$repo_root" branch --show-current 2>/dev/null)
         test -z "$main_branch"; and set main_branch "main"
         set -l main_cr (git -C "$repo_root" log -1 --format=%cr 2>/dev/null)
@@ -301,14 +391,19 @@ function wt --description "Unified switcher for T3 Code and Delta worktrees"
         set -l main_dirty_sample (git -C "$repo_root" status --porcelain 2>/dev/null | head -n 1)
         test -n "$main_dirty_sample"; and set main_dirty " "$c_red"*"$c_reset
 
+        set -l main_current ""
+        if test "$top" = "$repo_root" -o "$PWD" = "$repo_root"
+            set main_current " "$c_cyan"(current)"$c_reset
+        end
+
         set -l main_branch_str ""
         test -n "$main_branch"; and set main_branch_str " "$c_yellow"($main_branch)"$c_reset
 
         set -l main_proj (basename "$repo_root")
-        set -l main_entry (printf "%s[Main]%s    %sMain project root (%s)%s%s%s %s[root]%s%s%s%s\t%s" \
+        set -l main_entry (printf "%s[Main]%s    %sMain project root (%s)%s%s%s%s %s[root]%s%s%s%s\t%s" \
             "$c_green" "$c_reset" \
             "$c_bold" "$main_proj" "$c_reset" \
-            "$main_branch_str" "$main_dirty" \
+            "$main_branch_str" "$main_current" "$main_dirty" \
             "$c_dim" "$c_reset" \
             "$c_dim_gray" "$main_time" "$c_reset" \
             "$repo_root")
@@ -318,10 +413,10 @@ function wt --description "Unified switcher for T3 Code and Delta worktrees"
     end
 
     if command -q fzf
-        set -l preview_script 'set -l w {2}; printf "\033[1;34m📁 Worktree:\033[0m %s\n" "$w"; set -l b (git -C "$w" branch --show-current 2>/dev/null); test -n "$b"; and printf "\033[1;33m🌿 Branch:\033[0m   %s\n" "$b"; echo ""; printf "\033[1;32m📋 Changes:\033[0m\n"; set -l st (git -C "$w" status -s 2>/dev/null); if test -n "$st"; printf "%s\n" "$st"; else; echo "  Clean working tree"; end; echo ""; printf "\033[1;35m📜 Recent Commits:\033[0m\n"; git -C "$w" log -5 --oneline --decorate --color=always 2>/dev/null'
-
         set -l header_str "[Main] (green) | [T3 Code] (cyan) | [Delta] (purple)  •  ctrl-d: diff  •  ctrl-/: toggle preview"
-        test $is_worktree -eq 0; and set header_str "[T3 Code] (cyan) | [Delta] (purple)  •  ctrl-d: diff  •  ctrl-/: toggle preview"
+        if test -n "$repo_root"
+            set header_str "Project: "(basename "$repo_root")"  •  [Main] / [T3 Code] / [Delta]  •  ctrl-d: diff  •  ctrl-/: toggle preview"
+        end
 
         set -l chosen (printf "%s\n" $display_entries | fzf --ansi \
             --delimiter=\t \
@@ -331,7 +426,7 @@ function wt --description "Unified switcher for T3 Code and Delta worktrees"
             --height=~65% \
             --layout=reverse \
             --border \
-            --preview="$preview_script" \
+            --preview="_wt_preview {2} '$repo_root'" \
             --preview-window="right:50%:wrap" \
             --bind="ctrl-d:execute(git -C {2} diff --color=always | less -R),ctrl-/:toggle-preview")
 
@@ -340,16 +435,20 @@ function wt --description "Unified switcher for T3 Code and Delta worktrees"
             if test -d "$target"
                 cd "$target"
                 if test -n "$repo_root" -a "$target" = "$repo_root"
-                    echo "↩️  Switched back to main project: $repo_root"
+                    echo "↩️  Switched to main project root: $repo_root"
                 else if string match -q "*/.delta/*" "$target"
                     set -l sess (basename (dirname "$target"))
-                    set -l tname (delta_thread_name "$sess")
+                    set -l tname (delta_thread_name "$sess" 2>/dev/null)
+                    test -z "$tname"; and set tname "$sess"
                     echo " Switched to Delta worktree: $tname [$sess]"
                 else
                     set -l id (basename "$target")
-                    set -l tname (t3_thread_name "$target")
+                    set -l tname (t3_thread_name "$target" 2>/dev/null)
+                    test -z "$tname"; and set tname "$id"
                     echo " Switched to T3 worktree: $tname [$id]"
                 end
+            else
+                echo "❌ Target directory does not exist on disk: $target"
             end
         end
     else
@@ -369,14 +468,16 @@ function wt --description "Unified switcher for T3 Code and Delta worktrees"
             if test -d "$target"
                 cd "$target"
                 if test -n "$repo_root" -a "$target" = "$repo_root"
-                    echo "↩️  Switched back to main project: $repo_root"
+                    echo "↩️  Switched to main project root: $repo_root"
                 else if string match -q "*/.delta/*" "$target"
                     set -l sess (basename (dirname "$target"))
-                    set -l tname (delta_thread_name "$sess")
+                    set -l tname (delta_thread_name "$sess" 2>/dev/null)
+                    test -z "$tname"; and set tname "$sess"
                     echo " Switched to Delta worktree: $tname [$sess]"
                 else
                     set -l id (basename "$target")
-                    set -l tname (t3_thread_name "$target")
+                    set -l tname (t3_thread_name "$target" 2>/dev/null)
+                    test -z "$tname"; and set tname "$id"
                     echo " Switched to T3 worktree: $tname [$id]"
                 end
             end
