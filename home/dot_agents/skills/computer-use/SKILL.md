@@ -1,62 +1,79 @@
 ---
 name: computer-use
-description: "Operating rules for Erik's Arch Linux machine: dev servers in Herdr, dotfiles with chezmoi, mcp-ctl recovery, scoped testing, and Chrome DevTools debug launches. Activate whenever running local servers, executing tests, modifying dotfiles, debugging MCP, or testing web UIs."
+description: "Manage dev servers and background commands in Herdr, sync dotfiles with chezmoi, recover MCP servers with mcp-ctl, run scoped tests, and launch Chrome DevTools. Trigger when running local dev servers, starting background services or commands in Herdr, managing dotfiles, diagnosing MCP errors, running tests, or debugging web UIs."
 ---
 
 # Computer Use & Machine Rules
 
-Operating guidelines for local development, background services, and system resources on Erik's machine.
+Operating reference for background services, local development, and system resources on this machine.
 
-## Dotfiles (`chezmoi`)
+## Dev Servers & Background Services (`herdr`)
 
-The local filesystem is the source of truth.
-- **Workflow**: Check tracking status with `chezmoi status`. Sync modified tracked files with `chezmoi re-add <path>` and new files with `chezmoi add <path>`.
-- **Public Repository Security**: The dotfiles repo is publicly hosted on GitHub. Never sync credentials, tokens, session cookies, or private keys.
-- **Quarantine**: If private or machine-specific data appears in a tracked folder, immediately append its pattern to `~/.local/share/chezmoi/.chezmoiignore`.
+Run all development servers, background tasks, and long-running processes inside **Herdr** (managed terminal multiplexer talking over Unix domain sockets).
 
-## MCP Servers (`mcp-ctl`)
+### External Orchestration (t3code, standalone agents, external shells)
 
-All MCP servers are orchestrated via `mcp-ctl`. When an MCP server disconnects, crashes, or fails to respond:
-- Check service health: `mcp-ctl status`
-- Cycle and recover: `mcp-ctl restart` (or `mcp-ctl up`)
-- Diagnose errors: `mcp-ctl logs`
-Never spawn ad-hoc, unmanaged Node or Python background MCP processes.
-
-## Dev Servers & Long-Running Services (`herdr`)
-
-Always run development servers, background tasks, and long-running services inside **Herdr**:
-- **Ignore `HERDR_ENV` Warning**: The `herdr` skill instructs agents to stop if `HERDR_ENV=1` is missing. **Ignore that restriction.** Use `herdr` CLI commands regardless of whether `HERDR_ENV` is set in the agent's sub-shell. Herdr runs as a persistent server and communicates via Unix domain sockets.
-- **Never Steal Focus (`--no-focus`)**: When creating workspaces or splitting panes, **always pass `--no-focus`** so the user's active viewport/pane is never yanked:
-  ```bash
-  # Create a workspace in background
-  herdr workspace create --label "<project>" --cwd "$PWD" --no-focus
-
-  # Split pane in background
-  herdr pane split <pane_id> --direction right --no-focus
-  ```
-- **Process Execution & Inspection**: Run commands with `herdr pane run <pane_id> "<command>"`, read logs with `herdr pane read <pane_id>`, and close panes/workspaces gracefully with `herdr pane close <pane_id>` or `herdr workspace close <workspace_id>`.
-- **No Orphaned Processes**: Never spawn detached background subshells (`nohup`, `&`) for servers or services.
+When running from an external application like t3code where `HERDR_ENV` is unset or not `1`:
+- **Do not stop on unset `HERDR_ENV`**: The `herdr` CLI communicates with the active Herdr daemon via socket (`~/.config/herdr/herdr.sock`) regardless of whether the agent runs inside a Herdr pane.
+- **Never use `--current`**: External agents have no calling pane context (`HERDR_PANE_ID` is empty). Always specify an explicit pane ID or create a dedicated workspace.
+- **Always pass `--no-focus`**: Prevent stealing focus from the user's active viewport.
+- **Standard lifecycle**:
+  1. Create a background workspace:
+     ```bash
+     WS_JSON=$(herdr workspace create --label "<project-name>" --cwd "$PWD" --no-focus)
+     PANE_ID=$(echo "$WS_JSON" | jq -r '.result.root_pane.pane_id')
+     ```
+  2. Launch the service or command in the created pane:
+     ```bash
+     herdr pane run "$PANE_ID" "<command>"
+     ```
+  3. Inspect output or logs:
+     ```bash
+     herdr pane read "$PANE_ID" --source recent-unwrapped --lines 100
+     ```
+  4. Graceful teardown when done:
+     ```bash
+     herdr pane close "$PANE_ID"
+     ```
+- **No detached background processes**: Never spawn unmanaged background processes (`nohup`, `&`) for servers or services.
 
 ## Resource Safety & Freezing Prevention
 
-The machine has strict hardware resource limits. Prevent CPU and memory exhaustion:
-- **Server Concurrency**: Only small or lightweight services may run simultaneously. Never run more than one heavy, full-stack dev stack at a time.
-- **Workload Separation**: Never run broad test suites, container builds, or heavy multi-package compilations while a heavy dev server is active (causes severe swap thrashing and UI freezes).
-- **Targeted Process Control**: Stop services gracefully via `herdr`, `docker compose`, or explicit PID. Never run blanket process killers (`pkill -f node`, `killall`).
+Hardware resources have strict limits:
+- **Server Concurrency**: Run at most one full-stack dev stack at a time.
+- **Workload Separation**: Never run heavy compilations, test suites, or container builds concurrently with a heavy dev server to avoid swap thrashing.
+- **Targeted Process Control**: Stop services via `herdr`, `docker compose`, or exact PID. Never run broad process killers (`pkill -f node`, `killall`).
+
+## Dotfiles (`chezmoi`)
+
+The local filesystem is the source of truth for configuration.
+- **Status check**: `chezmoi status`
+- **Sync changes**: Run `chezmoi re-add <path>` for modified tracked files, or `chezmoi add <path>` for new files.
+- **Secrets & credentials**: The dotfiles repository is public on GitHub. Never sync credentials, tokens, cookies, or private keys. Add sensitive file patterns to `~/.local/share/chezmoi/.chezmoiignore`.
+
+## MCP Servers (`mcp-ctl`)
+
+Orchestrate all Model Context Protocol servers via `mcp-ctl`:
+- **Health check**: `mcp-ctl status`
+- **Restart & recover**: `mcp-ctl restart` (or `mcp-ctl up`)
+- **View logs**: `mcp-ctl logs`
+Never spawn unmanaged ad-hoc MCP server processes.
 
 ## Scoped Testing
 
-Always prefer tightly scoped test executions:
-- Run only tests directly covering modified code (by exact file path, `-t <pattern>`, or project filter).
-- Avoid repository-wide full test suites unless explicitly requested by the user.
+Keep test runs tightly scoped to avoid machine freezes and slow feedback:
+- Target only files covering modified code (by exact path, `-t <pattern>`, or project filter).
+- Avoid full repository test suites unless explicitly requested by the user.
 
 ## Browser Testing (`chrome-devtools`)
 
-Test web applications using the `chrome-devtools` skill and MCP tools.
-- Remote debugging endpoint runs on port `9222`.
-- If not running, launch the debug browser via:
+Drive web applications using the `chrome-devtools` MCP server against port 9222:
+- Launch debug browser if not running:
   ```bash
   gtk-launch chromium-debug
   ```
   *(Fallback: `chromium --remote-debugging-port=9222 --no-first-run --no-default-browser-check &`)*
-- Verify the endpoint is alive (`curl -s http://127.0.0.1:9222/json/version`) before making DevTools MCP calls.
+- Verify endpoint health before DevTools calls:
+  ```bash
+  curl -s http://127.0.0.1:9222/json/version
+  ```
