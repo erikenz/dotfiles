@@ -5,3 +5,7 @@ keybind = ctrl+h=csi:104;5u
 keybind = ctrl+j=csi:106;5u
 keybind = ctrl+k=csi:107;5u
 keybind = ctrl+l=csi:108;5u
+
+# Unbind Ctrl+Enter so it passes through to terminal apps (Pi, etc.)
+keybind = ctrl+enter=unbind
+keybind = f11=toggle_fullscreen
