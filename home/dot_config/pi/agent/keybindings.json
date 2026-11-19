@@ -1,7 +1,10 @@
 {
   "$schema": "https://pi.dev/schemas/keybindings.schema.json",
   "tui.input.submit": "ctrl+enter",
-  "tui.input.newLine": "enter",
+  "tui.input.newLine": [
+    "enter",
+    "shift+enter"
+  ],
   "tui.input.tab": [
     "tab",
     "ctrl+space"
