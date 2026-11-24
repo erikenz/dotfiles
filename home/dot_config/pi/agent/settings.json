@@ -26,13 +26,14 @@
     "npm:pi-subagents",
     "npm:pi-lens",
     "npm:@narumitw/pi-btw",
-    "npm:pi-vimmode",
     "npm:pi-inline-skill-autocomplete",
     "npm:pi-image-view",
     "npm:@complexthings/pi-dynamic-context-pruning",
     "npm:@burneikis/pi-plan",
     "npm:pi-antigravity-acp-provider",
-    "npm:@erikenz/pi-model-switch"
+    "npm:@erikenz/pi-model-switch",
+    "npm:@erikenz/pi-model-fallback",
+    "npm:pi-vim"
   ],
   "subagents": {
     "defaultProvider": "antigravity-acp",
