@@ -5,7 +5,8 @@
 -- Primary monitor (eDP-1) defaults
 hl.workspace_rule({ workspace = "2", monitor = MONITOR1, default = true })
 hl.workspace_rule({ workspace = "3", monitor = MONITOR1, default = true }) -- Zed / Delta / T3 Code
-hl.workspace_rule({ workspace = "4", monitor = MONITOR1, default = true }) -- Chromium Debug
+-- Master layout so the emulator's tiled column is a fixed frame width (see master.mfact in misc.lua).
+hl.workspace_rule({ workspace = "4", monitor = MONITOR1, default = true, layout = "master" }) -- Chromium Debug + Android Emulator
 hl.workspace_rule({ workspace = "5", monitor = MONITOR1, default = true }) -- Herdr
 hl.workspace_rule({ workspace = "6", monitor = MONITOR1, default = true }) -- Ferdium
 hl.workspace_rule({ workspace = "7", monitor = MONITOR1, default = true }) -- WatchDeck / Stremio

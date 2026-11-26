@@ -2,6 +2,14 @@ hl.config({
     dwindle = {
         preserve_split = true,
     },
+    master = {
+        -- Master layout is used only by workspace 4 (Android emulator + browser).
+        -- mfact 0.273 = ~516px of the ~1890px usable width: the AVD phone frame
+        -- (~460px) plus the floating emulator toolbar (~54px) that docks next to it.
+        -- new_status defaults to "master", so the newest window is the narrow one
+        -- (open the emulator last and it takes the left column).
+        mfact = 0.273,
+    },
     misc = {
         col = {
             splash = CACHYLGREEN,
