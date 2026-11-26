@@ -302,8 +302,18 @@ hl.window_rule({
 -- Android Emulator & Studio
 hl.window_rule({
 	match = { class = "^([Ee]mulator|qemu-system-.*)$" },
+	workspace = 4,
+	monitor = MONITOR1,
 	float = true,
 	opaque = true,
+})
+hl.window_rule({
+	match = { class = "^([Ee]mulator|qemu-system-.*)$", title = "^(Android Emulator.*)$" },
+	workspace = 4,
+	monitor = MONITOR1,
+	float = true,
+	opaque = true,
+	size = { 460, 960 },
 })
 hl.window_rule({
 	match = {
