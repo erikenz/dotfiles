@@ -31,6 +31,15 @@ if not contains "$PNPM_HOME/bin" $PATH
     set -gx PATH $PATH "$PNPM_HOME/bin"
 end
 
+# Android SDK
+set -gx ANDROID_HOME "$HOME/Android/Sdk"
+set -gx ANDROID_SDK_ROOT "$ANDROID_HOME"
+for dir in "$ANDROID_HOME/emulator" "$ANDROID_HOME/platform-tools" "$ANDROID_HOME/cmdline-tools/latest/bin"
+    if not contains $dir $PATH
+        set -gx PATH $PATH $dir
+    end
+end
+
 # Canonical Fish User Keybindings override
 function fish_user_key_bindings
     # Remap default Fish clear-screen to Alt+L
