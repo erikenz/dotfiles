@@ -3,12 +3,17 @@ hl.config({
         preserve_split = true,
     },
     master = {
-        -- Master layout is used only by workspace 4 (Android emulator + browser).
-        -- mfact 0.273 = ~516px of the ~1890px usable width: the AVD phone frame
-        -- (~460px) plus the floating emulator toolbar (~54px) that docks next to it.
-        -- new_status defaults to "master", so the newest window is the narrow one
-        -- (open the emulator last and it takes the left column).
-        mfact = 0.273,
+        -- Only workspace 4 (browser + Android emulator) uses this layout.
+        -- Hyprland can only control tiled widths through layout ratios, so the emulator's
+        -- column width is set here: mfact is the master (browser) share, the slave column
+        -- next to it gets the rest (~513px of the ~1890px usable width, which is the phone
+        -- frame plus the floating emulator toolbar that docks beside it).
+        -- orientation "right" keeps the browser master on the right, so the emulator's
+        -- narrow column sits on the left. new_status "slave" means a newly opened window
+        -- joins as the narrow column, whichever order you launch things in.
+        mfact = 0.727,
+        orientation = "right",
+        new_status = "slave",
     },
     misc = {
         col = {

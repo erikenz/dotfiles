@@ -300,34 +300,33 @@ hl.window_rule({
 })
 
 -- Android Emulator & Studio
--- Both emulator windows (the phone and its detached control toolbar) are class `Emulator`,
--- and both report the *initial* title "Emulator"; static rules only ever see that initial
--- title, so they cannot tell the phone apart from the toolbar. Match by class only and let a
--- title event sort out the toolbar (see below).
+-- The emulator opens two windows of class `Emulator`: the phone and its detached control
+-- toolbar. Both report the *initial* title "Emulator", and static rules only ever see the
+-- initial title, so a title rule cannot tell them apart. Float both here, then tile the
+-- phone back once it renames itself (see the title event below) - the toolbar keeps the
+-- plain "Emulator" title and stays floating as a side panel.
+hl.window_rule({
+	match = { class = "^([Ee]mulator|qemu-system-.*)$", title = "^(Emulator)$" },
+	workspace = 4,
+	monitor = MONITOR1,
+	float = true,
+	opaque = true,
+})
+-- no_initial_focus / focus_on_activate: starting the emulator must not drag you off the
+-- workspace you're on (the emulator asks for activation when it finishes booting).
 hl.window_rule({
 	match = { class = "^([Ee]mulator|qemu-system-.*)$" },
 	workspace = 4,
 	monitor = MONITOR1,
-	tile = true,
 	opaque = true,
+	no_initial_focus = true,
+	focus_on_activate = false,
 })
 
--- The toolbar keeps the title "Emulator" while the phone renames itself to
--- "Android Emulator - <avd>". Float the former as a side panel, tile the latter and make it
--- the master column (workspace 4 uses the master layout, see config/workspaces.lua).
 hl.on("window.title", function(w)
-	if not w or not w.class or not w.class:match("^[Ee]mulator$") then
-		return
+	if w and w.class == "Emulator" and w.title:match("^Android Emulator") then
+		hl.dispatch(hl.dsp.window.float({ window = w, action = "disable" }))
 	end
-
-	if w.title == "Emulator" then
-		hl.dispatch(hl.dsp.window.float({ window = w, action = "enable" }))
-		return
-	end
-
-	hl.dispatch(hl.dsp.window.float({ window = w, action = "disable" }))
-	hl.dispatch(hl.dsp.focus({ window = w }))
-	hl.dispatch(hl.dsp.layout("swapwithmaster"))
 end)
 hl.window_rule({
 	match = {
