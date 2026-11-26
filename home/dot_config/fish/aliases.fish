@@ -107,3 +107,12 @@ abbr -a czadd 'chezmoi add'
 abbr -a czra 'chezmoi re-add'
 abbr -a czu 'chezmoi update'
 abbr -a czdoc 'chezmoi doctor'
+
+# --- 8. Android & Emulator ---
+abbr -a emu 'emulator -avd Pixel_8_API_35'
+abbr -a emu-headless 'emulator -avd Pixel_8_API_35 -no-window -no-audio -no-boot-anim'
+abbr -a emu-ls 'emulator -list-avds'
+abbr -a adb-devices 'adb devices -l'
+abbr -a adb-reverse 'adb reverse tcp:8081 tcp:8081'
+abbr -a adb-shot 'adb exec-out screencap -p > /tmp/emulator_screenshot.png && echo "Saved to /tmp/emulator_screenshot.png"'
+abbr -a adb-clip 'adb exec-out screencap -p | wl-copy --type image/png && echo "Screenshot copied to clipboard"'
