@@ -299,6 +299,20 @@ hl.window_rule({
 	float = true,
 })
 
+-- Android Emulator & Studio
+hl.window_rule({
+	match = { class = "^([Ee]mulator|qemu-system-.*)$" },
+	float = true,
+	opaque = true,
+})
+hl.window_rule({
+	match = {
+		class = "^(jetbrains-studio)$",
+		title = "^(Welcome to Android Studio|Settings|Preferences|Device Manager|SDK Manager|win[0-9]+)$",
+	},
+	float = true,
+})
+
 -- Noctalia layer rule
 hl.layer_rule({
 	name = "noctalia",
