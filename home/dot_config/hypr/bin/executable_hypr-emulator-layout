@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# Auto-adjust Android Emulator tiled width on open to eliminate blank margins
+
+SOCKET="$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock"
+
+if [ ! -S "$SOCKET" ]; then
+    exit 1
+fi
+
+socat -u "UNIX-CONNECT:$SOCKET" STDOUT | while IFS= read -r line; do
+    # Event: openwindow>>WINDOWADDRESS,WORKSPACE,CLASS,TITLE
+    if [[ "$line" =~ ^openwindow\>\>([^,]+),([^,]+),Emulator,(Android\ Emulator.*) ]]; then
+        addr="${BASH_REMATCH[1]}"
+        (
+            sleep 0.25
+            win_info=$(hyprctl clients -j | jq -r --arg a "0x$addr" '.[] | select(.address == $a) | "\(.floating) \(.size[0])"')
+            is_floating=$(echo "$win_info" | awk '{print $1}')
+            curr_width=$(echo "$win_info" | awk '{print $2}')
+
+            if [ "$is_floating" = "false" ] && [ -n "$curr_width" ] && [ "$curr_width" -gt 600 ]; then
+                target_width=460
+                delta=$((target_width - curr_width))
+                hyprctl dispatch "hl.dsp.focus({ window = \"address:0x$addr\" })" >/dev/null 2>&1
+                hyprctl dispatch "hl.dsp.window.resize({ x = $delta, y = 0, relative = true })" >/dev/null 2>&1
+            fi
+        ) &
+    fi
+done
