@@ -106,6 +106,9 @@ hl.bind("XF86Calculator", hl.dsp.exec_cmd(launchPrefix .. CALCULATOR), { desc = 
 -- User custom app launchers (using launch-or-focus)
 hl.bind(mainMod .. " + SHIFT + M", hl.dsp.exec_cmd(binDir .. "launch-or-focus youtube 'uwsm app -- pear-desktop'"),
     { desc = "Open YouTube (Pear Desktop)" })
+hl.bind(mainMod .. " + CONTROL + SHIFT + M",
+    hl.dsp.exec_cmd(binDir .. "launch-or-focus prismlauncher 'uwsm app -- prismlauncher'"),
+    { desc = "Open Prism Launcher" })
 hl.bind(mainMod .. " + SHIFT + ALT + M", hl.dsp.exec_cmd(binDir .. "launch-or-focus-tui cliamp"),
     { desc = "Open cliamp (TUI music player)" })
 hl.bind(mainMod .. " + CONTROL + SHIFT + D", hl.dsp.exec_cmd(binDir .. "launch-or-focus-tui lazydocker"),
@@ -130,6 +133,14 @@ hl.bind(mainMod .. " + SHIFT + T",
     hl.dsp.exec_cmd(binDir .. "launch-or-focus t3code 'uwsm app -- t3code'"),
     { desc = "Open T3 Code" })
 hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd("uwsm app -- bitwarden-desktop"), { desc = "Open Bitwarden" })
+
+-- Android emulator: focus the AVD window if it is running, otherwise boot it (workspace 4).
+-- The AVD name must match the one in ~/.config/fish/aliases.fish (`emu`).
+local ANDROID_AVD = "Pixel_8_API_35"
+hl.bind(mainMod .. " + ALT + A",
+    hl.dsp.exec_cmd(binDir ..
+        "launch-or-focus --match-title 'Android Emulator' 'emulator -avd " .. ANDROID_AVD .. "'"),
+    { desc = "Focus or start the Android emulator" })
 
 -- Chromium Debug launcher
 hl.bind(mainMod .. " + SHIFT + R",
