@@ -49,9 +49,9 @@ function pnpm --wraps pnpm --description "pnpm wrapper with transparent portless
         end
     end
 
-    # 5. Route through portless if dev command was detected (.dev for Google OAuth compatibility + clean project name)
+    # 5. Route through portless if dev command was detected (clean project name on .localhost)
     if test $is_dev -eq 1
-        env PORTLESS_PREFIX="" PORTLESS_TLD="dev,localhost" portless run pnpm $argv
+        env PORTLESS_PREFIX="" portless run pnpm $argv
         return $status
     end
 
