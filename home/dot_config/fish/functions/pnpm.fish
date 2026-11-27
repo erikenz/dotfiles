@@ -49,9 +49,9 @@ function pnpm --wraps pnpm --description "pnpm wrapper with transparent portless
         end
     end
 
-    # 5. Route through portless if dev command was detected
+    # 5. Route through portless if dev command was detected (disable branch prefix so URL is always https://<project>.localhost)
     if test $is_dev -eq 1
-        portless run pnpm $argv
+        env PORTLESS_PREFIX="" portless run pnpm $argv
         return $status
     end
 
